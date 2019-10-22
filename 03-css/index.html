@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>HTML: The Structure of Web Pages</title>
+
+    <meta name="description" content="In this workshop, we will dive into HTML.">
+    <meta name="author" content="Jamie Vaughn">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ga.css" id="theme">
+
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <div class="slides">
+
+            <section>
+                <section data-background="#000" class="ga-reverse">
+                    <header class="ga-header">
+                            <h3>MCC Frontend Academy</h3>
+                    </header>
+                    <h1>Cascading Style Sheets (CSS)</h1>
+                </section>
+                <section>
+                    <h2>Cascading Style Sheets (CSS)</h2>
+                    <ul>
+                        <li>Tells the browser how to <strong>display</strong> a certain element</li>
+                        <li>Follows the general ruleset:</li>
+                        <ol>
+                            <li>Select the HTML element to be styled</li>
+                            <li>Specify the properties of the element to be styled</li>
+                            <li>Give the values we want each property to have</li>
+                        </ol>
+                    </ul>
+                    <aside class="notes">
+                        Not a programming language like Javascript, nor a mark-up language like HTML<br>
+                        Nothing quite like it<br>
+                        You can think of it like a Style Configuration File<br>
+                        Easy to understand and use but very hard to do it right
+                    </aside>
+                </section>
+                <section>
+                    <h2>Structure of a CSS rule</h2>
+                    <pre><code>selector {
+            property1: value;
+            property2: value;
+            property3: value;
+            }</code></pre>
+                    <ul>
+                        <li>The <strong>selector</strong> identifies which HTML elements the rule will be applied to</li>
+                        <li>The <strong>curly braces</strong> contain the property-value pairs, separated with semi-colons</li>
+                        <li>The <strong>properties</strong> define the style of the selected element</li>
+                        <li>The <strong>values</strong> are dependent on the property, and indicate the value of the properties to
+                            be set</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Types of CSS selectors</h2>
+                    <ul>
+                        <li><strong>Element</strong>: matches all the elements of that name on the page
+                            <pre><code>p {}</code></pre>
+                        </li>
+                        <li><strong>Class</strong>: matches all the elements with the specified class attribute, e.g. <code
+                                class="ga-nowrap">&lt;div class="example"&gt;</code>
+                            <pre><code>.example {}</code></pre>
+                        </li>
+                        <li><strong>ID</strong>: matches the element with the specified id attribute, e.g. <code
+                                class="ga-nowrap">&lt;div id="example"&gt;</code>
+                            <pre><code>#example {}</code></pre>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>CSS Specificity</h2>
+                    <div>
+                        <div class="ga-col4-25">
+                            <div class="ga-box">0-∞</div>
+                            <p>Inline styles</p>
+                        </div>
+                        <div class="ga-col4-25">
+                            <div class="ga-box">0-∞</div>
+                            <p>IDs</p>
+                        </div>
+                        <div class="ga-col4-25">
+                            <div class="ga-box">0-∞</div>
+                            <p>Classes, attributes and pseudo-classes</p>
+                        </div>
+                        <div class="ga-col4-25">
+                            <div class="ga-box">0-∞</div>
+                            <p>Elements and pseudo-elements</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="ga-col3-33">
+                            <pre><code>ul {
+            // CSS properties
+            }</code></pre>
+                            <p>0, 0, 0, 1</p>
+                        </div>
+                        <div class="ga-col3-33">
+                            <pre><code>.class-1 .class-2 p {
+            // CSS properties
+            }</code></pre>
+                            <p>0, 0, 2, 1</p>
+                        </div>
+                        <div class="ga-col3-33">
+                            <pre><code>#id-1 .class-3 div {
+            // CSS properties
+            }</code></pre>
+                            <p>0, 1, 1, 1</p>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        Complicated part about CSS is specificity<br>
+                        Elements, classes and ids have increasing degrees of specificity<br>
+                        Possible to combine selectors<br>
+                        Highest specificity wins
+                    </aside>
+                </section>
+            </section>
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    
+    <script>
+
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true },
+                { src: 'plugin/notes/notes.js', async: true }
+            ]
+        });
+
+    </script>
+</body>
+</html>
