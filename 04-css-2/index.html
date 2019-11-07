@@ -347,22 +347,24 @@
               <p>Before CSS grid, we've always tried to size our elements as best we could, then crossed our fingers and hoped the browser would render them in the right place. But now with grid, we can control exactly where our elements should go.</p>
             </aside>
           </section>
+
+          <section>
+            <h2>CSS grid basics</h2>
+            <div class="l-double">
+              <div class="fragment" style="width:100%;">
+                <p>Define your grid.</p>
+                <img class="plain" style="max-height:50vh;" data-src="img/define-grid.svg" alt="Define a grid">
+              </div>
+              <div class="fragment" style="width:100%;">
+                <p>Place items in the grid.</p>
+                <img class="plain" style="max-height:50vh;" data-src="img/place-items.svg" alt="Place items in the grid">
+              </div>
+            </div>
+            <aside class="notes">The basic premise of how grid works involves two steps. You define the grid, then place items in it either by yourself, or let the browser do it for you.</aside>
+          </section>
         </section>
 
-        <section>
-          <h2>CSS grid basics</h2>
-          <div class="l-double">
-            <div class="fragment" style="width:100%;">
-              <p>Define your grid.</p>
-              <img class="plain" style="max-height:50vh;" data-src="img/define-grid.svg" alt="Define a grid">
-            </div>
-            <div class="fragment" style="width:100%;">
-              <p>Place items in the grid.</p>
-              <img class="plain" style="max-height:50vh;" data-src="img/place-items.svg" alt="Place items in the grid">
-            </div>
-          </div>
-          <aside class="notes">The basic premise of how grid works involves two steps. You define the grid, then place items in it either by yourself, or let the browser do it for you.</aside>
-        </section>
+        
 
         <section>
           <section>
@@ -406,13 +408,7 @@
             <aside class="notes">There are numerous values we can use to define the size of our grids. There are those which are familiar, fixed units like pixels or ems and relative units like percentages or viewport units. Now, we also a new flexible unit known as fr or fractional unit, which I will cover in more detail later.</aside>
           </section>
 
-          <section>
-            <blockquote>“Cede <strong>control</strong> of your designs to the <strong>browsers</strong> that render them.”</blockquote>
-            <aside class="notes">
-              <p>The web is not a static medium. It is dynamic and interactive and we manipulate this medium by writing code to tell the browser what we want it to do. Here's an idea, instead of micromanaging the pixels on our designs, why not just let the browser do its own thing?</p>
-              <p>This means being okay with your designs looking different across browsers and devices. Is that really such a bad thing? We now have an increasing number of properties and values that pass on the responsibility of figuring out sizing to the browser.</p>
-            </aside>
-          </section>
+         
 
           <section>
             <h2>The <code>fr</code> unit</h2>
@@ -862,9 +858,7 @@
             <aside class="notes">But if instead we apply <code>display: flex</code> on the grid item, we can now use flex alignment properties applied on the flex container to position the grid item's content accordingly.</aside>
           </section>
 
-          <section data-background-image="img/jayz-beyonce-l.jpg">
-            <aside class="notes">Remember, awesome together.</aside>
-          </section>
+          
         </section>
 
         <section>
@@ -1639,10 +1633,7 @@ header {
             </aside>
           </section>
 
-          <section>
-            <blockquote>“CSS isn't a programming language. It's a stylesheet language. We shouldn't expect it to behave like a programming language. It has its own <strong>unique landscape and structures</strong>, ones that people with programming language mental maps might not expect.”<br><small>—Danielle Huntrods</small></blockquote>
-            <aside class="notes">Danielle Huntrods from Clearleft said it best. CSS has its own unique landscape and structures, and our mental maps around it need to reflect that.</aside>
-          </section>
+        
         </section>
 
         <section>
