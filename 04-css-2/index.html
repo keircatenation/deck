@@ -574,6 +574,122 @@
         </section>
 
         <section>
+                    <section>
+            <img class="plain" data-src="img/braun-wide.jpg" alt="Braun wide layout">
+            <aside class="notes">
+              <p>With <code>grid-template-areas</code>, creating responsive layouts becomes a little more convenient as well.</p>
+              <p>Here I have a recreation of a Braun HiFi print poster which was originally laid out in landscape. But on the web, that same layout will break when the viewport starts to narrow. So we'll need to adjust the layout when that happens.</p>
+              <p>Using <code>grid-template-areas</code> makes handling responsiveness easier than “traditional” techniques.</p>
+            </aside>
+          </section>
+
+          <section>
+            <div class="l-double" style="align-items:center;justify-items:center;">
+              <img class="plain" data-src="img/braun-mid.jpg" alt="Braun mid-width layout">
+              <img class="plain fragment" style="max-height:85vh;" data-src="img/braun-narrow.jpg" alt="Braun narrow layout">
+            </div>
+            <aside class="notes">
+              <p>This is a real-world example of modifying the layout by just changing the grid itself. I've assigned each “section” its own named grid area. When the layout is too narrow for the original wide design, I don't change the sizing of the items, instead, I change the grid itself.</p>
+              <p>When it hits yet another breakpoint, the grid is morphed yet again. I find this to be a rather convenient solution for a relatively common use-case.</p>
+            </aside>
+          </section>
+
+          <section>
+            <div class="vidcode">
+              <video autoplay loop>
+                <source data-src="videos/braun.mp4" type="video/mp4" />
+                Sorry, your browser doesn't support embedded videos, 
+                but don't worry, you can <a href="videos/braun.mp4">download it</a>
+                and watch it with your favourite video player!
+              </video>
+              <pre style="width:100%;font-size:40%;"><code class="css" style="max-height:75vh;">.steuergerät {
+  grid-gap: 0.5em;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "title title"
+                       "text text"
+                       "key key"
+                       "detail1 detail2"
+                       "detail3 detail4";
+}
+
+@media screen and (min-aspect-ratio: 1/1) and (min-height: 22em) {
+  .steuergerät {
+    grid-template-columns: 18.75em 1fr 1fr 1fr;
+    grid-template-rows: calc((100vh - 3em) / 3) calc((100vh - 3em) / 3) calc((100vh - 3em) / 3);
+    grid-template-areas: "title detail1 key key"
+                         "text detail2 key key"
+                         "text detail3 detail4 braun";
+  }
+}
+
+@media screen and (min-aspect-ratio: 8/5) and (min-height: 36em) {
+  .steuergerät {
+    grid-template-columns: 17.5em 1fr 3fr 1fr 1fr;
+    grid-template-rows: calc((100vh - 3em) / 3) calc((100vh - 3em) / 3) calc((100vh - 3em) / 3);
+    grid-template-areas: "title . key . ."
+                         "text detail1 key detail2 detail3"
+                         "text . . detail4 .";
+  }
+}</code></pre>
+            </div>
+            <aside class="notes">
+              <p>This is the final end result, and you can see how the layout changes with the viewport.</p>
+              <p>I'm going to make the assumption that most people have used media queries in some capacity before. The most common media queries are width-based. Occasionally, you may see a height-based media query or 2. Has anyone used the aspect-ratio media query before?</p>
+              <p>In the current specification, there are 13 media features that can be used as conditionals, including things like orientation, colour, resolution and so on. The design I'm showing in this demo is a good use case for the aspect-ratio media query.</p>
+              <p>Aspect-ratio media queries come in handy when relative proportions are important for your layout. And we can always combine multiple media queries to cater for different environments.</p>
+            </aside>
+          </section>
+          <section>
+            <h2>Grid placement with named areas</h2>
+            <div class="l-multiple">
+              <img style="max-height:75vh;" class="plain" data-src="img/named-areas.svg" alt="Named grid areas">
+              <div style="flex:0 0 55%;align-self:center;">
+                <pre style="font-size:50%;"><code class="css" style="max-height:none;">.grid-container {
+  display: grid;
+  grid-template-areas: "logo stats"
+                       "score stats"
+                       "board board"
+                       "... controls";
+}
+
+.logo { grid-area: logo; }
+.score { grid-area: score; }
+.stats { grid-area: stats; }
+.board { grid-area: board; }
+.controls { grid-area: controls; }</code></pre>
+              </div>
+            </div>
+            <aside class="notes">
+              <p>While we're at the topic of naming things, we can also name grid areas. The syntax of the <code>grid-template-areas</code> property provides a visualisation of the structure of the grid, making the overall layout of the grid container easier to understand.</p>
+              <p>We then place items in their respective areas using the <code>grid-area</code> property on the item.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Using grid areas</h2>
+            <div class="livecode livecode-2p">
+              <div class="result grid3" style="font-size:75%;">
+                <div class="grid3__item a" style="border:1px solid;padding:1em 0;"><p>Item A</p></div><div class="grid3__item b" style="border:1px solid;padding:1em 0;"><p>Item B</p></div><div class="grid3__item c" style="border:1px solid;padding:1em 0;"><p>Item C</p></div>
+              </div>
+              <div class="code"><style class="code-editor" contenteditable="true">.grid3 {
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px;
+  grid-template-rows: 100px 100px 100px;
+  grid-template-areas: 'a . . .'
+                       'a . . c'
+                       '. b . c';
+}
+
+.grid3 .a { grid-area: a; }
+.grid3 .b { grid-area: b; }
+.grid3 .c { grid-area: c; }</style></div>
+            </div>
+          </section>
+        </section>
+
+        </section>
+
+        <section>
           <section>
             <h2>Aligning your grid items</h2>
             <aside class="notes">Next up, alignment. Aligning stuff on a page is practically the most important part of building web layouts. And box alignment can sometimes trip people up. I know it can be hard to remember which property does what.</aside>
@@ -719,7 +835,27 @@
               <p>If everybody is completely lost now, please trust me when I say, it gets easier with experience.</p>
             </aside>
           </section>
+          <section>
+            <p>Self-alignment properties, maybe?</p>
+            <figure class="fragment">
+              <img class="plain" style="margin:0;max-height:50vh;" data-src="img/fit.svg" alt="Self-alignment properties">
+              <figcaption>There's a couple of ways to align within a grid cell</figcaption>
+            </figure>
+            <aside class="notes">
+              <p>When I started building this out, my first instinct was to use the <code>justify-self</code> and <code>align-self</code> properties to adjust the content positions. Nice try, but it was a no go.</p>
+              <p>The border property applies onto the grid item. Any grid alignment property other than stretch will make the size of the grid item fit to its contents.</p>
+              <p>Any borders applied to grid items naturally fit the grid item’s contents, so I couldn’t do that, it messed up the design.</p>
+            </aside>
+          </section>
 
+          <section>
+            <p>Flexbox to the rescue?</p>
+            <figure class="fragment">
+              <img class="plain" style="margin:0;max-height:50vh;" data-src="img/flex.svg" alt="Display flex on grid items">
+              <figcaption>That's more like it</figcaption>
+            </figure>
+            <aside class="notes">But if instead we apply <code>display: flex</code> on the grid item, we can now use flex alignment properties applied on the flex container to position the grid item's content accordingly.</aside>
+          </section>
           <section>
             <h2><code>justify/align-self</code></h2>
             <p>self-alignment properties</p>
@@ -819,50 +955,6 @@
 
         <section>
           <section>
-            <div class="l-double">
-              <figure>
-                <img class="plain" style="max-height:80vh;margin:0;" data-src="img/bauhaus-original.jpg" alt="Malerei, Fotografie, Film (pg. 126)">
-                <figcaption>Original print version</figcaption>
-              </figure>
-              <figure>
-                <img class="plain" style="max-height:80vh;margin:0;" data-src="img/bauhaus-grid.jpg" alt="Recreated with CSS grid">
-                <figcaption>CSS grid web version</figcaption>
-              </figure>
-            </div>
-            <aside class="notes">
-              <p>Earlier on, I mentioned that Flexbox and Grid work really together, and I want to share an example of that.</p>
-              <p>The image on the left is a page from the publication Malerei, Fotografie, Film by László Moholy-Nagy, who was a professor at the Bauhaus school. The layout is made up of several striking, thick, black borders around each grid cell.</p>
-              <p>Each cell contains a different type of content and their alignment varies from cell to cell. So how would we align things according to the original design?</p>
-            </aside>
-          </section>
-
-          <section>
-            <p>Self-alignment properties, maybe?</p>
-            <figure class="fragment">
-              <img class="plain" style="margin:0;max-height:50vh;" data-src="img/fit.svg" alt="Self-alignment properties">
-              <figcaption>These are not the borders you are looking for</figcaption>
-            </figure>
-            <aside class="notes">
-              <p>When I started building this out, my first instinct was to use the <code>justify-self</code> and <code>align-self</code> properties to adjust the content positions. Nice try, but it was a no go.</p>
-              <p>The border property applies onto the grid item. Any grid alignment property other than stretch will make the size of the grid item fit to its contents.</p>
-              <p>Any borders applied to grid items naturally fit the grid item’s contents, so I couldn’t do that, it messed up the design.</p>
-            </aside>
-          </section>
-
-          <section>
-            <p>Flexbox to the rescue</p>
-            <figure class="fragment">
-              <img class="plain" style="margin:0;max-height:50vh;" data-src="img/flex.svg" alt="Display flex on grid items">
-              <figcaption>That's more like it</figcaption>
-            </figure>
-            <aside class="notes">But if instead we apply <code>display: flex</code> on the grid item, we can now use flex alignment properties applied on the flex container to position the grid item's content accordingly.</aside>
-          </section>
-
-          
-        </section>
-
-        <section>
-          <section>
             <h2>Properties on the grid item</h2>
             <img class="plain" style="max-height:65vh;" data-src="img/chessboard.jpg" alt="Chessboard">
             <aside class="notes">The next thing we're going to cover is manual placement of grid items. When it comes to grid placement, my mind instinctively draws a parallel with placing pieces on a chessboard.</aside>
@@ -937,128 +1029,10 @@ grid-template-rows: [first header-start] 100px [header-end content-start] 1fr [c
             </aside>
           </section>
 
-          <section>
-            <h2>Grid placement with named areas</h2>
-            <div class="l-multiple">
-              <img style="max-height:75vh;" class="plain" data-src="img/named-areas.svg" alt="Named grid areas">
-              <div style="flex:0 0 55%;align-self:center;">
-                <pre style="font-size:50%;"><code class="css" style="max-height:none;">.grid-container {
-  display: grid;
-  grid-template-areas: "logo stats"
-                       "score stats"
-                       "board board"
-                       "... controls";
-}
-
-.logo { grid-area: logo; }
-.score { grid-area: score; }
-.stats { grid-area: stats; }
-.board { grid-area: board; }
-.controls { grid-area: controls; }</code></pre>
-              </div>
-            </div>
-            <aside class="notes">
-              <p>While we're at the topic of naming things, we can also name grid areas. The syntax of the <code>grid-template-areas</code> property provides a visualisation of the structure of the grid, making the overall layout of the grid container easier to understand.</p>
-              <p>We then place items in their respective areas using the <code>grid-area</code> property on the item.</p>
-            </aside>
-          </section>
-
-          <section>
-            <h2>Using grid areas</h2>
-            <div class="livecode livecode-2p">
-              <div class="result grid3" style="font-size:75%;">
-                <div class="grid3__item a" style="border:1px solid;padding:1em 0;"><p>Item A</p></div><div class="grid3__item b" style="border:1px solid;padding:1em 0;"><p>Item B</p></div><div class="grid3__item c" style="border:1px solid;padding:1em 0;"><p>Item C</p></div>
-              </div>
-              <div class="code"><style class="code-editor" contenteditable="true">.grid3 {
-  display: grid;
-  grid-template-columns: 150px 150px 150px 150px;
-  grid-template-rows: 100px 100px 100px;
-  grid-template-areas: 'a . . .'
-                       'a . . c'
-                       '. b . c';
-}
-
-.grid3 .a { grid-area: a; }
-.grid3 .b { grid-area: b; }
-.grid3 .c { grid-area: c; }</style></div>
-            </div>
-          </section>
-        </section>
 
         <section>
-          <section data-background-image="img/whitespace.jpg" data-transition="fade-in">
-            <h2 style="padding:0.25em;background-color:rgba(0,0,0,0.75);display:inline-block;">Vertical whitespace</h2>
-            <aside class="notes">
-              <p>Vertical whitespace is an important concept in layout design, as it serves to balance the layout and bring focus to important content. Before CSS grid, trying to do this on the web involved hacks like spacer gifs, empty divs, Javascript, you name it.</p>
-              <p>That's because there never was a proper way to layout things on the web other than one after another. I mean, you could use absolute positioning but that opens up another can of worms because now you're messing with the document flow. But life's different now. It's better with CSS grid.</p>
-            </aside>
-          </section>
 
-          <section>
-            <img class="plain" data-src="img/braun-wide.jpg" alt="Braun wide layout">
-            <aside class="notes">
-              <p>With <code>grid-template-areas</code>, creating responsive layouts becomes a little more convenient as well.</p>
-              <p>Here I have a recreation of a Braun HiFi print poster which was originally laid out in landscape. But on the web, that same layout will break when the viewport starts to narrow. So we'll need to adjust the layout when that happens.</p>
-              <p>Using <code>grid-template-areas</code> makes handling responsiveness easier than “traditional” techniques.</p>
-            </aside>
-          </section>
 
-          <section>
-            <div class="l-double" style="align-items:center;justify-items:center;">
-              <img class="plain" data-src="img/braun-mid.jpg" alt="Braun mid-width layout">
-              <img class="plain fragment" style="max-height:85vh;" data-src="img/braun-narrow.jpg" alt="Braun narrow layout">
-            </div>
-            <aside class="notes">
-              <p>This is a real-world example of modifying the layout by just changing the grid itself. I've assigned each “section” its own named grid area. When the layout is too narrow for the original wide design, I don't change the sizing of the items, instead, I change the grid itself.</p>
-              <p>When it hits yet another breakpoint, the grid is morphed yet again. I find this to be a rather convenient solution for a relatively common use-case.</p>
-            </aside>
-          </section>
-
-          <section>
-            <div class="vidcode">
-              <video autoplay loop>
-                <source data-src="videos/braun.mp4" type="video/mp4" />
-                Sorry, your browser doesn't support embedded videos, 
-                but don't worry, you can <a href="videos/braun.mp4">download it</a>
-                and watch it with your favourite video player!
-              </video>
-              <pre style="width:100%;font-size:40%;"><code class="css" style="max-height:75vh;">.steuergerät {
-  grid-gap: 0.5em;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: "title title"
-                       "text text"
-                       "key key"
-                       "detail1 detail2"
-                       "detail3 detail4";
-}
-
-@media screen and (min-aspect-ratio: 1/1) and (min-height: 22em) {
-  .steuergerät {
-    grid-template-columns: 18.75em 1fr 1fr 1fr;
-    grid-template-rows: calc((100vh - 3em) / 3) calc((100vh - 3em) / 3) calc((100vh - 3em) / 3);
-    grid-template-areas: "title detail1 key key"
-                         "text detail2 key key"
-                         "text detail3 detail4 braun";
-  }
-}
-
-@media screen and (min-aspect-ratio: 8/5) and (min-height: 36em) {
-  .steuergerät {
-    grid-template-columns: 17.5em 1fr 3fr 1fr 1fr;
-    grid-template-rows: calc((100vh - 3em) / 3) calc((100vh - 3em) / 3) calc((100vh - 3em) / 3);
-    grid-template-areas: "title . key . ."
-                         "text detail1 key detail2 detail3"
-                         "text . . detail4 .";
-  }
-}</code></pre>
-            </div>
-            <aside class="notes">
-              <p>This is the final end result, and you can see how the layout changes with the viewport.</p>
-              <p>I'm going to make the assumption that most people have used media queries in some capacity before. The most common media queries are width-based. Occasionally, you may see a height-based media query or 2. Has anyone used the aspect-ratio media query before?</p>
-              <p>In the current specification, there are 13 media features that can be used as conditionals, including things like orientation, colour, resolution and so on. The design I'm showing in this demo is a good use case for the aspect-ratio media query.</p>
-              <p>Aspect-ratio media queries come in handy when relative proportions are important for your layout. And we can always combine multiple media queries to cater for different environments.</p>
-            </aside>
-          </section>
         </section>
 
         <section>
