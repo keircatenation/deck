@@ -152,33 +152,63 @@
 					<section>
 						<h2>Null and Undefined</h2>
 						<div class="ga-col2-50">
-								<code>null</code>
-								<p>explicitly assigning a variable to "nothing"</p>
+								<pre><code>null</code></pre>
+								<ul>
+									<li>explicitly assigning a variable to "nothing"</li>
+								</ul>
 						</div>
 						<div class="ga-col2-50">
-								<code>undefined</code>
-								<p>For when a variable was not set</p>
-								<p>Also for function with no return value</p>
+								<pre><code>undefined</code></pre>
+								<ul>
+									<li>For when a variable was not set</li>
+									<li>Also for function with no return value</li>
+								</ul>
 						</div>
 						
 					</section>
 					<section>
 						<h2>Numbers</h2>
+						<ul>
+							<li>64 bit Floating point per the IEEE 754 spec</li>
+							<li>Due to 64 bit maximum size, they are imprecise</li>
+							<li>Let's see it in action: <pre><code>0.1 + 0.2 = ?</code></pre></li>
+							<li>Symbolic values: <pre><code>Infinity</code></pre> and <pre><code>NaN</code></pre></li>
+							<li>Use <pre><code>Number.isNaN()</code></pre> when comparing to NaN</li>
+						</ul>
 					</section>
 					<section>
 						<h2>Booleans</h2>
+						<ul>
+							<li><pre><code>true</code></pre> or <pre><code>false</code></pre></li>
+							<li>Truthy or Falsey?</li>
+							<li>Let's see it in action:</li>
+							<li><pre><code>Boolean(null)</code></pre></li>
+							<li><pre><code>Boolean('0')</code></pre></li>
+							<li><pre><code>Boolean("")</code></pre></li>
+							<li><pre><code>Boolean('false')</code></pre></li>
+						</ul>
 					</section>
 					<section>
 						<h2>Strings</h2>
+						<ul>
+							<li>Single quotes<pre><code>'...'</code></pre> or Double Quotes<pre><code>"..."</code></pre></li>
+							<li>Concatenation: <pre><code>'...' + '...'</code></pre></li>
+							<li><pre><code>'Hello' + ' ' + 'World'</code></pre> = <pre><code>'Hello World'</code></pre></li>
+							<li><pre><code>let myStr = 'Hello World'</code></pre></li>
+						</ul>
 					</section>
 					<section>
 						<h2>String Template Literals</h2>
-						<p><code>let str = `The is a template string`</code></p>
+						<ul>
+							<li>Uses backticks <pre><code>`...`</code></pre></li>
+							<li>Can be mult-line</li>
+							<li>Can use Interpolation <pre><code>`...${variable}...`</code></pre></li>
+						</ul>
+						<p><pre><code>let str = `The is a template string`</code></pre></p>
 						<p><pre><code>let str = `Template strings
 can be mult-line...
 Like This!
 `</code></pre></p>
-<p><code>Template Strings can use <b>Interpolation</b></code></p>
 					</section>
 					<section>
 						<h2>String Interpolation</h2>
@@ -191,7 +221,6 @@ Like This!
 							<li><p>Arbitray precision: </p></li>
 							<li><p>fixes the decimal bug in Numbers</p></li>
 						</ul>
-						
 					</section>
 					<section>
 						<h2>Symbol()</h2>
@@ -205,11 +234,18 @@ Like This!
 					<section>
 						<h2>Primitive Wrappers</h2>
 						<ul>
-							<li><code>String()</code></li>
-							<li><code>Number()</code></li>
-							<li><code>Boolean()</code></li>
-							<li><code>BigInt()</code></li>
-							<li><code>Symbol()</code></li>
+							<li><pre><code>String()</code></pre></li>
+							<li><pre><code>Number()</code></pre></li>
+							<li><pre><code>Boolean()</code></pre></li>
+							<li><pre><code>BigInt()</code></pre></li>
+							<li><pre><code>Symbol()</code></pre></li>
+						</ul>
+					</section>
+					<section>
+						<h2>The <code>JSON</code> object</h2>
+						<ul>
+							<li><pre><code>JSON.stringify()</code></pre></li>
+							<li><pre><code>JSON.parse()</code></pre></li>
 						</ul>
 					</section>
 					<section>
