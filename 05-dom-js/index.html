@@ -131,7 +131,7 @@
 						<h3>MCC Frontend Academy</h3>
 					</header>
 					<h1>Javascript</h1>
-					<p><small>Variables, Primitives and Operators</small></p>
+					<p><small>Variables</small></p>
 				</section>
 				<section>
 					<section>
@@ -140,12 +140,23 @@
 						<p class="fragment">Let</p>
 						<p class="fragment">Const</p>
 					</section>
+				</section>
+				
+				<section data-background="#000" class="ga-reverse">
+					<header class="ga-header">
+						<h3>MCC Frontend Academy</h3>
+					</header>
+					<h1>Javascript</h1>
+					<p><small>Primitives and Operators</small></p>
+				</section>
+				<section>
 					<section>
 						<h2>Primitives</h2>
 						<ul>
 							<li>Basic Data Types</li>
 							<li>Immutable</li>
 							<li>You must reassign to the variable <br>to change their value</li>
+							<li>null, undefined, Number, String, Boolean, BigInt, Symbol</li>
 						</ul>
 						
 					</section>
@@ -172,26 +183,32 @@
 							<li>64 bit Floating point per the IEEE 754 spec</li>
 							<li>Due to 64 bit maximum size, they are imprecise</li>
 							<li>Let's see it in action: <pre><code>0.1 + 0.2 = ?</code></pre></li>
-							<li>Symbolic values: <pre><code>Infinity</code></pre> <pre><code>NaN</code></pre></li>
+							<li>Symbolic values:	<div class="ga-col2-33"> <pre><code>Infinity</code></pre> <pre><code>NaN</code></pre></div></li>
 							<li>when comparing to NaN Use <pre><code>Number.isNaN()</code></pre> </li>
 						</ul>
 					</section>
 					<section>
 						<h2>Booleans</h2>
 						<ul>
-							<li><pre><code>true</code></pre> or <pre><code>false</code></pre></li>
+							<li><div class="ga-col2-50"><pre><code>true</code></pre> or <pre><code>false</code></pre></div></li>
 							<li>Truthy or Falsey?</li>
 							<li>Let's see it in action:</li>
-							<li><pre><code>Boolean(null)</code></pre></li>
-							<li><pre><code>Boolean('0')</code></pre></li>
-							<li><pre><code>Boolean("")</code></pre></li>
-							<li><pre><code>Boolean('false')</code></pre></li>
+							<pre><code>Boolean(null)</code></pre>
+							<pre><code>Boolean('0')</code></pre>
+							<pre><code>Boolean("")</code></pre>
+							<pre><code>Boolean('false')</code></pre>
 						</ul>
+					</section>
+					<section>
+						<h2>Type Coercion</h2>
+						<p>Types refer to the data types, such as primitives</p>
+						<p>Coercion refers to the JS engine changing the type</p>
+						<p>Javascript is a Dynamically typed language</p>
 					</section>
 					<section>
 						<h2>Strings</h2>
 						<ul>
-							<li>Single quotes<pre><code>'...'</code></pre> or Double Quotes<pre><code>"..."</code></pre></li>
+							<li><div class="ga-col2-50"> <span>Single quotes<pre><code>'...'</code></pre></span> <span>or Double Quotes<pre><code>"..."</code></pre></span></div></li>
 							<li>Concatenation: <pre><code>'...' + '...'</code></pre></li>
 							<li><pre><code>'Hello' + ' ' + 'World'</code></pre> = <pre><code>'Hello World'</code></pre></li>
 							<li><pre><code>let myStr = 'Hello World'</code></pre></li>
@@ -216,6 +233,7 @@ Like This!
 					</section>
 					<section>
 						<h2>BigInt</h2>
+						<pre><code>const theBiggestInt = 9007199254740991n;</code></pre>
 						<ul>
 							<li><p>Not Critical for us now</p></li>
 							<li><p>Arbitray precision: </p></li>
@@ -224,6 +242,8 @@ Like This!
 					</section>
 					<section>
 						<h2>Symbol()</h2>
+						<pre><code>let _Sym = Symbol("Sym");
+console.log(_Sym.description);</code></pre>
 						<ul>
 							<li>Not critical for us now</li>
 							<li>New in ES6</li>
