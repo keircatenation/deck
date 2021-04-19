@@ -51,7 +51,7 @@
 						<h2>What is web development?</h2>
 						<p class="fragment">The process of building websites</p>
 						<p class="fragment">The tools of modern web development</p>
-						<p class="fragment">Best Practices, Convetions and Style Guides</p>
+						<p class="fragment">Best Practices, Conventions and Style Guides</p>
 					</section>
 					<section>
 						<h2>How to get started?</h2>
@@ -114,20 +114,19 @@
 						<div class="fragment ga-col3-33">
 							<p>Javascript</p>
 							<pre><code>function click(e) {
- e.preventDefault();
- e.stopPropogation();
- return e.target.value;
+ e.preventDefault()
+ e.stopPropogation()
+ return (
+  e.target.value
+ )
 }</code></pre>
 							</div>
 							<div class="fragment ga-col3-33">
 								<p>HTML</p>
-								<pre><code>&lt;head&gt;
-  &lt;meta charset="utf-8"&gt;
-  &lt;title&gt;Your site title&lt;/title&gt;
-  &lt;meta name="description" content="description"&gt;
-  &lt;meta name="author" content="Your name"&gt;
-  &lt;link rel="stylesheet" href="styles.css"&gt;
-&lt;/head&gt;
+								<pre><code>&lt;section&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+  &lt;p&gt;World&lt;/p&gt;
+&lt;/section&gt;
 							</code></pre></div>
 							<div class="fragment ga-col3-33">
 							<p>CSS</p>
@@ -146,6 +145,7 @@
 			</section>
 			<section>
 				<h2>Basic technology stack</h2>
+				<a href="https://frontendmasters.com/books/front-end-handbook/2019/">Frontend Masters Handbook</a>
 				<svg viewBox="0 0 1513 635">
 					<defs>
 						<linearGradient x1="0%" y1="-1384.684%" x2="50%" y2="-1384.684%" id="a1">
@@ -1091,7 +1091,9 @@
 							<li><strong>Structures</strong> the document and tells browsers what a certain element's function is</li>
 							<li>Content is "marked-up" using tags</li>
 							<li>Tags usually (but not always) come in pairs,<pre><code>&lt;p&gt;This is an example of a paragraph element&lt;/p&gt;</code></pre></li>
-							<li>The opening tag, closing tag and everything in between is a <strong>HTML element</strong></li>
+							<li>What's a self-closing tag? <pre><code>&lt;br/&gt;</code></pre></li>
+							<li>The opening tag, closing tag and everything generates an <strong>HTML element</strong></li>
+							<li><strong>Tag</strong> vs. <strong>Element</strong>?</li>
 						</ul>
 						<aside class="notes">
 							Tags are markers wrapped around text in the document to indicate how user-agents should interpret it
@@ -1159,7 +1161,7 @@
 						<ul>
 							<li>Contains instructions for the browser and meta data for the website</li>
 							<li>Title and description are what shows up on search engine results</li>
-							<li>Stylesheets are also declared here</li>
+							<li>Stylesheets and Script tags are also declared here</li>
 						</ul>
 					</section>
 					<section>
@@ -1182,7 +1184,8 @@
 &lt;/body&gt;</code></pre>
 						<ul>
 							<li>Represents the <strong>main content</strong> of the document</li>
-							<li>Should only be one <code>&lt;body&gt;</code> element on a web page</li>
+							<li>Holds the content that is rendered for the user</li>
+							<li>Only one <code>&lt;body&gt;</code> element on a web page</li>
 						</ul>
 					</section>
 					<section>
