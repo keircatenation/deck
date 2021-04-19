@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>HTML: The Structure of Web Pages</title>
+
+		<meta name="description" content="In this workshop, we will dive into HTML.">
+		<meta name="author" content="Jamie Vaughn">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="./01-html/css/reveal.css">
+		<link rel="stylesheet" href="./01-html/css/theme/ga.css" id="theme">
+
+		<link rel="stylesheet" href="./01-html/lib/css/zenburn.css">
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section data-background="#000" class="ga-reverse">
+					<header class="ga-header">
+						<h3>MCC Frontend Slides</h3>
+					</header>
+					<h3>Web Design & Development I</h3>
+					<p><a>HTML</a></p>
+					<p><a>CSS I</a></p>
+					<p><a>CSS II</a></p>
+					<p><a>DOM</a></p>
+				</section>
+        </div>
+    </div>
+    <script src="./01-html/lib/js/head.min.js"></script>
+		<script src="./01-html/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: './01-html/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: './01-html/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: './01-html/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: './01-html/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: './01-html/plugin/zoom-js/zoom.js', async: true },
+					{ src: './01-html/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+  </body>
+</html>
