@@ -142,7 +142,7 @@
 						Some languages need to be compiled, others need an interpreter
 					</aside>
 				</section>
-			</section>
+			
 			<section>
 				<h2>Basic technology stack</h2>
 				<a href="https://frontendmasters.com/books/front-end-handbook/2019/">Frontend Masters Handbook</a>
@@ -1078,7 +1078,7 @@
 							</svg>
 						</div>
 					</section>
-
+				</section>
 				</section>
 
 				<section>
@@ -1093,10 +1093,16 @@
 						<ul>
 							<li><strong>Structures</strong> the document and tells browsers what a certain element's function is</li>
 							<li>Content is "marked-up" using tags</li>
-							<li>Tags usually (but not always) come in pairs,<pre><code>&lt;p&gt;This is an example of a paragraph element&lt;/p&gt;</code></pre></li>
-							<li>What's a self-closing tag? <pre><code>&lt;br/&gt;</code></pre></li>
-							<li>The opening tag, closing tag and everything generates an <strong>HTML element</strong></li>
-							<li><strong>Tag</strong> vs. <strong>Element</strong>?</li>
+							<li>Tags usually (but not always) come in pairs,<pre><code>&lt;p&gt;This is an example of a paragraph tag or element&lt;/p&gt;</code></pre></li>
+							<li>What's a self-closing tag? <pre><code>&lt;br/&gt; &lt;img/&gt; &lt;input/&gt;</code></pre></li>
+							<li>The opening tag, closing tag and internal content generates an <strong>HTML element</strong></li>
+							<li>
+								<strong>Tag</strong> vs. <strong>Element</strong>?
+								<ul>
+									<li>Tag: the code as written</li>
+									<li>Element: the code object in computer memory</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes">
 							Tags are markers wrapped around text in the document to indicate how user-agents should interpret it
@@ -1298,15 +1304,6 @@
 							All this functionality is built into HTML
 						</aside>
 					</section>
-					<section>
-						<h2>Semantics and accessibility</h2>
-						<ul>
-							<li>To make the web easier to use and access, and available to everyone</li>
-							<li>Encompasses all disabilities, including visual, auditory, physical, speech, cognitive and neurological disabilities</li>
-							<li>Benefits people <em>without</em> disabilities as well</li>
-							<li>Accessible websites benefit from search engine optimisation (SEO)</li>
-						</ul>
-					</section>
 				</section>
 				<section>
 					<section data-background="#000" class="ga-reverse">
@@ -1314,9 +1311,13 @@
 							<h3>MCC Frontend Academy</h3>
 						</header>
 						<h1>HTML Code Along</h1>
-						<p><a href='https://codepen.io/MCCFrontendAcademy/pen/JjjKGPm?editors=1000'>Starter Codepen</a></p>
+						<p><a href='https://glitch.com/edit/#!/html-article'>Article Code Exercise</a></p>
 					</section>
 				</section>
+
+
+
+	<!-- Part 2 -->
                 <section>
                     <section data-background="#000" class="ga-reverse">
 						<header class="ga-header">
@@ -1339,6 +1340,17 @@
                         <p>This concept comes up in HTML, CSS, JS and Git</p>
                         <h2>But they don't always look quite like this one!</h2>
                     </section>
+										<section>
+											<h3>Binary Tree</h3>
+											<img src="img/Binary_tree.svg" alt="binary tree">
+											<p>Height: 3, Size: 9, Unbalanced, Unsorted</p>
+										</section>
+										<section>
+											<h3>Perfect Binary Tree</h3>
+											<img src="https://qph.fs.quoracdn.net/main-qimg-d37edec64bc1790d4ce47aaea6f77675" alt="binary tree">
+											<p>Perfect: Balanced, Sorted, Full</p>
+											<p>Complete: Balanced, Not Sorted, Not Full</p>
+										</section>
                     <section>
                         <h2>Challenge: Which of these is a tree?</h2>
                         <div style='display: flex;max-width:100vw'>
@@ -1347,6 +1359,20 @@
                         </div>
 
                     </section>
+										<section>
+											<h2>Which of these is a tree?</h2>
+											<div style='display: flex;max-width:100vw'>
+													<img style="width:50%" src="img/sankey_not_tree.png" alt="">
+													<img style="width:50%" src="img/redditsankey.png" alt="">
+											</div>
+									</section>
+										<section>
+											<h2>... So trees can be visualized in many ways</h2>
+											<p>But most commonly they'll look like a graph</p>
+											<img src="img/Binary_tree.svg" alt="binary tree">
+											<p>but...</p>
+										</section>
+										
                     <section>
                         <h2>Not all Graphs are Trees</h2>
                         <p>Which of these two is the Tree?</p>
@@ -1368,10 +1394,11 @@
                             <img style="width:50%" src="img/pug-tree.png" alt="">
                             <img style="width:50%" src="img/json-tree.png" alt="">
                         </div>
-                        <ul> <li>These are both trees!</li> </ul>
-                    </section>
-                    <section>
-                        <a href='https://html-sample-1e01e.firebaseapp.com/'>Let's review some Semantic HTML Elements</a>
+                        <ul> 
+													<li>These are both trees!</li> 
+													<li>You'll need to get into the habit of being able to visualize the implicit tree structure in your code</li>
+													<li>Be it HTML, CSS, JS, JSON etc...</li> 
+												</ul>
                     </section>
                     <section>
                         <h2>Rendering a Tree Structure in HTML</h2>
@@ -1380,6 +1407,8 @@
     &lt;li&gt;li&lt;/li&gt;
     &lt;li&gt;li&lt;/li&gt;
     &lt;li&gt;
+      &lt;!-- This is an HTML comment--&gt;
+      &lt;!-- which is also part of the tree --&gt;
         &lt;ul&gt;
             &lt;li&gt;li
             &lt;/li&gt;
@@ -1398,14 +1427,65 @@
 &lt;/details&gt;
                         </code></pre>
                     </section>
-                </section>
+										<section>
+											<h3>DOM - Document Object Model</h3>
+											<img src='img/domtree.jpg' />
+										</section>
+										<section>
+											<h2>Verifying Correct HTML Code</h2>
+											<p><a href="https://developer.mozilla.org/en-US/docs/Tools/Validators">HTML Validators</a></p>
+												<ul>
+													<li>Shows syntax errors by type & line number</li>
+													<li>Can suggest accessibility and semantic improvements</li>
+													<li>Great addition to the "Read, Search, [Validate], Ask" mantra</li>
+												</ul>
+										</section>
+</section>
+
+
+
+
+								<!---Part 3 -->
 				<section>
 					<section data-background="#000" class="ga-reverse">
 						<header class="ga-header">
 							<h3>MCC Frontend Academy</h3>
 						</header>
-						<h1>HTML: Accessibilty Standards and Tools</h1>
+						<h1>HTML: Semantics & Accessibilty Standards and Tools</h1>
 						<p><small>Part 3</small></p>
+					</section>
+					<section>
+						<h2>Semantic HTML</h2>
+						<p>Using the right HTML element for the purpose</p>
+						<ul>
+							<li>Helps your Developer Colleagues</li>
+							<li>Helps indexing algorithms (i.e. Google)</li>
+							<li>Doesn't actually help the user, but that's ok here</li>
+							<li><a href="https://www.w3schools.com/html/html5_semantic_elements.asp">W3Schools Semantic Elements</a></li>
+							<li><a href="https://www.freecodecamp.org/news/semantic-html5-elements/">Semantic HTML Explained</a></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Semantic HTML in action</h2>
+						<img src="img/semantic-initial-content.png" alt="">
+						<p>What HTML tags can we use to communicate the role of each block?</p>
+					</section>
+					<section>
+						<h2>Semantic HTML in action</h2>
+						<img src="img/semantic-html5-mid.png" alt="">
+					</section>
+					<section>
+						<h2>Semantic HTML in action</h2>
+						<img src="img/semantic-html5-final.png" alt="">
+					</section>
+					<section>
+						<h2>Semantics and Accessibility</h2>
+						<ul>
+							<li>To make the web easier to use and access, and available to everyone</li>
+							<li>Encompasses all disabilities, including visual, auditory, physical, speech, cognitive and neurological disabilities</li>
+							<li>Benefits people <em>without</em> disabilities as well</li>
+							<li>Accessible websites benefit from search engine optimisation (SEO)</li>
+						</ul>
 					</section>
 					<section>
 						<h2>Basic accessibility checklist (1/2)</h2>
@@ -1437,15 +1517,36 @@
                         <p>Meeting the Web Content Accessibility Guidelines (WCAG) Guidelines: <a href="https://www.w3.org/WAI/WCAG21/quickref/">Quick Reference</a> </p>
                         <p>Screen Reader tools like JAWS and ChromeVox</p>
                     </section>
+										<section>
+											<h2>Last Resort: ARIA Labels</h2>
+											<p>ARIA Spec: Accessible Rich Internet Applications Specification</p>
+											<p>Offers ways to make non-semantic HTML become semantic</p>
+											<p>Use by adding "aria-role" attributes</p>
+											<p>This article shows us the possible ARIA roles:</p>
+											<p><a href="https://developers.google.com/web/fundamentals/accessibility/semantics-aria">Introduction to ARIA</a></p>
+										</section>
+										<section>
+											<h2>Web Accessibility as a Specialization</h2>
+											<ul>
+												<li>The ADA legislation is making WCAG a requirement for many sites</li>
+												<li>Growth in hiring for this especially in government or gov-contracting companies</li>
+												<li>Great way to use HTML/CSS skills, if you're still learning JS + beyond</li>
+												<li><a href="https://frontendmasters.com/books/front-end-handbook/2019/#3.2">Job titles</a></li>
+												<li><a href="https://www.linkedin.com/jobs/search/?keywords=web%20accessibility">LinkedIn Accessibility Job Search</a></li>
+											</ul>
+										</section>
 
 				</section>
+
+
+				<!-- Part 4 -->
                 <section>
 					<section data-background="#000" class="ga-reverse">
 						<header class="ga-header">
 							<h3>MCC Frontend Academy</h3>
 						</header>
 						<h1>HTML: Forms and User Input</h1>
-						<p><small>Part 3</small></p>
+						<p><small>Part 4</small></p>
 					</section>
                     <section>
                         <h2>Semantic Form Elements</h2>
