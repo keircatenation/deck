@@ -1538,15 +1538,78 @@
 
 				</section>
 
-
 				<!-- Part 4 -->
+				<section>
+					<section data-background="#000" class="ga-reverse">
+						<h3>MCC Frontend Academy</h3>
+						</header>
+						<h1>HTML: Element Attributes</h1>
+						<p><small>Part 4</small></p>
+					</section>
+					<section>
+						<h4>HTML Attributes</h4>
+						<ul>
+							<li>"Config Data" that modifies the element's behavior</li>
+							<li>They are place inside the opening tag</li>
+							<li>Multiple attributes are separated by a space</li>
+							<li>Have a name followed by an equal sign then a value.</li>
+							<li>The value should be wrapped in quotation marks (single or double, just be consistent)</li>
+						</ul>
+						<img src="img/attribute_diagram.png" alt="">
+					</section>
+					<section>
+						<h4>Key/Value vs. Boolean Attributes</h4>
+						<ul>
+							<li>Most attributes are a "pair", they have a name (or key) and a value</li>
+							<li>Some attributes are <b>Boolean</b> attributes and don't need an explicit value</li>
+							<li>They will simply take on a value of <code>true</code> if they are present</li>
+						</ul>
+						<pre><code>&lt;input id="first-name" class="signup" required /&gt;
+&lt;details open /&gt;</code></pre>
+					</section>
+					<section>
+						<h4>Global Attributes vs. Specific Attributes</h4>
+						<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes">Global Attributes</a></p>
+						<p>Specific Attributes have to be looked up on a case by case basis</p>
+						<ul>
+							<li><a href="https://htmlreference.io/element/base/">HTMLReference.io for <code>&lt;base&gt;</code></a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input">MDN for <code>&lt;input&gt;</code></a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Reading Docs is important!! So let's practice</h3>
+						<div style="display: flex; justify-content: space-around;">
+							<ul>
+								<li><code>&lt;a&gt;</code></li>
+								<li><code>&lt;img&gt;</code></li>
+								<li><code>&lt;audio&gt;</code></li>
+								<li><code>&lt;video&gt;</code></li>
+								<li><code>&lt;area & map&gt;</code></li>
+								<li><code>&lt;button&gt;</code></li>
+								<li><code>&lt;link&gt;</code></li>
+							</ul>
+							<ul>
+								<li><code>&lt;script&gt;</code></li>
+								<li><code>&lt;meter&gt;</code></li>
+								<li><code>&lt;progress&gt;</code></li>
+								<li><code>&lt;bdo&gt;</code></li>
+								<li><code>&lt;blockquote&gt;</code></li>
+								<li><code>&lt;data&gt;</code></li>
+								<li><code>&lt;time&gt;</code></li>
+							</ul>
+						</div>
+					</section>
+				</section>
+
+
+				<!-- Part 5 -->
                 <section>
 					<section data-background="#000" class="ga-reverse">
 						<header class="ga-header">
 							<h3>MCC Frontend Academy</h3>
 						</header>
 						<h1>HTML: Forms and User Input</h1>
-						<p><small>Part 4</small></p>
+						<p><small>Part 5</small></p>
 					</section>
                     <section>
                         <h2>Semantic Form Elements</h2>
@@ -1582,7 +1645,26 @@
                         <p>It will use the Defined HTTP Method</p>
                         <p> Can overide default behavior for AJAX/Single Page Apps</p>
                         <p> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form">Form Element on MDN</a> </p>
+                        <p> <a href="https://htmlreference.io/forms/">Form Element on HTMLreference.io</a> </p>
                     </section>
+										<section>
+											<h3>Accessible Forms</h3>
+											<p>Forms are perhaps the hardest (and the most important) to add accessibility</p>
+											<p>Use Semantic Elements with proper labels and ids to get correct keyboard access</p>
+											<p>Using ARIA roles and labels when necessary as a fallback</p>
+											<ul>
+												<li><a href="https://webaim.org/techniques/forms/">WebAim Accessible Forms In Depth</a></li>
+												<li><a href="https://htmldog.com/guides/html/advanced/forms/">Accessible Forms Quick Ref </a></li>
+											</ul>
+										</section>
+										<section>
+											<h3>Let's Make our Own Contact Form</h3>
+											<p>Having a contact me or newsletter signup form is a nice touch for our portfolio <a href="https://wjv.io">site</a></p>
+											<p>Try using the resources we just went over to make your own</p>
+											<br />
+											<p>If you are feeling very brave, you can even hook it into an email API service so it actually sends messages!</p>
+											<p>Check out the <a href="https://mailthis.to">Mailthis.to docs</a> to investigate how!</p>
+										</section>
                 </section>
 
 				<section style="text-align: left;" data-background="#000" class="ga-reverse">
@@ -1592,10 +1674,14 @@
 					<h2 style="color: white;">Other things to explore...</h2>
 						<ul>
 							<li><a href="https://www.w3.org/standards/">W3C Standards</a></li>
-							<li><a href="https://developer.mozilla.org/en-US/docs/Tools/Validators">HTML Validators</a></li>
-							<li><a href="http://www.bentobox.io/">Bento</a> (online coding challeges)</li>
-							<li><a href="https://developer.mozilla.org/en-US/docs/Web">Mozilla Developer Network (MDN)</a> (website)</li>
-							<li><a href="https://www.stackoverflow.com">Stackoverflow</a> (website)</li>
+							<li><a href="https://frontendchecklist.io/">Frontend Checklist</a></li>
+							<li><a href="https://caniuse.com/">Can I Use</a></li>
+							<li><a href="https://a11y.coffee/intro/">A11y.coffee</a></li>
+							<li><a href="https://a11y.coffee/intro/">A11y.coffee</a></li>
+							<li><a href="https://howdns.works/">How DNS works</a></li>
+							<li><a href="https://github.com/alex/what-happens-when">What happens when...</a></li>
+
+							
 						</ul>
 				</section>
 
