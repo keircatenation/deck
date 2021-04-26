@@ -158,7 +158,7 @@
                         <pre><code>ul a {}</code></pre>
                         <pre><code>ul > li {}</code></pre>
                         <pre style="background: #3f3f3f; display: flex; align-items: center;"><code>ul > li > a {} // this only matches the first link</code></pre>
-                        <pre style="background: #3f3f3f; display: flex; align-items: center;">🚫<code>ul > a {} // this selector won't match anything above</code></pre>
+                        <pre style="background: #3f3f3f; display: flex; align-items: center;"><code>ul > a {} // this selector won't match anything above 🚫</code></pre>
                     </div>
                     </li>
                     <li>
@@ -339,8 +339,9 @@ CSS comment */</code><pre></li>
                     <aside class="notes">
                         Complicated part about CSS is specificity<br>
                         Elements, classes and ids have increasing degrees of specificity<br>
+                        <a href="https://wattenberger.com/blog/css-cascade">Wattenberger Specificity Quiz game</a>
                         Possible to combine selectors<br>
-                        Highest specificity wins. !important doesn't change specificity, but it does take precedence over all.
+                        Highest specificity wins. Order also matters. !important doesn't change specificity, but it does take precedence over all.
                     </aside>
                 </section>
         
@@ -351,7 +352,7 @@ CSS comment */</code><pre></li>
                     <p style="margin: 0; font-size: 2rem;">Let's inspect it in the dev tools! - It's under Elements > Computed</p>
                 </section>
                 <section>
-                    <h2>CSS Resets</h2>
+                    <h2>CSS Resets & the Useragent</h2>
                     <p><small>
                         <a href="https://codepen.io/heliocrat/full/yLgwKKa">Demo</a>
                     </small></p>
@@ -362,6 +363,8 @@ CSS comment */</code><pre></li>
                         <li><a href="https://getbootstrap.com/docs/4.0/content/reboot/">Reboot</a>, <a href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap-reboot.css">CDN</a></li>
                         <li> <a href="https://css-tricks.com/reboot-resets-reasoning/">The Why</a> </li>
                         <li> <a href="https://bitsofco.de/a-look-at-css-resets-in-2018/">More Discussion</a> </li>
+                        <li> <a href="https://www.webfx.com/blog/web-design/a-comprehensive-guide-to-css-resets/">Exhaustive history of the CSS reset</a> </li>
+                        
                     </ul>
                 </section>
                 <section>
