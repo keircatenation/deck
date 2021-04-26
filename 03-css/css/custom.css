@@ -1,0 +1,13 @@
+.tight-code pre {
+  margin: 1.5px;
+}
+
+div.nmt {
+  margin-top: -7rem;
+  z-index: -99;
+}
+div.nmt pre:nth-child(1),
+div.nmt pre:nth-child(2),
+div.nmt pre:nth-child(3) {
+  width: 50%;
+}

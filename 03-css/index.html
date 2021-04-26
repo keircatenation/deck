@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="css/theme/ga.css" id="theme">
 
     <link rel="stylesheet" href="lib/css/zenburn.css">
-
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../laser.css">
+	<script src="../laser.js"></script>
     <!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -42,6 +44,7 @@
                     <h2>Cascading Style Sheets (CSS)</h2>
                     <ul>
                         <li>Tells the browser how to <strong>display</strong> a certain element</li>
+                        <li>Offers lots of power & versatility: <a href="http://www.csszengarden.com/">CSS Zen Garden</a></li>
                         <li>Follows the general ruleset:</li>
                         <ol>
                             <li>Select the HTML element to be styled</li>
@@ -59,37 +62,184 @@
                 <section>
                     <h2>Structure of a CSS rule</h2>
                     <pre><code>selector {
-            property1: value;
-            property2: value;
-            property3: value;
-            }</code></pre>
+    property1: value;
+    property2: value;
+    property3: value;
+}</code></pre>
+<pre><code>div {
+    color: #fff;
+    font-size: 24px;
+}</code></pre>
                     <ul>
-                        <li>The <strong>selector</strong> identifies which HTML elements the rule will be applied to</li>
-                        <li>The <strong>curly braces</strong> contain the property-value pairs, separated with semi-colons</li>
-                        <li>The <strong>properties</strong> define the style of the selected element</li>
-                        <li>The <strong>values</strong> are dependent on the property, and indicate the value of the properties to
-                            be set</li>
+                        <li>The <strong>selector</strong> identifies which HTML element(s) the style rule will be applied to</li>
+                        <li>The <strong>curly braces</strong> contain the property-value pairs, each separated by a semi-colon</li>
+                        <li>The <strong>property</strong> indicates the style to be changed</li>
+                        <li>The <strong>value</strong> is what the properties are set to for that element</li>
                     </ul>
                 </section>
                 <section>
-                    <h2>Types of CSS selectors</h2>
+                    <h2>Basic Types of CSS selectors</h2>
                     <ul>
                         <li><strong>Element</strong>: matches all the elements of that name on the page
                             <pre><code>p {}</code></pre>
                         </li>
-                        <li><strong>Class</strong>: matches all the elements with the specified class attribute, e.g. <code
+                        <li><strong>Class</strong>: matches all the elements with the specified class, e.g. <code
                                 class="ga-nowrap">&lt;div class="example"&gt;</code>
                             <pre><code>.example {}</code></pre>
                         </li>
-                        <li><strong>ID</strong>: matches the element with the specified id attribute, e.g. <code
+                        <li><strong>ID</strong>: matches the element with the specified id, e.g. <code
                                 class="ga-nowrap">&lt;div id="example"&gt;</code>
                             <pre><code>#example {}</code></pre>
                         </li>
-                        <li>https://guide.freecodecamp.org/css/tutorials/css-selectors-cheat-sheet/</li>
                     </ul>
                 </section>
                 <section>
-                    <h2>CSS Specificity <a href='https://stuffandnonsense.co.uk/archives/css_specificity_wars.html'>(ref)</a></h2>
+                    <h2>More Types of CSS selectors</h2>
+                    <ul>
+                        <li><strong>Attribute</strong>: matches all the elements with provided attribute, e.g. <code
+                            class="ga-nowrap">&lt;video controls&gt;</code> or <code
+                            class="ga-nowrap">&lt;a href="https://google.com"&gt;</code>
+                            <pre><code>[controls] {}</code></pre>
+                            <pre><code>[href="https://google.com"] {}</code></pre>
+                        </li>
+                        <li><strong>Combination</strong>: matches all the elements with the specified combination of selectors, e.g. <code
+                                class="ga-nowrap">&lt;div class="wrapper"&gt;</code>
+                            <pre><code>div.wrapper {}</code></pre>
+                            <i>notice there is no space between this combination selector</i>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Even More Types of CSS selectors</h2>
+                    <ul>
+                        <li>
+                            <div style="display: flex;">
+                                <div style="display: flex; flex-direction: column;">
+                                    <span><strong>Nested:</strong> matches the </span><span>nested <b>descendant</b> element with the specified <b>ancestor</b></span>
+                                </div>
+                                <pre style="margin-top: -1.85rem;"><code>&lt;ul&gt;
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;li&gt;
+    &lt;a href="/link"&gt;Link&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;
+      &lt;a href="/hello"&gt;Hello&lt;/a&gt;
+    &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </div>
+                    <div class="tight-code nmt">
+                        <pre><code>ul li {}</code></pre>
+                        <pre><code>ul > li {}</code></pre>
+                        <pre><code>ul a {}</code></pre>
+                        <pre style="background: #3f3f3f; display: flex; align-items: center;"><code>ul > li > a {} // this only matches the first link</code></pre>
+                        <pre style="background: #3f3f3f; display: flex; align-items: center;">🚫<code>ul > a {} // this selector won't match anything above</code></pre>
+                    </div>
+                    </li>
+                    <li>
+                        <strong>Sibling Selectors:</strong> matches subsequent sibling or siblings (no back-traversal)
+                        <div class="tight-code">
+                            <pre><code>h1 + li {} // selects first suubsequent li element after h</code></pre>
+                            <pre><code>h1 ~ li {} // selects all subsequent li elements after h1</code></pre>
+                        </div>
+                    </li>
+                </ul>
+                </section>
+                <section>
+                    <h2>CSS Selectors Docs</h2>
+                    <ul>
+                    <li>Psuedo-selectors & Psuedo-classes</li>
+                    <li>Psuedo-elements (::after & ::before)</li>
+                    <li><a href="https://www.w3schools.com/cssref/css_selectors.asp">W3 Schools CSS Selectors List</a></li>
+                    <li><a href="https://guide.freecodecamp.org/css/tutorials/css-selectors-cheat-sheet/">FCC Selector Cheat Sheet</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">MDN CSS Selectors List</a></li>
+                    <li style="list-style: none;"> Side note: CSS comments use <code>//</code> or <code>/* */</code> 
+                        <pre><code>// This is a single line comment
+
+/* This is a multi-line 
+CSS comment */</code><pre></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>CSS Selector Challenge</h2>
+                    <p>Have some fun practicing your css selectors with this game: <a href="https://flukeout.github.io/">CSS Diner</a></p>
+                    <br />
+                    <h3>CSS Selectors Explained</h3>
+                    <p><a href="https://kittygiraudel.github.io/selectors-explained">Selectors translated into plain english</a></p>
+                </section>
+
+                <section>
+                    <h2>CSS Properties <small><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference">Common Ones (~39+)</a></small></h2>
+                    <ul style="columns: 3; list-style: none; margin-left: 0;">
+                        <li>background</li>
+                        <li>border</li>
+                        <li>border-radius</li>
+                        <li>box-sizing</li>
+                        <li>clip-path</li>
+                        <li>color</li>
+                        <li>cursor</li>
+                        <li>display</li>
+                        <li>filter</li>
+                        <li>font-family</li>
+                        <li>font-size</li>
+                        <li>font-style</li>
+                        <li>font-weight</li>
+                        <li style="white-space: nowrap;">height (min/max)</li>
+                        <li>left/right</li> 
+                        <li>letter-spacing</li>
+                        <li>line-height</li>
+                        <li>list-style</li>
+                        <li>margin</li>
+                        <li>opacity</li>
+                        <li>overflow</li>
+                        <li>padding</li>
+                        <li>position</li>
+                        <li>text-align</li>
+                        <li>text-decoration</li>
+                        <li>text-indent</li>
+                        <li>text-transform</li>
+                        <li>top/bottom</li>
+                        <li>transform</li>
+                        <li>visibility</li>
+                        <li style="white-space: nowrap;">width (min/max)</li>
+                        <li>z-index</li>
+                        <li>word-spacing</li>
+                    </ul>
+                    <ul style="display: flex; justify-content: space-between; list-style: none;">
+                        <li><a href="https://cssreference.io/">CSSReference.io</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">MDN</a></li>
+                        <li><a href="https://www.w3.org/Style/CSS/all-properties.en.html">W3 complete list</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Styles: Inline, Internal & External</h2>
+                    <pre><code>&lt;body&gt;
+  &lt;div style='color: white;'&gt;&lt;/div&gt;
+&lt;body&gt;</code></pre>
+                    <pre><code>&lt;head&gt;
+  &lt;style&gt;
+    selector {
+      property1: value;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+        <pre><code>&lt;head&gt;
+  &lt;link href='css/styles.css'&gt;
+&lt;/head&gt;</code></pre>
+<p><body>Separation of Concerns:</body> <br> &lt;body&gt; is for content & &lt;head&gt; is for metadata</p>
+                </section>
+
+
+
+                <section>
+                    <h2>CSS Specificity & the Cascade </h2>
+                    <small>
+                        <a href="img/css-specificity-wars.png">Star Wars Specificity</a> - 
+                        <a href='https://stuffandnonsense.co.uk/archives/css_specificity_wars.html'>(ref)</a>
+                    </small>
                     <div>
                         <div class="ga-col4-25">
                             <div class="ga-box">0-∞</div>
@@ -111,20 +261,20 @@
                     <div>
                         <div class="ga-col3-33">
                             <pre><code>ul {
-            // CSS properties
-            }</code></pre>
+  background: red;
+}</code></pre>
                             <p>0, 0, 0, 1</p>
                         </div>
                         <div class="ga-col3-33">
-                            <pre><code>.class-1 .class-2 p {
-            // CSS properties
-            }</code></pre>
+                            <pre><code>.class1 .class2 p {
+  background: green;
+}</code></pre>
                             <p>0, 0, 2, 1</p>
                         </div>
                         <div class="ga-col3-33">
-                            <pre><code>#id-1 .class-3 div {
-            // CSS properties
-            }</code></pre>
+                            <pre><code>#myID .class3 div {
+  background: blue;
+}</code></pre>
                             <p>0, 1, 1, 1</p>
                         </div>
                     </div>
@@ -135,21 +285,77 @@
                         Highest specificity wins
                     </aside>
                 </section>
+        
                 <section>
-                    <h2>Styles: Inline, Internal & External</h2>
-                    <pre><code>&gt;div style='color: white;'&lt;&gt;/div&lt;</code></pre>
-                    <pre><code>&gt;style&lt;
-            selector {
-            property1: value;
-            }
-        &gt;/style&lt;</code></pre>
-        <pre><code>&gt;link href='css/styles.css'&lt;</code></pre>
-                </section>
-                <section>
-                    <h2>The Box Model</h2>
-                    <img src="https://sabe.io/classes/css/css-box-model-padding-border-margin/css-box-model.png" alt="Box model Diagram">
+                    <h2 style="margin: 0">The Box Model</h2>
+                    <small><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing">box-sizing</a></small><br>
+                    <a href="https://codepen.io/heliocrat/full/GRregGN"><img style="width: auto; max-height: 50vh;" src="https://sabe.io/classes/css/css-box-model-padding-border-margin/css-box-model.png" alt="Box model Diagram"></a>
+                    <p style="margin: 0; font-size: 2rem;">Let's inspect it in the dev tools! - It's under Elements > Computed</p>
                 </section>
             </section>
+
+            <section>
+                <section data-background="#000" class="ga-reverse">
+                    <header class="ga-header">
+                            <h3>MCC Frontend Academy</h3>
+                    </header>
+                    <h1>Elements of Web Design Systems</h1>
+                </section>
+                <section>
+                    <h2>What's a Design System?</h2>
+                    <p>A consistent & modular library of reusable themes, components, motifs & rules for coherently styling & assembling web pages.</p>
+                    <p><a href="https://designsystem.digital.gov/">US Gov Design System - Click "Learn About USWDS"</a></p>
+                </section>
+                <section>
+                    <h2>Colors In CSS</h2>
+                    <ul style="display:flex; justify-content: space-between; margin: 0; list-style: none; text-align: center;">
+                        <li>Named Color <span style="color: purple">purple</span></li>
+                        <li>Hex Color <span style="color: #f94">#f94</span> or <span style="color: #ff9f4f">#ff9f4f</span></li>
+                        <li>RGB() color <span style="color: rgb(24, 118, 196); white-space: nowrap; font-size: 2.1rem">rgb(24, 48, 96)</span></li>
+                        <li>HSL() color <span style="color: hsl(150, 90%, 40%); white-space: nowrap; font-size: 2.1rem">hsl(150, 90%, 60%)</span></li>
+                    </ul>
+                    <p>Hex, RGB & HSL support <b>alpha channel</b> for transparency values:</p>
+                    <p style="display: flex; justify-content: space-between; font-size: 2.1rem">
+                        <span style="color: #ff9f4f75">#ff9f4f99 </span>
+                        <span style="color: rgba(24, 118, 196, 0.5)"> rgba(24, 118, 196, 0.5) </span>
+                        <span style="color: hsla(150,90%,40%,0.5)"> hsla(150, 90%, 40%, 0.5) </span>
+                    </p>
+                    <p><a href="https://www.w3schools.com/cssref/css_colors.asp">W3 Schools CSS colors</a></p>
+                    <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">MDN on color</a></p>
+                    <p>Check out the Color Picker in the Elements Inspector</p>
+                    <p><a href="https://mycolor.space/">Color Theme Tool</a></p>
+                </section>
+                <section>
+                    <h2>Typography in CSS</h2>
+                    <img src="img/typography-hierarchy.jpg" alt="">
+                    <p><a href="https://fonts.google.com/">Google Fonts</a></p>
+                </section>
+                <section>
+                    <h2>Design Systems</h2>
+                    <ul>
+                        <li>
+                            <a href="https://andybrewer.github.io/mvp/">MVP.css</a>
+                        </li>
+                        <li>
+                            <a href="https://yegor256.github.io/tacit/">Tacit</a>
+                        </li>
+                        <li>
+                            <a href="http://getskeleton.com/">Skeleton</a>
+                        </li>
+                        <li>
+                            <a href="https://milligram.io/">Milligram</a>
+                        </li>
+                        <li>
+                            <a href="https://getbootstrap.com/">Bootstrap</a>
+                        </li>
+                        <li>
+                            <a href="https://bulma.io/">Bulma</a>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+
+
             <section>
                 <section>
                     <h1>How The Browser Renders Stuff<span class="j-emoji">⚡</span></h1>
@@ -157,7 +363,8 @@
                 </section>
                 
                 <section>
-                    <h2>How browsers render stuff (generally)</h2>
+                    <h2>How browsers render stuff </h2>
+                    <small><a href="https://www.youtube.com/watch?v=SmE4OwHztCc&t=974s">visualized</a></small>
                     <ul>
                         <li>Different browsers use different rendering engines but follow similar flow</li>
                         <li>Browser will parse the markup, then "Recalculate Style" to figure out what styles apply to which elements
@@ -187,9 +394,10 @@
                 </section>
                 <section>
                     <h2>Think of it as a pyramid</h2>
-                    <img class="plain" srcset="img/rendering-pyramid@2x.jpg 2x" data-src="img/rendering-pyramid.jpg"
+                    <img class="plain" srcset="img/rendering-pyramid.jpg" data-src="img/rendering-pyramid.jpg"
                         alt="Rendering pyramid" />
-                    <p>If you change something at the bottom, the pyramid has to be rebuilt from the bottom.</p>
+                    <p>If you change something at the bottom, the whole pyramid has to be rebuilt.</p>
+                    <p>If you change just the top layer, the layers beneath remain intact.</p>
                 </section>
                 
                     <section>
@@ -202,11 +410,20 @@
                                 size is changed, when className property is changed</li>
                         </ul>
                     </section>
+                    <section>
+                        <h2>Visualizing The Layout FLow</h2>
+                        <ul>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display">display</a> property</li>
+                            <li>Outside: Inline vs Block Elements</li>
+                            <li>Inside: Flow-root, table, flex, grid</li>
+                            <img src="../04-css-2/img/inside-display.svg" alt="">
+                        </ul>
+                    </section>
                 
                     <section>
                         <h2>CSS properties that trigger Layout</h2>
-                        <small><a href='https://csstriggers.com/'>Reference</a></small>
-                        <ul class="j-multi">
+                        <span><small>You don't want to dynamically change these - <a href='https://csstriggers.com/'>Reference</a></small></span>
+                        <ul style="columns: 3; list-style: none;">
                             <li>width</li>
                             <li>height</li>
                             <li>padding</li>
@@ -250,7 +467,8 @@
                 
                     <section>
                         <h2>CSS properties that trigger Paint</h2>
-                        <ul class="j-multi">
+                        <span><small>Generally ok to change. Doesn't reflow the DOM, but some have intensive calculations so fluid animation of these can be costly.</small></span>
+                        <ul style="columns: 3; list-style: none">
                             <li>color</li>
                             <li>border-style</li>
                             <li>visibility</li>
@@ -270,10 +488,11 @@
                     </section>
                     <section>
                         <h2>Composite</h2>
+                        <p><small>These are safe to dynamically change and animate.</small></p>
                         <ul>
                             <li>Only Opacity and Transforms trigger composite</li>
                             <li>Blink and Webkit creates new layer for elements with CSS transforms or opacity</li>
-                            <li>translateZ(0) is used to force layer creation which ensures both the layer is painted as soon as the
+                            <li><code>translateZ(0)</code> is used to force layer creation which ensures both the layer is painted as soon as the
                                 animation starts</li>
                             <li>Watch <a href="https://www.youtube.com/watch?v=9rizDPIIYEY">The Web's Black Magic</a> for best explanation
                                 on rendering and compositing</li>
@@ -281,9 +500,10 @@
                     </section>
                     <section>
                         <h2>Two Advanced Things to File Away</h2>
+                        <p><small>Not important early in your CSS journey, but as JS is added these offer lots of power</small></p>
                         <ul>
-                            <li><a href='https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model'>CSS Object Model</a></li>
-                            <li><a href='https://developer.mozilla.org/en-US/docs/Web/Houdini'>CSS Houdini</a> -  <a href='https://github.com/nucliweb/awesome-css-houdini/'></a>When is it ready?</a></li> 
+                            <li><a href='https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model'>CSS Object Model API</a></li>
+                            <li><a href='https://developer.mozilla.org/en-US/docs/Web/Houdini'>CSS Houdini API</a> -  <a href='https://github.com/nucliweb/awesome-css-houdini/'></a>When is it ready?</a></li> 
                         </ul>
                     </section>
                 

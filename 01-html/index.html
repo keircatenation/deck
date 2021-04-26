@@ -18,7 +18,8 @@
 		<link rel="stylesheet" href="css/theme/ga.css" id="theme">
 
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-
+		<link rel="stylesheet" href="../laser.css">
+		<script src="../laser.js"></script>
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -1383,21 +1384,20 @@
                     </section>
                     <section>
                         <h2>Trees have single directional relationships</h2>
-                        <ul>
-                            <li><img src="img/di-graph.png" alt=""></li>
-                            <li>⇪ This is NOT a tree, because you can't determine the parent from the child</li>
-                        </ul>
+													<p>This is NOT a tree, because you can't determine the parent from the child</p>
+                          <img src="img/di-graph.png" alt="" style="margin: 0 auto;">
                     </section>
                     <section>
                         <h2>Code as Tree Structures</h2>
-                        <div style='display: flex;max-width:100vw'>
+                        <div style='display: flex;max-width:100vw; margin: 0 -100px'>
                             <img style="width:50%" src="img/pug-tree.png" alt="">
                             <img style="width:50%" src="img/json-tree.png" alt="">
                         </div>
-                        <ul> 
+                        <ul style="position: absolute; top: 10%; left: -5%; width: 50%; mix-blend-mode: difference; color: white; list-style: none; text-align: right;"> 
 													<li>These are both trees!</li> 
-													<li>You'll need to get into the habit of being able to visualize the implicit tree structure in your code</li>
-													<li>Be it HTML, CSS, JS, JSON etc...</li> 
+													<li>You'll need to be able to visualize the implicit tree structure in your code</li>
+													<li>Be it HTML, CSS, </li>
+													<li>JS, JSON etc...</li> 
 												</ul>
                     </section>
                     <section>
@@ -1429,6 +1429,7 @@
                     </section>
 										<section>
 											<h3>DOM - Document Object Model</h3>
+											<p>Let's inspect Element in the dev tools</p>
 											<img src='img/domtree.jpg' />
 										</section>
 										<section>
@@ -1458,9 +1459,9 @@
 						<h2>Semantic HTML</h2>
 						<p>Using the right HTML element for the purpose</p>
 						<ul>
-							<li>Helps your Developer Colleagues</li>
+							<li>Helps your developer colleagues</li>
 							<li>Helps indexing algorithms (i.e. Google)</li>
-							<li>Doesn't actually help the user, but that's ok here</li>
+							<li>Doesn't actually help <i>most</i> users, but does help some</li>
 							<li><a href="https://www.w3schools.com/html/html5_semantic_elements.asp">W3Schools Semantic Elements</a></li>
 							<li><a href="https://www.freecodecamp.org/news/semantic-html5-elements/">Semantic HTML Explained</a></li>
 						</ul>
@@ -1468,7 +1469,7 @@
 					<section>
 						<h2>Semantic HTML in action</h2>
 						<img src="img/semantic-initial-content.png" alt="">
-						<p>What HTML tags can we use to communicate the role of each block?</p>
+						<p>What HTML tags would communicate each block's role?</p>
 					</section>
 					<section>
 						<h2>Semantic HTML in action</h2>
@@ -1479,9 +1480,34 @@
 						<img src="img/semantic-html5-final.png" alt="">
 					</section>
 					<section>
+						<h2>Semantics: Buttons vs Links</h2>
+						<p>When to use &lt;button&gt; and when to use &lt;a&gt;</p>
+						<ul>
+							<li>Buttons are for executing some javascript code</li>
+							<li>Links are for navigating to a new view (usually a new page URL)</li>
+							<li>Navigating to another part of the current page?
+								<pre><code><a href="https://example.com/#footer-id">Go To Footer</a></code></pre>
+							</li>
+						</ul>
+						<p><a href="https://www.nngroup.com/articles/in-page-links/">Neilson User Research</a></p>
+					</section>
+					<section>
+						<h2>Image Semantics:</h2> 
+						<h4>Visual Content or Visual Decoration</h4>
+						<p style='white-space: nowrap;'>
+							<code style="background: #3f3f3f; color: #cc9393; padding: 4px; border-radius: 2px;">&lt;img <span style="color: #e3ceab">src="..."</span>&gt;</code> <strong>vs</strong> <code style="background: #3f3f3f; color: #e3ceab; padding: 4px; border-radius: 2px;">background-image: <span style="color: #8cd0d3">url(...)</span></code>
+						</p>
+						<ul>
+							<li>Use the <code>&lt;img&gt;</code> tag if the image represents actual page content</li>
+							<li>The <code>&lt;img&gt;</code> tag is accessible & can be indexed for SEO</li>
+							<li>The <code>background-image</code> property is fine for non-content (i.e. patterns, gradients), but is not accessible</li>
+							<li>The <code>background-image</code> offers sprite animation use cases (lacks "alt" attribute, so provide a text label)</li>
+						</ul>
+					</section>
+					<section>
 						<h2>Semantics and Accessibility</h2>
 						<ul>
-							<li>To make the web easier to use and access, and available to everyone</li>
+							<li>To make the web easier to use and access, and available to anyone with any device</li>
 							<li>Encompasses all disabilities, including visual, auditory, physical, speech, cognitive and neurological disabilities</li>
 							<li>Benefits people <em>without</em> disabilities as well</li>
 							<li>Accessible websites benefit from search engine optimisation (SEO)</li>
@@ -1586,7 +1612,7 @@
 								<li><code>&lt;img&gt;</code></li>
 								<li><code>&lt;audio&gt;</code></li>
 								<li><code>&lt;video&gt;</code></li>
-								<li><code>&lt;area & map&gt;</code></li>
+								<li><code>&lt;area&gt; & &lt;map&gt;</code></li>
 								<li><code>&lt;button&gt;</code></li>
 								<li><code>&lt;link&gt;</code></li>
 							</ul>
@@ -1678,6 +1704,7 @@
 							<li><a href="https://gist.github.com/salomvary/1351188">Minimal</a></li>
 							<li><a href="https://www.taniarascia.com/basic-html5-file/#basic-indexhtml">Medium</a></li>
 							<li><a href="https://github.com/h5bp/html5-boilerplate/blob/master/src/index.html">Maximum</a></li>
+							<li><a href="https://csswizardry.com/2011/01/the-real-html5-boilerplate/">"The Real HTML Boilerplate"</a></li>
 							<li><a href="https://htmlhead.dev/">The Head Element In Depth</a></li>
 						</ul>
 				</section>
@@ -1689,6 +1716,7 @@
 						<ul>
 							<li><a href="https://www.w3.org/standards/">W3C Standards</a></li>
 							<li><a href="https://developers.google.com/search/docs/beginner/seo-starter-guide">SEO Guidelines</a></li>
+							<li><a href="https://developers.google.com/search/docs/advanced/robots/intro">Intro to Robots.txt</a></li>
 							<li><a href="https://frontendchecklist.io/">Frontend Checklist</a></li>
 							<li><a href="https://caniuse.com/">Can I Use</a></li>
 							<li><a href="https://a11y.coffee/intro/">A11y.coffee</a></li>
