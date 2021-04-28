@@ -382,6 +382,7 @@ CSS comment */</code><pre></li>
                 </section>
                 <section>
                     <h2>What's a Design System?</h2>
+                    <p><small>Also called a pattern library (and sometimes a style guide)</small></p>
                     <p>A consistent & modular library of reusable themes, components, motifs & rules for coherently styling & assembling web pages.</p>
                     <p><a href="https://designsystem.digital.gov/">US Gov Design System - Click "Learn About USWDS"</a></p>
                 </section>
@@ -405,15 +406,66 @@ CSS comment */</code><pre></li>
                     <p><a href="https://mycolor.space/">Color Theme Tool</a></p>
                 </section>
                 <section>
+                    <h2>Color Space & Color Gamut</h2>
+                    <div style="display: flex; align-items: center;">
+                        <img style="max-height: 55vh" src="img/hex_color.png" alt="hex code color breakdown">
+                        <div >
+                            <p>HSL( <br> <span style="font-size: 1.5rem;">360, 100%, 100%</span> <br>)</p>
+                            <img style="max-height: 175px;" src="img/HSL_color_solid_cylinder_saturation_gray.png" alt="hsl color cylinder">
+                        </div>
+                        <ul >
+                            <h4>Color Tools & Diagrams</h4>
+                            <li><a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/ProPhoto_RGB_color_space#/media/File:CIE1931xy_gamut_comparison.svg">CIE Color Space</a></li>
+                            <li><a href="https://coolors.co/">Coolors</a></li>
+                            <li><a href="https://paletton.com/#uid=1000u0kllllaFw0g0qFqFg0w0aF">Paletton</a></li>
+                            <li><a href="https://tallys.github.io/color-theory/">Color Guide for Devs</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
                     <img style="max-height: 60vh" src="img/typography-hierarchy.jpg" alt="">
                 </section>
                 <section>
                     <h2>Typography in CSS</h2>
                     <p>Typographcial hierarchy can guide the user through your page in a controlled way.</p>
-                    <p><a href="https://fonts.google.com/">Google Fonts</a></p>
+                    <p>It can set your page a part and make it distinct</p>
+                    <p>It is usually a central component to a company or product Brand</p>
+                    <ul><h4>Think about Component Spacing, as well </h4>
+                        <li><a href="https://www.designsystems.com/iconography-guide/">Read more about Icons</a></li>
+                        <li>Use existing icon libraries <a href="https://teenyicons.com/">(like this one)</a> to save time</li>
+                        <li><a href="https://www.designsystems.com/space-grids-and-layouts/">Read more about spacing.</a></li>
+                    </ul>
                 </section>
                 <section>
-                    <h2>Design Systems</h2>
+                        <h2><a href="https://fonts.google.com/">Google Fonts</a> is easiest to start with</h2>
+                        <p>Simply find a font and put it into the href of a <br> <code style="padding: 2px;background: #ddd; border-radius: 8px;">&lt;link href="" rel="stylesheet" /&gt;</code> tag similar to a css file</p>
+                        <p><a href="https://www.colorsandfonts.com/">Colors & Fonts</a></p>
+                </section>
+                <section>
+                    <h2>Examples of Design Systems / Pattern Libraries</h2>
+                    <ul>
+                        <li><a href="https://ux.mailchimp.com/patterns/typography">Mail Chimp</a></li>
+                        <li><a href="https://www.carbondesignsystem.com/guidelines/typography/overview/">IBM</a></li>
+                        <li><a href="https://polaris.shopify.com/design/typography#navigation">Shopify</a></li>
+                        <li><a href="https://airbnb.design/building-a-visual-language/">AirBnB</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>How it Could look:</h2>
+                    <div style="max-width: 100vw; display: flex; align-items: center; justify-content: space-around;">
+                        <img style="transform: translateY(-150px); z-index: -1; max-width: 30vw;" src="img/buttons.png" alt="buttons">
+                        <img style="max-width: 45vw" src="img/colors.png" alt="colors">
+                    </div>
+                </section>
+                <section>
+                    <h2>Let's make our own Basic Pattern library!</h2>
+                    <p><small>(This could eventually be used for the FCC technical docs project)</small></p>
+                    <p>To summarize what goes into these check out this <a href="https://www.uxpin.com/create-design-system-guide/">article</a></p>
+                    <p><a href="/deck/pattern-library/">Pattern Library Starter Template</a></p>
+                </section>
+                <section>
+                    <h2>Pre-Made Design Systems</h2>
                     <ul>
                         <li>
                             <a href="https://andybrewer.github.io/mvp/">MVP.css</a>
