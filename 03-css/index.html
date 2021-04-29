@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="../laser.css">
 	<script src="../laser.js"></script>
+    <link rel="stylesheet" href="../css/global.css">
     <!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -384,26 +385,28 @@ CSS comment */</code><pre></li>
                     <h2>What's a Design System?</h2>
                     <p><small>Also called a pattern library (and sometimes a style guide)</small></p>
                     <p>A consistent & modular library of reusable themes, components, motifs & rules for coherently styling & assembling web pages.</p>
-                    <p><a href="https://designsystem.digital.gov/">US Gov Design System - Click "Learn About USWDS"</a></p>
+                    <p><a href="https://designsystem.digital.gov/">US Gov Design System</a> - <a href="https://designsystem.digital.gov/utilities/color/">Color System Example</a></p>
                 </section>
                 <section>
                     <h2>Colors In CSS</h2>
-                    <ul style="display:flex; justify-content: space-between; margin: 0; list-style: none; text-align: center;">
+                    <ul style="border: 1px solid #777; border-radius: 16px; padding: 16px; display:flex; justify-content: space-between; margin: 0; list-style: none; text-align: center;">
                         <li>Named Color <span style="color: purple">purple</span></li>
                         <li>Hex Color <span style="color: #f94">#f94</span> or <span style="color: #ff9f4f">#ff9f4f</span></li>
-                        <li>RGB() color <span style="color: rgb(24, 118, 196); white-space: nowrap; font-size: 2.1rem">rgb(24, 48, 96)</span></li>
-                        <li>HSL() color <span style="color: hsl(150, 90%, 40%); white-space: nowrap; font-size: 2.1rem">hsl(150, 90%, 60%)</span></li>
+                        <li>RGB() color <span style="color: rgb(24, 118, 196); white-space: nowrap; font-size: 2.1rem">rgb(24, 118, 196)</span></li>
+                        <li>HSL() color <span style="color: hsl(150, 90%, 40%); white-space: nowrap; font-size: 2.1rem">hsl(150, 90%, 40%)</span></li>
                     </ul>
-                    <p>Hex, RGB & HSL support <b>alpha channel</b> for transparency values:</p>
+                    <p>Transparency in Hex, RGB & HSL: <b>Alpha Channel</b></p>
                     <p style="display: flex; justify-content: space-between; font-size: 2.1rem">
                         <span style="color: #ff9f4f75">#ff9f4f99 </span>
                         <span style="color: rgba(24, 118, 196, 0.5)"> rgba(24, 118, 196, 0.5) </span>
                         <span style="color: hsla(150,90%,40%,0.5)"> hsla(150, 90%, 40%, 0.5) </span>
                     </p>
-                    <p><a href="https://www.w3schools.com/cssref/css_colors.asp">W3 Schools CSS colors</a></p>
-                    <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">MDN on color</a></p>
+                    <div class=" flex bordered">
+                        <p><a href="https://www.w3schools.com/cssref/css_colors.asp">W3 CSS colors</a></p>
+                        <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">MDN Color</a></p>
+                        <p><a href="https://mycolor.space/">Color Theme Tool</a></p>
+                    </div>
                     <p>Check out the Color Picker in the Elements Inspector</p>
-                    <p><a href="https://mycolor.space/">Color Theme Tool</a></p>
                 </section>
                 <section>
                     <h2>Color Space & Color Gamut</h2>
@@ -462,7 +465,7 @@ CSS comment */</code><pre></li>
                     <h2>Let's make our own Basic Pattern library!</h2>
                     <p><small>(This could eventually be used for the FCC technical docs project)</small></p>
                     <p>To summarize what goes into these check out this <a href="https://www.uxpin.com/create-design-system-guide/">article</a></p>
-                    <p><a href="/deck/pattern-library/">Pattern Library Starter Template</a></p>
+                    <p><a href="/deck/pattern-library/">Pattern Library Starter Template</a> <small><a href="https://github.com/JamieVaughn/deck/blob/master/pattern-library/index.html">Github Link</a></small></p>
                 </section>
                 <section>
                     <h2>Pre-Made Design Systems</h2>
