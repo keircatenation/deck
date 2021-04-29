@@ -404,7 +404,7 @@ CSS comment */</code><pre></li>
                     <div class=" flex bordered">
                         <p><a href="https://www.w3schools.com/cssref/css_colors.asp">W3 CSS colors</a></p>
                         <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">MDN Color</a></p>
-                        <p><a href="https://mycolor.space/">Color Theme Tool</a></p>
+                        <p><a href="https://colours.neilorangepeel.com/">Colors.Neil</a></p>
                     </div>
                     <p>Check out the Color Picker in the Elements Inspector</p>
                 </section>
@@ -422,6 +422,7 @@ CSS comment */</code><pre></li>
                             <li><a href="https://en.wikipedia.org/wiki/ProPhoto_RGB_color_space#/media/File:CIE1931xy_gamut_comparison.svg">CIE Color Space</a></li>
                             <li><a href="https://coolors.co/">Coolors</a></li>
                             <li><a href="https://paletton.com/#uid=1000u0kllllaFw0g0qFqFg0w0aF">Paletton</a></li>
+                            <li><a href="https://mycolor.space/">Color Theme Tool</a></li>
                             <li><a href="https://tallys.github.io/color-theory/">Color Guide for Devs</a></li>
                         </ul>
                     </div>
@@ -443,7 +444,7 @@ CSS comment */</code><pre></li>
                 <section>
                         <h2><a href="https://fonts.google.com/">Google Fonts</a> is easiest to start with</h2>
                         <p>Simply find a font and put it into the href of a <br> <code style="padding: 2px;background: #ddd; border-radius: 8px;">&lt;link href="" rel="stylesheet" /&gt;</code> tag similar to a css file</p>
-                        <p><a href="https://www.colorsandfonts.com/">Colors & Fonts</a></p>
+                        <p><a href="https://www.colorsandfonts.com/">Colors & Fonts Tool</a></p>
                 </section>
                 <section>
                     <h2>Examples of Design Systems / Pattern Libraries</h2>
@@ -456,6 +457,7 @@ CSS comment */</code><pre></li>
                 </section>
                 <section>
                     <h2>How it Could look:</h2>
+                    <h4><a href="https://codyhouse.co/demo/style-guide-template/index.html">Fleshed out example pattern library</a></h4>
                     <div style="max-width: 100vw; display: flex; align-items: center; justify-content: space-around;">
                         <img style="transform: translateY(-150px); z-index: -1; max-width: 30vw;" src="img/buttons.png" alt="buttons">
                         <img style="max-width: 45vw" src="img/colors.png" alt="colors">
@@ -464,7 +466,7 @@ CSS comment */</code><pre></li>
                 <section>
                     <h2>Let's make our own Basic Pattern library!</h2>
                     <p><small>(This could eventually be used for the FCC technical docs project)</small></p>
-                    <p>To summarize what goes into these check out this <a href="https://www.uxpin.com/create-design-system-guide/">article</a></p>
+                    <p>To summarize what goes into these check out these articles: <a href="https://www.uxpin.com/create-design-system-guide/">UXPing</a>, <a href="https://www.csshero.org/create-web-design-style-guide/">CSSHero</a></p>
                     <p><a href="/deck/pattern-library/">Pattern Library Starter Template</a> <small><a href="https://github.com/JamieVaughn/deck/blob/master/pattern-library/index.html">Github Link</a></small></p>
                 </section>
                 <section>
@@ -508,7 +510,7 @@ CSS comment */</code><pre></li>
                         </li>
                         <li>Next, it will "Layout" all the DOM elements</li>
                         <li>Then, "Paint" the pixel data for the elements</li>
-                        <li>And, "Composite" will combine and draw the painted layers out onto the screen</li>
+                        <li>And, "Composite" will combine and render the painted layers out onto the screen</li>
                     </ul>
                 </section>
                 <section>
@@ -534,7 +536,7 @@ CSS comment */</code><pre></li>
                     <img class="plain" srcset="img/rendering-pyramid.jpg" data-src="img/rendering-pyramid.jpg"
                         alt="Rendering pyramid" />
                     <p>If you change something at the bottom, the whole pyramid has to be rebuilt.</p>
-                    <p>If you change just the top layer, the layers beneath remain intact.</p>
+                    <p>If you change just the top layer, the foundation beneath remains intact.</p>
                 </section>
                 
                     <section>
@@ -634,6 +636,22 @@ CSS comment */</code><pre></li>
                             <li>Watch <a href="https://www.youtube.com/watch?v=9rizDPIIYEY">The Web's Black Magic</a> for best explanation
                                 on rendering and compositing</li>
                         </ul>
+                    </section>
+                    <section>
+                        <h2>Why is compositing so much faster?</h2>
+                        <p>
+                            GPU accelerated compositing
+So browser developers started moving things over to the GPU.
+
+There are two tasks that could potentially move over to the GPU:
+
+Painting the layers
+Compositing them together
+It can be hard to move painting to the GPU. So for the most part, multi-platform browsers kept painting on the CPU.
+
+But compositing was something that the GPU could do very quickly, and it was easy to move over to the GPU.
+                        </p>
+                        <p>Using the GPU for the paint step is supported on some browsers under some conditions, but not widespread yet. But they're working on it!</p>
                     </section>
                     <section>
                         <h2>Two Advanced Things to File Away</h2>
