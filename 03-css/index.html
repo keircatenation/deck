@@ -487,6 +487,25 @@ CSS comment */</code><pre></li>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">MDN Custom Properties</a></p>
                 </section>
                 <section>
+                    <h2>CSS Math Functions</h2>
+                    <code>calc() min() max() clamp()</code>
+                    <p>CSS supports dynamic calculations: 
+                        <pre><code>div {
+  width: calc(100% - 20px);
+  height: max(100%, 400px);
+  margin: min(16px, 1vw);
+  font-size: clamp(12px, 2vmin, 28px);
+
+  /* combine them! */ 
+  padding: calc(4px * min(calc(50% / 2), 20vh));
+
+  /* you can use /, *, -, or + operators with calc(), just
+  don't forget the spaces and match up all the parens! */
+}
+                      </code></pre>
+                </p>
+                </section>
+                <section>
                     <h2>CSS Filters</h2>
                     <p>Modify appearances: <pre><code>div {
   filter: hue-rotate(45deg) contrast(50%);
@@ -524,9 +543,33 @@ CSS comment */</code><pre></li>
                     </ul>
                 </section>
                 <section>
+                    <h2>Splitting & Barreling CSS Files with:</h2>
+                    <p><code style="font-size: 4rem;">@import </code><sup><a style="transform: translateY(-50px);" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@import">MDN</a></sup></p>
+                    <div style="display: flex;">
+                        <div>
+                            <p style="margin: 0">We can split our css files by concern/purpose</p>
+                            <img src="img/css_barrel.png" alt="file structure for css barreling">
+                        </div>
+                        <div style="width: 100%">
+                            <p style="margin: 0">Barreling: packaging split files to export to one &lt;link /&gt; tag</p>
+                    <pre style="margin: 20px 0; width: 100%"><code>/* content of styles/index.css above */
+
+/* variables have to be imported first so 
+they are available to the other files */
+@import url(variables.css); 
+@import url(typography.css);
+@import url(forms.css);
+@import url(buttons.css);
+@import url(media.css);
+                    </code></pre>
+                        </div>
+                    </div>
+                    <p>But the number of separate files increases, so does the page load speed... it's best to keep it under 6</p>
+                </section>
+                <section>
                     <h2>Affordances</h2>
                     <img src="img/design_of_everyday_things.jpeg" alt="">
-                    <p><a href="https://en.wikipedia.org/wiki/Ethnography">Ethnography & User Research</a></p>
+                    <p><a href="https://en.wikipedia.org/wiki/Ethnography">Ethnography</a> & User Research</p>
                 </section>
                 <section>
                     <h2>CSS Transitions & Animations</h2>
