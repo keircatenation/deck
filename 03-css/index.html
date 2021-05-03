@@ -567,8 +567,12 @@ they are available to the other files */
                     <p>But the number of separate files increases, so does the page load speed... it's best to keep it under 6</p>
                 </section>
                 <section>
-                    <h2>Affordances</h2>
-                    <img src="img/design_of_everyday_things.jpeg" alt="">
+                    <h2>Affordances in User Interfaces</h2>
+                    <div style='display: flex'>
+                        <img style="max-width: 33%" src="img/design_of_everyday_things.jpeg" alt="">
+                        <img style="max-width: 33%" src="img/push_pull.jpeg" alt="">
+                        <img style="max-width: 33%" src="img/turn.jpg" alt="">
+                    </div>
                     <p><a href="https://en.wikipedia.org/wiki/Ethnography">Ethnography</a> & User Research</p>
                 </section>
                 <section>
@@ -729,18 +733,15 @@ they are available to the other files */
                     </section>
                     <section>
                         <h2>Why is compositing so much faster?</h2>
-                        <p>
-                            GPU accelerated compositing
-So browser developers started moving things over to the GPU.
+                        <ul>
+                            <li>GPU accelerated compositing - browser developers started moving things over to the GPU.</li>
 
-There are two tasks that could potentially move over to the GPU:
-
-Painting the layers
-Compositing them together
-It can be hard to move painting to the GPU. So for the most part, multi-platform browsers kept painting on the CPU.
-
-But compositing was something that the GPU could do very quickly, and it was easy to move over to the GPU.
-                        </p>
+                            <li>There are two tasks that could potentially move over to the GPU:</li>
+                            <ul>
+                                <li>Painting the layers - harder to do</li>
+                                <li>Compositing them together - easier to do</li>
+                            </ul>
+                        </ul>
                         <p>Using the GPU for the paint step is supported on some browsers under some conditions, but not widespread yet. But they're working on it!</p>
                     </section>
                     <section>
