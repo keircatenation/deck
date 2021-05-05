@@ -87,7 +87,7 @@
               <div class="l-multiple" style="align-items:center">
                 <figure class="fragment" style="margin-right:1em">
                   <img data-src="img/normal-flow.svg" alt="Normal flow" class="plain" style="height:2.5em">
-                  <figcaption>Normal flow</figcaption>
+                  <figcaption>Normal  flow</figcaption>
                 </figure>
                 <figure class="fragment" style="margin-right:1em">
                   <img data-src="img/floats.svg" alt="Floats" class="plain" style="height:3em">
@@ -187,7 +187,75 @@
           </ul>
         </section>
 
+      </section>
+
+
+      <section>
+        <section>
+          <h2>Responsive Web Design</h2>
+          <h2 class="fragment j-stamp">Media Queries</h2>
+          <p style='margin-top: 8rem;'><pre class='fragment'><code class='fragment'>@media ( condition ) {
+  /* responsive css rules go here */ 
+}</code></pre></p>
+
         </section>
+        <section>
+          <h2>The Go-to Media Queries</h2>
+          <ul style='columns: 2;'>
+            <li style='border: 1px solid crimson; padding: 4px;'>width <small>(min|max-width)</small></li>
+            <li>height <small>(min|max-height)</small></li>
+            <li style='border: 1px solid crimson; padding: 4px;'>hover <small>(any-hover)</small></li>
+            <li>orientation</li>
+            <li>pointer <small>(any-pointer)</small></li>
+            <li>aspect-ratio</li>
+            <li>prefers-reduced-motion</li>
+            <li>resolution</li>
+            <li>scripting</li>
+            <li>prefers-color-scheme</li>
+            <li>color-gamut</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Breakpoints</h2>
+          <img style="max-height: 30vh;" src="img/screen_sizes.webp" alt="">
+          <p><a href="https://uxtricks.design/blogs/ux-design/responsive-design/">UXTricks</a></p>
+        </section>
+        <section>
+          <h2>Examples</h2>
+          <p>Check for mobile:</p>
+          <pre><code>
+@media screen and (min-width: 660px) and (max-width: 1199px) {
+  /* css rules for tablets & laptops
+  h1 {
+    color: black;
+  }
+}
+@media screen and (max-width: 1200px) {
+  /* css rules for desktops */
+}
+@media screen and (hover: hover) {
+  button:hover {
+    box-shadow: 3px 3px 6px grey;
+  }
+}
+</code></pre>
+
+          <p>You can put a whole link tag behind a media query too:</p>
+          <p><code>&lt;link rel="stylesheet" media="screen and (max-width: 768px)" href="mobile.css"&gt;</code></p>
+        </section>
+        <section>
+          <h2>All Media Queries</h2>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#media_features">MDN</a></p>
+        </section>
+        <section>
+          <h2>Mobile First Responsiveness</h2>
+          <img style="max-height: 30vh" src="img/mobilefirstresponsive.png" alt="mobile first responsive design single columns">
+        </section>
+        <section>
+          <h2>Let's try making our media object Responsive</h2>
+        </section>
+      </section>
+
 
         <section>
           <section>
