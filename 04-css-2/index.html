@@ -21,6 +21,16 @@
       link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
+
+    <style>
+      .flex-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+    </style>
   </head>
 
   <body>
@@ -124,9 +134,8 @@
             <section>
               <h2>Separation of Concerns vs Component Architecture</h2>
               <div class='l-double' style="height:85vh;">
-                <div>
                   <img src="./img/seperate_by_component.png" alt="directory tree">
-                </div>
+                  <img src="img/Build_one.png" alt="component architecture">
               </div>
             </section>
 
@@ -221,31 +230,43 @@
           <p><a href="https://uxtricks.design/blogs/ux-design/responsive-design/">UXTricks</a></p>
         </section>
         <section>
-          <h2>Examples</h2>
-          <p>Check for mobile:</p>
-          <pre><code>
+          <h2>Examples - Checking by device type</h2>
+          <pre><code>/* you can combine multiple conditions with the `and` keyword */
 @media screen and (min-width: 660px) and (max-width: 1199px) {
-  /* css rules for tablets & laptops
+  /* css rules for tablets & laptops */
   h1 {
     color: black;
   }
 }
 @media screen and (max-width: 1200px) {
   /* css rules for desktops */
+  button {
+    color: black;
+  }
 }
 @media screen and (hover: hover) {
+  /* css rules for mouse input devices (i.e. not smartphones) */
   button:hover {
     box-shadow: 3px 3px 6px grey;
   }
 }
 </code></pre>
-
-          <p>You can put a whole link tag behind a media query too:</p>
-          <p><code>&lt;link rel="stylesheet" media="screen and (max-width: 768px)" href="mobile.css"&gt;</code></p>
+          <p style='margin: 0'>You can put a whole link tag behind a media query too:</p>
+          <pre><code>&lt;link rel="stylesheet" media="screen and (max-width: 768px)" href="mobile.css"&gt;</code></pre>
+        </section>
+        <section>
+          <h2>Media Types</h2>
+          <div style="display: flex; flex-direction: column; justify-content: space-between;">
+            <p style='margin: 0; text-align: left; padding: 0 2rem; border: 1px solid grey;'><code style='margin-right: 9.5rem;'>all</code>	Default. Used for all media type devices</p>
+            <p style='margin: 0; text-align: left; padding: 0 2rem; border: 1px solid grey;'><code style='margin-right: 7rem;'>print</code>	Used for printers</p>
+            <p style='margin: 0; text-align: left; padding: 0 2rem; border: 1px solid grey;'><code style='margin-right: 6rem;'>screen</code>	Used for computer screens, tablets, smart-phones etc.</p>
+            <p style='margin: 0; text-align: left; padding: 0 2rem; border: 1px solid grey;'><code style='margin-right: 6rem;'>speech</code>	Used for screenreaders that "reads" the page out loud</p>
+          </div>
         </section>
         <section>
           <h2>All Media Queries</h2>
           <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#media_features">MDN</a></p>
+          <p><a href="https://css-tricks.com/a-complete-guide-to-css-media-queries/">Complete Guide to Media Queries</a></p>
         </section>
         <section>
           <h2>Mobile First Responsiveness</h2>
@@ -260,32 +281,40 @@
         <section>
           <section>
             <h2>Flexbox</h2>
-            <div class="l-multiple">
-              <img class="plain fragment" style="margin:0 0.25em;" data-src="img/bacon-eggs.jpg">
-              <img class="plain fragment" style="margin:0 0.25em;" data-src="img/nuts-bolts.jpg">
-              <img class="plain fragment" style="margin:0 0.25em;" data-src="img/jayz-beyonce.jpg">
+            <br>
+            <br>
+            <div style="position: relative; display: flex; justify-content: space-around; border: 5px solid orange; padding: 4rem;  color: white">
+              <span style="line-height: 38px; position: absolute; left: 0; top: -38px; color: black; font-size: 38px; z-index: 10;">Flex Container</span>
+
+              <div style="position: relative; width: 200px; height: 200px; line-height: 200px; background: crimson;">
+                1
+                <span style="line-height: 38px; position: absolute; left: 0; bottom: 0; font-size: 38px; z-index: 10;">Flex Item</span>
+              </div>
+              <div style="width: 200px; height: 200px; line-height: 200px; background: royalblue;">2</div>
+              <div style="width: 200px; height: 200px; line-height: 200px; background: seagreen;">3</div>
+              <div style="width: 200px; height: 200px; line-height: 200px; background: gold;">4</div>
             </div>
-            <aside class="notes">Grid and Flexbox are best friends. Like bacon and eggs. Like nuts and bolts. Like Jay-Z and Beyoncé. Either are good on their own, but together, they can reach another level of awesome.</aside>
+            <aside class="notes">Flexbox finally unlocks a powerful layout system that is suitable for whole page layouts!</aside>
           </section>
 
           <section>
             <h2>Flexbox ➡ single dimension</h2>
-            <div class="l-double">
-              <figure style="width:85%;">
+            <div style="margin: 0 auto;max-width: 50%;" class="l-double">
+              <figure style="margin: 0 auto; width:85%;">
                 <img class="plain" data-src="img/daisy-h.svg">
                 <p>display: flex</p>
               </figure>
-              <figure style="width:75%;">
+              <figure style="margin: 0 auto; width:70%;">
                 <img class="plain" data-src="img/daisy-v.svg">
                 <p>flex-wrap: wrap</p>
               </figure>
             </div>
-            <div class="l-double">
-              <figure style="width:85%;">
+            <div style="margin: 0 auto;max-width: 50%;"  class="l-double">
+              <figure style="margin: 0 auto; width:85%;">
                 <img class="plain" data-src="img/daisy-h.svg">
                 <p>flex-direction: row</p>
               </figure>
-              <figure style="width:75%;">
+              <figure style="margin: 0 auto; width:70%;">
                 <img class="plain" data-src="img/daisy-v.svg">
                 <p>flex-direction: column</p>
               </figure>
@@ -295,9 +324,9 @@
         
         <section>
           <h2>Flexbox ➡ single dimension</h2>
-          <div class="l-single">
+          <div style="height: 20vh;" class="l-single">
             <figcaption>flex-wrap</figcaption>
-            <figure style="width:85%;">
+            <figure style="margin: 0 auto; max-width:45%;">
               <img class="plain" data-src="img/daisy-h.svg">
             </figure>
           </div>
@@ -315,7 +344,88 @@
           <aside class="notes">Flexbox is suited for laying out items in a single dimension. Where there isn't a relationship
             between the rows and columns. Think of it more like a long daisy chain of flex children.</aside>
         </section>
+        <section>
+          <h2>Flex Order <small><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/order">MDN</a></small></h2>
+          <p >The <code>order</code> property can control where a flex-item will be in the flex-container... even though the order of the HTML doesn't change!</p>
+          <pre style='margin: 0 auto 4rem;'><code>.flex-item {
+  order: -1;
+}</code></pre>
+          <div style="position: relative; display: flex; justify-content: space-around; border: 5px solid orange; padding: 4rem;  color: white">
+            <span style="line-height: 38px; position: absolute; left: 0; top: -38px; color: black; font-size: 38px; z-index: 10;">Flex Container</span>
 
+            <div style="position: relative; width: 200px; height: 200px; line-height: 200px; background: crimson;">
+              1
+              <span style="line-height: 38px; position: absolute; left: 0; bottom: 0; font-size: 38px; z-index: 10;">Flex Item</span>
+            </div>
+            <div style="width: 200px; height: 200px; line-height: 200px; background: royalblue;">2</div>
+            <div style="order: -1;width: 200px; height: 200px; line-height: 200px; background: seagreen;">3</div>
+            <div style="width: 200px; height: 200px; line-height: 200px; background: gold;">4</div>
+          </div>
+        </section>
+        <section>
+          <h2>Let's Practice flexbox basics:</h2>
+          <p><a href="http://www.flexboxdefense.com/">Flexbox Tower Defense Game</a></p>
+        </section>
+        <section>
+          <h2>Extra Flexbox Rules</h2>
+          <p>These *may or may not* come in handy for you.</p>
+          <div class='flex-col' style="align-items: flex-start">
+            <p style="border: 1px solid grey;width: 100%;text-align: left; padding: 0 2rem; margin: 0;"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis">flex-basis</a> - sets a starting width;</p>
+            <p style="border: 1px solid grey;width: 100%;text-align: left; padding: 0 2rem; margin: 0;"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink">flex-grow</a> - proportion of available space to be allocated to this flex-item</p>
+            <p style="border: 1px solid grey;width: 100%;text-align: left; padding: 0 2rem; margin: 0;"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow">flex-shrink</a> - tells this flex-item to shrink as available space shrinks</p>
+            <p style="border: 1px solid grey;width: 100%;text-align: left; padding: 0 2rem; margin: 0;"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-self">align-self</a> - aligns this flex-item only</p>
+          </div>
+          <p><a href="https://codepen.io/heliocrat/pen/KKWwKvv">Flex Codepen</a></p>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Examine_Flexbox_layouts">Firefox Flexbox Inspector</a></p>
+        </section>
+
+        <section>
+          <h2>Flexbox Container Properties & Values</h2>
+          <pre><code>selector {
+  display: flexbox | inline-flex;
+  flex-direction: row | row-reverse | column | column-reverse;
+  flex-wrap: nowrap | wrap | wrap-reverse;
+  flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;
+  justify-content: flex-start | flex-end | center | space-between | space-around;
+  align-items: flex-start | flex-end | center | baseline | stretch;
+  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+}</code></pre>
+        </section>
+        <section>
+          <h2>Flexbox Item Properties & Values</h2>
+          <pre><code>selector {
+  order: &lt;integer>;
+  flex-grow: &lt;number&gt;; /* default 0 */
+  flex-shrink: &lt;number&gt;; /* default 1 */
+  flex-basis: &lt;length&gt; | auto; /* default auto */
+  flex: none | [ &lt;flex-grow&gt; &lt;flex-shrink&gt;? || &lt;flex-basis&gt; ]
+  align-self: auto | flex-start | flex-end | center | baseline | stretch;
+}</code></pre>
+        </section>
+        <section>
+          <h2>Flexbox References</h2>
+          <p><a href="https://flexbox.malven.co/">Simple Flexbox Cheat Sheet</a></p>
+          <p><a href="https://yoksel.github.io/flex-cheatsheet/">In-Depth Flexbox Cheat Sheet</a></p>
+          <p><a href="https://the-echoplex.net/flexyboxes/">Flexbox Playground</a></p>
+          <h2>Flexbox Layouts</h2>
+          <p><a href="https://www.flexboxpatterns.com/">Flexbox Patterns</a></p>
+          <p><a href="https://philipwalton.github.io/solved-by-flexbox/">Layouts Solved by Flexbox</a></p>
+          <p><a href="https://www.freecodecamp.org/news/learn-flexbox-build-5-layouts/">Page Layouts with Flexbox</a></p>
+
+        </section>
+        <section>
+          <h2>Let's Try it out on a:</h2>
+          <ol>
+            <li>Media Object</li>
+            <li>Side Panel</li>
+          </ol>
+          <br>
+          <br>
+          <h2>Further Practice</h2>
+          <p><a href="https://flexboxfroggy.com/">Flexbox Froggies - No account needed!</a></p>
+          <p><a href="https://mastery.games/p/flexbox-zombies">Flexbox Zombies - free w/ account</a></p>
+          
+        </section>
       </section>
 
         <section>
