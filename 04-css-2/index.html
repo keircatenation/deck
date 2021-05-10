@@ -382,7 +382,7 @@
         <section>
           <h2>Flexbox Container Properties & Values</h2>
           <pre><code>selector {
-  display: flexbox | inline-flex;
+  display: flex | inline-flex;
   flex-direction: row | row-reverse | column | column-reverse;
   flex-wrap: nowrap | wrap | wrap-reverse;
   flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;
@@ -437,7 +437,7 @@
 
           <section>
             <h2>Basic terminology</h2>
-            <img style="height:75vh" class="plain" data-src="img/terminology.svg" alt="Grid terminology">
+            <img style="height:50vh" class="plain" data-src="img/terminology.svg" alt="Grid terminology">
             <aside class="notes">
               <p>There are a number of terms I will constantly refer to throughout this talk, so let’s make sure everyone is on the same page. Grid lines are the horizontal and vertical lines that form the basis of the grid structure, and can be referred to by their numerical index, which starts from 1.</p>
               <p>Each space between grid lines are known as grid tracks, which make up the rows and columns of the grid, and represent the spaces your items appear in.</p>
@@ -456,16 +456,17 @@
 
           <section>
             <blockquote>“Grid works from the <strong>container</strong> in, other layout methods start with the <strong>item</strong>”<br><small>—<a href="https://rachelandrew.co.uk/">Rachel Andrew</a></small></blockquote>
+            <p><a href="https://gridbyexample.com/">Grid By Example</a></p>
             <aside class="notes">
               <p>My favourite way of explaining the CSS grid mental model comes from Rachel Andrew, who describes it as such: “Grid works from the container in. All other layout techniques start from the item first.”</p>
               <p>Let’s illustrate this with some simple examples, which will also serve as the introduction to the most basic set up for using CSS grid.</p>
             </aside>
           </section>
 
-          <section>
+          <section style="margin-top: -10px;">
             <h2>Layout technique: <code>inline-block</code></h2>
-            <div class="livecode livecode-2p">
-              <div class="result inlineblock" style="font-size:75%;">
+            <div class="livecode livecode-2p" style="max-height: 40vh;">
+              <div class="result inlineblock" >
                 <div class="inlineblock__item" style="border:1px solid;padding:1em 0;"><p>Item A</p></div><div class="inlineblock__item" style="border:1px solid;padding:1em 0;"><p>Item B</p></div><div class="inlineblock__item" style="border:1px solid;padding:1em 0;"><p>Item C</p></div><div class="inlineblock__item" style="border:1px solid;padding:1em 0;"><p>Item D</p></div><div class="inlineblock__item" style="border:1px solid;padding:1em 0;"><p>Item E</p></div><div class="inlineblock__item" style="border:1px solid;padding:1em 0;"><p>Item F</p></div>
               </div>
               <div class="code"><style class="code-editor" contenteditable="true">.inlineblock__item {
@@ -476,9 +477,9 @@
             <aside class="notes">The setup here is 6 items we want to place into a 3-column grid. One approach for creating such a layout is by using the <code>inline-block</code> technique. For a three column grid, we set the display of the items to <code>inline-block</code> and give them all a width of a third of the container.</aside>
           </section>
 
-          <section>
+          <section style="margin-top: -10px">
             <h2>Layout technique: <code>float</code></h2>
-            <div class="livecode livecode-2p">
+            <div class="livecode livecode-2p" style="max-height: 40vh;">
               <div class="result float" style="font-size:75%;">
                 <div class="float__item" style="border:1px solid;padding:1em 0;">
                   <p>Item A</p>
@@ -507,9 +508,9 @@
             <aside class="notes">It's almost the same if you use <code>float</code>, because you also need to set a width on each item.</aside>
           </section>
 
-          <section>
+          <section style="margin-top: -10px">
             <h2>Layout technique: <code>flex</code></h2>
-            <div class="livecode livecode-2p">
+            <div class="livecode livecode-2p" style="max-height: 40vh;">
               <div class="result flexbox" style="font-size:75%;">
                 <div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item A</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item B</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item C</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item D</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item E</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item F</p></div>
               </div>
@@ -536,20 +537,7 @@
             </aside>
           </section>
 
-          <section>
-            <h2>CSS grid basics</h2>
-            <div class="l-double">
-              <div class="fragment" style="width:100%;">
-                <p>Define your grid.</p>
-                <img class="plain" style="max-height:50vh;" data-src="img/define-grid.svg" alt="Define a grid">
-              </div>
-              <div class="fragment" style="width:100%;">
-                <p>Place items in the grid.</p>
-                <img class="plain" style="max-height:50vh;" data-src="img/place-items.svg" alt="Place items in the grid">
-              </div>
-            </div>
-            <aside class="notes">The basic premise of how grid works involves two steps. You define the grid, then place items in it either by yourself, or let the browser do it for you.</aside>
-          </section>
+          
         </section>
 
         
@@ -558,6 +546,21 @@
           <section>
             <h2>Properties on the Grid container</h2>
             <aside class="notes">Let's look at the properties that are applied to the Grid container first, which will determine the size and structure of the grid we want to create.</aside>
+          </section>
+
+          <section>
+            <h2>CSS grid basics</h2>
+            <div class="l-double">
+              <div class="fragment" style="width:100%;">
+                <p>Define your grid container.</p>
+                <img class="plain" style="max-height:50vh;" data-src="img/define-grid.svg" alt="Define a grid">
+              </div>
+              <div class="fragment" style="width:100%;">
+                <p>Place grid items in the grid.</p>
+                <img class="plain" style="max-height:50vh;" data-src="img/place-items.svg" alt="Place items in the grid">
+              </div>
+            </div>
+            <aside class="notes">The basic premise of how grid works involves two steps. You define the grid, then place items in it either by yourself, or let the browser do it for you.</aside>
           </section>
 
           <section>
@@ -596,7 +599,42 @@
             <aside class="notes">There are numerous values we can use to define the size of our grids. There are those which are familiar, fixed units like pixels or ems and relative units like percentages or viewport units. Now, we also a new flexible unit known as fr or fractional unit, which I will cover in more detail later.</aside>
           </section>
 
-         
+          <section>
+            <h2>Grid Essentials</h2>
+            <h3><small>& Explicit vs Implicit tracks</small></h3>
+            <div class="l-double" style="align-items:center;">
+              <img class="plain" data-src="img/implicit-grid.svg" alt="Implicit grid">
+              <div style="align-self:center;">
+                <pre style="font-size:50%;"><code class="css">.grid-container {
+  display: grid;
+  grid-template-columns: 150px 150px 150px; /* three columns  */
+  grid-template-rows: 150px 150px; /* two rows  */
+}
+
+.item {
+  /* grid-column-start: 5; grid-column-end: 6;  */
+  grid-column: 5 / 6;
+
+  /* grid-row-start: 2; grid-row-end: 3;  */
+  grid-row:  2 / 3; 
+
+  /* you can use -1 to reference 
+  the last explicit grid track */
+  grid-row: 2 / -1;
+}</code></pre>
+                <p style="font-size:75%;text-align:left;margin-left:1em;">The browser will create an implicit grid to hold items placed outside the grid.</p>
+              </div>
+            </div>
+            <aside class="notes">
+              <p>One more thing I want to mention is the concept of an implicit grid. The explicit grid is the one we define using <code>grid-template-columns</code> and <code>grid-template-rows</code>. But there's nothing stopping us from placing an item outside the bounds of this grid. What happens then?</p>
+              <p>In this simple 3×2 grid, the grid column lines only go up to 4. But if we place an item starting on grid line number 5, the browser will add 2 implicit columns (shown by the purple dashed lines on the grid) to accommodate this item. It's really quite smart.</p>
+            </aside>
+          </section>
+
+         <section>
+           <h2>Let's Create a Grid-based Media Object</h2>
+           <img src="img/grid_media_object.png" alt="">
+         </section>
 
           <section>
             <h2>The <code>fr</code> unit</h2>
@@ -736,29 +774,6 @@
             </aside>
           </section>
 
-          <section>
-            <h2>Explicit Grid and Implicit Grid</h2>
-            <div class="l-double" style="align-items:center;">
-              <img class="plain" data-src="img/implicit-grid.svg" alt="Implicit grid">
-              <div style="align-self:center;">
-                <pre style="font-size:50%;"><code class="css">.grid-container {
-  display: grid;
-  grid-template-columns: 150px 150px 150px; /* three columns  */
-  grid-template-rows: 150px 150px; /* two rows  */
-}
-
-.item {
-  grid-column: 5 / 6; /* grid-column-start: 5; grid-column-end: 6;  */
-  grid-row:  2 / 3; /* grid-row-start: 2; grid-row-end: 3;  */
-}</code></pre>
-                <p style="font-size:75%;text-align:left;margin-left:1em;">The browser will create an implicit grid to hold items placed outside the grid.</p>
-              </div>
-            </div>
-            <aside class="notes">
-              <p>One more thing I want to mention is the concept of an implicit grid. The explicit grid is the one we define using <code>grid-template-columns</code> and <code>grid-template-rows</code>. But there's nothing stopping us from placing an item outside the bounds of this grid. What happens then?</p>
-              <p>In this simple 3×2 grid, the grid column lines only go up to 4. But if we place an item starting on grid line number 5, the browser will add 2 implicit columns (shown by the purple dashed lines on the grid) to accommodate this item. It's really quite smart.</p>
-            </aside>
-          </section>
         </section>
 
         <section>
