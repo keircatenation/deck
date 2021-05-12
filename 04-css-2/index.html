@@ -30,6 +30,9 @@
         justify-content: center;
       }
 
+      .livecode {
+        max-height: 30vh !important;
+      }
     </style>
   </head>
 
@@ -286,51 +289,46 @@
             <div style="position: relative; display: flex; justify-content: space-around; border: 5px solid orange; padding: 4rem;  color: white">
               <span style="line-height: 38px; position: absolute; left: 0; top: -38px; color: black; font-size: 38px; z-index: 10;">Flex Container</span>
 
-              <div style="position: relative; width: 200px; height: 200px; line-height: 200px; background: crimson;">
+              <div style="position: relative; width: 200px; height: 200px; line-height: 200px; background: limegreen;">
                 1
                 <span style="line-height: 38px; position: absolute; left: 0; bottom: 0; font-size: 38px; z-index: 10;">Flex Item</span>
               </div>
-              <div style="width: 200px; height: 200px; line-height: 200px; background: royalblue;">2</div>
-              <div style="width: 200px; height: 200px; line-height: 200px; background: seagreen;">3</div>
-              <div style="width: 200px; height: 200px; line-height: 200px; background: gold;">4</div>
+              <div style="width: 200px; height: 200px; line-height: 200px; background: gold;">2</div>
+              <div style="width: 200px; height: 200px; line-height: 200px; background: crimson;">3</div>
+              <div style="width: 200px; height: 200px; line-height: 200px; background: royalblue;">4</div>
             </div>
             <aside class="notes">Flexbox finally unlocks a powerful layout system that is suitable for whole page layouts!</aside>
           </section>
 
           <section>
-            <h2>Flexbox ➡ single dimension</h2>
+            <h2>Flexbox Axes ➡ single dimension</h2>
+            <div style="height: 30vh; display: flex;">
+              <div>
+                <img src="img/flex-direction-row.gif" alt="">
+                <p><a href="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/">Flexbox Animated</a></p>
+              </div>
+              <img src="img/main_cross_axis.png" style="flex: 1 0 50%;" alt="">
+            </div>
+            
+          </section>
+
+          <section>
+            <h2>Flexbox ➡ Wrapping on single dimension</h2>
             <div style="margin: 0 auto;max-width: 50%;" class="l-double">
-              <figure style="margin: 0 auto; width:85%;">
+              <figure style="margin: 0 auto; width:90%;">
                 <img class="plain" data-src="img/daisy-h.svg">
                 <p>display: flex</p>
-              </figure>
-              <figure style="margin: 0 auto; width:70%;">
-                <img class="plain" data-src="img/daisy-v.svg">
                 <p>flex-wrap: wrap</p>
               </figure>
-            </div>
-            <div style="margin: 0 auto;max-width: 50%;"  class="l-double">
-              <figure style="margin: 0 auto; width:85%;">
-                <img class="plain" data-src="img/daisy-h.svg">
-                <p>flex-direction: row</p>
-              </figure>
-              <figure style="margin: 0 auto; width:70%;">
+              <figure style="margin: 0 auto; width:90%;">
                 <img class="plain" data-src="img/daisy-v.svg">
+                <p>display: flex</p>
                 <p>flex-direction: column</p>
+                <p>flex-wrap: wrap</p>
               </figure>
             </div>
             <aside class="notes">Flexbox is suited for laying out items in a single dimension. Where there isn't a relationship between the rows and columns. Think of it more like a long daisy chain of flex children.</aside>
           </section>
-        
-        <section>
-          <h2>Flexbox ➡ single dimension</h2>
-          <div style="height: 20vh;" class="l-single">
-            <figcaption>flex-wrap</figcaption>
-            <figure style="margin: 0 auto; max-width:45%;">
-              <img class="plain" data-src="img/daisy-h.svg">
-            </figure>
-          </div>
-        </section>
 
         <section>
           <h2>Flexbox ➡ Flex Flow Shortcut</h2>
@@ -342,7 +340,48 @@
             </figure>
           
           <aside class="notes">Flexbox is suited for laying out items in a single dimension. Where there isn't a relationship
-            between the rows and columns. Think of it more like a long daisy chain of flex children.</aside>
+            between the rows and columns. Think of it more like a long daisy chain of flex items.</aside>
+        </section>
+
+        <section>
+          <h2>Flexbox Alignment</h2>
+          <div style="height: 30vh; display: flex;">
+              <ul  style="flex: 1 0 30%;">
+                <h6><small>justify-content ➡ Main Axis</small></h6>
+                <li>flex-start (default)</li>
+                <li>flex-end</li>
+                <li>center</li>
+                <li>space-between</li>
+                <li>space-around</li>
+                <li>space-evenly</li>
+              </ul>
+            <img src="img/main_cross_axis.png" style="height: 80%;" alt="">
+            <ul  style="flex: 1 0 30%;">
+              <h3><small>align-items ➡ Cross Axis</small></h3>
+              <li>stretch (default)</li>
+              <li>center</li>
+              <li>flex-start</li>
+              <li>flex-end</li>
+              <li>baseline</li>
+            </ul>
+          </div>
+          
+        </section>
+
+        <section>
+          <h2>Adding a Gap</h2>
+          <pre><code>gap: &lt;length&gt;;</code></pre>
+          <div class="livecode livecode-2p" style="max-height: 30vh;">
+            <div class="result flexbox" style="font-size:75%;">
+              <div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item A</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item B</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item C</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item D</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item E</p></div><div class="flexbox__item" style="border:1px solid;padding:1em 0;"><p>Item F</p></div>
+            </div>
+            <div class="code"><style class="code-editor" contenteditable="true">.flexbox {
+display: flex;
+flex-wrap: wrap;
+gap: 0px;
+}
+</style></div>
+          </div>
         </section>
         <section>
           <h2>Flex Order <small><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/order">MDN</a></small></h2>
@@ -389,6 +428,7 @@
   justify-content: flex-start | flex-end | center | space-between | space-around;
   align-items: flex-start | flex-end | center | baseline | stretch;
   align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+  gap: &lt;length&gt;;
 }</code></pre>
         </section>
         <section>
@@ -437,7 +477,7 @@
 
           <section>
             <h2>Basic terminology</h2>
-            <img style="height:50vh" class="plain" data-src="img/terminology.svg" alt="Grid terminology">
+            <img style="height:30vh" class="plain" data-src="img/terminology.svg" alt="Grid terminology">
             <aside class="notes">
               <p>There are a number of terms I will constantly refer to throughout this talk, so let’s make sure everyone is on the same page. Grid lines are the horizontal and vertical lines that form the basis of the grid structure, and can be referred to by their numerical index, which starts from 1.</p>
               <p>Each space between grid lines are known as grid tracks, which make up the rows and columns of the grid, and represent the spaces your items appear in.</p>
@@ -449,7 +489,7 @@
 
           <section>
             <h2>Flexbox and Grid</h2>
-            <p>Based on the container-child relationship</p>
+            <p>Both Based on the container-child relationship</p>
             <svg width="50%" viewBox="0 0 564 324"><g fill="none" fill-rule="evenodd" transform="translate(5.07 -3)"><rect width="558.051" height="273.508" x="-2.5" y="50.5" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="bevel" rx="3"/><rect width="252.547" height="145.828" x="56.727" y="139.039" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="bevel" rx="3"/><text fill="#000" font-size="50%"><tspan x=".132" y="37">Flex/Grid container</tspan></text><text fill="#000" font-size="50%"><tspan x="59.627" y="125.539">Flex/Grid item</tspan></text></g></svg>
             <aside class="notes">The first concept to wrap our heads around is the fact that Grid, like Flexbox, operates on the parent-child relationship, whereby, the display property is set on the parent element. This then affects the layout of all the immediate children of that element.</aside>
           </section>
@@ -549,22 +589,51 @@
           </section>
 
           <section>
-            <h2>CSS grid basics</h2>
+            <h2>CSS Grid basics</h2>
             <div class="l-double">
               <div class="fragment" style="width:100%;">
                 <p>Define your grid container.</p>
+                <ul style="list-style: none;">
+                  <li><code>display: grid</code></li>
+                  <li><code>grid-template-columns </code></li>
+                  <li><code>grid-template-rows</code></li>
+                </ul>
                 <img class="plain" style="max-height:50vh;" data-src="img/define-grid.svg" alt="Define a grid">
               </div>
               <div class="fragment" style="width:100%;">
                 <p>Place grid items in the grid.</p>
+                <ul style="list-style: none;">
+                  <li><code>grid-column </code></li>
+                  <li><code>grid-row</code></li>
+                  <li style='opacity: 0'>.</li>
+                </ul>
                 <img class="plain" style="max-height:50vh;" data-src="img/place-items.svg" alt="Place items in the grid">
               </div>
             </div>
             <aside class="notes">The basic premise of how grid works involves two steps. You define the grid, then place items in it either by yourself, or let the browser do it for you.</aside>
           </section>
 
+          <section class="present" style="top: 51px; display: block;">
+            <h2>Defining the Grid</h2>
+            <div class="l-multiple">
+              <img class="plain" style="max-height: 30vh" alt="Parent-child relationship" src="img/grid-parent-child.svg">
+              <div style="flex:1 0 56%;align-self:center;">
+                <pre style="font-size:50%;"><code class="css hljs">body {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 10vh 80vh 10vh;
+}</code></pre>
+              <p style="font-size:75%;text-align:left;margin-left:1em;">The grid formatting context only applies to the direct child elements</p>
+              </div>
+            </div>
+            <aside class="notes">
+              <p>A grid container is defined by setting the display to grid on an element. This creates a grid formatting context for its content, which are laid out into a grid. The grid formatting context only applies to child elements and does not extend to grandchild elements and beyond.</p>
+              <p>For example, applying <code>display: grid</code> to the body element, results in the 4 child elements, header, main, aside and footer, becoming grid items. However, the content within the main element are not grid items.</p>
+            </aside>
+          </section>
+
           <section>
-            <h2>Defining a grid</h2>
+            <h2>Let's Define a Grid</h2>
             <div class="livecode livecode-3p">
               <pre class="markup"><code class="html">&lt;div class="grid1"&gt;
   &lt;div class="grid1__item"&gt;
@@ -600,7 +669,7 @@
           </section>
 
           <section>
-            <h2>Grid Essentials</h2>
+            <h2>Placing Items in the Grid</h2>
             <h3><small>& Explicit vs Implicit tracks</small></h3>
             <div class="l-double" style="align-items:center;">
               <img class="plain" data-src="img/implicit-grid.svg" alt="Implicit grid">
@@ -624,10 +693,73 @@
 }</code></pre>
                 <p style="font-size:75%;text-align:left;margin-left:1em;">The browser will create an implicit grid to hold items placed outside the grid.</p>
               </div>
+              <p><a href="https://cssreference.io/css-grid/#grid-row">grid-row on CSSReference.io</a></p>
+                <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column">grid-column on MDN</a></p>
             </div>
             <aside class="notes">
               <p>One more thing I want to mention is the concept of an implicit grid. The explicit grid is the one we define using <code>grid-template-columns</code> and <code>grid-template-rows</code>. But there's nothing stopping us from placing an item outside the bounds of this grid. What happens then?</p>
               <p>In this simple 3×2 grid, the grid column lines only go up to 4. But if we place an item starting on grid line number 5, the browser will add 2 implicit columns (shown by the purple dashed lines on the grid) to accommodate this item. It's really quite smart.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Let's Use <code>grid-column</code> and <code>grid-row</code></h2>
+            <div class="livecode livecode-2p" style="position: relative;">
+              <svg width="438" height="438" style="position: absolute; top: 0; left: 0;">
+                <rect width="438" height="438" fill="#aaaada40"/>
+              </svg>
+              <div class="result grid7" style="font-size:75%; grid-gap: 1px; background-image: url(img/grid.svg);">
+                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
+                  <p>(1) 🍏</p>
+                </div>
+                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
+                  <p>(2) 🍊</p>
+                </div>
+                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
+                  <p>(3) 🥥</p>
+                </div>
+                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
+                  <p>(4) 🥑</p>
+                </div>
+                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
+                  <p>(5) 🍇</p>
+                </div>
+                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
+                  <p>(6) 🍌</p>
+                </div>
+                
+              </div>
+              <div class="code"><style class="code-editor" contenteditable="true">.grid7 {
+  display: grid;
+  grid-template-columns: repeat(6, 2.5em);
+  grid-template-rows: repeat(6, 2.5em);
+  justify-content: start;
+}
+
+.grid7__item:nth-child(1) {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+.grid7__item:nth-child(3) {
+  grid-column: 2;
+  grid-row: 5;
+}
+
+.grid7__item:nth-child(4) {
+  grid-column: 5;
+  grid-row: 1;
+}
+
+.grid7__item:nth-child(6) {
+  grid-column: 3;
+  grid-row: 3;
+}</style></div>
+            </div>
+            <aside class="notes">
+              <p>Let's see how this works. <code>grid-row</code> and <code>grid-column</code> are actually shorthand for their respective start and end properties.</p>
+              <p>By default, each grid item will take up 1 grid cell, so if I only put 1 value for the <code>grid-column</code> or <code>grid-row</code>, that will be the start position.</p>
+              <p>Of course, I can make the grid item span multiple rows or columns by specifying an end value as well.</p>
             </aside>
           </section>
 
@@ -1172,63 +1304,6 @@ grid-template-rows: [first header-start] 100px [header-end content-start] 1fr [c
               <p>Other than using a numerical index to refer to specific grid lines, we can give them names as well. Line names can be any string except “span”, which is a keyword. There is no limit to how many names you can assign to a particular line either.</p>
               <p>Another handy feature with grid lines is the negative index. That means if you need to refer to the last grid line, and you don't know how many grid lines there are, you can use -1 to always get the last grid line.</p>
               <p>So say I want something to go into the big main area, I would set both the <code>grid-row</code> and <code>grid-column</code> to <code>2 / 3</code>, or use the line names <code>content-start / content-end</code>.</p>
-            </aside>
-          </section>
-
-          <section>
-            <h2>Using <code>grid-column</code> and <code>grid-row</code></h2>
-            <div class="livecode livecode-2p">
-              <div class="result grid7" style="font-size:75%;">
-                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
-                  <p>(1) 🍏</p>
-                </div>
-                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
-                  <p>(2) 🍊</p>
-                </div>
-                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
-                  <p>(3) 🥥</p>
-                </div>
-                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
-                  <p>(4) 🥑</p>
-                </div>
-                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
-                  <p>(5) 🍇</p>
-                </div>
-                <div class="grid7__item" style="background-color:#54ffbd;border:1px solid;">
-                  <p>(6) 🍌</p>
-                </div>
-              </div>
-              <div class="code"><style class="code-editor" contenteditable="true">.grid7 {
-  display: grid;
-  grid-template-columns: repeat(6, 2.5em);
-  grid-template-rows: repeat(6, 2.5em);
-  justify-content: center;
-}
-
-.grid7__item:nth-child(1) {
-  grid-column: 4;
-  grid-row: 2;
-}
-
-.grid7__item:nth-child(3) {
-  grid-column: 2;
-  grid-row: 5;
-}
-
-.grid7__item:nth-child(4) {
-  grid-column: 5;
-  grid-row: 1;
-}
-
-.grid7__item:nth-child(6) {
-  grid-column: 3;
-  grid-row: 3;
-}</style></div>
-            </div>
-            <aside class="notes">
-              <p>Let's see how this works. <code>grid-row</code> and <code>grid-column</code> are actually shorthand for their respective start and end properties.</p>
-              <p>By default, each grid item will take up 1 grid cell, so if I only put 1 value for the <code>grid-column</code> or <code>grid-row</code>, that will be the start position.</p>
-              <p>Of course, I can make the grid item span multiple rows or columns by specifying an end value as well.</p>
             </aside>
           </section>
         </section>

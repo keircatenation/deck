@@ -1,4 +1,5 @@
 var showLaserTrail = false;
+var shiftDown = false
 addEventListener('mousedown', () => showLaserTrail = true)
 addEventListener('mouseup', () => showLaserTrail = false)
 addEventListener('keydown', (e) => {
@@ -8,13 +9,19 @@ addEventListener('keydown', (e) => {
     case 'ArrowRight':
     case 'ArrowLeft':
       Array.from(document.getElementsByClassName('trail')).forEach(n => n.remove())
+      break;
+    case 'Shift':
+      shiftDown = true
     default:
       return;
   }
 })
+addEventListener('keyup', (e) => {
+  if(e.key === 'Shift') shiftDown = false
+})
 addEventListener('mousemove', function(event){
   
-  if(showLaserTrail) {
+  if(showLaserTrail && shiftDown) {
     var dir = Math.abs(event.movementX) / Math.abs(event.movementY)
     var dif = Math.abs(event.movementX) - Math.abs(event.movementY)
     var trail = document.createElement('div');
@@ -25,11 +32,11 @@ addEventListener('mousemove', function(event){
     trail.style.top = (event.pageY - 3) + 'px';
     document.body.appendChild(trail);
 
-    //delete the node after 2 1/2  second
-    if(!event.shiftKey) {
+    //delete the node after 5 1/2  second
+    if(!event.altKey) {
       setTimeout(function(){
         document.body.removeChild(trail);
-      }, 4500); //adjust time here to delete. The number is in milliseconds
+      }, 5500); //adjust time here to delete. The number is in milliseconds
     }
   }
     
