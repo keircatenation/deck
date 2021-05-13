@@ -33,6 +33,15 @@
       .livecode {
         max-height: 30vh !important;
       }
+      .livecode.serious {
+        max-height: 20vh !important;
+      }
+      .slack-code {
+        padding: 1px 6px !important;
+        background: #ddd;
+        color: rgb(180, 47, 69);
+        border-radius: 4px;
+      }
     </style>
   </head>
 
@@ -769,9 +778,11 @@ gap: 0px;
          </section>
 
           <section>
-            <h2>The <code>fr</code> unit</h2>
-            <p>Represents a <strong>fraction</strong> of the <strong>free space</strong> in the grid container.</p>
-            <div class="livecode livecode-2p">
+            <h2>Fluid Units</h2>
+            <p><code class='slack-code'>fr</code> represents a <strong>fraction</strong> of the <strong>free space</strong> in the grid container.</p>
+            <p><code class='slack-code'>min-content</code> gives the <strong>smallest</strong> width of the grid item content (wraps).</p>
+            <p><code class='slack-code'>max-content</code> gives the <strong>largest</strong> width of the grid item content (does not wrap).</p>
+            <div class="livecode serious livecode-2p">
               <div class="result grid4" style="font-size:75%;">
                 <div class="grid4__item a" style="border:1px solid;padding:1em 0;"><p>Item A</p></div><div class="grid4__item b" style="border:1px solid;padding:1em 0;"><p>Item B</p></div><div class="grid4__item c" style="border:1px solid;padding:1em 0;"><p>Item C</p></div>
               </div>
@@ -792,6 +803,8 @@ gap: 0px;
             <pre style="font-size:65%;"><code class="css">.container {
   display: grid;
   grid-template-columns: repeat(3, 3fr 2fr);
+  /* grid-template-columns: repeat(6, min-content); */
+  /* grid-template-columns: repeat(6, max-content); */
 }</code></pre>
             <video autoplay loop class="video" style="width:70%;">
               <source data-src="videos/fluid-grid.mp4" type="video/mp4" />
@@ -803,8 +816,8 @@ gap: 0px;
           </section>
 
           <section>
-            <h2>The <code>minmax()</code> function</h2>
-            <p>Defines a size range for columns or rows in the grid.</p>
+            <h2>The <code>minmax()</code> function <sup><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/minmax()">MDN</a></sup></h2>
+            <p>Defines a size range for columns or rows in a grid.
             <div class="livecode livecode-2p">
               <div class="result grid5" style="font-size:75%;">
                 <div class="grid5__item a" style="border:1px solid;padding:1em 0;"><p>Item A</p></div><div class="grid5__item b" style="border:1px solid;padding:1em 0;"><p>Item B</p></div><div class="grid5__item c" style="border:1px solid;padding:1em 0;"><p>Item C</p></div>
@@ -818,7 +831,7 @@ gap: 0px;
           </section>
 
           <section>
-            <h2>The <code>repeat()</code> function</h2>
+            <h2>The <code>repeat()</code> function <sup><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/repeat()">MDN</a></sup></h2>
             <p>To specify a large number of columns or rows that follow a similar pattern</p>
             <div class="livecode livecode-2p">
               <div class="result grid6" style="font-size:75%;">
@@ -833,16 +846,17 @@ gap: 0px;
           </section>
 
           <section>
-            <h2><code>auto-fill</code> vs. <code>auto-fit</code></h2>
-            <p>Allow browser to determine how many tracks to create depending on track size.</p>
+            <h2><code>auto-fill</code> vs. <code>auto-fit</code> <sup><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/repeat()#values">MDN</a></sup></h2>
+            <p>Allow browser to create a number of tracks depending on grid track sizes.</p>
+            <p>Used with the <code class='slack-code'>repeat()</code> function.</p>
             <div class="l-double">
-              <div>
+              <div >
                 <img class="plain" data-src="img/auto-fill.png" alt="Auto-fill">
-                <pre style="font-size:65%;"><code class="css">repeat(auto-fill, 100px);</code></pre>
+                <pre style="font-size:65%; width: 95%;"><code class="css">grid-template-columns: repeat(auto-fill, 100px);</code></pre>
               </div>
-              <div>
+              <div >
                 <img class="plain" data-src="img/auto-fit.png" alt="Auto-fit">
-                <pre style="font-size:65%;"><code class="css">repeat(auto-fit, 100px);</code></pre>
+                <pre style="font-size:65%;"><code class="css">grid-template-rows: repeat(auto-fit, 100px);</code></pre>
               </div>
             </div>
             <p class="fragment"><code>auto-fit</code> collapses empty tracks.</p>
@@ -891,7 +905,8 @@ gap: 0px;
             <h2>Responsive grid without media queries</h2>
              <pre style="font-size:65%;"><code class="css" style="font-size: 90%;">.container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr)); /* auto-fit can work here too */
+  grid-gap: 10px;
 }</code></pre>
             <video autoplay loop class="video" style="width:70%;">
               <source data-src="videos/responsive-grid.mp4" type="video/mp4" />
@@ -899,11 +914,21 @@ gap: 0px;
               but don't worry, you can <a href="videos/responsive-grid.mp4">download it</a>
               and watch it with your favourite video player!
             </video>
+            <p><a href="https://codepen.io/heliocrat/full/MWpyeLy">Codepen Example</a> / <a href="https://medium.com/samsung-internet-dev/common-responsive-layouts-with-css-grid-and-some-without-245a862f48df">More Examples</a></p>
+            <p><a href="https://css-tricks.com/how-to-make-a-media-query-less-card-component/">No Media Queries w/ Flexbox, too!</a></p>
             <aside class="notes">
               <p>For this example, I'm telling the browser that when the viewport size shrinks, I want to cap the shrink of each column at 10ems but if there's extra space, grow all my columns equally. By using auto-fill (or auto-fit), the browser will calculate how many columns fulfil my requirement. When the viewport size changes, the number of columns will decrease or increase until everything fits.</p>
               <p>And because the maximum value is a flexible unit, if there is an excess of space, like 6ems worth, all the columns will grow equally to fill up that extra space. And not a single media query needed to be written.</p>
               <p>You might have noticed that, although I explained each feature individually, they are so much more useful when used in combination. Team sport, remember?</p>
             </aside>
+          </section>
+          <section>
+            <h2>Auto Flow Properties</h2>
+            <p>These properties give you control of implicit grid tracks.</p>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns"><code>grid-auto-columns</code></a></p>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows"><code>grid-auto-rows</code></a></p>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow"><code>grid-auto-flow</code></a></p>
+            <p><a href="https://codepen.io/imjuangarcia/pen/bzpYyj">Example Gallery w/ the <code class="slack-code">dense</code> packing algo</a></p>
           </section>
 
         </section>
