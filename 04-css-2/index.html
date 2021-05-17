@@ -784,7 +784,15 @@ gap: 0px;
             <p><code class='slack-code'>max-content</code> gives the <strong>largest</strong> width of the grid item content (does not wrap).</p>
             <div class="livecode serious livecode-2p">
               <div class="result grid4" style="font-size:75%;">
-                <div class="grid4__item a" style="border:1px solid;padding:1em 0;"><p>Item A</p></div><div class="grid4__item b" style="border:1px solid;padding:1em 0;"><p>Item B</p></div><div class="grid4__item c" style="border:1px solid;padding:1em 0;"><p>Item C</p></div>
+                <div class="grid4__item a" style="border:1px solid;padding:1em 0;">
+                  <p>Item A</p>
+                </div>
+                <div class="grid4__item b" style="border:1px solid;padding:1em 0;">
+                  <p>Item B</p>
+                </div>
+                <div class="grid4__item c" style="border:1px solid;padding:1em 0;">
+                  <p>Item C has much longer content</p>
+                </div>
               </div>
               <div class="code"><style class="code-editor" contenteditable="true">.grid4 {
   display: grid;
@@ -860,7 +868,9 @@ gap: 0px;
               </div>
             </div>
             <p class="fragment"><code>auto-fit</code> collapses empty tracks.</p>
+            <p><a href="https://codepen.io/heliocrat/full/MWpyeLy">Codepen Example</a></p>
             <aside class="notes">
+              <p>Show the codepen example with the grid inspector ON, so the implicit grid tracks are shown for auto-fill.</p>
               <p>The <code>repeat()</code> function also takes in the keywords of <code>auto-fit</code> and <code>auto-fill</code>, which are very similar.</p>
               <p>Both these keywords tell the browser to generate the number of tracks required based on the track list specified as the second argument. The minor difference is that for <code>auto-fit</code>, any empty tracks are collapsed.</p>
               <p>This becomes more evident if you're using a flexible range for track sizing.</p>
@@ -914,8 +924,7 @@ gap: 0px;
               but don't worry, you can <a href="videos/responsive-grid.mp4">download it</a>
               and watch it with your favourite video player!
             </video>
-            <p><a href="https://codepen.io/heliocrat/full/MWpyeLy">Codepen Example</a> / <a href="https://medium.com/samsung-internet-dev/common-responsive-layouts-with-css-grid-and-some-without-245a862f48df">More Examples</a></p>
-            <p><a href="https://css-tricks.com/how-to-make-a-media-query-less-card-component/">No Media Queries w/ Flexbox, too!</a></p>
+            <p>No Media Queries with <a href="https://medium.com/samsung-internet-dev/common-responsive-layouts-with-css-grid-and-some-without-245a862f48df">CSS Grid</a> / <a href="https://css-tricks.com/how-to-make-a-media-query-less-card-component/">and Flexbox, too!</a></p>
             <aside class="notes">
               <p>For this example, I'm telling the browser that when the viewport size shrinks, I want to cap the shrink of each column at 10ems but if there's extra space, grow all my columns equally. By using auto-fill (or auto-fit), the browser will calculate how many columns fulfil my requirement. When the viewport size changes, the number of columns will decrease or increase until everything fits.</p>
               <p>And because the maximum value is a flexible unit, if there is an excess of space, like 6ems worth, all the columns will grow equally to fill up that extra space. And not a single media query needed to be written.</p>
@@ -934,8 +943,12 @@ gap: 0px;
         </section>
 
         <section>
-                    <section>
-            <img class="plain" data-src="img/braun-wide.jpg" alt="Braun wide layout">
+          <section>
+            <h2>CSS Grid Template Areas</h2>
+          </section>
+          <section>
+            <h2>A "Semantic" Grid (for DX)</h2>
+            <img style="max-height: 38vh;" class="plain" data-src="img/braun-wide.jpg" alt="Braun wide layout">
             <aside class="notes">
               <p>With <code>grid-template-areas</code>, creating responsive layouts becomes a little more convenient as well.</p>
               <p>Here I have a recreation of a Braun HiFi print poster which was originally laid out in landscape. But on the web, that same layout will break when the viewport starts to narrow. So we'll need to adjust the layout when that happens.</p>
@@ -943,10 +956,11 @@ gap: 0px;
             </aside>
           </section>
 
-          <section>
-            <div class="l-double" style="align-items:center;justify-items:center;">
+          <section style="margin-top: -5vh;">
+            <h2>Responsively Position Semantic Areas</h2>
+            <div class="l-double" style="margin: 0 -7vw; max-height: 35vh;align-items:start;justify-items:center;">
               <img class="plain" data-src="img/braun-mid.jpg" alt="Braun mid-width layout">
-              <img class="plain fragment" style="max-height:85vh;" data-src="img/braun-narrow.jpg" alt="Braun narrow layout">
+              <img class="plain fragment"  data-src="img/braun-narrow.jpg" alt="Braun narrow layout">
             </div>
             <aside class="notes">
               <p>This is a real-world example of modifying the layout by just changing the grid itself. I've assigned each “section” its own named grid area. When the layout is too narrow for the original wide design, I don't change the sizing of the items, instead, I change the grid itself.</p>
@@ -955,14 +969,10 @@ gap: 0px;
           </section>
 
           <section>
-            <div class="vidcode">
-              <video autoplay loop>
-                <source data-src="videos/braun.mp4" type="video/mp4" />
-                Sorry, your browser doesn't support embedded videos, 
-                but don't worry, you can <a href="videos/braun.mp4">download it</a>
-                and watch it with your favourite video player!
-              </video>
-              <pre style="width:100%;font-size:40%;"><code class="css" style="max-height:75vh;">.steuergerät {
+            <h2>The Result</h2>
+            <div class="l-double" style="grid-template-columns: 1px 1fr 1fr;align-items: center;">
+              
+              <pre style="width:100%;font-size:40%;"><code class="css" style="max-height:75vh;">.article {
   grid-gap: 0.5em;
   grid-template-columns: 50% 50%;
   grid-template-areas: "title title"
@@ -973,7 +983,7 @@ gap: 0px;
 }
 
 @media screen and (min-aspect-ratio: 1/1) and (min-height: 22em) {
-  .steuergerät {
+  .article {
     grid-template-columns: 18.75em 1fr 1fr 1fr;
     grid-template-rows: calc((100vh - 3em) / 3) calc((100vh - 3em) / 3) calc((100vh - 3em) / 3);
     grid-template-areas: "title detail1 key key"
@@ -983,7 +993,7 @@ gap: 0px;
 }
 
 @media screen and (min-aspect-ratio: 8/5) and (min-height: 36em) {
-  .steuergerät {
+  .article {
     grid-template-columns: 17.5em 1fr 3fr 1fr 1fr;
     grid-template-rows: calc((100vh - 3em) / 3) calc((100vh - 3em) / 3) calc((100vh - 3em) / 3);
     grid-template-areas: "title . key . ."
@@ -991,6 +1001,12 @@ gap: 0px;
                          "text . . detail4 .";
   }
 }</code></pre>
+<video autoplay loop>
+  <source data-src="videos/braun.mp4" type="video/mp4" />
+  Sorry, your browser doesn't support embedded videos, 
+  but don't worry, you can <a href="videos/braun.mp4">download it</a>
+  and watch it with your favourite video player!
+</video>
             </div>
             <aside class="notes">
               <p>This is the final end result, and you can see how the layout changes with the viewport.</p>
@@ -1000,10 +1016,11 @@ gap: 0px;
             </aside>
           </section>
           <section>
-            <h2>Grid placement with named areas</h2>
+            <h2>Grid Placement with Named Areas<sup><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Grid_Template_Areas">MDN</a></sup></h2>
             <div class="l-multiple">
-              <img style="max-height:75vh;" class="plain" data-src="img/named-areas.svg" alt="Named grid areas">
+              <img style="max-height: 35vh;" class="plain" data-src="img/named-areas.svg" alt="Named grid areas">
               <div style="flex:0 0 55%;align-self:center;">
+                <p><a href="https://cssreference.io/css-grid/#grid-template-areas">CSSReference.io</a></p>
                 <pre style="font-size:50%;"><code class="css" style="max-height:none;">.grid-container {
   display: grid;
   grid-template-areas: "logo stats"
@@ -1026,23 +1043,40 @@ gap: 0px;
           </section>
 
           <section>
-            <h2>Using grid areas</h2>
-            <div class="livecode livecode-2p">
+            <h2>Semantically Recreating a Layout</h2>
+            <img class="plain" style="max-height: 30vh" alt="Parent-child relationship" src="img/grid-parent-child.svg">
+          </section>
+
+          <section>
+            <h2>Using Grid Template Areas</h2>
+            <div style="grid-template-columns: 4fr 3fr;" class="livecode livecode-2p">
               <div class="result grid3" style="font-size:75%;">
-                <div class="grid3__item a" style="border:1px solid;padding:1em 0;"><p>Item A</p></div><div class="grid3__item b" style="border:1px solid;padding:1em 0;"><p>Item B</p></div><div class="grid3__item c" style="border:1px solid;padding:1em 0;"><p>Item C</p></div>
+                <div class="grid3__item a" style="border:1px solid;padding:1em 0;">
+                  <p>Header</p>
+                </div>
+                <div class="grid3__item b" style="border:1px solid;padding:1em 0;">
+                  <p>Main</p>
+                </div>
+                <div class="grid3__item c" style="border:1px solid;padding:1em 0;">
+                  <p>aside</p>
+                </div>
+                <div class="grid3__item d" style="border:1px solid;padding:1em 0;">
+                  <p>Footer</p>
+                </div>
               </div>
               <div class="code"><style class="code-editor" contenteditable="true">.grid3 {
   display: grid;
   grid-template-columns: 150px 150px 150px 150px;
   grid-template-rows: 100px 100px 100px;
-  grid-template-areas: 'a . . .'
-                       'a . . c'
-                       '. b . c';
+  grid-template-areas: 'header . . .'
+                       'header footer . aside'
+                       '. main . aside';
 }
 
-.grid3 .a { grid-area: a; }
-.grid3 .b { grid-area: b; }
-.grid3 .c { grid-area: c; }</style></div>
+.grid3 .a { grid-area: header; }
+.grid3 .b { grid-area: main; }
+.grid3 .c { grid-area: aside; }
+.grid3 .d { grid-area: footer; }</style></div>
             </div>
           </section>
         </section>
@@ -1053,6 +1087,12 @@ gap: 0px;
           <section>
             <h2>Aligning your grid items</h2>
             <aside class="notes">Next up, alignment. Aligning stuff on a page is practically the most important part of building web layouts. And box alignment can sometimes trip people up. I know it can be hard to remember which property does what.</aside>
+          </section>
+
+          <section>
+            <h2>Grid Axes <sup><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Alignment/Box_Alignment_In_Grid_Layout"></a></sup></h2>
+            <img src="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Alignment/Box_Alignment_In_Grid_Layout/inline_axis.png" alt="">
+            <img src="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Alignment/Box_Alignment_In_Grid_Layout/block_axis.png" alt="">
           </section>
 
           <section>
@@ -1196,9 +1236,9 @@ gap: 0px;
             </aside>
           </section>
           <section>
-            <p>Self-alignment properties, maybe?</p>
+            <p>Self-alignment properties & Borders</p>
             <figure class="fragment">
-              <img class="plain" style="margin:0;max-height:50vh;" data-src="img/fit.svg" alt="Self-alignment properties">
+              <img class="plain" style="margin:0;max-height:30vh;" data-src="img/fit.svg" alt="Self-alignment properties">
               <figcaption>There's a couple of ways to align within a grid cell</figcaption>
             </figure>
             <aside class="notes">
@@ -1209,10 +1249,10 @@ gap: 0px;
           </section>
 
           <section>
-            <p>Flexbox to the rescue?</p>
+            <p>Flexbox to the Rescue!</p>
             <figure class="fragment">
-              <img class="plain" style="margin:0;max-height:50vh;" data-src="img/flex.svg" alt="Display flex on grid items">
-              <figcaption>That's more like it</figcaption>
+              <img class="plain" style="margin:0;max-height:30vh;" data-src="img/flex.svg" alt="Display flex on grid items">
+              <figcaption>Make each grid-item into a flex-container. That's more like it</figcaption>
             </figure>
             <aside class="notes">But if instead we apply <code>display: flex</code> on the grid item, we can now use flex alignment properties applied on the flex container to position the grid item's content accordingly.</aside>
           </section>
@@ -1321,7 +1361,7 @@ gap: 0px;
           </section>
 
           <section>
-            <h2>Grid placement with grid lines / named lines</h2>
+            <h2>Grid placement with Named Lines</h2>
             <pre style="font-size:50%;"><code class="css">grid-template-columns: [first sidebar-start] 250px [sidebar-end content-start] 1fr [content-end last];
 grid-template-rows: [first header-start] 100px [header-end content-start] 1fr [content-end footer-start] 100px [footer-end last];</code></pre>
             <img class="plain" style="margin:0;max-height:65vh;" data-src="img/named-lines.svg" alt="Named lines">
@@ -1331,11 +1371,19 @@ grid-template-rows: [first header-start] 100px [header-end content-start] 1fr [c
               <p>So say I want something to go into the big main area, I would set both the <code>grid-row</code> and <code>grid-column</code> to <code>2 / 3</code>, or use the line names <code>content-start / content-end</code>.</p>
             </aside>
           </section>
-        </section>
-
-        <section>
-
-
+          <section>
+            <h2>Grid Practice</h2>
+            <p><a href="http://cssgridgarden.com/">CSS Grid Garden</a></p>
+          </section>
+          <section>
+            <h2>Further Reading</h2>
+            <p><a href="https://semicolon.dev/tutorial/css/complete-css-grid-tutorial">CSS Grid Illustrated</a></p>
+            <p><a href="https://dev.to/mustapha/css-grid-illustrated-introduction-52l5">Grid Overview & 12 Col Grid Example</a></p>
+            <p><a href="https://dev.to/mustapha/css-grid-3-practical-examples-51p9">3 Grid Examples</a></p>
+            <h2>More Grid Tools</h2>
+            <p><a href="https://grid.layoutit.com/">Layoutit!</a></p>
+            <p><a href="https://cssgrid-generator.netlify.app/">Grid Generator</a></p>
+          </section>
         </section>
 
         <section>
@@ -1477,13 +1525,10 @@ button {
           </section>
 
           <section>
+            <p><a href="https://css-tricks.com/css-grid-in-ie-css-grid-and-the-new-autoprefixer/">CSS Grid in IE & <code>@supports</code></a></p>
             <div class="l-multiple">
-              <figure style="align-self:center;">
-                <img class="plain" style="margin:0;" data-src="img/tycho-grid.jpg" alt="Grid layout styles">
-                <figcaption>CSS grid in action</figcaption>
-              </figure>
               <div style="flex:0 0 55%;align-self:center;">
-                <pre style="font-size:50%;"><code class="css" style="max-height:85vh;max-width:50vw;">@supports (display:grid) {
+                <pre style="font-size:30%;"><code class="css" style="max-height:85vh;max-width:50vw;">@supports (display:grid) {
   @media (min-width: 42em) and (min-height: 27em) {
     main {
       max-width: none;
