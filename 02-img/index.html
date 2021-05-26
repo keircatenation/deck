@@ -89,13 +89,22 @@
 						</p>
 					</section>
 					<section>
-						<h2>Sizes</h2>
-						<p>To limit the max image size used for the largest screens as the viewport increases (even if the image container has maxed out)
-							Enter the `sizes` attribute. lets you bake in the media queries into the image markup. It can limit the image used 
-							if you enter no sizes attribute, the browser assumes all images are `100vw`.
-							so add a desktop media query (i.e. (min-width: 900px) 900px) to cap the image width as seen from the browser. This will help and leave the largest images for the high pixel density displays (4k etc)
+						<h2>The `sizes` attribute</h2>
+						<ul>
+							<li>Limits the max image size for the largest screens as viewport grows (even if the container is maxed out)</li>
+							<li>Can declare media queries in the image markup.</li>
+							<li>It can limit the image used</li>
+							<li>Without sizes attribute, browser assumes all images are `100vw`.</li>
+							<li>You can add a desktop media query (i.e. (min-width: 900px)) to cap the image width as seen from the browser.</li>
+							<li>This will help and leave the largest images for the high pixel density displays (4k etc)</li>
+						</ul>
+						<p><small>Good to have an automated workflow to do this, since with large image galleries there is a lot of sizes attrs to change if the styling changes.</small></p>
+						<p>
+							   
 							
-							Good to have an automated workflow to do this, since with large image galleries there is a lot of sizes attrs to change if the styling changes.</p>
+							 
+							
+							
 					</section>
 
 					<section>
