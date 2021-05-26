@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.flex { display: flex; flex: 1 1 50%;}
+			.flex img { max-width: 50%;}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<!-- Images basics -->
+					<section>
+						<h1>Images</h1>
+						<h2>Responsiveness & Performance</h2>
+					</section>
+
+					<section>
+						<h2>The bulk of your page...</h2>
+						<img src="img/page-weight.svg" alt="">
+					</section>
+
+					<section>
+						<h2>Image Formats</h2>
+						<ul>
+							<li>.PNG</li>
+							<li>.JPG/.JPEG</li>
+							<li>.GIF</li>
+							<li>.SVG (vector format)</li>
+							<li>.WEBP & .AVIF <sup><a href="https://fronius.me/articles/2020-10-14-comparing-image-formats-jpg-webp-avif.html">compare</a>, <a href="https://caniuse.com/?search=avif">support</a></sup></li>
+						</ul>
+						<p>Raster vs Vector</p>
+						<p>File compression schemes (lossy vs lossless)</p>
+						<p>Number of colors & alpha</p>
+					</section>
+
+					<section>
+						<h2>Mobile Responsiveness</h2>
+						<ul>Creating different sized images for mobile UX 
+							<li>Less powerful CPUs</li>
+							<li>Save Data on their plan</li>
+							<li>Increase battery duration</li>
+							<li>Avoid flash of empty space</li>
+							<li>Reduce Load times</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Using Width & Height</h2>
+						<p>To avoid a Cumulative Layout Shift (CLS)</p>
+						<p>Define a width and height on your &lt;img&gt;</p>
+						<p>CLS is an SEO metric for Google</p>
+					</section>
+
+					<section>
+						<h2>Pixel Density</h2>
+						<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag#a_pixel_is_not_a_pixel">A pixel is not a pixel</a></p>
+						<p>Hardware pixel vs CSS pixels</p>
+						<pre style="margin: 0 auto; min-width: 35vw;"><code>&lt;meta name="viewport" content="width=device-wdith, initial-scale=1.0"&gt;</code></pre>
+					</section>
+
+					<section>
+						<div class="flex">
+							<img src="img/size_density.png" alt="">
+							<ul>
+								<li>sm: 480 - 600 for big phones & landscape mode</li>
+								<li>md: 960</li>
+								<li>lg: 1440</li>
+								<li>xl: 1800</li>
+								<li>original: 3600</li>
+							</ul>
+						</div>
+						<p>
+							<a href="https://squoosh.app/">
+								<img style="max-height: 100px; filter: drop-shadow(0 0 20px white) drop-shadow(0 0 10px white);" src="img/squoosh_logo.svg" alt="">
+							</a>
+						</p>
+					</section>
+					<section>
+						<h2>Sizes</h2>
+						<p>To limit the max image size used for the largest screens as the viewport increases (even if the image container has maxed out)
+							Enter the `sizes` attribute. lets you bake in the media queries into the image markup. It can limit the image used 
+							if you enter no sizes attribute, the browser assumes all images are `100vw`.
+							so add a desktop media query (i.e. (min-width: 900px) 900px) to cap the image width as seen from the browser. This will help and leave the largest images for the high pixel density displays (4k etc)
+							
+							Good to have an automated workflow to do this, since with large image galleries there is a lot of sizes attrs to change if the styling changes.</p>
+					</section>
+
+					<section>
+
+						<img src="img/contigent_sizes.png" alt="">
+						<p>ironically depending on layouts, the desktop may not need the largest image. Above the tablet needs the largest</p>
+					</section>
+
+					<section>
+						<h2>Software for Resizing</h2>
+						<ul>
+							<li>Image Previewer (Mac)</li>
+							<li>Gimp</li>
+							<li>Squoosh</li>
+							<li><a href="https://imagemagick.org/">ImageMagick</a></li>
+							<li><a href="https://ffmpeg.org/about.html">ffmpeg</a></li>
+						</ul>
+					</section>
+
+					<!-- end images basics -->
+				</section>
+
+				<section>
+					<!-- Images picture el -->
+					<section>
+						<h2>Advanced Image Attrs & Els</h2>
+						<p>Elements: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture">picture</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source">source</a></p>
+						<pre><code>&lt;picture&gt;&lt;/picture&gt;
+&lt;source&gt;&lt;/source&gt;
+&lt;figure&gt;&lt;/figure&gt;
+&lt;figcaption&gt;&lt;/figcaption&gt;
+</code></pre>
+					<p>Attributes on <code>&lt;source&gt; & &lt;img&gt;</code></p>
+					<pre><code>srcset="...w ...x"
+sizes="" 
+media="(min-width: 600px)"
+type="image/png"
+// img
+loading="eager | lazy"
+</code></pre>
+						<p><code>w</code> (width descriptor) & <code>x</code> (pixel density descriptor) are appended to items in srcset list</p>
+					</section>
+
+					<section>
+						<h2>The <code>&lt;picture&gt;</code> Element</h2>
+						<ul>
+							<li>For progressive enhancement & art direction</li>
+							<li>Its' just a wrapper around an <code>&lt;img&lt;</code> that allows fallbacks for media queries and responsiveness.</li>
+							<li>so don’t style the picture element with css, nor add classes for css selectors.</li>
+							<li>Only style the <code>&lt;figure&gt;</code> wrapper or the <code>&lt;img&gt;</code> itself</li>
+							<li>gives more detailed control over images to swap out than img element alone</li>
+						</ul>
+						<p><a href="http://responsiveimages.org/">Specificaiton Committee</a></p>
+						<p><a href="https://scottjehl.github.io/picturefill/#examples">picture element fallbacks/polyfill for IE/Safari</a></p>
+					</section>
+
+					<section>
+						<h2>The <code>&lt;figure&gt;</code> & <code>&lt;figcaption&gt;</code> Elements</h2>
+						<pre><code><figure>
+	<img src="img/pic.jpg" alt="A picture of an image">
+	<figcaption>A caption</figcaption>
+</figure>
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Srcset</h2>
+						<pre style="min-width: 37vw;"><code>&lt;img srcset="img1.jpg 1x, img1.5.jpg 1.5x, img2.jpg 2x" &gt;
+
+&lt;img srcset="img1.jpg 200w, img1.5.jpg 400w, img2.jpg 800w" sizes="50vw"&gt;
+&lt;!-- sizes="(max-width: 400px) 200px, 
+						(max-width: 600px) 400px, 
+						(max-width: 600px) 800px" --&gt;
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Optimizing Images</h2>
+						<ol>Steps:
+							<li>Optimize image format (save for web: webp or avif format)</li>
+							<li>use jpeg for photos (raster) and PNG for graphics (Computer generated)</li>
+							<li>Use SVG and icon fonts for logos and whenever possible</li>
+							<li>Use consistent naming convention for image files (img_small.jpg…img_medium.jpg or img-600.jpg … img-800.jpg)</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>Art Direction Tools</h2>
+						<ul>Choosing the important parts of the image for mobile viewports
+							<li>Cropping with standard image editor</li>
+							<li><a href="https://github.com/trekhleb/js-image-carver">About Seam Carving</a></li>
+							<li><a href="https://trekhleb.dev/js-image-carver/">Seam Carving Web Tool</a></li>
+						</ul>
+						<p>Make sure all the different images convey the same message. Don’t crop or carve at expense of UX.</p>
+					</section>
+
+					<!-- end images picture el -->
+				</section>
+
+				<section>
+					<h2>Lighthouse</h2>
+					<ul>
+						<li>Performing a Lighhouse Audit in Dev tools</li>
+						<li>Throttling web connection for emulating mobile devices/poor network</li>
+					</ul>
+				</section>
+				<section>
+
+				
+				<section>
+					<h2>Video (& Audio)</h2>
+					<pre style="min-width: 40vw"><code><figure>
+	<video poster="poster.png" width="400" preload="metadata" height="300">
+		<track src="captions.vtt" label="captions" kind="captions" srclang="en" default />
+		<source src="media/video.mp4" type="video/mp4" />
+		<source src="media/video.mov" type="video/mov" />
+		Sorry…. your browser does not support the video element.
+	</video>
+	<figcaption>A nice video caption</figcaption>
+</figure>
+</code></pre>
+<p>Wrap these elements in figure  with figcaption (for accessibility) and use the source elements and provide some text as fallback if they’re not supported.</p>
+				</section>
+
+				<section>
+					<p><code>web.vtt</code> File</p>
+					<pre><code>00:01.000 —> 00:04.000
+You add captions between a time interval
+						
+00:05.000 —> 00:09.000
+With .vtt files and use this format
+
+00:10.000 —> 00:14.000
+This improves video accessibility for folks with auditory issues.</code></pre>
+				</section>
+			</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
