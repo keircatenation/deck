@@ -25,11 +25,33 @@
 					<section>
 						<h1>Images</h1>
 						<h2>Responsiveness & Performance</h2>
+						<h5>Beyond <code>alt</code> & <code>src</code></h5>
 					</section>
 
 					<section>
 						<h2>The bulk of your page...</h2>
 						<img src="img/page-weight.svg" alt="">
+					</section>
+
+					<section>
+						<h4>When Images are wasteful</h4>
+						<img src="img/same_image.png" alt="">
+					</section>
+
+					<section>
+						<h4>Different devices - Different images</h4>
+						<img src="img/lg_med_sm.png" alt="">
+					</section>
+
+					<section>
+						<h2>Mobile Responsiveness</h2>
+						<ul>Creating different sized images for mobile UX 
+							<li>Less powerful CPUs</li>
+							<li>Save Data on their plan</li>
+							<li>Increase battery duration</li>
+							<li>Avoid flash of empty space</li>
+							<li>Reduce Load times</li>
+						</ul>
 					</section>
 
 					<section>
@@ -44,17 +66,6 @@
 						<p>Raster vs Vector</p>
 						<p>File compression schemes (lossy vs lossless)</p>
 						<p>Number of colors & alpha</p>
-					</section>
-
-					<section>
-						<h2>Mobile Responsiveness</h2>
-						<ul>Creating different sized images for mobile UX 
-							<li>Less powerful CPUs</li>
-							<li>Save Data on their plan</li>
-							<li>Increase battery duration</li>
-							<li>Avoid flash of empty space</li>
-							<li>Reduce Load times</li>
-						</ul>
 					</section>
 
 					<section>
@@ -74,12 +85,12 @@
 					<section>
 						<div class="flex">
 							<img src="img/size_density.png" alt="">
-							<ul>
-								<li>sm: 480 - 600 for big phones & landscape mode</li>
-								<li>md: 960</li>
-								<li>lg: 1440</li>
-								<li>xl: 1800</li>
-								<li>original: 3600</li>
+							<ul style="list-style: none;">
+								<li><strong>sm:</strong> 480 - 600 for big phones & landscape mode</li>
+								<li><strong>md:</strong> 960</li>
+								<li><strong>lg:</strong> 1440</li>
+								<li><strong>xl:</strong> 1800</li>
+								<li><strong>original:</strong> 3600</li>
 							</ul>
 						</div>
 						<p>
@@ -87,24 +98,6 @@
 								<img style="max-height: 100px; filter: drop-shadow(0 0 20px white) drop-shadow(0 0 10px white);" src="img/squoosh_logo.svg" alt="">
 							</a>
 						</p>
-					</section>
-					<section>
-						<h2>The `sizes` attribute</h2>
-						<ul>
-							<li>Limits the max image size for the largest screens as viewport grows (even if the container is maxed out)</li>
-							<li>Can declare media queries in the image markup.</li>
-							<li>It can limit the image used</li>
-							<li>Without sizes attribute, browser assumes all images are `100vw`.</li>
-							<li>You can add a desktop media query (i.e. (min-width: 900px)) to cap the image width as seen from the browser.</li>
-							<li>This will help and leave the largest images for the high pixel density displays (4k etc)</li>
-						</ul>
-						<p><small>Good to have an automated workflow to do this, since with large image galleries there is a lot of sizes attrs to change if the styling changes.</small></p>
-						<p>
-							   
-							
-							 
-							
-							
 					</section>
 
 					<section>
@@ -139,11 +132,14 @@
 </code></pre>
 					<p>Attributes on <code>&lt;source&gt; & &lt;img&gt;</code></p>
 					<pre><code>srcset="...w ...x"
-sizes="" 
+ 
 media="(min-width: 600px)"
 type="image/png"
 // img
 loading="eager | lazy"
+decoding="auto | sync | async"
+sizes=""
+srcset=""
 </code></pre>
 						<p><code>w</code> (width descriptor) & <code>x</code> (pixel density descriptor) are appended to items in srcset list</p>
 					</section>
@@ -157,7 +153,7 @@ loading="eager | lazy"
 							<li>Only style the <code>&lt;figure&gt;</code> wrapper or the <code>&lt;img&gt;</code> itself</li>
 							<li>gives more detailed control over images to swap out than img element alone</li>
 						</ul>
-						<p><a href="http://responsiveimages.org/">Specificaiton Committee</a></p>
+						<p><a href="http://responsiveimages.org/">Specification Committee</a></p>
 						<p><a href="https://scottjehl.github.io/picturefill/#examples">picture element fallbacks/polyfill for IE/Safari</a></p>
 					</section>
 
@@ -168,11 +164,26 @@ loading="eager | lazy"
 	<figcaption>A caption</figcaption>
 </figure>
 </code></pre>
+<p>Try positioning figcaptions over image with <code>position: absolute;</code> or with css grid!</p>
 					</section>
 
 					<section>
-						<h2>Srcset</h2>
-						<pre style="min-width: 37vw;"><code>&lt;img srcset="img1.jpg 1x, img1.5.jpg 1.5x, img2.jpg 2x" &gt;
+						<h2>The <code>sizes</code> attribute <sup><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes">MDN</a></sup></h2>
+						<ul>
+							<li>Limits the max image size for the largest screens as viewport grows (even if the container is maxed out)</li>
+							<li>Can declare media queries in the image markup.</li>
+							<li>It can limit the image used</li>
+							<li>Without sizes attribute, browser assumes all images are `100vw`.</li>
+							<li>You can add a desktop media query (i.e. (min-width: 900px)) to cap the image width as seen from the browser.</li>
+							<li>This will help and leave the largest images for the high pixel density displays (4k etc)</li>
+						</ul>
+						<p><small>Good to have an automated workflow to do this, since with large image galleries there is a lot of sizes attrs to change if the styling changes.</small></p>
+						<p>
+					</section>
+
+					<section>
+						<h2>Srcset attribute <sup><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset">MDN</a></sup></h2>
+						<pre style="min-width: 75vw;"><code>&lt;img srcset="img1.jpg 1x, img1.5.jpg 1.5x, img2.jpg 2x" &gt;
 
 &lt;img srcset="img1.jpg 200w, img1.5.jpg 400w, img2.jpg 800w" sizes="50vw"&gt;
 &lt;!-- sizes="(max-width: 400px) 200px, 
@@ -192,6 +203,21 @@ loading="eager | lazy"
 					</section>
 
 					<section>
+						<h2>Img on MDN</h2>
+						<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"><code>img</code></a></p>
+					</section>
+
+					<section>
+						<h2>Use Cases</h2>
+						<ul>
+							<li>Art Direction:</li>
+							<li style="list-style: none;">(Use cropped or seam-carved images for small devices)</li>
+							<li>Progressive Enhancement:</li>
+							<li style="list-style: none;">(use avif, then webp, then fallback to jpg)</li>
+						</ul>
+					</section>
+
+					<section>
 						<h2>Art Direction Tools</h2>
 						<ul>Choosing the important parts of the image for mobile viewports
 							<li>Cropping with standard image editor</li>
@@ -199,6 +225,26 @@ loading="eager | lazy"
 							<li><a href="https://trekhleb.dev/js-image-carver/">Seam Carving Web Tool</a></li>
 						</ul>
 						<p>Make sure all the different images convey the same message. Don’t crop or carve at expense of UX.</p>
+					</section>
+
+					<section>
+						<h2>Progressive Enhancement Implemented</h2>
+						<pre><code><picture>
+	<source srcset="img/Pic.svg” type="image/svg+xml" />
+	<source srcset="img/Pic.avif" type="image/avif" />
+	<source srcset="img/Pic.webp" type="image/webp" />
+	<img src="img/Pic.jpg" alt="Pic Description" />
+</picture></code></pre>
+					</section>
+
+					<section>
+						<h2>Art Direction Implemented</h2>
+						<pre><code><picture>
+	<source srcset=“large.png” media=“(min-width: 800px”>
+	<source srcset=“medium.png” media=“(min-width: 600px”>
+	<source srcset=“closeup.png” media=“(min-width: 400px”> // closeup.png is a cropped version
+	<img src=“small.jpg” alt=“Cherry blossoms” />
+</picture></code></pre>
 					</section>
 
 					<!-- end images picture el -->
