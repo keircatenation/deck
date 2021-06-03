@@ -10,6 +10,9 @@
 	@include bodyBackground();
 	background-color: $backgroundColor;
 }
+.reveal-viewport .dark {
+	background-color: $darkBackground;
+}
 
 .reveal {
 	font-family: $mainFont;

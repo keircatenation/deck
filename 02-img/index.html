@@ -8,13 +8,20 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/serif.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="plugin/highlight/zenburn.css">
 		<style>
+			:root {--dark: #51483D }
 			.flex { display: flex; flex: 1 1 50%;}
 			.flex img { max-width: 50%;}
+			.reveal code {
+				padding: 1rem !important;
+			}
+			.reveal a {
+				color: rgb(194, 47, 77) !important;
+			}
 		</style>
 	</head>
 	<body>
@@ -28,7 +35,7 @@
 						<h5>Beyond <code>alt</code> & <code>src</code></h5>
 					</section>
 
-					<section>
+					<section data-background="var(--dark)">
 						<h2>The bulk of your page...</h2>
 						<img src="img/page-weight.svg" alt="">
 					</section>
@@ -101,9 +108,9 @@
 					</section>
 
 					<section>
-
+						<p><strong>Factor in layout when resizing images.</strong>
 						<img src="img/contigent_sizes.png" alt="">
-						<p>ironically depending on layouts, the desktop may not need the largest image. Above the tablet needs the largest</p>
+						 <p>Here, the <strong>tablet</strong> (not desktop) needs the largest image.</p>
 					</section>
 
 					<section>
@@ -230,7 +237,7 @@ srcset=""
 					<section>
 						<h2>Progressive Enhancement Implemented</h2>
 						<pre><code><picture>
-	<source srcset="img/Pic.svg” type="image/svg+xml" />
+	<source srcset="img/Pic.svg" type="image/svg+xml" />
 	<source srcset="img/Pic.avif" type="image/avif" />
 	<source srcset="img/Pic.webp" type="image/webp" />
 	<img src="img/Pic.jpg" alt="Pic Description" />
@@ -240,10 +247,10 @@ srcset=""
 					<section>
 						<h2>Art Direction Implemented</h2>
 						<pre><code><picture>
-	<source srcset=“large.png” media=“(min-width: 800px”>
-	<source srcset=“medium.png” media=“(min-width: 600px”>
-	<source srcset=“closeup.png” media=“(min-width: 400px”> // closeup.png is a cropped version
-	<img src=“small.jpg” alt=“Cherry blossoms” />
+	<source srcset="large.png" media="(min-width: 800px">
+	<source srcset="medium.png" media="(min-width: 600px">
+	<source srcset="closeup.png" media="(min-width: 400px"> // closeup.png is a cropped version
+	<img src="small.jpg" alt="Cherry blossoms" />
 </picture></code></pre>
 					</section>
 
@@ -255,6 +262,7 @@ srcset=""
 					<ul>
 						<li>Performing a Lighhouse Audit in Dev tools</li>
 						<li>Throttling web connection for emulating mobile devices/poor network</li>
+						<li><a href="https://developers.google.com/web/updates/2018/05/lighthouse">Getting more out of Lighthouse</a></li>
 					</ul>
 				</section>
 				<section>

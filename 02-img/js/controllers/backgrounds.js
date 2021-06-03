@@ -155,6 +155,7 @@ export default class Backgrounds {
 			}
 			else {
 				element.style.background = data.background;
+				data.background === "dark" ? slideBackgroundContentElement.classList.add('dark') : null
 			}
 		}
 

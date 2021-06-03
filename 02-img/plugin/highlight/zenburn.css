@@ -8,7 +8,8 @@ based on dark.css by Ivan Sagalaev
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
+  padding: 2rem;
+  border-radius: 0.5rem;
   background: #3f3f3f;
   color: #dcdcdc;
 }
@@ -16,7 +17,7 @@ based on dark.css by Ivan Sagalaev
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-tag {
-  color: #e3ceab;
+  color: #e6ae4e;
 }
 
 .hljs-template-tag {
@@ -30,11 +31,11 @@ based on dark.css by Ivan Sagalaev
 .hljs-variable,
 .hljs-template-variable,
 .hljs-attribute {
-  color: #efdcbc;
+  color: #c49a51;
 }
 
 .hljs-literal {
-  color: #efefaf;
+  color: #d1d179;
 }
 
 .hljs-subst {
@@ -47,7 +48,7 @@ based on dark.css by Ivan Sagalaev
 .hljs-selector-class,
 .hljs-section,
 .hljs-type {
-  color: #efef8f;
+  color: #d3d361;
 }
 
 .hljs-symbol,
@@ -60,7 +61,7 @@ based on dark.css by Ivan Sagalaev
 .hljs-string,
 .hljs-built_in,
 .hljs-builtin-name {
-  color: #cc9393;
+  color: #ca6e6e;
 }
 
 .hljs-addition,
