@@ -79,7 +79,7 @@
           </section>
           <section>
             <h2>Raster vs. Vector</h2>
-            <p>xml vector graphics format - styled with css controlled with JS.</p>
+            <p>xml vector graphics format - styled with CSS & controlled with JS.</p>
               <div style="display: flex; align-items: center; justify-content: center;">
                 <p>Native element code:</p>
                 <svg viewBox="0 0 24 24" width="100" height="100" stroke="gold" fill="transparent">
@@ -98,6 +98,8 @@
               <li>Full gamut of css rules apply</li>
               <li>Has proper DOM integration for JS</li>
               <li>Better image fallback options</li>
+              <li>Can be animated</li>
+              <li>Easy Spriting options</li>
               <li>But they are more complicated</li>
             </ul>
           </section>
@@ -113,17 +115,25 @@
           </section>
 
           <section>
-            <h2>SVG Icons</h2>
-            svg icons at: icomoon.io, thenounproject.com, iconmonstr.com, flaticon.com
-            <ul>Make your own in any Vector Graphic Program (i.e):
-              <li>Inkscape</li>
-              <li>Photoshop</li>
-              <li>Vector Magic</li>
-            </ul>
-            <ul style="margin-top: 2rem">Optimizing and Minifying svg: 
-              <li><a href="https://jakearchibald.github.io/svgomg/">SVGOMG tool</a></li>
-              <li><a href="https://github.com/svg/svgo">SVGO tool</a></li>
-            </ul>
+            <h2>Finding SVG Icons</h2>
+            <span >Download: 
+              <a href="https://icomoon.io">icomoon.io</a>, 
+              <a href="https://thenounproject.com">thenounproject.com</a>, 
+              <a href="https://iconmonstr.com">iconmonstr.com</a>, 
+              <a href="https://flaticon.com">flaticon.com</a>
+            </span>
+            
+            <div class="grid" style="margin-top: 2rem;">
+              <ul><strong>Create w/ Vector Graphic Program:</strong>
+                <li>Inkscape <small>(free/open-source</small></li>
+                <li>Vector Magic <small>(freemium)</small></li>
+                <li>Adobe Illustrator <small>(paid)</small></li>
+              </ul>
+              <ul style="margin-top: 2rem"><strong>Optimizing/Minifying svg: </strong>
+                <li><a href="https://jakearchibald.github.io/svgomg/">SVGOMG tool</a></li>
+                <li><a href="https://github.com/svg/svgo">SVGO tool</a></li>
+              </ul>
+            </div>
           </section>
           <section>
             <h2>CSS vs. SVG Graphics <sup><a href="https://www.sarasoueidan.com/blog/building-a-circular-navigation-with-svg/">Article</a></sup></h2>
@@ -135,16 +145,21 @@
           <section>
             <h2>SVG Opening Tag</h2>
             <p>only required attrs for opening tag:</p>
-            <pre><code>&lt;svg&gt; xmlns="https://www.w3.org/2000/svg" viewBox="0 0 500 500"&lt;/svg&gt;</code></pre>
+            <pre><code class="large-code">&lt;svg 
+xmlns="https://www.w3.org/2000/svg" 
+viewBox="0 0 500 500"
+&gt;
+<!-- svg graphic elements here -->
+&lt;/svg&gt;</code></pre>
           </section>
           <section>
             <h2>ViewBox</h2>
             <div class="grid">
               <img src="img/viewbox.png" alt="">
               <ul>
-                <li>It is the “viewport” window of the svg</li>
-                <li><code>viewBox=“min-x, min-y, width, height”</code></li>
+                <li>The "viewport" window of the svg</li>
                 <li>Origin is in upper left</li>
+                <li><code>viewBox="min-x, min-y, width, height"</code></li>
                 <li>Viewbox will be mapped to the box model of the rendered svg image and sets the aspect ratio</li>
               </ul>
             </div>
@@ -160,8 +175,8 @@
 
         <section>
           <section>
-            <h2><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes">Shapes</a></h2>
-            <ul>
+            <h2>SVG Shape Elements <small><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes">MDN</a></small></h2>
+            <ul style="columns: 2;">
               <li>line</li>
               <li>rect</li>
               <li>circle</li>
@@ -174,7 +189,7 @@
           </section>
           <section>
             <h2>Line</h2>
-            <pre><code>&lt;line x1 y1 x2 y2 /&gt;</code></pre>
+            <pre><code class="large-code">&lt;line x1 y1 x2 y2 /&gt;</code></pre>
           </section>
           <section>
             <h2>Rect</h2>
@@ -192,8 +207,8 @@
           <section>
             <h2>Polyline & Polygon</h2>
             <p>Takes a series of number pairs separated by a space with the pair delimited by a comma</p>
-            <pre><code class="large-code">&lt;polyline points=“n,n n,n” /&gt;</code></pre>
-            <pre><code class="large-code">&lt;polygon points=“n,n n,n” /&gt; </code></pre>
+            <pre><code class="large-code">&lt;polyline points="n,n n,n" /&gt;</code></pre>
+            <pre><code class="large-code">&lt;polygon points="n,n n,n" /&gt; </code></pre>
             <p><code>points="1,1 2,3 4,5 7,2"</code></p>
             <p>The difference is the polygon draws a final stroke to close the shape automatically</p>
           </section>
@@ -201,7 +216,7 @@
             <h2>Path</h2>
             <p>The most abstract, low level shape… makes sense to computers but is very complicated for a human to understand</p>
             <p>Typically need tools to write this one</p>
-            <pre><code class="large-code">&lt;path d=“special syntax" /&gt;</code></pre>
+            <pre><code class="large-code">&lt;path d="special syntax" /&gt;</code></pre>
             <p><a href="https://codepen.io/anthonydugois/pen/mewdyZ">Path WYSIWYG</a></p>
             <p><a href="https://css-tricks.com/svg-path-syntax-illustrated-guide/">Path Syntax</a></p>
           </section>
@@ -211,7 +226,7 @@
             <p>selectable and stylable unlike other image text</p>
             <p>Uses fill not color</p> 
             <p><code>dx dy</code> are essentialy positional transformation attrs</p>
-            <p>Text doesn"t wrap nicely in svg though… can use tspan to position new lines</p>
+            <p>Text doesn't wrap nicely in svg though… can use tspan to position new lines</p>
             <pre><code class="large-code">&lt;tspan x y&gt;New line of text&lt;/tspan&gt;</code></pre>
           </section>
           <section>
@@ -235,19 +250,19 @@
             <ul>
               <li>stroke: color value</li>
               <li>stroke-width: number</li>
-              <li>stroke-linecap: butt, square, round</li>
-              <li>stroke-linejoin: miter, round, bevel</li>
+              <li>stroke-linecap: butt, square, round <sup><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linecap">MDN</a></sup></li>
+              <li>stroke-linejoin: miter, round, bevel <sup><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linejoin">MDN</a></sup></li>
               <li>stroke-miterlimit: number</li>
               <li>stroke-opacity: 0-1</li>
-              <li>stroke-dasharray=“10,10” // length of dash, length of gap can be a repeated pattern: “10, 10, 1, 1, 20, 50”</li>
-              <li>stroke-dashoffset=“number”</li>
+              <li>stroke-dasharray="10,10" // length of dash, length of gap can be a repeated pattern: "10, 10, 1, 1, 20, 50"</li>
+              <li>stroke-dashoffset="number"</li>
               <li><a href="https://css-tricks.com/svg-line-animation-works/">You can animate lines using these dash properties</a></li>
             </ul>
           </section>
           <section>
             <h2>Let's Animate our Name with SVG!</h2>
             <p><a href="https://danmarshall.github.io/google-font-to-svg-path/">With this Text to SVG Tool</a></p>
-            <p><a href="https://codepen.io/heliocrat/pen/GRWxWeB?editors=1000">Like This</a></p>
+            <p><a href="https://codepen.io/heliocrat/pen/XWMEzmY">Like This</a></p>
           </section>
           <section>
             <h2>Comprehensive References</h2>
@@ -262,9 +277,9 @@
           <section>
             <h2>SVG accessibility</h2>
             <pre><code><svg aria-labelledby="title-id" aria-describedby="desc-id"> <!-- must match the id"s below -->
-  <title id=“title-id”>Descriptive title for svg image</title>
-  <desc id=“desc-id”>Description of image (like an alt tag)</desc> 
-  <text role=“presentation” role=“hidden>Text that we don"t want read by screen reader</text>
+  <title id="title-id">Descriptive title for svg image</title>
+  <desc id="desc-id">Description of image (like an alt tag)</desc> 
+  <text role="presentation" role="hidden">Text that we don't want read by screen reader</text>
 </svg>
             </code></pre>
             <p>Add title and desc inside a &lt;use&gt; declaration as well</p>
@@ -279,7 +294,7 @@
               <li>Loading Spinners</li>
               <li>Animations</li>
               <li>Affordances</li>
-              <li>Data Visualization</li>
+              <li>Data Visualization & Infographics</li>
             </ul>
           </section>
           <section>
