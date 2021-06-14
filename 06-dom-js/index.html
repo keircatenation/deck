@@ -172,8 +172,8 @@ const
 comment */
             </code></pre>
             <p>Definition</p>
-            <p> A <strong>variable</strong> is a named container for a **value**</p>
-            <p>The <strong>name</strong> that refers to a variables is also called an *identifier*</p>
+            <p> A <strong>variable</strong> is a named container for a <strong>value</strong></p>
+            <p>The <strong>name</strong> that refers to a variables is also called an <strong>identifier</strong></p>
           </section>
           <section>
             <h2>Declaration</h2>
@@ -182,11 +182,12 @@ var x; // Initialization;
 var y = 500; // Assignment
 var y = 'Hello!'; //Re-assignment
             </code></pre>
+            <p>You can declare and assign separately</p>
+            <p>Initialize → Assign</p>
             <pre><code>var z;
 z = true;
             </code></pre>
-            <p>You can declare and assign separately</p>
-            <p>Initialize -> Assign</p>
+            
           </section>
           <section>
             <h2>Containers of a Value</h2>
@@ -200,19 +201,19 @@ z = true;
                 <code>'Hello!'</code>
             </fieldset>
             </div>
-          <p>The variables have names (identifiers) and can contain any Javascript value.</p>
+          <p>The variables have names (<strong>identifiers</strong>) and can contain any Javascript <strong>value</strong>.</p>
           </section>
           <section>
             <h2>Hoisting</h2>
             <pre><code>{
-    var j = 'foo' + i;
-    var k = 'bar' + i;
+  var j = 'foo' + i;
+  var k = 'bar' + i;
 }
 var i = 'baz';
 console.log(j) // foobaz
 console.log(k) // barbaz
             </code></pre>
-            <p>Global <code>var</code> declarations are hoisted... moved to the top of the file. </p>
+            <p>Global <strong><code>var</code></strong> declarations are hoisted... moved to the top of the file. </p>
           </section>
           <section>
             <h2>Scope</h2>
@@ -220,6 +221,11 @@ console.log(k) // barbaz
     let local = 'local';
     const local2 = 'local2';
     console.log(global1) // 'global'
+    console.log(deeply_nested) // ReferenceError: deeply_nested is not defined
+    {
+      let deeply_nested = 5
+      console.log(local) // 'local'
+    }
 }
 {
   var global1 = 'global';
@@ -228,12 +234,13 @@ console.log(k) // barbaz
             </code></pre>
             <p>The area of influence... bounded by curly braces.</p>
             <p>Variables defined in a curly brace scope cannot be accessed outside of that scope, unless they are hoisted.</p>
-            <p>The root level (i.e. no curcly braces) is the "global" scope.</p>
+            <p>Variables defined above/outside of the scope can be accessed within a nested scope.</p>
+            <p>The root level (i.e. no curly braces) is the "global" scope.</p>
           </section>
           <section>
             <h2>The Comma operator</h2>
             <pre><code>var i, j, k; 
-// initialized as undefined
+// all initialized as undefined
 i = true;
 if(i) {
     j = 'foo';
@@ -251,7 +258,7 @@ continue for switch while debugger function
 this with default if throw delete in try let 
 class  extends super const export import yield
 </code></pre>
-<p>These can't be used as variable names</p>
+<p>These can't be used as variable names: <a href="https://www.w3schools.com/js/js_reserved.asp">Full List</a></p>
 <p><a href="https://mothereff.in/js-variables">Variable names must start</a> with a letter, <code>_</code> or <code>$</code></p>
           </section>
 
@@ -295,7 +302,7 @@ class  extends super const export import yield
 								<pre><code>undefined</code></pre>
 								<ul>
 									<li>For when a variable was not set</li>
-									<li>Also for function with no return value</li>
+									<li>Also returned in a function with no explicit return value</li>
 								</ul>
 						</div>
 					</section>
@@ -323,10 +330,16 @@ Number.isNaN(NaN) // true</code></pre>
           </section>
           <section>
 						<h2>Booleans</h2>
-							<p><pre><code>true</code></pre> or <pre><code>false</code></pre></p>
+							<ul style="width: 300px">
+                <li style="list-style: none; display: flex; align-items: center; justify-content: space-between;">
+                  <pre><code>true</code></pre> 
+                  <span style="margin: 0 1rem;">or</span> 
+                  <pre><code>false</code></pre>
+                </li>
+              </ul>
 							<p>Truthy or Falsey?</p>
 							<p>Let's see it in action:</p>
-						<ul>
+						<ul style="width: 300px">
 							<pre><code>Boolean(null)</code></pre>
 							<pre><code>Boolean(undefined)</code></pre>
 							<pre><code>Boolean('0')</code></pre>
@@ -335,19 +348,15 @@ Number.isNaN(NaN) // true</code></pre>
 						</ul>
 					</section>
 					<section>
-						<h2>Type Coercion</h2>
-						<p>Types refer to the data types, such as primitives</p>
-						<p>Coercion refers to the JS engine changing the type</p>
-						<p>Javascript is a Dynamically typed language</p>
-					</section>
-					<section>
 						<h2>Strings</h2>
-							<p> <span>Single quotes<pre><code>'...'</code></pre></span> <span>or Double Quotes<pre><code>"..."</code></pre></span></p>
-							<p>Concatenation: <pre><code>'...' + '...'</code></pre></p>
-							<p><pre><code>'Hello' + ' ' + 'World'</code></pre> = <pre><code>'Hello World'</code></pre></p>
-							<p><pre><code>let myStr = 'Hello World'</code></pre></p>
+              <p><pre><code>let myStr = 'Hello World'</code></pre></p>
+							<div class='flex'> <span>Single quotes</span> <pre style="width: 50%"><code>'...'</code></pre> </div> 
+              <div class='flex' "> <span>or Double Quotes</span> <pre style="width: 50%"><code>"..."</code></pre> </div>
+							<div class="flex"><span>Concatenation:</span> <pre style="width: 50%"><code>'...' + '...'</code></pre></div>
+							<div class="flex"><pre style="width: 45%;"><code>'Hello' + ' ' + 'World'</code></pre> = <pre style="width: 45%;"><code>'Hello World'</code></pre></div>
               <p>Escape characters with `\`</p>
-              <p>Bracket Notation: `'Hello`[0]</p>
+              <p>Bracket Notation: <code>'Hello[0]' // 'H'</code></p>
+              <p>Strings have a property called `length`: <pre><code>'Hello'.length // 5</code></pre></p>
 					</section>
           <section>
 						<h2>Primitives Are Immutable</h2>
@@ -356,33 +365,42 @@ var str = 'hello'
 str[0] = 'p'
 console.log(str) // 'hello'
               </code></pre>
-							<p>You must reassign to the variable <br>to change their value</p>
+							<p>You must reassign to the variable <br>to change a variable's value</p>
 					</section>
           <section>
 						<h2>Primitive Wrappers</h2>
-						<ul>
+            <p>Type Casting</p>
+						<ul style="list-style: none; width: 300px">
 							<li><pre><code>String()</code></pre></li>
 							<li><pre><code>Number()</code></pre></li>
 							<li><pre><code>Boolean()</code></pre></li>
 						</ul>
+					</section>
+          <section>
+						<h2>Type Coercion</h2>
+						<p>Types refer to the data types, such as primitives: string, boolean, etc</p>
+						<p>Javascript is a Dynamically typed language - variables may change their type</p>
+						<p>Coercion refers to the JS engine changing the data type during an operation</p>
 					</section>
         </section>
 
         <section>
           <section>
 						<h2>Operators</h2>
-            <code>+   -   *    /</code>
-            <p>Exponent: <code> **  </code></p>
-            <p>Modulo: <code> % </code></p>
+            <code style="font-size: 3rem;">+   -   *    /</code>
+            <p>Exponent: <code class="large-code"> **  </code></p>
+            <p>Modulo: <code class="large-code"> % </code></p>
 					</section>
           <section>
             <h2>Incrementing</h2>
-            <p><code>++</code></p>
-            <p><code>--</code></p>
-            <p><code>+=</code></p>
-            <p><code>-=</code></p>
+            <div class="flex" style="justify-content: space-around; font-size: 3rem;">
+              <p><code>++</code></p>
+              <p><code>--</code></p>
+              <p><code>+=</code></p>
+              <p><code>-=</code></p>
+            </div>
 
-            <pre><code>var a = 3;
+            <pre class='large-code'><code>var a = 3;
 a++
 a+=6
 a--
@@ -392,6 +410,29 @@ a%=11
             </code></pre>
           </section>
           
+        </section>
+
+        <section>
+          <h2>Challenges</h2>
+          <div class="flex">
+            <div style="margin-right: 1rem;">Given:</div>
+            <pre><code>var str1 = "or"
+var str2 = "man"</code></pre>
+            <span>Create the string: <code>"maroon5"</code></span>
+          </div><hr>
+          <div class='flex' style='justify-content: space-between;'>
+          <span style="margin-right: 1rem;">Given: </span>
+            <pre><code>var str = "hello world"
+var bool = true</code></pre>
+            <span>Create the string: <code>"hollowed out"</code></span>
+          </div><hr>
+          <div >
+            <p>Visit <a href="https://javascript.info/">https://javascript.info/</a> and open the console.</p>
+            <p>Use <code> document.querySelector()</code> and <code>.innerHTML</code></p>
+            <p>to select the <code>nav</code> element and set it equal to an <code>h1</code> element </p>
+             <p>with a class of <code>"frontpage-banner__title"</code></p>
+            <p>and inner text of a string with the value of "Hello World"</p> 
+          </div>
         </section>
 
         <section>
