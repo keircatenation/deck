@@ -282,17 +282,84 @@ srcset=""
 </code></pre>
 <p>Wrap these elements in figure  with figcaption (for accessibility) and use the source elements and provide some text as fallback if they’re not supported.</p>
 				</section>
+				<section>
+					<h2>Track Element</h2>
+					<pre><code><track label="English subtitles" kind="subtitles" srclang="en"
+           src="subtitles-en.vtt" >
+<track label="Deutsch subtitles" kind="subtitles" srclang="de"
+           src="subtitles-de.vtt" default>
+<track label="English chapters" kind="chapters" srclang="en"
+           src="chapters-en.vtt">
+					</code></pre>
+				</section>
 
 				<section>
-					<p><code>web.vtt</code> File</p>
-					<pre><code>00:01.000 —> 00:04.000
+					<p><code>web.vtt</code> File <small><a href="https://developer.mozilla.org/fr/docs/Web/API/WebVTT_API">MDN</a></small></p>
+					<p>Each entry associated with a time interval is called a "cue"</p>
+					<p>Cues can be given IDs</p>
+					<pre><code>1
+00:01.000 —> 00:04.000
 You add captions between a time interval
-						
-00:05.000 —> 00:09.000
-With .vtt files and use this format
 
-00:10.000 —> 00:14.000
-This improves video accessibility for folks with auditory issues.</code></pre>
+2
+00:05.000 —> 00:09.000 align:start
+<v Speaker1>With .vtt files and use this format</v>
+
+3
+00:10.000 —> 00:14.000 align:middle
+<v Speaker2>This improves video accessibility for folks with auditory issues.</v>
+</code></pre>
+				</section>
+				<section>
+					<h2>Example Challenge</h2>
+					<p><a href="https://jsbin.com/sodihux/1/edit?html,css,js,output">Syncing VTT files</a></p>
+					<p><a href="https://jsbin.com/bixoru/1/edit?html,css,js,output">Toggling Modes</a></p>
+					<p><a href="https://jsbin.com/balowuq/1/edit?html,css,js,output">Toggling Captions</a></p>
+					<p><a href="https://jsbin.com/rifekik/edit?html,css,js,output">Chapter Links</a></p>
+					<p><a href="https://jsbin.com/pulefe/1/edit?html,css,js,output">Chapter Thumbnail Links</a></p>
+					<p><a href="https://jsbin.com/zewemaj/edit?html,js,output">All together now</a></p>
+				</section>
+				<section>
+					<h2>Sound "Sprites"</h2>
+					<ul>Uses:
+						<li><code>addTextTrack</code></li>
+						<li><code>VTTCue</code></li>
+						<li><code>addCue</code></li>
+					</ul>
+					<p><a href="https://jsbin.com/lodiju/edit?html,js,output">Animals Sounds</a></p>
+					<p><a href="https://codepen.io/w3devcampus/pen/jOqyprY">Collision sounds</a></p>
+				</section>
+				<section>
+					<h2>Live Video Syncing</h2>
+					<p><a href="https://simpl.info/track/map/index.html">Google Maps</a></p>
+					<p><a href="https://jsbin.com/gucutiyoyu/2/edit?html,js,output">Update Wikipedia pg</a></p>
+				</section>
+				<section>
+					<h2>Web Audio Inspector Extension</h2>
+					<p><a href="https://chrome.google.com/webstore/detail/web-audio-inspector/cmhomipkklckpomafalojobppmmidlgl">Chrome Extension</a></p>
+				</section>
+				<section>
+					<h2>WebAudio API</h2>
+					<p><a href="https://jsbin.com/gaduqojeke/edit?html,js,output">Gain</a></p>
+					<p><a href="https://jsbin.com/jarimu/edit?html,js,output">Balance</a></p>
+					<p><a href="https://jsbin.com/belide/edit?html,js,console,output">Reverb</a></p>
+					<p><a href="https://jsbin.com/momixok/edit?html,js,console,output">Compressor</a></p>
+					<p><a href="https://webaudiodemos.appspot.com/Vocoder/index.html#">Example (only in Firefox)</a></p>
+					<p><a href="https://jsbin.com/tuvaxar/edit?html,js,output">Filters</a></p>
+					<p><a href="https://webaudioapi.com/samples/frequency-response/">WebAudio API Viz</a></p>
+					<p><a href="https://webaudioapi.com/samples/room-effects/">WebAudio API Effects</a></p>
+				</section>
+				<section>
+					<h2>Equalizer Demo</h2>
+					<p><a href="https://jsbin.com/loquwih/edit?html,css,js,output">For Audio</a></p>
+					<p><a href="https://jsbin.com/kukupot/edit?html,css,js,output">For Video</a></p>
+				</section>
+				<section>
+					<h2>Waveform Vizualizer</h2>
+					<p><a href="https://jsbin.com/sequtas/edit?html,css,js,output">Basic</a></p>
+					<p><a href="https://jsbin.com/sufatup/edit?html,js,output">Styled</a></p>
+					<p><a href="https://jsbin.com/qijujuz/edit?html,js,output">With equalizer</a></p>
+					<p><a href="https://jsbin.com/jafoboh/edit?js,console,output">video w/ equalizer</a></p>
 				</section>
 			</section>
 

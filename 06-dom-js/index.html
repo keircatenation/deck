@@ -1,175 +1,289 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<head>
-		<meta charset="utf-8">
+    <title>SVG for Frontend Developers</title>
+    <meta name="description" content="2017 was the year of CSS grid, a powerful tool that was developed specially to do layout on the web. It allows us to do many things that we couldn't before, without extreme measures of hackish-ness. It is definitely not hyperbole to say that CSS grid will revolutionise web design moving forward. This talk will introduce CSS grid and how it can be used to create modern layouts for the web.">
 
-		<title>The DOM API and Intro to JS</title>
+    <link rel="stylesheet" href="../04-css-2/css/reveal.css">
+    <link rel="stylesheet" href="../04-css-2/css/theme/jing.css">
+    <link rel="stylesheet" href="./timeline.css">
 
-		<meta name="description" content="In this workshop, we will dive into HTML.">
-		<meta name="author" content="Jamie Vaughn">
-
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/ga.css" id="theme">
-
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-		<link rel="stylesheet" href="../laser.css">
+    <link rel="stylesheet" href="../04-css-2/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../laser.css">
 		<script src="../laser.js"></script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../04-css-2/css/print/pdf.css' : '../04-css-2/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
 
-	<body>
+    <style>
+      .flex-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      .flex > img {
+        width: 50%;
+      }
+      .grid {
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      pre {
+        padding: 8px !important;
+        border-radius: 8px !important;
+        background: #444;
+      }
+      .large-code {
+        font-size: 3rem !important;
+        line-height: 3rem !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+      }
+      .livecode {
+        max-height: 30vh !important;
+      }
+      .livecode.serious {
+        max-height: 20vh !important;
+      }
+      .slack-code {
+        padding: 1px 6px !important;
+        background: #ddd;
+        color: rgb(180, 47, 69);
+        border-radius: 4px;
+      }
+      fieldset {
+        border: 3px solid #444 !important;
+        width: fit-content;
+        padding: 1rem !important;
+      }
+    </style>
+  </head>
 
-		<div class="reveal">
+  <body>
+    <div class="reveal">
+      <div class="slides">
 
-			<div class="slides">
-			<section>
-				<section data-background="#000" class="">
-					<header class="ga-header">
-						<h3>MCC Frontend Academy</h3>
-					</header>
-					<h1>Starting our JS Journey</h1>
-					<p><small>It's long and there are many layers</small></p>
-				</section>
-				<section>
-						<section data-background="#000" class="ga-reverse">
-							<header class="ga-header">
-								<h3>MCC Frontend Academy</h3>
-							</header>
-							<h1>A primer on JS</h1>
-						</section>
-						<section>
-							<h2>What will we visit on our Journey?</h2>
-							<p class="fragment">Syntax <- we'll start here</p>
-							<p class="fragment">Organization of Code</p>
-							<p class="fragment">Organization of Components</p>
-							<p class="fragment">Organization of Views</p>
-							<p class="fragment">Architecture of an App</p>
-						</section>
-						<section>
-							<h2>A bit of JS history</h2>
-							<h4>why all the baggage?</h4>
-							<img style="width: 80%" src="http://xahlee.info/comp/i/JavaScript_books_definitive_guide_vs_good_parts.jpg" alt="">
-						</section>
-						<section>
-							<h2>Some resources to guide us</h2>
-							<p class="fragment"><a href="https://github.com/getify/You-Dont-Know-JS">You Don't Know JS</a></p>
-							<p class="fragment"><a href="https://eloquentjavascript.net/">Eloquent Javascript</a></p>
-						</section>
-						<section>
-							<h2>The Engines</h2>
-							<h4>Javascript Engines</h4>
-							<p class="fragment">V8, Spider Monkey, Webkit/Nitro, Chakra(deprecated)</p>
-							<h4>Render Engines</h4>
-							<p class="fragment">Blink, Webkit, Gecko</p>
-						</section>
-						<section>
-							<h2>Interpreters and Compilers</h2>
-							<p class="fragment">Interpreters</p>
-							<p class="fragment">Just in time Compilers (JIT)</p>
-							<p class="fragment">Ahead of time Compliers (AOH)</p>
-							<p class="fragment">Source code, byte code, machine code</p>
-						</section>
-					</section>
-				</section>
-				<section data-background="#000" class="ga-reverse">
-					<section>
-					<header class="ga-header">
-						<h3>MCC Frontend Academy</h3>
-					</header>
-					<h1>The DOM API</h1>
-					<p><small>Interact with the Document Object Model</small></p>
-				</section>
-				
-					<section>
-						<h2>DOM API vs Javascript</h2>
-						<p class="fragment">One represents the manipulatable objects on the page</p>
-						<p class="fragment">The other is the logic that can iterate and transform them</p>
-					</section>
-					<section>
-						<h2>DOM API Review</h2>
-						<p class="fragment">parentNode.appendChild(node)</p>
-						<p class="fragment">element.innerHTML</p>
-						<p class="fragment">element.style.left</p>
-						<p class="fragment">document.querySelector(selector)</p>
-						<p class="fragment">element.nextElementSibling</p>
-					</section>
-					<section>
-						<h2>Attributes: Three ways</h2>
-						<p class="fragment">element.id</p>
-						<p class="fragment">element.attributes</p>
-						<p class="fragment">element.setAttribute()</p>
-						<small><P>(limitations: data-label, aria-label framework props)</P></small>
-					</section>
-					<section>
-						<h2>DOM Doc Challenge</h2>
-						<p class="fragment">document.getElementById(id)</p>
-						<p class="fragment">document.getElementsByTagName(name)</p>
-						<p class="fragment">document.getElementsByClassName(class)</p>
-						<p class="fragment">document.createElement(name)</p>
-						<p class="fragment">document.createTextNode(text)</p>
-						<p class="fragment">element.setAttribute()</p>
-						<p class="fragment">element.getAttribute()</p>
-						<p class="fragment">element.addEventListener()</p>
-						<p class="fragment">window.location</p>
-						<p class="fragment">window.console</p>
-						<p class="fragment">window.navigator.useragent, window.navigator.geolocation</p>
-						<p class="fragment">window.onload</p>
-						<p class="fragment">window.scrollTo()</p>
-					</section>
-					<section>
-						<h2>Another DOM Challenge</h2>
-						<p class="fragment">starting with HTML boilerplate, <a href="https://github.com/JamieVaughn/code-along/tree/master/DOMAPI">here</a></p>
-						<p>use the DOM API only to create a simple form as described in the comments</p>
-					</section>
-				</section>
-			</section>
+        <section>
+          <section>
+            <h1>Beginning Our Javascript Journey</h1>
+            <p>It's long and there are many layers</p>
+          </section>
+          <section>
+            <h2>A Primer On JS</h2>
+            <h4>What will we visit on our Journey?</h4>
+            <ol>
+              <li class="fragment">Syntax <- we'll start here</p>
+              <li class="fragment">Organization of Code</li>
+              <li class="fragment">Organization of Components</li>
+              <li class="fragment">Organization of Views</li>
+              <li class="fragment">Architecture of an App</li>
+              <li class="fragment">Modern Dev Tooling</li>
+            </ol>
+          </section>
+          <section>
+            <h2>Some resources to guide us</h2>
+            <p><a href="http://jargon.js.org/">Glossary of Jargon</a></p>
+            <h4 class="fragment">E-Textbooks</h4>
+            <p class="fragment"><a href="https://exploringjs.com/deep-js/toc.html">Deep Javascript</a></p>
+            <p class="fragment"><a href="https://exploringjs.com/es6/index.html">Exploring ES6</a></p>
+            <hr class="fragment" style="width: 33%; margin: 0 auto;">
+            <p class="fragment"><a href="https://eloquentjavascript.net/">Eloquent Javascript</a></p>
+            <p class="fragment"><a href="https://github.com/getify/You-Dont-Know-JS">You Don't Know JS</a></p>
+          </section>
+          <section>
+            <h2>The Engines</h2>
+            <h4 class="fragment">Javascript Engines</h4>
+            <p class="fragment">V8, Spider Monkey, Webkit/Nitro, Chakra(deprecated)</p>
+            <h4 class="fragment">Render Engines</h4>
+            <p class="fragment">Blink, Webkit, Gecko</p>
+          </section>
+          <section>
+            <h2>Interpreters and Compilers</h2>
+            <p class="fragment">Interpreters</p>
+            <p class="fragment">Just in time Compilers (JIT)</p>
+            <p class="fragment">Ahead of time Compliers (AOH)</p>
+            <p class="fragment">Source code, byte code, machine code</p>
+            <img src="./img/Machine_code.png" style="max-height: 33vh"/>
+           
+          </section>
+          <section>
+            <h2>A Bit of JS History</h2>
+            <p>Why all the baggage?</p>
+            <img style="width: 70%" src="http://xahlee.info/comp/i/JavaScript_books_definitive_guide_vs_good_parts.jpg" alt="">
+          </section>
+          <section>
+            <h2>The Browser Wars</h2>
+            <ol class="timeline" style="overflow-y: scroll; max-height: 60vh;">
+              <li>Andreeson of Mosaic releases the img tag <time>1992</time></li>
+              <li>The Netscape Rebellion <time>1994</time></li>
+              <li>Netscape's Secret Weapon: Project Mocha & Brendan Eich <time>Early 1995</time></li>
+              <li>"Scheme for the Browser" in 10 days ...<a href="https://en.wikipedia.org/wiki/Scheme_%28programming_language%29">Scheme</a>, <a href="https://en.wikipedia.org/wiki/Self_(programming_language)">Self</a> <time>1995</time></li>
+              <li>Eich releases "Livescript" <time>May 1995</time></li>
+              <li>Netscape enters licensing deal to rename it to Javascript as a scripting companion to Sun Microsystem's Java <time>Dec 1995</time></li>
+              <li>W3C recommends CSS Stylesheets Spec <time>1996</time></li>
+              <li>Apple briefly ships Netscape bundled, then switches to IE <time>1997</time></li>
+              <li>Microsoft releases IE 3 & modified "JScript" to avoid trademark issues <time>1996</time></li>
+              <li>Netscape partners with ECMA to create Javascript specification (European Computer Manufacturers Association) <time>1997</time></li>
+              <li>Javascript becomes one implementation of ECMAScript (others: Jscript [MS], Actionscript [Macromedia]) <time>1997</time></li>
+              <li>ECMAScript 3 released & ECMAScript 4 work begins <time>Dec 1999</time></li>
+              <li>Former Netcapers release Mozilla Browser <time>1998</time></li>
+              <li>Mozilla releases Firefox <time>2004</time></li>
+              <li>Apple releases Safari with Webkit fork of <time>2003</time></li>
+              <li>Google releases Chrome with Blink a Webkit fork <time>2008</time></li>
+              <li>ES4 Abandoned, ES3.1 patch proposal released as ES5 <time>2008</time></li>
+              <li>All new ES versions take their release year as their numeral: ES2016 <time>starting 2016</time></li>
+              <li>ES6 released and yearly release schedule adopted <time>2015</time></li>
+              <li><a href="https://blog.learncodeonline.in/whats-new-in-javascript-21-es12">ES2021 Released!</a> And the saga continues!<time>2021</time></li>
+            </ol>
+          </section>
+          <section>
+            <h2>ECMAScript</h2>
+            <p><a href="https://www.ecma-international.org/technical-committees/">TC39</a></p>
+          </section>
+        </section>
 
-			<section>
-				<section data-background="#000" class="ga-reverse">
-					<header class="ga-header">
-						<h3>MCC Frontend Academy</h3>
-					</header>
-					<h1>Javascript</h1>
-					<p><small>Variables</small></p>
-				</section>
-				<section>
-					<section>
-						<h2>Variables</h2>
-						<p class="fragment">Var</p>
-						<p class="fragment">Let</p>
-						<p class="fragment">Const</p>
-					</section>
-				</section>
-			</section>
-			<section>
-				<section data-background="#000" class="ga-reverse">
-					<header class="ga-header">
-						<h3>MCC Frontend Academy</h3>
-					</header>
-					<h1>Javascript</h1>
-					<p><small>Primitives and Operators</small></p>
-				</section>
-				<section>
-					<section>
-						<h2>Primitives</h2>
-						<ul>
-							<li>Basic Data Types</li>
-							<li>Immutable</li>
-							<li>You must reassign to the variable <br>to change their value</li>
-							<li>null, undefined, Number, String, Boolean, BigInt, Symbol</li>
-						</ul>
-						
-					</section>
-					<section>
+        <section>
+          <section>
+            <h1>Basic Javascript</h1>
+            <p>Variables, Primitives & Operators</p>
+          </section>
+          <section>
+            <h2>Variables</h2>
+            <pre><code>var
+let
+const
+// single line comment
+/* Multiline
+comment */
+            </code></pre>
+            <p>Definition</p>
+            <p> A <strong>variable</strong> is a named container for a **value**</p>
+            <p>The <strong>name</strong> that refers to a variables is also called an *identifier*</p>
+          </section>
+          <section>
+            <h2>Declaration</h2>
+            <pre><code>var; // Declaration
+var x; // Initialization;
+var y = 500; // Assignment
+var y = 'Hello!'; //Re-assignment
+            </code></pre>
+            <pre><code>var z;
+z = true;
+            </code></pre>
+            <p>You can declare and assign separately</p>
+            <p>Initialize -> Assign</p>
+          </section>
+          <section>
+            <h2>Containers of a Value</h2>
+            <div class="flex" style="justify-content: space-around;">
+              <fieldset>
+                <legend style='color: #66D9EF; font-size: 3rem;'>x</legend>
+                <code>undefined</code>
+            </fieldset>
+            <fieldset>
+                <legend style='color: #66D9EF; font-size: 3rem;'>y</legend>
+                <code>'Hello!'</code>
+            </fieldset>
+            </div>
+          <p>The variables have names (identifiers) and can contain any Javascript value.</p>
+          </section>
+          <section>
+            <h2>Hoisting</h2>
+            <pre><code>{
+    var j = 'foo' + i;
+    var k = 'bar' + i;
+}
+var i = 'baz';
+console.log(j) // foobaz
+console.log(k) // barbaz
+            </code></pre>
+            <p>Global <code>var</code> declarations are hoisted... moved to the top of the file. </p>
+          </section>
+          <section>
+            <h2>Scope</h2>
+            <pre><code>{
+    let local = 'local';
+    const local2 = 'local2';
+    console.log(global1) // 'global'
+}
+{
+  var global1 = 'global';
+  console.log(local1) // ReferenceError: local1 is not defined
+}
+            </code></pre>
+            <p>The area of influence... bounded by curly braces.</p>
+            <p>Variables defined in a curly brace scope cannot be accessed outside of that scope, unless they are hoisted.</p>
+            <p>The root level (i.e. no curcly braces) is the "global" scope.</p>
+          </section>
+          <section>
+            <h2>The Comma operator</h2>
+            <pre><code>var i, j, k; 
+// initialized as undefined
+i = true;
+if(i) {
+    j = 'foo';
+} else {
+    k = 'bar';
+}
+            </code></pre>
+            <p>Let's you initialize or declare multiple vars at once.</p>
+          </section>
+          <section>
+            <h2>Reserved Key Words (tokens)</h2>
+            <pre><code>null true false break do instanceof typeof
+case else new var catch finally return void
+continue for switch while debugger function
+this with default if throw delete in try let 
+class  extends super const export import yield
+</code></pre>
+<p>These can't be used as variable names</p>
+<p><a href="https://mothereff.in/js-variables">Variable names must start</a> with a letter, <code>_</code> or <code>$</code></p>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h1>Primitives</h1>
+          </section>
+          <section>
+            <h2>Values and Types</h2> 
+              <ul>
+                <li>A <strong>value</strong> represents the most basic type of data </li>
+                <li>A <strong>type</strong> is a category of values</li>
+                <li>There are 7 possible primitive types in Javascript</li>
+                <li style="list-style: none;">(There's an 8th type, but it's not a primitive.)</li>
+              </ul>
+          </section>
+          <section>
+            <h2>There are 7 primitive types</h2>
+            <p>The Basic Data Types</p>
+            <ul>
+              <li><code>undefined</code></li>
+              <li><code>null</code></li>
+              <li><code>Number</code></li>
+              <li><code>String</code></li>
+              <li><code>Boolean</code></li>
+              <li><code>BigInt</code></li>
+              <li><code>Symbol</code></li>
+            </ul>
+          </section>
+          <section>
 						<h2>Null and Undefined</h2>
 						<div class="ga-col2-50">
 								<pre><code>null</code></pre>
@@ -184,27 +298,37 @@
 									<li>Also for function with no return value</li>
 								</ul>
 						</div>
-						
 					</section>
-					<section>
+          <section>
 						<h2>Numbers</h2>
 						<ul>
 							<li>64 bit Floating point per the IEEE 754 spec</li>
 							<li>Due to 64 bit maximum size, they are imprecise</li>
 							<li>Let's see it in action: <pre><code>0.1 + 0.2 = ?</code></pre></li>
 							<li>Symbolic values:	<div class="ga-col2-33"> <pre><code>Infinity</code></pre> <pre><code>NaN</code></pre></div></li>
-							<li>when checking if value is <pre><code></code>NaN</code></pre> literal Use <pre><code>Number.isNaN()</code></pre> </li>
-							<li>when checking if value is simply not a number, use <pre><code>isNaN()</code></pre> </li>
-							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN">Example</a></li>
 						</ul>
 					</section>
-					<section>
+          <section>
+            <h2>NaN - Not a Number</h2>
+            <ul>
+              <li>When checking if value is a <code>NaN</code> literal use <pre><code>Number.isNaN()</code></pre> (returns true only if the argument passed is `NaN`)</li>
+							<li>When checking if value is simply "not a number," use <pre><code>isNaN()</code></pre> </li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN">Reference</a></li>
+              <li>Examples:</li>
+              <pre><code>isNaN('hello') // true
+Number.isNaN('hello') // false
+Number.isNaN(NaN) // true</code></pre>
+              
+            </ul>
+          </section>
+          <section>
 						<h2>Booleans</h2>
 							<p><pre><code>true</code></pre> or <pre><code>false</code></pre></p>
 							<p>Truthy or Falsey?</p>
 							<p>Let's see it in action:</p>
 						<ul>
 							<pre><code>Boolean(null)</code></pre>
+							<pre><code>Boolean(undefined)</code></pre>
 							<pre><code>Boolean('0')</code></pre>
 							<pre><code>Boolean("")</code></pre>
 							<pre><code>Boolean('false')</code></pre>
@@ -222,97 +346,82 @@
 							<p>Concatenation: <pre><code>'...' + '...'</code></pre></p>
 							<p><pre><code>'Hello' + ' ' + 'World'</code></pre> = <pre><code>'Hello World'</code></pre></p>
 							<p><pre><code>let myStr = 'Hello World'</code></pre></p>
+              <p>Escape characters with `\`</p>
+              <p>Bracket Notation: `'Hello`[0]</p>
 					</section>
-					<section>
-						<h2>String Template Literals</h2>
-						<ul>
-							<li>Uses backticks <pre><code>`...`</code></pre></li>
-							<li>Can be mult-line</li>
-							<li>Can use Interpolation <pre><code>`...${variable}...`</code></pre></li>
-						</ul>
-						<p><pre><code>let str = `The is a template string`</code></pre></p>
-						<p><pre><code>let str = `Template strings
-can be mult-line...
-Like This!
-`</code></pre></p>
+          <section>
+						<h2>Primitives Are Immutable</h2>
+              <pre><code>5 = 4 // Syntax Error
+var str = 'hello'
+str[0] = 'p'
+console.log(str) // 'hello'
+              </code></pre>
+							<p>You must reassign to the variable <br>to change their value</p>
 					</section>
-					<section>
-						<h2>String Interpolation</h2>
-						<img style="max-width: 100%" src="https://screenshot.codepen.io/6746.wzZovW.8038da3a-f9ba-4397-ad6d-257ab82447df.png" alt="">
-					</section>
-					<section>
-						<h2>BigInt</h2>
-						<pre><code>const theBiggestInt = 9007199254740991n;</code></pre>
-						<ul>
-							<li><p>Not Critical for us now</p></li>
-							<li><p>Arbitray precision: </p></li>
-							<li><p>fixes the decimal bug in Numbers</p></li>
-						</ul>
-					</section>
-					<section>
-						<h2>Symbol()</h2>
-						<pre><code>let _Sym = Symbol("Sym");
-console.log(_Sym.description);</code></pre>
-						<ul>
-							<li>Not critical for us now</li>
-							<li>New in ES6</li>
-							<li>creates a unique identifier</li>
-							<li>Mostly used for creating unique key values</li>
-						</ul>
-					</section>
-					<section>
+          <section>
 						<h2>Primitive Wrappers</h2>
 						<ul>
 							<li><pre><code>String()</code></pre></li>
 							<li><pre><code>Number()</code></pre></li>
 							<li><pre><code>Boolean()</code></pre></li>
-							<li><pre><code>BigInt()</code></pre></li>
-							<li><pre><code>Symbol()</code></pre></li>
 						</ul>
 					</section>
-					<section>
-						<h2>The <code>JSON</code> object</h2>
-						<ul>
-							<li><pre><code>JSON.stringify()</code></pre></li>
-							<li><pre><code>JSON.parse()</code></pre></li>
-						</ul>
-					</section>
-					<section>
+        </section>
+
+        <section>
+          <section>
 						<h2>Operators</h2>
+            <code>+   -   *    /</code>
+            <p>Exponent: <code> **  </code></p>
+            <p>Modulo: <code> % </code></p>
 					</section>
-				</section>
-				</section>
-			</div>
+          <section>
+            <h2>Incrementing</h2>
+            <p><code>++</code></p>
+            <p><code>--</code></p>
+            <p><code>+=</code></p>
+            <p><code>-=</code></p>
 
-		</div>
+            <pre><code>var a = 3;
+a++
+a+=6
+a--
+a-=1
+a*=2
+a%=11
+            </code></pre>
+          </section>
+          
+        </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+        <section>
+          <section>
+            <h1>The DOM API</h1>
+          </section>
+        </section>
 
-		<script>
+        <section>
+          <h2>Use your new JS hammer wisely</h2>
+          <p><a href="http://youmightnotneedjs.com/">Not every problem is a nail...</a></p>
+        </section>
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+      </div>
+    </div>
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
+    <script src="../04-css-2/lib/js/head.min.js"></script>
+    <script src="../04-css-2/lib/js/caniuse-embed.min.js"></script>
+    <script src="../04-css-2/js/reveal.js"></script>
 
-		</script>
-
-	</body>
+    <script>
+      Reveal.initialize({
+        dependencies: [
+          { src: '../04-css-2/plugin/markdown/marked.js' },
+          { src: '../04-css-2/plugin/markdown/markdown.js' },
+          { src: '../04-css-2/plugin/notes/notes.js', async: true },
+          { src: '../04-css-2/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
 </html>

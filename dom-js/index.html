@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>The DOM API and Intro to JS</title>
+
+		<meta name="description" content="In this workshop, we will dive into HTML.">
+		<meta name="author" content="Jamie Vaughn">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/ga.css" id="theme">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="../laser.css">
+		<script src="../laser.js"></script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+	
+			
+				<section >
+					<section data-background="#000" class="ga-reverse">
+					<header class="ga-header">
+						<h3>MCC Frontend Academy</h3>
+					</header>
+					<h1>The DOM API</h1>
+					<p><small>Interact with the Document Object Model</small></p>
+				</section>
+				
+					<section>
+						<h2>DOM API vs Javascript</h2>
+						<p class="fragment">One represents the built-in methods and objects that interface w/ the Render Tree</p>
+						<p class="fragment">The other is the language that can store, iterate-over and manipulate them</p>
+					</section>
+					<section>
+						<h2>DOM API Review</h2>
+						<p class="fragment">parentNode.appendChild(node)</p>
+						<p class="fragment">element.innerHTML</p>
+						<p class="fragment">element.style.left</p>
+						<p class="fragment">document.querySelector(selector)</p>
+						<p class="fragment">element.nextElementSibling</p>
+					</section>
+					<section>
+						<h2>Attributes: Three ways</h2>
+						<p class="fragment">element.id</p>
+						<p class="fragment">element.attributes</p>
+						<p class="fragment">element.setAttribute()</p>
+						<small><P>(limitations: data-label, aria-label framework props)</P></small>
+					</section>
+					<section>
+						<h2>DOM Doc Challenge</h2>
+						<p class="fragment">document.getElementById(id)</p>
+						<p class="fragment">document.getElementsByTagName(name)</p>
+						<p class="fragment">document.getElementsByClassName(class)</p>
+						<p class="fragment">document.createElement(name)</p>
+						<p class="fragment">document.createTextNode(text)</p>
+						<p class="fragment">element.setAttribute()</p>
+						<p class="fragment">element.getAttribute()</p>
+						<p class="fragment">element.addEventListener()</p>
+						<p class="fragment">window.location</p>
+						<p class="fragment">window.console</p>
+						<p class="fragment">window.navigator.useragent, window.navigator.geolocation</p>
+						<p class="fragment">window.onload</p>
+						<p class="fragment">window.scrollTo()</p>
+					</section>
+					<section>
+						<h2>Another DOM Challenge</h2>
+						<p class="fragment">starting with HTML boilerplate, <a href="https://github.com/JamieVaughn/code-along/tree/master/DOMAPI">here</a></p>
+						<p>use the DOM API only to create a simple form as described in the comments</p>
+					</section>
+				</section>
+			</section>
+
+			<section>
+				<section data-background="#000" class="ga-reverse">
+					<header class="ga-header">
+						<h3>MCC Frontend Academy</h3>
+					</header>
+					<h1>Javascript</h1>
+					<p><small>Variables</small></p>
+				</section>
+				<section>
+					<section>
+						<h2>Variables</h2>
+						<p class="fragment">Var</p>
+						<p class="fragment">Let</p>
+						<p class="fragment">Const</p>
+					</section>
+				</section>
+			</section>
+			<section>
+				<section data-background="#000" class="ga-reverse">
+					<header class="ga-header">
+						<h3>MCC Frontend Academy</h3>
+					</header>
+					<h1>Javascript</h1>
+					<p><small>Primitives and Operators</small></p>
+				</section>
+				
+					
+			
+					
+					
+					<section>
+						<h2>String Template Literals</h2>
+						<ul>
+							<li>Uses backticks <pre><code>`...`</code></pre></li>
+							<li>Can be mult-line</li>
+							<li>Can use Interpolation <pre><code>`...${variable}...`</code></pre></li>
+						</ul>
+						<p><pre><code>let str = `The is a template string`</code></pre></p>
+						<p><pre><code>let str = `Template strings
+can be mult-line...
+Like This!
+`</code></pre></p>
+					</section>
+					<section>
+						<h2>String Interpolation</h2>
+						<img style="max-width: 100%" src="https://screenshot.codepen.io/6746.wzZovW.8038da3a-f9ba-4397-ad6d-257ab82447df.png" alt="">
+					</section>
+					<section>
+						<h2>BigInt</h2>
+						<pre><code>const theBiggestInt = 9007199254740991n;</code></pre>
+						<ul>
+							<li><p>Not Critical for us now</p></li>
+							<li><p>Arbitray precision: </p></li>
+							<li><p>fixes the decimal bug in Numbers</p></li>
+							<li><pre><code>BigInt()</code></pre></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Symbol()</h2>
+						<pre><code>let _Sym = Symbol("Sym");
+console.log(_Sym.description);</code></pre>
+						<ul>
+							<li>Not critical for us now</li>
+							<li>New in ES6</li>
+							<li>creates a unique identifier</li>
+							<li>Mostly used for creating unique key values</li>
+							<li><pre><code>Symbol()</code></pre></li>
+						</ul>
+					</section>
+					
+					<section>
+						<h2>The <code>JSON</code> object</h2>
+						<ul>
+							<li><pre><code>JSON.stringify()</code></pre></li>
+							<li><pre><code>JSON.parse()</code></pre></li>
+						</ul>
+					</section>
+					
+				</section>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
