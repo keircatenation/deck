@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>SVG for Frontend Developers</title>
+    <title>Intro to Javascript & The DOM API</title>
     <meta name="description" content="2017 was the year of CSS grid, a powerful tool that was developed specially to do layout on the web. It allows us to do many things that we couldn't before, without extreme measures of hackish-ness. It is definitely not hyperbole to say that CSS grid will revolutionise web design moving forward. This talk will introduce CSS grid and how it can be used to create modern layouts for the web.">
 
     <link rel="stylesheet" href="../04-css-2/css/reveal.css">
@@ -46,13 +46,16 @@
       pre {
         padding: 8px !important;
         border-radius: 8px !important;
-        background: #444;
+        background: #3f3f3f;
       }
-      .large-code {
-        font-size: 3rem !important;
+      .reveal .slides pre code.large-code {
+        font-size: 2.5rem !important;
         line-height: 3rem !important;
         padding: 8px !important;
         border-radius: 8px !important;
+      }
+      .reveal .slides .nosidescroll {
+        overflow-x: hidden;
       }
       .livecode {
         max-height: 30vh !important;
@@ -70,6 +73,12 @@
         border: 3px solid #444 !important;
         width: fit-content;
         padding: 1rem !important;
+      }
+      :not(pre) >  code {
+        padding: 4px !important;
+        background: lightgrey;
+        color: rgb(211, 12, 52);
+        border-radius: 8px;
       }
     </style>
   </head>
@@ -280,15 +289,20 @@ class  extends super const export import yield
           <section>
             <h2>There are 7 primitive types</h2>
             <p>The Basic Data Types</p>
-            <ul>
+            <ul style="columns: 2">
               <li><code>undefined</code></li>
-              <li><code>null</code></li>
               <li><code>Number</code></li>
               <li><code>String</code></li>
               <li><code>Boolean</code></li>
+              <li><code>null</code></li>
               <li><code>BigInt</code></li>
               <li><code>Symbol</code></li>
             </ul>
+            <p>Use <code>typeof</code> operator to check types</p>
+            <pre style="width: fit-content"><code >typeof 'hello' // 'string'
+typeof 100 // 'number'
+typeof false // 'boolean'
+            </code></pre>
           </section>
           <section>
 						<h2>Null and Undefined</h2>
@@ -349,14 +363,17 @@ Number.isNaN(NaN) // true</code></pre>
 					</section>
 					<section>
 						<h2>Strings</h2>
-              <p><pre><code>let myStr = 'Hello World'</code></pre></p>
-							<div class='flex'> <span>Single quotes</span> <pre style="width: 50%"><code>'...'</code></pre> </div> 
-              <div class='flex' "> <span>or Double Quotes</span> <pre style="width: 50%"><code>"..."</code></pre> </div>
-							<div class="flex"><span>Concatenation:</span> <pre style="width: 50%"><code>'...' + '...'</code></pre></div>
-							<div class="flex"><pre style="width: 45%;"><code>'Hello' + ' ' + 'World'</code></pre> = <pre style="width: 45%;"><code>'Hello World'</code></pre></div>
-              <p>Escape characters with `\`</p>
-              <p>Bracket Notation: <code>'Hello[0]' // 'H'</code></p>
-              <p>Strings have a property called `length`: <pre><code>'Hello'.length // 5</code></pre></p>
+              <pre><code class='large-code nosidescroll' style="font-size: 1rem;">var myStr = 'Hello World'
+'...'    // Single Quotes               
+"..."    // Double Quotes 
+'...' + '...'    // Concatenation              
+'Hello' + ' ' + 'World'    // 'Hello World'
+</code></pre>
+              <div class='flex' style="justify-content: space-between; flex-wrap: wrap;">
+                <p>Escape characters with <code class="large-code">\</code></p>
+                <p>Bracket Notation: <code>'Hello[0]' // 'H'</code></p>
+                <div class='flex'> <span>Strings have a property: <code>.length</code> =></span> <pre style='width: 40%'><code class='large-code'>'Hello'.length // 5</code></pre></div>
+              </div>
 					</section>
           <section>
 						<h2>Primitives Are Immutable</h2>
@@ -389,18 +406,18 @@ console.log(str) // 'hello'
 						<h2>Operators</h2>
             <code style="font-size: 3rem;">+   -   *    /</code>
             <p>Exponent: <code class="large-code"> **  </code></p>
-            <p>Modulo: <code class="large-code"> % </code></p>
+            <p>Remainder (aka Modulo): <code class="large-code"> % </code></p>
 					</section>
           <section>
-            <h2>Incrementing</h2>
-            <div class="flex" style="justify-content: space-around; font-size: 3rem;">
+            <h2>Incrementing & Decrementing</h2>
+            <div class="flex" style="justify-content: space-around; font-size: 3rem; width: 600px; margin: 0 auto;">
               <p><code>++</code></p>
               <p><code>--</code></p>
               <p><code>+=</code></p>
               <p><code>-=</code></p>
             </div>
 
-            <pre class='large-code'><code>var a = 3;
+            <pre class='large-code' style="width: 400px;"><code>var a = 3;
 a++
 a+=6
 a--
@@ -433,6 +450,231 @@ var bool = true</code></pre>
              <p>with a class of <code>"frontpage-banner__title"</code></p>
             <p>and inner text of a string with the value of "Hello World"</p> 
           </div>
+        </section>
+
+        <section>
+          <h1>Arrays</h1>
+
+          #### Javascript's Array-like Strings
+But they are immutable, unlike Arrays
+```js
+let str = 'Hello!'
+str.length = 3;
+console.log(str.length) // 6;
+str[2] = 'l'
+```
+
+##### Basic Array Methods: Challenge use MDN to discover what each of these do:
+```js
+Array.indexOf()
+Array.concat()
+Array.push()
+Array.pop()
+Array.shift()
+Array.unshift()
+Array.split()
+Array.slice()
+Array.splice()
+Array.includes()
+Array.isArray()
+```
+
+#### Creating Array via Static Methods
+```js
+Array.of(1, 2, 3) // [1, 2, 3]
+Array.from('string') // ["s", "t", "r", "i", "n", "g"]
+Array.from(document.querySelectorAll('div')) // array of div nodes
+```
+---
+#### The Array Index
+Arrays are zero-indexed adn the indices must be integers
+```js
+let arr = [1, 2, 3];
+arr[0] = 1; arr[2] = 3;
+console.log(arr[4]); // undefined
+arr[6] = 'ten';
+console.log(arr) // [1, 2, 3, undefined, undefined, "ten"]
+```
+---
+#### The Array Length Property
+```js
+let arr = [1, 2, 3]
+console.log(arr.length) // 3
+arr[arr.length] || arr[arr.length - 1]
+arr.length = 4; // [1, 2, 3, undefined]
+```
+
+#### Arrays
+Definition:
+Arrays are list-like objects which have built-in methods to perform list traversal and value mutation.
+Arrays can hold hold any number of different values (Primitives or Objects)
+```js
+['a', 'man', 'a', 'plan', 'a', 'canal', 'panama']
+[2, null, 'string', {key: 'value'}, ['nested', 'arrays']]
+```
+---
+#### Creating Arrays
+```js
+let array = [1, 2, 3]; // Array Literal
+let arr = new Array(1, 2, 3); // Array constructor
+let arr = new Array(3); // [undefined, undefined, undefined]
+```
+---
+
+        </section>
+
+        <section>
+          <h1>Functions</h1>
+          # Javascript Functions
+```js
+function fn(a, b){
+    // do stuff
+}
+```
+---
+Definition
+## A __function__ is fundamental building block in javascript
+### It's a __procedure__ that executes a set of statements when invoked.
+### The statements might perform a task or calculate a value
+---
+# Function Declaration vs Expression
+Hoisting Applies differently in these two
+```js
+function fn(d, e){ // Function Declaration
+    //...
+} 
+var fn = function(){ // Function Expression
+    //...
+} 
+```
+---
+# Some Terms:
+Argument List, Arguments, Parameters, Function Block, Passing Args
+---
+# Invoking a Function
+```js
+function fn(a){
+    console.log(a) 
+}
+fn('hello') // Invocation of Function
+fn() // If the argument list is empty, then a is undefined
+```
+---
+# First Class Functions
+```js
+function fn(args){
+    // do stuff
+}
+var gn = function(){
+    // do other stuff
+}
+fn(gn) // Functions can be passed into other functions
+```
+---
+# The Return statement
+
+```js
+function fn(x, y){
+    let z = 5;
+    return x * y;
+}
+```
+---
+# Pure Function and Side Effects
+When to use pure vs impure functions?
+```js
+function isRightTriangle(d, e, cf){ // Pure 
+    return d ** 2 + e ** 2 == f ** 2
+}
+function sideEffects(args){ // Impure
+    console.log(args)
+    globalVar = args
+}
+```
+---
+# Referential Transparency
+This means that you can substitute the return value of any expression for the expression itself and the program will work exactly the same
+Pure functions are referentially transparent
+Functions with Side effects cannot be.
+```js
+var g = 5;
+fn(g);
+fn(5),
+```
+---
+# ES6 Arrow Functions
+A.K.A Lambda Functions
+```js
+var fn = function(a) {
+    return a
+}
+var fn = (a) => { 
+    return a;
+}
+```
+---
+## Implicit return statement
+```js
+j => j ** 2
+```
+
+---
+# Naming functions
+In Javascript, the naming convention used is called Camel Case
+it looks like this:
+```js
+function camelCaseNaming(){}
+```
+---
+## There is also Kebab Case and Pascal Case
+Some frameworks need to convert between these naming conventions
+So being consistent is key
+```css
+.kebab-case-naming {
+    font-size: 2rem;
+}
+```
+
+```js
+function PascalCaseNaming(){}
+```
+---
+# Function Scope
+### Closures
+### Lexical Scope of Arrow Functions
+---
+# IIFE (Immediately Invoked Function Expression)
+* These create a private scope
+```js
+(function (parameters, arguments){
+    // do stuff
+}())
+```
+```js
+var publicAPI = (function (parameters, arguments){
+   let privateVar = true;
+   return {
+       publicVar: true
+   }
+}())
+```
+---
+---
+# Callbacks and Anonymous Functions
+A callback is a function that is not invoked on the window load, but it is invoked by some kind of trigger (like an event) later on
+```js
+document.addEventListener('click', fn) // Using a named function as a Callback
+```
+
+```js
+document.addEventListener('click', function(){
+    // do stuff
+})
+```
+
+```js
+document.addEventListener('click', () => console.log('I'm anonymous'))
+```
         </section>
 
         <section>
