@@ -126,14 +126,14 @@
             <p class="fragment">Interpreters</p>
             <p class="fragment">Just in time Compilers (JIT)</p>
             <p class="fragment">Ahead of time Compliers (AOH)</p>
-            <p class="fragment">Source code, byte code, machine code</p>
+            <p class="fragment">Source code, Byte Code, Machine Code, Binary Code <code>101011</code></p>
             <img src="./img/Machine_code.png" style="max-height: 33vh"/>
            
           </section>
           <section>
             <h2>A Bit of JS History</h2>
             <p>Why all the baggage?</p>
-            <img style="width: 70%" src="http://xahlee.info/comp/i/JavaScript_books_definitive_guide_vs_good_parts.jpg" alt="">
+            <img style="width: 70%" src="./img/bad_parts_good_parts.jpg" alt="">
           </section>
           <section>
             <h2>The Browser Wars</h2>
@@ -332,7 +332,7 @@ typeof false // 'boolean'
           <section>
             <h2>NaN - Not a Number</h2>
             <ul>
-              <li>When checking if value is a <code>NaN</code> literal use <pre><code>Number.isNaN()</code></pre> (returns true only if the argument passed is `NaN`)</li>
+              <li>When checking if value is a <code>NaN</code> literal use <pre><code>Number.isNaN()</code></pre> (returns true only if the argument passed is <code>NaN</code>)</li>
 							<li>When checking if value is simply "not a number," use <pre><code>isNaN()</code></pre> </li>
               <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN">Reference</a></li>
               <li>Examples:</li>
@@ -371,13 +371,13 @@ Number.isNaN(NaN) // true</code></pre>
 </code></pre>
               <div class='flex' style="justify-content: space-between; flex-wrap: wrap;">
                 <p>Escape characters with <code class="large-code">\</code></p>
-                <p>Bracket Notation: <code>'Hello[0]' // 'H'</code></p>
+                <div class='flex' style="width: 60%"> <span >Bracket Notation:</span> <pre style="width: 100%"><code class='large-code'>'Hello[0]' // 'H'</code></pre></div>
                 <div class='flex'> <span>Strings have a property: <code>.length</code> =></span> <pre style='width: 40%'><code class='large-code'>'Hello'.length // 5</code></pre></div>
               </div>
 					</section>
           <section>
 						<h2>Primitives Are Immutable</h2>
-              <pre><code>5 = 4 // Syntax Error
+              <pre><code class='large-code'>5 = 4 // Syntax Error
 var str = 'hello'
 str[0] = 'p'
 console.log(str) // 'hello'
@@ -388,9 +388,9 @@ console.log(str) // 'hello'
 						<h2>Primitive Wrappers</h2>
             <p>Type Casting</p>
 						<ul style="list-style: none; width: 300px">
-							<li><pre><code>String()</code></pre></li>
-							<li><pre><code>Number()</code></pre></li>
-							<li><pre><code>Boolean()</code></pre></li>
+							<li><pre><code class='large-code'>String()</code></pre></li>
+							<li><pre><code class='large-code'>Number()</code></pre></li>
+							<li><pre><code class='large-code'>Boolean()</code></pre></li>
 						</ul>
 					</section>
           <section>
@@ -417,14 +417,13 @@ console.log(str) // 'hello'
               <p><code>-=</code></p>
             </div>
 
-            <pre class='large-code' style="width: 400px;"><code>var a = 3;
+            <pre style="width: 400px;"><code class='large-code'>var a = 3;
 a++
 a+=6
 a--
 a-=1
 a*=2
-a%=11
-            </code></pre>
+a%=11</code></pre>
           </section>
           
         </section>
@@ -445,28 +444,38 @@ var bool = true</code></pre>
           </div><hr>
           <div >
             <p>Visit <a href="https://javascript.info/">https://javascript.info/</a> and open the console.</p>
-            <p>Use <code> document.querySelector()</code> and <code>.innerHTML</code></p>
-            <p>to select the <code>nav</code> element and set it equal to an <code>h1</code> element </p>
-             <p>with a class of <code>"frontpage-banner__title"</code></p>
-            <p>and inner text of a string with the value of "Hello World"</p> 
+            <p>Select the <code>nav</code> element w/ <code>document.querySelector()</code> & save in a <code>var</code></p>
+            <p>Then use <code>.innerHTML</code> on the <code>var</code> to set it equal to:</p>
+            <p><code>&lt;h1 class="frontpage-banner__title"&gt;Hello World&lt;/h1&gt;</code></p>
           </div>
         </section>
 
         <section>
-          <h1>Arrays</h1>
-
-          #### Javascript's Array-like Strings
-But they are immutable, unlike Arrays
-```js
-let str = 'Hello!'
+          <section>
+            <h1>Arrays</h1>
+            <p>A list container for data primitives</p>
+          </section>
+          <section>
+            <h2>Recall Javascripts Array-like Strings</h2>
+<pre><code>var str = 'Hello!'
 str.length = 3;
-console.log(str.length) // 6;
-str[2] = 'l'
-```
-
-##### Basic Array Methods: Challenge use MDN to discover what each of these do:
-```js
-Array.indexOf()
+str.length // 6;
+str[2] = 'l' // str is still 'Hello'</code></pre>
+<p>But Strings are immutable, unlike Arrays</p>
+            <pre><code>var arr = ['H','e','l','l','o','!']
+arr[0] // 'H'
+arr.length // 6
+arr.length = 3
+console.log(arr) // ['H','e','l']</code></pre>
+          </section>
+          <section>
+            <h2>Basic Array Methods</h2>
+            <p>
+              Challenge use 
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">MDN</a>
+              to discover what each of these do:
+            </p>
+            <pre><code>Array.indexOf()
 Array.concat()
 Array.push()
 Array.pop()
@@ -474,207 +483,244 @@ Array.shift()
 Array.unshift()
 Array.split()
 Array.slice()
+Array.sort()
 Array.splice()
 Array.includes()
-Array.isArray()
-```
-
-#### Creating Array via Static Methods
-```js
-Array.of(1, 2, 3) // [1, 2, 3]
+Array.isArray()</code></pre>
+          </section>
+          <section>
+            <h2>Creating Array via Static Methods</h2>
+            <pre><code>Array.of(1, 2, 3) // [1, 2, 3]
 Array.from('string') // ["s", "t", "r", "i", "n", "g"]
-Array.from(document.querySelectorAll('div')) // array of div nodes
-```
----
-#### The Array Index
-Arrays are zero-indexed adn the indices must be integers
-```js
-let arr = [1, 2, 3];
+Array.from(document.querySelectorAll('div')) // array of div nodes</code></pre>
+          </section>
+          <section>
+            <h2>The Array Index</h2>
+            <p>Arrays are zero-indexed & the indices must be integers</p>
+            <pre><code>let arr = [1, 2, 3];
 arr[0] = 1; arr[2] = 3;
 console.log(arr[4]); // undefined
 arr[6] = 'ten';
-console.log(arr) // [1, 2, 3, undefined, undefined, "ten"]
-```
----
-#### The Array Length Property
-```js
-let arr = [1, 2, 3]
+console.log(arr) // [1, 2, 3, undefined, undefined, "ten"]</code></pre>
+          </section>
+          <section>
+            <h2>The Array Length Property</h2>
+            <pre><code>let arr = [1, 2, 3]
 console.log(arr.length) // 3
 arr[arr.length] || arr[arr.length - 1]
-arr.length = 4; // [1, 2, 3, undefined]
-```
-
-#### Arrays
-Definition:
-Arrays are list-like objects which have built-in methods to perform list traversal and value mutation.
-Arrays can hold hold any number of different values (Primitives or Objects)
-```js
-['a', 'man', 'a', 'plan', 'a', 'canal', 'panama']
-[2, null, 'string', {key: 'value'}, ['nested', 'arrays']]
-```
----
-#### Creating Arrays
-```js
-let array = [1, 2, 3]; // Array Literal
+arr.length = 4; // [1, 2, 3, undefined]</code></pre>
+          </section>
+          <section>
+            <h2>Arrays</h2>
+            <p>Arrays are list-like objects which have built-in methods to perform list traversal and value mutation.</p>
+            <p>Arrays can hold hold any number of different values (Primitives or Objects)</p>
+            <pre><code>['a', 'man', 'a', 'plan', 'a', 'canal', 'panama']
+[2, null, 'string', {key: 'value'}, ['nested', 'arrays']]</code></pre>
+          </section>
+          <section>
+            <h2>Creating Arrays</h2>
+            <pre><code>let array = [1, 2, 3]; // Array Literal
 let arr = new Array(1, 2, 3); // Array constructor
-let arr = new Array(3); // [undefined, undefined, undefined]
-```
----
-
+let arr = new Array(3); // [undefined, undefined, undefined]</code></pre>
+          </section>
         </section>
 
         <section>
-          <h1>Functions</h1>
-          # Javascript Functions
-```js
-function fn(a, b){
+          <section>
+            <h1>Functions</h1>
+            <p>A re-usable batch of code</p>
+          </section>
+          <section>
+            <h2>Javascript Functions</h2>
+            <pre><code>function fn(a, b){
     // do stuff
 }
-```
----
-Definition
-## A __function__ is fundamental building block in javascript
-### It's a __procedure__ that executes a set of statements when invoked.
-### The statements might perform a task or calculate a value
----
-# Function Declaration vs Expression
-Hoisting Applies differently in these two
-```js
-function fn(d, e){ // Function Declaration
+fn(1, true) // can be reused by invoking it</code></pre>
+          </section>
+          <section>
+            <h2>Vocab Preview</h2>
+            <ul style="columns: 2;">
+              <li>Function Block (Scope)</li>
+              <li>Arguments (Args)</li>
+              <li>Parameters (Params)</li>
+              <li>Passing Args/Params</li>
+              <li>Invoking/Calling/Executing</li>
+              <li>Function Declaration vs. Expression</li>
+              <li>Anonymous Function</li>
+              <li>Arrow Function</li>
+              <li>Method vs. Function</li>
+              <li>Hoisting</li>
+            </ul>
+          </section>
+          <section>
+            <h2>More Definition on Functions</h2>
+            <ul>
+              <li>A <strong>function</strong> is fundamental building block in any Javascript app</li>
+              <li>It's a <strong>procedure</strong> that executes a set of statements when invoked</li>
+              <li>A procedure is a a set of serial instructions expressed as code</li>
+              <li>Any amount of arbitrary code can be written within a function block as the procedure</li>
+              <li>The procedures might calculate a value, modify the DOM or communicate with a server, etc..</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Function Declaration vs Expression</h2>
+            <p>Hoisting applies differently to these:</p>
+            <pre><code>fnDec() // works
+fnExp() // will be undefined... TypeError: fnExp is not a function
+
+function fnDec(d, e){ // Function Declaration
     //...
 } 
-var fn = function(){ // Function Expression
+var fnExp = function(){ // Function Expression
     //...
-} 
-```
----
-# Some Terms:
-Argument List, Arguments, Parameters, Function Block, Passing Args
----
-# Invoking a Function
-```js
-function fn(a){
+}
+</code></pre>
+<p>During the parsing step, the JS Engine traverses .js files twice</p>
+          </section>
+          <section>
+            <h2>Invoking a Function</h2>
+            <pre><code>function fn(a){
     console.log(a) 
 }
 fn('hello') // Invocation of Function
-fn() // If the argument list is empty, then a is undefined
-```
----
-# First Class Functions
-```js
-function fn(args){
+fn() // If the argument list is empty, then 'a' is undefined</code></pre>
+          </section>
+          <section>
+            <h2>First Class Functions</h2>
+            <pre><code>function fn(args){
     // do stuff
 }
-var gn = function(){
+var func = function(){
     // do other stuff
 }
-fn(gn) // Functions can be passed into other functions
-```
----
-# The Return statement
-
-```js
-function fn(x, y){
+fn(func) // Functions can be passed into other functions</code></pre>
+          </section>
+          <section>
+            <h2>The Return Statement</h2>
+            <pre><code>function fn(x, y){
     let z = 5;
-    return x * y;
-}
-```
----
-# Pure Function and Side Effects
-When to use pure vs impure functions?
-```js
-function isRightTriangle(d, e, cf){ // Pure 
+    return (x * y) / z;
+}</code></pre>
+          </section>
+          <section>
+            <h2>Pure Functions & Side Effects</h2>
+            <p>When to use pure vs impure functions?</p>
+            <pre><code>function isRightTriangle(d, e, cf){ // Pure 
     return d ** 2 + e ** 2 == f ** 2
 }
 function sideEffects(args){ // Impure
     console.log(args)
     globalVar = args
-}
-```
----
-# Referential Transparency
-This means that you can substitute the return value of any expression for the expression itself and the program will work exactly the same
-Pure functions are referentially transparent
-Functions with Side effects cannot be.
-```js
-var g = 5;
-fn(g);
-fn(5),
-```
----
-# ES6 Arrow Functions
-A.K.A Lambda Functions
-```js
-var fn = function(a) {
+}</code></pre>
+          </section>
+          <section>
+            <h2>Referential Transparency</h2>
+            <ul>
+              <li>The return value of any expression can be substituted for the expression itself & the program will work exactly the same</li>
+              <li>Pure functions are referentially transparent</li>
+              <li>Functions with Side effects cannot be</li>
+            </ul>
+            <pre><code class="large-code">var g = 5
+fn(g)
+fn(5)</code></pre>
+          </section>
+          <section>
+            <h2>ES6 Arrow Functions</h2>
+            <p>A.K.A. Lambda Functions</p>
+            <pre><code class="large-code">var fn = function(a) {
     return a
 }
 var fn = (a) => { 
     return a;
-}
-```
----
-## Implicit return statement
-```js
-j => j ** 2
-```
-
----
-# Naming functions
-In Javascript, the naming convention used is called Camel Case
-it looks like this:
-```js
-function camelCaseNaming(){}
-```
----
-## There is also Kebab Case and Pascal Case
-Some frameworks need to convert between these naming conventions
-So being consistent is key
-```css
-.kebab-case-naming {
+}</code></pre>
+          </section>
+          <section>
+            <h2>The Implicit Return Statement</h2>
+            <pre><code class="large-code">j => j ** 2</code></pre>
+<pre><code class="large-code">j => (
+  j ** 2
+)</code></pre>
+<p>Equivalent to:</p>
+<pre><code class="large-code">j => {
+  return j ** 2
+}</code></pre>
+          </section>
+          <section>
+            <h2>Passing Parameters in Arrow Functions</h2>
+            <pre><code class="large-code">() => 100 ** 2
+ a => 100 ** a
+(a) => 100 ** a
+(a, b) => b ** a</code></pre>
+          </section>
+          <section>
+            <h2>Naming Functions</h2>
+            <p>In Javascript, the naming convention used is called Camel Case</p>
+            <p>it looks like this:</p>
+            <pre><code class="large-code">function camelCaseNaming(){}</code></pre>
+          </section>
+          <section>
+            <h2>There is also Kebab Case, Pascal Case, Snake Case</h2>
+            <p>Some libraries need to convert between these naming conventions</p>
+            <p>So being consistent is key</p>
+            <pre><code class="large-code">.kebab-case-naming {
     font-size: 2rem;
+}</code></pre>
+<pre><code class="large-code">function PascalCaseNaming(){}
+function snake_case_naming() {}</code></pre>
+          </section>
+          <section>
+            <h2>Function Scope</h2>
+            <pre><code>var z = 10, x = 2, y = 10;
+function fn(x, y){
+    let z = 5;
+    return (x * y) / z;
 }
-```
-
-```js
-function PascalCaseNaming(){}
-```
----
-# Function Scope
-### Closures
-### Lexical Scope of Arrow Functions
----
-# IIFE (Immediately Invoked Function Expression)
-* These create a private scope
-```js
-(function (parameters, arguments){
+console.log(z) // ReferenceError
+fn(1, 5) // 1
+fn(1) // NaN</code></pre>
+            <p>Take advantage of Function Scope by using an IIFE to create a "Closure"</p>
+          </section>
+          <section>
+            <h2>IIFE</h2>
+            <h3>Immediately Invoked Function Expression</h3>
+            <p>These create a private scope</p>
+            <pre><code class="large-code">(function (parameters, arguments){
     // do stuff
+}())</code></pre>
+          </section>
+          <section>
+            <h2>Closures</h2>
+            <pre><code class="large-code">var publicAPI = (function (a, b){
+  let privateVar = a + 'our secret';
+  return [
+      true,
+      a + b
+  ]
 }())
-```
-```js
-var publicAPI = (function (parameters, arguments){
-   let privateVar = true;
-   return {
-       publicVar: true
-   }
-}())
-```
----
----
-# Callbacks and Anonymous Functions
-A callback is a function that is not invoked on the window load, but it is invoked by some kind of trigger (like an event) later on
-```js
-document.addEventListener('click', fn) // Using a named function as a Callback
-```
+publicAPI[0] // true
+privateVar // ReferenceError
+privateVar[privateVar] // ReferenceError
+publicAPI.privateVar // ReferenceError</code></pre>
+          </section>
+          <section>
+            <h2>Callbacks & Anonymous Functions</h2>
+            <p>A callback is a function that is not invoked on the window load, but it is invoked by some kind of trigger (like an event) later on</p>
+            <pre><code class="large-code">// Using an anonymous function as a Callback
+var months = ['March', '', 'Jan', '', 'Feb']
+months.sort((a, b) => Boolean(b) - 1)
+// ['March', 'Jan', 'Feb', '', '']
 
-```js
-document.addEventListener('click', function(){
-    // do stuff
-})
-```
+// Using a named function as a Callback
+function sortEmpties(a, b) {
+  return Number(Boolean(b)) - 1
+}
+months.sort(sortEmpties)</code></pre>
+          </section>
+        </section>
 
-```js
-document.addEventListener('click', () => console.log('I'm anonymous'))
-```
+        <section>
+          <h2>Time to combine arrays & functions</h2>
+          <p>Let's make a simple Todo List interface!</p>
         </section>
 
         <section>
