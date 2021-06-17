@@ -535,7 +535,7 @@ fn(func) // Functions can be passed into other functions</code></pre>
           </section>
           <section>
             <h2>Pure Functions & Side Effects</h2>
-            <p>Does the functions return value depend only on the parameters?</p>
+            <p>Does the return value of the function depend only on the parameters and/or internal state?</p>
             <div class="flex" style="justify-content: space-around;">
               <img style="width: 350px" src="./img/blackbox.jpeg" alt="">
               <img style="width: 350px" src="./img/impure_blackbox.jpeg" alt="">
@@ -678,18 +678,19 @@ Math.round()</code></pre>
           </section>
           <section>
             <h2>Let's Look up some basic String Methods</h2>
+            <code>String.prototype</code>
             <ul style="columns: 2">
-              <li>String.toLowerCase()</li>
-              <li>String.repeat()</li>
-              <li>String.trim()</li>
-              <li>String.indexOf()</li>
-              <li>String.lastIndexOf()</li>
-              <li>String.split()</li>
-              <li>String.substr()</li>
-              <li>String.concatenate()</li>
-              <li>String.replace()</li>
-              <li>String.charCodeAt()</li>
-              <li>String.includes()</li>
+              <li>.toLowerCase()</li>
+              <li><code>.repeat()</code></li>
+              <li><code>.trim()</code></li>
+              <li><code>.indexOf()</code></li>
+              <li><code>.lastIndexOf()</code></li>
+              <li><code>.split()</code></li>
+              <li><code>.substr()</code></li>
+              <li><code>.concat()</code></li>
+              <li><code>.replace()</code></li>
+              <li><code>.charCodeAt()</code></li>
+              <li><code>.includes()</code></li>
             </ul>
             <code class="fragment">console.log(String.prototype)</code>
           </section>
@@ -730,18 +731,19 @@ console.log(arr) // ['H','e','l']</code></pre>
               <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">MDN</a>
               to discover what each of these do:
             </p>
-            <pre><code class='med-code'>Array.indexOf()
-Array.concat()
-Array.push()
-Array.pop()
-Array.shift()
-Array.unshift()
-Array.split()
-Array.slice()
-Array.sort()
-Array.splice()
-Array.includes()
-Array.isArray()</code></pre>
+            <code>Array.prototype</code>
+            <pre><code class='med-code'>.indexOf()
+.concat()
+.push()
+.pop()
+.shift()
+.unshift()
+.split()
+.slice()
+.sort()
+.splice()
+.includes()
+.isArray()</code></pre>
           </section>
           <section>
             <h2>Creating Array via Static Methods</h2>
