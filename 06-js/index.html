@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../04-css-2/css/reveal.css">
     <link rel="stylesheet" href="../04-css-2/css/theme/jing.css">
     <link rel="stylesheet" href="./timeline.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
     <link rel="stylesheet" href="../04-css-2/lib/css/zenburn.css">
     <link rel="stylesheet" href="../laser.css">
@@ -464,21 +465,21 @@ a%=11</code></pre>
           <h2>Challenges</h2>
           <div class="flex">
             <div style="margin-right: 1rem;">Given:</div>
-            <pre><code>var str1 = "or"
+            <pre><code class='med-code'>var str1 = "or"
 var str2 = "man"</code></pre>
-            <span>Create the string: <code>"maroon5"</code></span>
+            <span title="str2[0] + str2[1] + str1[1] + str1[0] + str1[0] + str2[2] + (str1 + str2).length">Create the string: <code>"maroon5"</code></span>
           </div><hr>
           <div class='flex' style='justify-content: space-between;'>
           <span style="margin-right: 1rem;">Given: </span>
-            <pre><code>var str = "hello world"
+            <pre><code class='med-code'>var str = "hello world"
 var bool = true</code></pre>
-            <span>Create the string: <code>"hollowed out"</code></span>
+            <span title="(typeof str)[0] + str[4] + str[3] + str[10] + str[5] + String(bool)[2] + String(bool)[0]">Create the string: <code>"sold out"</code></span>
           </div><hr>
           <div >
             <p>Visit <a href="https://javascript.info/">https://javascript.info/</a> and open the console.</p>
             <p>Select the <code>nav</code> element w/ <code>document.querySelector()</code> & save in a <code>var</code></p>
-            <p>Then use <code>.innerHTML</code> on the <code>var</code> to set it equal to:</p>
-            <p><code>&lt;h1 class="frontpage-banner__title"&gt;Hello World&lt;/h1&gt;</code></p>
+            <p>Then use <code>.innerHTML</code> on the <code>var</code> to set it equal to the string:</p>
+            <p><code>'&lt;h1 class="frontpage-banner__title"&gt;Hello World&lt;/h1&gt;'</code></p>
           </div>
         </section>
 
@@ -1009,8 +1010,11 @@ try {
           
           <section>
             <h2>Code Execution Visualizer</h2>
+            <p><a href="http://pythontutor.com/iframe-embed.html#code=var%20globalVar%20%3D%20'Hello'%0A%0Afunction%20greetFriend%20%28name%29%20%7B%0A%20%20globalVar%20%2B%3D%20'%20'%20%2B%20name%0A%20%20return%20globalVar%0A%7D%0A%0Aconsole.log%28greetFriend%28'Jamie'%29%29%0Aconsole.log%28greetFriend%28'Kermit'%29%29%0Aconsole.log%28greetFriend%28'Pikachu'%29%29&codeDivHeight=400&codeDivWidth=350&curInstr=16&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D">Example 1</a></p>
+            <p><a href="http://pythontutor.com/iframe-embed.html#code=var%20globalVar%20%3D%20'Hello'%0A%0Afunction%20greetFriend%20%28salutation,%20name%29%20%7B%0A%20%20salutation%20%2B%3D%20'%20'%20%2B%20name%0A%20%20return%20salutation%0A%7D%0A%0Aconsole.log%28greetFriend%28globalVar,%20'Jamie'%29%29%0Aconsole.log%28greetFriend%28globalVar,%20'Kermit'%29%29%0Aconsole.log%28greetFriend%28globalVar,%20'Pikachu'%29%29%0Aconsole.log%28globalVar%29&codeDivHeight=400&codeDivWidth=350&curInstr=17&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D">Example 2</a></p>
+            <p><a href="http://www.pythontutor.com/javascript.html#code=var%20globalVar%20%3D%20'Hello'%0A%0Afunction%20greetFriend%20%28name%29%20%7B%0A%20%20globalVar%20%2B%3D%20'%20'%20%2B%20name%0A%20%20return%20globalVar%0A%7D%0A%0Aconsole.log%28greetFriend%28'Jamie'%29%29%0Aconsole.log%28greetFriend%28'Kermit'%29%29%0Aconsole.log%28greetFriend%28'Pikachu'%29%29&curInstr=16&mode=display&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D">Visualize JS</a></p>
             <p><a href="https://ui.dev/javascript-visualizer/">UI Viz</a></p>
-            <button id='snippet-btn' data-clipboard-text="`function test(a, b, c) {
+            <button class='snippet-btn button is-outlined is-primary' data-clipboard-text="`function test(a, b, c) {
   if(a) {
     c +=1;
   } else if(b) {
@@ -1022,7 +1026,18 @@ try {
   return c;
 }
 
-test(0, 2, 3);`">snippet</button>
+test(0, 2, 3);`">if/else snippet</button>
+<button class="snippet-btn button is-outlined is-info" data-clipboard-text="`var globalVar = 'Hello';
+
+function greetFriend (salutation, name) {
+salutation += ' ' + name;
+return salutation;
+}
+
+console.log(greetFriend(globalVar, 'Jamie'));
+console.log(greetFriend(globalVar, 'Kermit'));
+console.log(greetFriend(globalVar, 'Pikachu'));
+console.log(globalVar);`">pure fn snippet</button>
           </section>
           <section>
             <h2>Further MDN Reading</h2>
@@ -1067,9 +1082,10 @@ test(0, 2, 3);`">snippet</button>
         ]
       });
     </script>
-      <script src="dist/clipboard.min.js"></script>
-    <script>
-      let span = document.querySelector('#snippet-btn')
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
+    <script defer>
+      let span = document.querySelectorAll('.snippet-btn')
       let snippet = `function test(a, b, c) {
   if(a) {
     c +=1;
