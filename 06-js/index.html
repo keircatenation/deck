@@ -140,6 +140,7 @@
           <section>
             <h2>Some resources to guide us</h2>
             <p><a href="http://jargon.js.org/">Glossary of Jargon</a></p>
+            <p><a href="https://glossarytech.com/">GLossary Tech Extension</a></p>
             <h4 class="fragment">E-Textbooks</h4>
             <p class="fragment"><a href="https://exploringjs.com/deep-js/toc.html">Deep Javascript</a></p>
             <p class="fragment"><a href="https://exploringjs.com/es6/index.html">Exploring ES6</a></p>
@@ -851,7 +852,33 @@ let arr = new Array(3); // [undefined, undefined, undefined]</code></pre>
             </ul>
           </section>
           <section>
-            <h2 style="margin-top: -12rem;">Examples <small><a href="https://dorey.github.io/JavaScript-Equality-Table/unified/">Overlaid Table</a></small></h2>
+            <h2>The Missing <strong>XOR</strong></h2>
+            <p>Javascript does have a bitwise <strong>XOR</strong> which uses the <code>^</code> (caret) symbol.</p>
+            <p>Bitwise or Binary <strong>Exclusive OR</strong>: Two inputs of opposite truthiness result in <code>1</code> and if they are the same truthiness they result in <code>0</code></p>
+            <p>It only operates on binary characters (zero/one or true/false). Also works with <code>null, undefined</code></p>
+            <p>Results can be unexpected if the inputs are strings, non-binary numbers or other data structures (i.e. arrays)</p>
+            <pre><code class="med-code">1 ^ 0 // 1
+1 ^ 1 // 0
+true ^ null // 1
+
+var foo = 'string', bar = false
+( foo && !bar ) || ( !foo && bar ) // true
+foo ? !bar : !!bar // true
+
+// Using bitwise XOR - you must coerce to booleans first
+Boolean(foo) ^ Boolean(bar) // 1
+!!foo ^ !!bar // 1
+!!bar ^ !!bar // 0
+            </code></pre>
+            <p>Recommended to package it in a reusable function:</p>
+            <pre><code class="med-code">function XOR(a, b) {
+  return Boolean(!!a ^ !!b)
+}</code></pre>
+            <p><code></code></p>
+            <p><code></code></p>
+          </section>
+          <section>
+            <h2 style="margin-top: -12rem;">Equality Examples <small><a href="https://dorey.github.io/JavaScript-Equality-Table/unified/">Overlaid Table</a></small></h2>
             <pre><code class="med-code">const num = 0;
 const big = 0n
 const str = '0'
@@ -897,7 +924,7 @@ bool === big // false
 
         <section>
           <section >
-            <video src="img/ifelseif.mov" id="ifelse-vid" loop autoplay></video>
+            <video src="img/ifelseif.mov" id="ifelse-vid" loop onclick="togglePlay(this)"></video>
             <div style="margin-top: 25rem; background: white; padding: 0 4rem 4rem;">
               <h1>Control Flow</h1>
               <p>Controlling code logically through branching paths of execution</p>
@@ -1044,6 +1071,164 @@ console.log(globalVar);`">pure fn snippet</button>
             <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling">Control Flow & Error Handling</a></p>
             <p><a href="https://developer.mozilla.org/en-US/docs/Glossary/Control_flow">Control Flow</a></p>
           </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Loops</h2>
+            <img src="img/loop.gif" alt="">
+          </section>
+          <section>
+            <h2>Standard For Loop</h2>
+            <pre><code class="med-code">let arr = [1,2,3,4,5]
+for(let i = 0; i &lt; arr.length; i++){
+    console.log(arr[i])
+}</code></pre>
+          </section>
+          <section>
+            <h2>While Loops</h2>
+            <pre><code class="med-code">let arr = [1,2,3,4,5]
+let i = 0;
+while(i < arr.length) {
+    console.log(arr[i])
+}</code></pre>
+          </section>
+          <section>
+            <h2>Do While Loops</h2>
+            <pre><code class="med-code">let arr = [1,2,3,4,5]
+let i = 0;
+do {
+  i = i + 1;
+  result = result + i;
+} while (i < arr.length);</code></pre>
+          </section>
+          <section>
+            <h2>For Of Loops</h2>
+            <pre><code class="med-code">const array1 = ['a', 'b', 'c'];
+for (const element of array1) {
+  console.log(element);
+}</code></pre>
+          </section>
+          <section>
+            <h2>Looping Over Arrays</h2>
+            <p>Arrays have a built in method called <code>forEach()</code></p>
+            <pre><code class="med-code">let callback = i => console.log(i)
+array.forEach(callback)
+// Works on Nodelists too!
+document.querySelectorAll('div').forEach(callback)
+// But doesn't work on HTML Collections
+document.getElementsByTagName('div').forEach() // TypeError</code></pre>
+          </section>
+          <section>
+            <h2>Other Array Methods<sup><a href="Javascript.info](https://javascript.info/array-methods)">info</a></sup></h2>
+            <pre style="width: 35vw;"><code class="med-code">let arr = [5, 4, 3, 2, 1, 0]
+arr.find(i => i < 4) // return first matching element 
+arr.findIndex(i => i < 4) // returns the index of the first matching element 
+.some(i => i < 4) // returns true if condition is met at least once
+.every(i => i < 4) // returns true only if condition is met for all
+.includes(4) // returns true only if it contains the parameter</code></pre>
+          </section>
+          <section>
+            <h2>Advanced Array Methods</h2>
+            <p>These do not mutate the array. They create a copy.</p>
+            <p>All of them take a callback function to customize their behavior.</p>
+            <pre><code class='med-code'>.map()
+.filter()
+.reduce()
+.find()
+.every()
+.some()</code></pre>
+          </section>
+          <section>
+            <h2>Map</h2>
+            <p>Transforms an array and always returns an array of the same length</p>
+            <pre><code class='med-code'>let arr = [1,2,3]
+var squares = arr.map(i => i **2) // returns [1,4,9]
+console.log(arr) // [1,2,3]
+            </code></pre>
+          </section>
+          <section>
+            <h2>flatMap</h2>
+            <p>Works just like <code>.map()</code>, but also flattens the array by one level</p>
+            <pre><code class="med-code">var arr = [1, 2, 3, 4];
+arr.flatMap(x => [x, x * 2]); // [1, 2, 2, 4, 3, 6, 4, 8]
+
+var arr2 = [[1,2], [2,3], [3,4]]
+arr2.flatMap(x => x) //  [1, 2, 2, 3, 3, 4]</code></pre>
+          </section>
+          <section>
+            <h2>Filter</h2>
+            <p>Removes elements from array when the callback does not return true</p>
+            <pre><code class='med-code'>[1,2,3,4].filter(i => i > 2) // [3,4]
+[[1 ,2],[3, 3],[4, 5]].filter(i => i[0] > 3) // [[4, 5]]</code></pre>
+          </section>
+          <section>
+            <h2>Reduce</h2>
+            <p>The callback processes all the elements in the array and reduces them down to one value called the accumulator.</p>
+            <p>Always returns a single output value. </p>
+            <pre><code class="med-code">[0, 1, 2, 3, 4].reduce((accumulator, currentValue, currentIndex, array) => {
+  return accumulator + currentValue
+}, 0)
+// .reduceRight starts from the end and works towards the start
+arr.reduceRight((acc, cur) => acc.concat(cur), [])</code></pre>
+          </section>
+          <section>
+            <h2>Reduce Step-by-step</h2>
+            <table class="table table-striped table-bordered">
+              <thead>
+              <tr>
+              <th>callback</th>
+              <th>accumulator</th>
+              <th>currentValue</th>
+              <th>currentIndex</th>
+              <th>array</th>
+              <th>return value</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+              <td>first call</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>[0, 1, 2, 3, 4]</td>
+              <td>1</td>
+              </tr>
+              <tr>
+              <td>second call</td>
+              <td>1</td>
+              <td>2</td>
+              <td>2</td>
+              <td>[0, 1, 2, 3, 4]</td>
+              <td>3</td>
+              </tr>
+              <tr>
+              <td>third call</td>
+              <td>3</td>
+              <td>3</td>
+              <td>3</td>
+              <td>[0, 1, 2, 3, 4]</td>
+              <td>6</td>
+              </tr>
+              <tr>
+              <td>fourth call</td>
+              <td>6</td>
+              <td>4</td>
+              <td>4</td>
+              <td>[0, 1, 2, 3, 4]</td>
+              <td>10</td>
+              </tr>
+              </tbody>
+              </table>
+          </section>
+          <section>
+            <h2>Array Methods Challenge</h2>
+            <p><a href="https://github.com/JamieVaughn/code-along/tree/master/array-methods">Github Link</a></p>
+            <h4>You will have to do some <em>"Read, Search Asking"</em> <br> about <code>.some(), .every()</code></h4>
+          </section>
+        </section>
+
+        <section>
           <section>
             <h2>Calculator Code Along</h2>
             <p><a href="https://github.com/JamieVaughn/code-along/tree/master/calculator">Github Repo Starter</a></p>
@@ -1051,7 +1236,184 @@ console.log(globalVar);`">pure fn snippet</button>
         </section>
 
         <section>
-          <h2>Use your new JS hammer wisely</h2>
+          <section>
+            <h2>Objects</h2>
+            <p>A Collection of Key & Value pairs</p>
+          </section>
+          <section>
+            <h2>Declaring Object Literals</h2>
+            <pre><code class="med-code">let obj = {
+    key: 'value', // key (not index)
+    "aka property": 2, // Use quotes for multi-word keys
+    key2: [1, 2, 3], // holds any data type
+    key3: { key: ' nested value' }, //even nested objects
+    key4: function(a, b) { console.log('method') }, // trailing commas
+    // ^ Functions on an object are called methods
+}</code></pre>
+          </section>
+          <section>
+            <h2>Accessing Object Values</h2>
+            <p>Dot Notation & Bracket Notation</p>
+            <pre><code class="med-code">obj.key // 'value'
+obj["key"] // value
+obj["aka property"] // 2
+obj.key2[0] // 1
+obj.key3.key // 'nested value'
+obj.key4(a, b) // invokes key3 method</code></pre>
+          </section>
+          <section>
+            <h2>The Object Constructor</h2>
+            <pre><code class="med-code">let obj = new Object // {}
+obj.key = 'value' // must populate keys manually</code></pre>
+          </section>
+          <section>
+            <h2>The <code>this</code> keyword</h2>
+            <pre><code class="med-code">const person = {
+  name: 'Chris',
+  greeting: function() {
+    alert('Hello ' + this.name + ', Welcome!');
+  }
+}</code></pre>
+          </section>
+          <section>
+            <h2>Inheritance</h2>
+            <p><code>Object.create()</code></p>
+            <pre><code class="med-code">const person = {
+  isHuman: true,
+  greet:() => console.log(`Hello there!`);
+  }
+};
+const me = Object.create(person);
+me.name = "Jamie"; // "name" is a property set on "me", but not on "person"
+me.isHuman = true; // inherited properties can be overwritten
+me.greet() // 'Hello there!'</code></pre>
+          </section>
+          <section>
+            <h2>Merging Objects</h2>
+            <p><code>Object.assign()</code></p>
+            <p>This overwrites the target object and avoids inheritance</p>
+            <pre><code class='med-code'>const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+const returnedTarget = Object.assign(target, source);
+console.log(target);// Object { a: 1, b: 4, c: 5 }
+console.log(returnedTarget);// Object { a: 1, b: 4, c: 5 }</code></pre>
+          </section>
+          <section>
+            <h2>Pass by Reference vs Pass by Value</h2>
+            <p>Objects (& Functions, Arrays)are <strong>passed by Reference</strong></p>
+            <p>Primitives are <strong>passed by Value</strong></p>
+            <pre><code class="med-code">let obj = { key: 'value' }
+let another = obj
+another.test = 'same object in memory'
+console.log(obj) // {key: 'value', test: 'same object in memory'}</code></pre>
+          </section>
+          <section>
+            <h2>Cloning an Object with <code>.assign()</code></h2>
+            <p>This will avoid the potential collisions due to <strong>passing by Reference</strong></p>
+            <pre><code class="med-code">const obj = {name: 'Jamie', isHuman: true};
+const uniqueObj = Object.assign({}, obj)
+// now there are two separate objects in memory</code></pre>
+          </section>
+          <section>
+            <h2>Mutating Objects</h2>
+            <pre ><code class="med-code">let obj = { key: 'value' }
+obj.prop = 1 // add a new key-value pair
+obj.key = 5 // change an existing value
+console.log(obj) // {key: 5, prop: 1}
+delete obj.key // delete a key-value pair
+console.log(obj) // {prop: 1}</code></pre>
+          </section>
+          <section>
+            <h2>Protecting Objects</h2>
+            <p>Making an object read-only has some "gotchas"</p>
+            <pre><code class="med-code">const obj = {key: 'value'}
+obj.key = 3 // this works
+obj = {name: 'new'} // Throws Error
+Object.seal(obj)
+Object.freeze(obj)</code></pre>
+          </section>
+          <section>
+            <pre><code class="large-code">Object.seal()</code></pre>
+            <p>Prevents deletion of properties</p>
+            <pre><code class="med-code">const obj = {prop: 2 };
+Object.seal(obj);
+obj.prop = 3;
+obj.greet = 'hello'
+console.log(obj.prop, obj.greet);// 3, 'hello'
+delete obj.prop; // cannot delete when sealed
+console.log(obj.prop);// still 3</code></pre>
+          </section>
+          <section>
+            <pre><code class="large-code">Object.freeze()</code></pre>
+            <p>Prevents deletion and alteration of properties. But only on 1st level of nesting</p>
+            <pre><code class="med-code">const obj = {prop: 2, key: {greet: 'hello'}};
+Object.seal(obj);
+obj.prop = 3;
+obj.greet = 'hello'
+obj.key.greet = 'Aloha'
+console.log(obj.prop, obj.greet, obj.key.greet);// 3, undefined, 'Aloha'
+delete obj.prop; // cannot delete when frozen
+console.log(obj.prop);// still 3</code></pre>
+          </section>
+          <section>
+            <h2>Recursively Freezing an Object</h2>
+            <p>This is not a native JS function. You have to write it yourself: <a href="https://github.com/substack/deep-freeze/blob/master/index.js">Github</a></p>
+            <pre><code class="med-code">function deepFreeze (o) {
+  Object.freeze(o);
+  Object.getOwnPropertyNames(o).forEach(prop => {
+    if (o.hasOwnProperty(prop) && o[prop] !== null && (typeof o[prop] === "object"
+    || typeof o[prop] === "function") && !Object.isFrozen(o[prop])) {
+      deepFreeze(o[prop]);
+    }
+  });
+  return o;
+};</code></pre>
+          </section>
+          <section>
+            <h2>Looping in Objects</h2>
+            <p>The For...in Loop (Does not garauntee order)</p>
+            <pre><code class="med-code">const object = {a: 1, b: 2, c: 3};
+for (const property in object) {
+  console.log(`${property}: ${object[property]}`);
+}
+// "a: 1"
+// "b: 2"
+// "c: 3"</code></pre>
+          </section>
+          <section>
+            <h2>Converting an Object to an Array</h2>
+            <p>Often it's easier to manipulate Objects as arrays (and then turn it back afterwards)</p>
+            <pre><code class="med-code">const obj = {a: 1, b: 2, c: 3};
+Object.entries(obj) // [['a', 1],['b', 2],['c', 3]]
+Object.keys(obj) // ['a', 'b', 'c']
+Object.values(obj) // [1, 2, 3]
+// Reverse the process:
+Object.fromEntries([['a', 1],['b', 2],['c', 3]]) //{a: 1, b: 2, c: 3}</code></pre>
+          </section>
+          <section>
+            <h2>Prototypes</h2>
+            <p>We've been using Objects this whole time!</p>
+            <img src="img/always_has_been.jpg" alt="">
+          </section>
+          <section>
+            <h2>Prototype Objects</h2>
+            <p>Everything is an inspectable object, except <code>null, undefined</code> <sup><code>null</code> is an object though</sup></p>
+            <p>Even the Primitives we've seen have methods on them, because they're Objects</p>
+            <pre><code class="med-code">String.prototype
+Number.prototype
+Boolean.prototype
+Symbol.prototype
+BigInt.prototype
+Array.prototype
+Object.prototype
+Function.prototype // no methods/properties of its own</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <h2>JS Validation Tool</h2>
+          <p><a href="https://validatejavascript.com/">ValidateJavascript.com (can choose linting rules)</a></p>
+          <h3>Use your new JS hammer wisely</h3>
           <p><a href="http://youmightnotneedjs.com/">Not every problem is a nail...</a></p>
           <hr>
           <p><a href="https://jquery.com/">A word on jQuery (~234kb)</a></p>
@@ -1100,6 +1462,11 @@ console.log(globalVar);`">pure fn snippet</button>
 
 test(0, 2, 3);`
 new ClipboardJS(span);
+var playing = false
+function togglePlay(el) {
+  playing ? el.play() : el.pause()
+  playing = !playing
+}
     </script>
   </body>
 </html>
