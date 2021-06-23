@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Intro to Javascript & The DOM API</title>
+    <title>Intro to Javascript</title>
     <meta name="description" content="2017 was the year of CSS grid, a powerful tool that was developed specially to do layout on the web. It allows us to do many things that we couldn't before, without extreme measures of hackish-ness. It is definitely not hyperbole to say that CSS grid will revolutionise web design moving forward. This talk will introduce CSS grid and how it can be used to create modern layouts for the web.">
 
     <link rel="stylesheet" href="../04-css-2/css/reveal.css">
@@ -1091,6 +1091,13 @@ for(let i = 0; i &lt; arr.length; i++){
 let i = 0;
 while(i < arr.length) {
     console.log(arr[i])
+    i++
+}
+
+let playing = true
+while(playing) {
+  // game loop calculations
+  if(Player.clicks('Exit')) playing = false
 }</code></pre>
           </section>
           <section>
@@ -1101,6 +1108,15 @@ do {
   i = i + 1;
   result = result + i;
 } while (i < arr.length);</code></pre>
+          </section>
+          <section>
+            <h2>Recursion <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#recursion">MDN</a></sup></h2>
+            <p>An alternative way to implement a loop</p>
+            <p>The function repeatedly calls itself until the exit conditon (aka escape hatch) is met</p>
+            <pre><code class="med-code">function factorial(num) {
+  return num === 0 ? 1 : factorial(num - 1)
+}</code></pre>
+          <p><a href="http://www.pythontutor.com/javascript.html#code=function%20fact%28n%29%20%7B%0A%20%20if%20%28n%20%3D%3D%200%29%20%7B%0A%20%20%20%20return%201%3B%0A%20%20%7D%0A%20%20else%20%7B%0A%20%20%20%20return%20n%20*%20fact%28n-1%29%3B%0A%20%20%7D%0A%7D%0A%0Afact%283%29%3B%0Afact%283%29%3B&mode=edit&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D">Visualize Factorial Fn</a></p>
           </section>
           <section>
             <h2>For Of Loops</h2>
@@ -1254,8 +1270,10 @@ arr.reduceRight((acc, cur) => acc.concat(cur), [])</code></pre>
           <section>
             <h2>Accessing Object Values</h2>
             <p>Dot Notation & Bracket Notation</p>
-            <pre><code class="med-code">obj.key // 'value'
+            <pre><code class="med-code">let myAccess = "key"
+obj.key // 'value'
 obj["key"] // value
+obj[myAccess] // value
 obj["aka property"] // 2
 obj.key2[0] // 1
 obj.key3.key // 'nested value'
@@ -1417,7 +1435,7 @@ Function.prototype // no methods/properties of its own</code></pre>
           <p><a href="http://youmightnotneedjs.com/">Not every problem is a nail...</a></p>
           <hr>
           <p><a href="https://jquery.com/">A word on jQuery (~234kb)</a></p>
-          <ul><span style="margin-left: -3.5rem;;">YAGNI</span>
+          <ul><span style="margin-left: -3.5rem; columns: 2;">YAGNI</span>
             <li><a href="http://youmightnotneedjquery.com/">1</a></li>
             <li><a href="https://blog.garstasio.com/you-dont-need-jquery/">2</a></li>
             <li> <a href="https://github.com/nefe/You-Dont-Need-jQuery">3</a></li>

@@ -1,5 +1,295 @@
-<section>
-          <section>
-            <h1>The DOM API</h1>
-          </section>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Intro to the DOM API</title>
+    <meta name="description" content="2017 was the year of CSS grid, a powerful tool that was developed specially to do layout on the web. It allows us to do many things that we couldn't before, without extreme measures of hackish-ness. It is definitely not hyperbole to say that CSS grid will revolutionise web design moving forward. This talk will introduce CSS grid and how it can be used to create modern layouts for the web.">
+
+    <link rel="stylesheet" href="../04-css-2/css/reveal.css">
+    <link rel="stylesheet" href="../04-css-2/css/theme/jing.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <link rel="stylesheet" href="../04-css-2/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../laser.css">
+		<script src="../laser.js"></script>
+
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../04-css-2/css/print/pdf.css' : '../04-css-2/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style>
+      .flex-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      .flex > img {
+        width: 50%;
+      }
+      .grid {
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      pre {
+        padding: 8px !important;
+        border-radius: 8px !important;
+        background: #3f3f3f;
+        position: relative;
+      }
+      .reveal .slides pre code.large-code {
+        font-size: 2.5rem !important;
+        line-height: 3rem !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+      }
+      .reveal .slides pre code.med-code {
+        font-size: 1.9rem !important;
+        line-height: 2.25rem !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+      }
+      .reveal .slides .nosidescroll {
+        overflow-x: hidden;
+      }
+      .livecode {
+        max-height: 30vh !important;
+      }
+      .livecode.serious {
+        max-height: 20vh !important;
+      }
+      .slack-code {
+        padding: 1px 6px !important;
+        background: #ddd;
+        color: rgb(180, 47, 69);
+        border-radius: 4px;
+      }
+      fieldset {
+        border: 3px solid #444 !important;
+        width: fit-content;
+        padding: 1rem !important;
+      }
+      :not(pre) >  code {
+        padding: 4px !important;
+        background: lightgrey;
+        color: rgb(211, 12, 52);
+        border-radius: 8px;
+      }
+      pre.wrong::before {
+        content: '🚫';
+        position: absolute;
+        left: -4rem;
+        font-size: 4rem;
+        top: 2rem;
+
+      }
+      pre.correct::before {
+        content: '✅';
+        position: absolute;
+        left: -4rem;
+        font-size: 4rem;
+        top: 2rem;
+
+      }
+      #ifelse-vid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        bottom: 0;
+        z-index: -9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+        <section>
+          <h1>The DOM API</h1>
+          <h5>The <u>D</u>ocument <u>O</u>bject <u>M</u>odel</h5> 
+          <h5><u>A</u>pplication <u>P</u>rogramming <u>I</u>nterface</h5>
+          <br>
+          <p><em>Looks like JS, but it's separate. Yet it inter<em style='font-style: normal;'>f</em>aces with JS.</em></p>
+          <br>
+          <p>This link between JS and the DOM is the key to building dynamic websites because it allows you to use JavaScript to make changes to your HTML reactively to user input.</p>
         </section>
+        
+        <section>
+          <h2>The Document Object Model</h2>
+          <p><a href="https://www.w3.org/standards/webdesign/script">DOM vs JS</a></p>
+          <p><a href="https://www.w3.org/standards/webdesign/">W3C Standards</a></p>
+          <p><a href="https://www.w3.org/TR/?tag=dom">The DOM Standards</a></p>
+          <p><a href="https://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/">DOM level 3 Spec</a></p>
+          <p><a href="https://dom.spec.whatwg.org/">Living DOM Standard</a> <sup><a href="https://dom.spec.whatwg.org/review-drafts/2020-06/">Draft Spec</a></sup></p>
+        </section>
+
+        
+        <section>
+          <h2><code>document</code></h2>
+          <p>The Document Object Itself</p>
+          <p><code>console.log(document)</code></p>
+        </section>
+
+        <section>
+          <h2>The BOM & the Window</h2>
+          <p>The browser runtime's global scope</p>
+          <p>This is where JS code executes and where the DOM lives, so they can interface with one another.</p>
+          <p><code>console.log(window)</code></p>
+          <p>There are no official standarads for the  <a href="https://www.w3schools.com/js/js_window.asp">BOM</a>, so I lump it into the DOM</p>
+        </section>
+
+        <section>
+          <h2>The DOM Base Classes</h2>
+          <img src="img/Node_hierarchy.png" alt="">
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget">EventTarget</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node">Node</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/SVGElement">SVGElement</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Text">Text</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Comment">Comment</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>DOM API Lookup Challenge</h2>
+          <ul style="columns: 2;">
+            <li><code>.querySelector()</code></li>
+            <li><code>.querySelectorAll()</code></li>
+            <li><code>.createElement()</code></li>
+            <li><code>.createTextNode()</code></li>
+            <li><code>.appendChild()</code></li>
+            <li><code>.append() / .prepend()</code></li>
+            <li><code>.insertAdjacentElement()</code></li>
+            <li><code>.removeChild()</code></li>
+            <li><code>.cloneNode()</code></li>
+            <li><code>.setAttribute()</code></li>
+            <li><code>.innerText</code></li>
+            <li><code>.innerHTML</code></li>
+            <li><code>.addEventListener()</code></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Accessing & Traversing the DOM</h2>
+          <p>The preferred methods that return <a href="https://www.w3schools.com/js/js_htmldom_collections.asp">Node Lists</a></p>
+          
+          <pre><code class='med-code'>document.querySelector()
+docuemnt.querySelectorAll()</code></pre>
+
+            <p>The legacy methods that return <a href="https://www.w3schools.com/js/js_htmldom_nodelist.asp">HTML Collections</a></p>
+          <pre><code class='med-code'>document.getElementById() // This one still comes in handy
+document.getElementsByClassName()            
+document.getElementsByTagName()            
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Creating & Adding DOM Nodes <sup><a href="https://www.w3schools.com/js/js_htmldom_nodes.asp">w3</a></sup></h2>
+
+          <pre><code class="med-code">let label = document.createElement('label');
+let input = document.createElement('input');
+label.append(input);
+label.setAttribute('for', 'form');
+input.id = 'form';
+
+let button = document.createElement('button');
+let buttonText = document.createTextNode('Submit');
+button.append(buttonText);
+
+let fragment = document.createDocumentFragment();
+fragment.append(h1, label, button);
+document.body.append(fragment);</code></pre>
+        </section>
+
+        <section>
+          <h2>The DOM Style Object</h2>
+          <p><a href="https://www.w3schools.com/jsref/dom_obj_style.asp">w3.org docs</a></p>
+        </section>
+
+        <section>
+          <h2>Events <sup><a href="https://www.w3schools.com/js/js_htmldom_events.asp">w3</a></sup></h2>
+          <p>The event source model & functional programming</p>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/Events">List of DOM Events</a></p>
+          <p>Three event types we will work with to start off:</p>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event"><code>click</code></a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event"><code>keydown, keyup</code></a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/submit_event"><code>submit</code></a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Listening to Events</h2>
+          <pre><code class="med-code">document.addEventListener('click', callback)</code></pre>
+          <p>Then we need to <strong>handle</strong> that event with our callback function that we define</p>
+          <p>For Example:</p>
+          <pre style="width: 25vw;"><code class="med-code">button.addEventListener('submit', function(e) {
+    console.log(e.target)
+    const div = document.createElement('div')
+    const text = document.createTextNode('You typed: ' + e.target.value)
+    div.appendChild(text)
+    e.target.appendChild(div);
+})</code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Code Along</h2>
+          <p>Let's make <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Conway's Game of Life</a></p>
+        </section>
+
+        <section>
+          <h2>DOM Challenge</h2>
+          <p>Code a simple Contact Form using these new DOM API Methods!</p>
+        </section>
+
+      </section>
+      </div>
+    </div>
+
+
+    <script src="../04-css-2/lib/js/head.min.js"></script>
+    <script src="../04-css-2/lib/js/caniuse-embed.min.js"></script>
+    <script src="../04-css-2/js/reveal.js"></script>
+
+    <script>
+      Reveal.initialize({
+        dependencies: [
+          { src: '../04-css-2/plugin/markdown/marked.js' },
+          { src: '../04-css-2/plugin/markdown/markdown.js' },
+          { src: '../04-css-2/plugin/notes/notes.js', async: true },
+          { src: '../04-css-2/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
+    <script defer>
+      let span = document.querySelectorAll('.snippet-btn')
+      let snippet = ``
+new ClipboardJS(span);
+var playing = false
+function togglePlay(el) {
+  playing ? el.play() : el.pause()
+  playing = !playing
+}
+    </script>
+  </body>
+</html>
