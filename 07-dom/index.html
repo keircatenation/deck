@@ -183,20 +183,44 @@
             <li><code>.innerHTML</code></li>
             <li><code>.addEventListener()</code></li>
           </ol>
+          <hr>
+
+          <div>
+          <ul style="columns: 2; list-style: none">
+
+            <li>Basic summary of the use case</li>
+            <li>What Object is it chained off of</li>
+            <li>What parameters do these accept</li>
+            <li>What value is returned</li>
+          </ul>
+        </div>
         </section>
 
         <section>
-          <h2>Accessing & Traversing the DOM</h2>
-          <p>The preferred methods that return <a href="https://www.w3schools.com/js/js_htmldom_collections.asp">Node Lists</a></p>
+          <h2>New DOM Access & Traversal</h2>
+          <p>Prefer these new querySelector methods because:</p>
+          <ul>
+            <li>There are fewer to remember</li>
+            <li>They can use full CSS selector syntax</li>
+            <li>They return "array-like" <a href="https://www.w3schools.com/js/js_htmldom_nodelist.asp">Node Lists</a></li>
+            <li>But Node Lists are static</li>
+          </ul>
           
-          <pre><code class='med-code'>document.querySelector()
-docuemnt.querySelectorAll()</code></pre>
-
-            <p>The legacy methods that return <a href="https://www.w3schools.com/js/js_htmldom_nodelist.asp">HTML Collections</a></p>
-          <pre><code class='med-code'>document.getElementById() // This one still comes in handy
-document.getElementsByClassName()            
-document.getElementsByTagName()            
-          </code></pre>
+          <pre><code class='med-code'>document.querySelector('#contact')
+docuemnt.querySelectorAll('header > nav .logo')</code></pre>
+            </section>
+            <section>
+              <h2>Old ways of DOM Access & Traversal</h2>  
+            <p>The legacy methods that return <a href="https://www.w3schools.com/js/js_htmldom_collections.asp">HTML Collections</a></p>
+          <pre><code class='med-code'>document.getElementById('myId') // This one still comes in handy
+document.getElementsByClassName('myClass')            
+document.getElementsByTagName('div')            
+document.getElementsByName('myElementName')</code></pre>
+          <ul>
+            <li>Slightly faster (~5-10%)</li>
+            <li>HTML Collections are dynamic</li>
+            <li>Can be used to limit "Selector Scope" <code>getElementById('main').querySelector('article');</code></li>
+          </ul>
         </section>
 
         <section>
@@ -254,13 +278,69 @@ document.body.append(fragment);</code></pre>
           <h2>Code Along</h2>
           <p>Let's make <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Conway's Game of Life</a></p>
         </section>
+      </section>
 
-        <section>
+      <section>
+        <section style="position: relative;">
           <h2>DOM Challenge</h2>
           <p>Code a simple Contact Form using these new DOM API Methods!</p>
+          <a style="position: absolute; left: 0; bottom: 25vh;" href='"https://github.com/JamieVaughn/code-along/blob/master/DOMAPI/index.html" target='_blank'>.</a>
+        </section>
+        <section>
+          <h2>Use the DOM API to create a simple contact form</h2>
+          <ol style="line-height: 3.5rem;"><strong>Requirements</strong>
+            <li>It should have a <code>&lt;header&gt;</code> with a title of "Contact Me"</li>
+            <li>It should have an <code>&lt;input&gt;</code> inside a label (Bonus: add a <code>for</code> attribute and an <code>id</code> attribute)</li>
+            <li>It should have a <code>&lt;button&gt;</code> with Text of "Submit"</li>
+            <li>Connect an  <code>.addEventListener</code> to the button</li>
+            <li>Add an empty <code>&lt;output&gt;</code> element below the form</li>
+            <li>When the <code>&lt;button&gt;</code> is clicked take the value in the <code>&lt;input&gt;</code> and put it in the <code>&lt;output&gt;</code></li>
+          </ol>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Debugging & Console</h1>
+          <code>console.log(console)</code>
+          <p><a href="https://developer.chrome.com/docs/devtools/">The Dev Tools Overview</a></p>
         </section>
 
+        <section>
+          <h2>The Dev Tools</h2>
+          <p>They're just javascript!</p>
+        </section>
+
+        <section>
+          <h2>Console Methods <sup><a href="https://console.spec.whatwg.org/">Living Spec</a></sup></h2>
+          <pre><code class="med-code">console.log
+console.dir
+console.table
+console.assert
+console.trace
+console.debug
+console.time
+console.timeLog
+console.timeEnd
+console.count
+console.group
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Inspecting code during runtime <sup><a href="https://googlechrome.github.io/devtools-samples/debug-js/get-started">Example Bug</a></sup></h2>
+          <ul>
+            <li>The sources panel</li>
+            <li>Setting Breakpoints</li>
+            <li>Stepping through the code</li>
+            <li>Using the console at a breakpoint</li>
+            <li>Watching Variables</li>
+            <li>Blackboxing libraries</li>
+            <li>Deactivate Breakpoints & Resuming Script</li>
+          </ul>
+        </section>
       </section>
+
       </div>
     </div>
 

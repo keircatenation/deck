@@ -864,6 +864,7 @@ true ^ null // 1
 
 var foo = 'string', bar = false
 ( foo && !bar ) || ( !foo && bar ) // true
+!!foo != !!bar
 foo ? !bar : !!bar // true
 
 // Using bitwise XOR - you must coerce to booleans first
