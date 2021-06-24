@@ -677,6 +677,7 @@ publicAPI.privateVar // ReferenceError</code></pre>
           <section>
             <h2>Callbacks & Anonymous Functions</h2>
             <p>A callback is a function that is not invoked on the window load, but it is invoked by some kind of trigger (like an event) later on</p>
+            <p>Callbacks are sometimes called "Predicates".</p>
             <pre><code class="large-code">// Using an anonymous function as a Callback
 var months = ['March', '', 'Jan', '', 'Feb']
 months.sort((a, b) => Boolean(b) - 1)
