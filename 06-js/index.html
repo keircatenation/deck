@@ -1256,11 +1256,11 @@ arr.reduceRight((acc, cur) => acc.concat(cur), [])</code></pre>
         <section>
           <section>
             <h2>Objects</h2>
-            <p>A Collection of Key & Value pairs</p>
+            <p>Structured Data: A Collection of Key & Value pairs</p>
           </section>
           <section>
             <h2>Declaring Object Literals</h2>
-            <pre><code class="med-code">let obj = {
+            <pre style='width: 100vw;'><code class="med-code">let obj = {
     key: 'value', // key (not index)
     "aka property": 2, // Use quotes for multi-word keys
     key2: [1, 2, 3], // holds any data type
@@ -1282,30 +1282,49 @@ obj.key3.key // 'nested value'
 obj.key4(a, b) // invokes key3 method</code></pre>
           </section>
           <section>
+            <h2>Checking for Properties</h2>
+            <pre><code class="med-code">obj && obj.key
+obj && obj.key3 && obj.key3.key // && Operator as a 'Guard'
+obj?.key3?.key // Optional Chaining Operator
+obj.hasOwnProperty('key');
+'key' in obj;</code></pre>
+          </section>
+          <section>
             <h2>The Object Constructor</h2>
             <pre><code class="med-code">let obj = new Object // {}
 obj.key = 'value' // must populate keys manually</code></pre>
           </section>
           <section>
-            <h2>The <code>this</code> keyword</h2>
+            <h2>The <code>this</code> keyword <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">MDN</a></sup> <sup>/</sup> <sup><a href="https://www.w3schools.com/js/js_this.asp">W3</a></sup></h2>
             <pre><code class="med-code">const person = {
   name: 'Chris',
-  greeting: function() {
+  greet: function() {
     alert('Hello ' + this.name + ', Welcome!');
+  },
+  lambdaGreet1: () => { // `this` is undefined
+    alert('Hello ' + this.name + ' Welcome!');
+  },
+  lambdaGreet2: () => {
+      alert('Hello ' + person.name + ' Welcome!');
   }
 }</code></pre>
+<p><strong>Lexical Scoping:</strong> Arrow functions do not bind a value to <code>this</code>. They will take the <code>Window</code> value for <code>this</code>.</p>
           </section>
           <section>
             <h2>Inheritance</h2>
             <p><code>Object.create()</code></p>
-            <pre><code class="med-code">const person = {
+            <pre style="width: 100vw;"><code class="med-code">const person = {
   isHuman: true,
   greet:() => console.log(`Hello there!`);
   }
 };
 const me = Object.create(person);
-me.name = "Jamie"; // "name" is a property set on "me", but not on "person"
-me.isHuman = true; // inherited properties can be overwritten
+me.name = "Scooby Doo"; 
+// "name" is a property set on "me", but not on "person"
+
+me.isHuman = false; 
+// inherited properties can be overwritten
+
 me.greet() // 'Hello there!'</code></pre>
           </section>
           <section>
@@ -1320,9 +1339,9 @@ console.log(returnedTarget);// Object { a: 1, b: 4, c: 5 }</code></pre>
           </section>
           <section>
             <h2>Pass by Reference vs Pass by Value</h2>
-            <p>Objects (& Functions, Arrays)are <strong>passed by Reference</strong></p>
+            <p>Objects (& Functions, Arrays) are <strong>passed by Reference</strong></p>
             <p>Primitives are <strong>passed by Value</strong></p>
-            <pre><code class="med-code">let obj = { key: 'value' }
+            <pre style="width: 85vw;"><code class="med-code">let obj = { key: 'value' }
 let another = obj
 another.test = 'same object in memory'
 console.log(obj) // {key: 'value', test: 'same object in memory'}</code></pre>
@@ -1332,7 +1351,8 @@ console.log(obj) // {key: 'value', test: 'same object in memory'}</code></pre>
             <p>This will avoid the potential collisions due to <strong>passing by Reference</strong></p>
             <pre><code class="med-code">const obj = {name: 'Jamie', isHuman: true};
 const uniqueObj = Object.assign({}, obj)
-// now there are two separate objects in memory</code></pre>
+// now there are two separate objects in memory
+// each with the same properties</code></pre>
           </section>
           <section>
             <h2>Mutating Objects</h2>
@@ -1353,36 +1373,48 @@ Object.seal(obj)
 Object.freeze(obj)</code></pre>
           </section>
           <section>
-            <pre><code class="large-code">Object.seal()</code></pre>
+            <code class="large-code">Object.seal()</code>
             <p>Prevents deletion of properties</p>
             <pre><code class="med-code">const obj = {prop: 2 };
 Object.seal(obj);
+// can mutate a sealed object's existing properties
 obj.prop = 3;
+console.log(obj.prop);// 3
+// cannot delete when sealed
+delete obj.prop; 
+// cannot add new properties
 obj.greet = 'hello'
-console.log(obj.prop, obj.greet);// 3, 'hello'
-delete obj.prop; // cannot delete when sealed
-console.log(obj.prop);// still 3</code></pre>
+console.log(obj.prop, obj.greet);// 3, undefined</code></pre>
           </section>
           <section>
-            <pre><code class="large-code">Object.freeze()</code></pre>
+            <code class="large-code">Object.freeze()</code>
             <p>Prevents deletion and alteration of properties. But only on 1st level of nesting</p>
             <pre><code class="med-code">const obj = {prop: 2, key: {greet: 'hello'}};
-Object.seal(obj);
+Object.freeze(obj);
+// cannot mutate nor delete a frozen object
 obj.prop = 3;
 obj.greet = 'hello'
+delete obj.prop
+console.log(obj) 
+// {prop: 2, key: {greet: 'hello'}}
+
+
+// But freezing is "shallow"
 obj.key.greet = 'Aloha'
-console.log(obj.prop, obj.greet, obj.key.greet);// 3, undefined, 'Aloha'
-delete obj.prop; // cannot delete when frozen
-console.log(obj.prop);// still 3</code></pre>
+console.log(obj) 
+// {prop: 2, key: {greet: 'Aloha'}}</code></pre>
           </section>
           <section>
             <h2>Recursively Freezing an Object</h2>
-            <p>This is not a native JS function. You have to write it yourself: <a href="https://github.com/substack/deep-freeze/blob/master/index.js">Github</a></p>
+            <p>This is not a native JS function. You have to write it yourself. But here is an implementation we can use: <a href="https://github.com/substack/deep-freeze/blob/master/index.js">Github</a></p>
             <pre><code class="med-code">function deepFreeze (o) {
   Object.freeze(o);
   Object.getOwnPropertyNames(o).forEach(prop => {
-    if (o.hasOwnProperty(prop) && o[prop] !== null && (typeof o[prop] === "object"
-    || typeof o[prop] === "function") && !Object.isFrozen(o[prop])) {
+    if (o.hasOwnProperty(prop) 
+        && o[prop] !== null
+        && (typeof o[prop] === "object"
+        || typeof o[prop] === "function") 
+        && !Object.isFrozen(o[prop])) {
       deepFreeze(o[prop]);
     }
   });
@@ -1403,7 +1435,7 @@ for (const property in object) {
           <section>
             <h2>Converting an Object to an Array</h2>
             <p>Often it's easier to manipulate Objects as arrays (and then turn it back afterwards)</p>
-            <pre><code class="med-code">const obj = {a: 1, b: 2, c: 3};
+            <pre style="width: 90vw"><code class="med-code">const obj = {a: 1, b: 2, c: 3};
 Object.entries(obj) // [['a', 1],['b', 2],['c', 3]]
 Object.keys(obj) // ['a', 'b', 'c']
 Object.values(obj) // [1, 2, 3]
@@ -1417,7 +1449,7 @@ Object.fromEntries([['a', 1],['b', 2],['c', 3]]) //{a: 1, b: 2, c: 3}</code></pr
           </section>
           <section>
             <h2>Prototype Objects</h2>
-            <p>Everything is an inspectable object, except <code>null, undefined</code> <sup><code>null</code> is an object though</sup></p>
+            <p>Everything is an inspectable object, except <code>null, undefined</code>. <br> <small>(<code>null</code> is kind of an object though, it's complicated)</small></p>
             <p>Even the Primitives we've seen have methods on them, because they're Objects</p>
             <pre><code class="med-code">String.prototype
 Number.prototype
@@ -1427,6 +1459,21 @@ BigInt.prototype
 Array.prototype
 Object.prototype
 Function.prototype // no methods/properties of its own</code></pre>
+          </section>
+          <section>
+            <h2>"Monkey Patching" Prototypes considered harmful<sup><a href="https://maxheiber.medium.com/safe-monkey-patching-with-es2015-symbol-e36fb01ab794">Medium</a></sup></h2>
+            <pre><code class="med-code">// Add useful toString Method to js objects:
+Object.prototype.toString = function() {
+  return JSON.stringify(this)
+}</code></pre>
+<p>This can lead to naming collisions with other libraries</p>
+<p>This is what <code>Symbol</code> is for!! So use it if you must do this.</p>
+<pre><code class="med-code">// toString path with `Symbol`:
+const toString = Symbol('toString')
+Object.prototype[toString] = function() {
+  return JSON.stringify(this)
+}
+{a: 1, b: 2}[toString]() // "{\"a\":1,\"b\":2}"</code></pre>
           </section>
         </section>
 
