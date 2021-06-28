@@ -263,10 +263,12 @@ document.body.append(fragment);</code></pre>
           <pre><code class="med-code">document.addEventListener('click', callback)</code></pre>
           <p>Then we need to <strong>handle</strong> that event with our callback function that we define</p>
           <p>For Example:</p>
-          <pre style="width: 25vw;"><code class="med-code">button.addEventListener('submit', function(e) {
+          <pre style="width: 80vw;"><code class="med-code">button.addEventListener('submit', function(e) {
     console.log(e.target)
     const div = document.createElement('div')
-    const text = document.createTextNode('You typed: ' + e.target.value)
+    const text = document.createTextNode(
+      'You typed: ' + e.target.value
+      )
     div.appendChild(text)
     e.target.appendChild(div);
 })</code></pre>
