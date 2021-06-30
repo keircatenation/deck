@@ -846,7 +846,7 @@ let arr = new Array(3); // [undefined, undefined, undefined]</code></pre>
               <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#binary_logical_operators">Binary Logical Operators:</a></li>
               <li style="list-style: none;"><code>&&</code>Logical AND, <code>||</code>Logical OR, <code>??</code>Nullish Coalescer</li>
               <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#equality_operators">Equality Operators</a></li>
-              <li style="list-style: none;"><code>==</code>Loose Equality, <code>!=code</code>Loose InEquality, <code>===</code>Strict Equality, code!==Strict InEquality</li>
+              <li style="list-style: none;"><code>==</code>Loose Equality, <code>!=</code>Loose InEquality, <code>===</code>Strict Equality, <code>!==</code>Strict InEquality</li>
               <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#relational_operators">Relational Operators: </a></li>
               <li style="list-style: none;"><code>></code>Greater Than, <code>>=</code>Greater or Equal to, <code><</code>Less Than, <code><=</code>Lesser or Equal to</li>
 
@@ -915,11 +915,10 @@ bool === big // false
           <section>
             <h2>Use Cases</h2>
             <ul>
-              <li>If Else conditions</li>
+              <li>If Else Conditions</li>
+              <li>Ternary Operators</li>
               <li>Switch Conditions</li>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li>Default Values: <code>MyVar || 'default'</code></li>
             </ul>
           </section>
         </section>
@@ -1151,6 +1150,7 @@ arr.findIndex(i => i < 4) // returns the index of the first matching element
             <p>These do not mutate the array. They create a copy.</p>
             <p>All of them take a callback function to customize their behavior.</p>
             <pre><code class='med-code'>.map()
+.flatMap()
 .filter()
 .reduce()
 .find()
