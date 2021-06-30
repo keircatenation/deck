@@ -327,7 +327,19 @@ const myWeakMap = new WeakMap() </code></pre>
 <p><code>WeakMap</code> may not be that useful. It's called "Weak" because it allows garbage collection.</p>
           </section>
           <section>
-            <h2>Set & WeakSet</h2>
+            <h2>Set & WeakSet <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">MDN</a></sup></h2>
+            <p>Sets may only contain one of any particular value.</p>
+            <p>This makes them convenient as a way to remove duplicates in an array.</p>
+            <pre><code class="med-code">const numbers = [2,3,4,4,2,3,3,4,4,5,5,6,6,5,3,4,5]
+const noDupes = [...new Set(numbers)] // [2,3,4,5,6]</code></pre>
+            <pre><code class="med-code">const mySet = new Set()
+mySet1.add(5)          
+mySet1.add('some text')            
+mySet1.add({a: 1, b: 2})
+mySet1.has(5) 
+mySet1.size  // 3
+mySet1.delete(5)     
+            </code></pre>
           </section>
           <section>
             <h2>Import & Export</h2>
@@ -403,89 +415,66 @@ console.log(n(4))</code></pre>
             <h1>SASS</h1>
             <p>Syntactically Awesome Style Sheets</p>
           </section>
-          ### FCC HW: SASS Section
-
----
-
-### Promise.all()
-
-[Solution/Explanation](https://stackoverflow.com/questions/37693982/how-to-fetch-xml-with-fetch-api)
-
----
-
-### .text() and xml
-* Instead of response.json(), use response.text()
-* XML for Compatibility with Windows and Windows Servers
-* [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)
-* [xmldoc](https://github.com/nfarina/xmldoc)
-
----
-
-# Public APIs
-### [Github Resource](https://github.com/public-apis/public-apis)
-* Add more cross functionality to your app 
-* Or start a whole new one!
-* Set you github settings in your usr-mgr repo to expose it on your portfolio
-
----
-
-### Sass
-* Syntactically Awesome Style sheets
-* Originally developed by Ruby developers
-* Deprecated packages: `ruby-sass`, `compass`
-* Now there's a C++ compiler/transpiler called `libsass`
-* `node-sass` is a node.js binding for `libsass`
-
----
-
-### Node-sass and libsass docs
-* [Node-sass](https://github.com/sass/node-sass)
-* [Libsass](https://github.com/sass/libsass)
-
----
-
-### CSS Preprocessors (Compilers)
-* There are various flavors
-* They all transpile a special syntax down to CSS
-* [Intro to Preprocessors](https://htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus)
-* [Preprocessor Comparison](https://csspre.com/compare/)
-* [Cheatsheet](https://devhints.io/sass)
-
----
-
-### [Sassmeister Tool](https://www.sassmeister.com/)
-* Convenient Online Preprocessor
-
----
- 
-### .sass vs .scss
-* SCSS Stands for "Sassy CSS"
-* Altered the Sass syntax enough to make SCSS a superset of CSS
-* With SCSS, valid CSS is also valid SCSS
-* [Sass vs SCSS](http://www.thesassway.com/editorial/sass-vs-scss-which-syntax-is-better)
-
----
-
-### SCSS variables
-variable map and map.get(key)
-```scss
-$primary-color: #333;
+          <section>
+            <h2>Sass</h2>
+            <ul>
+              <li>A more concise way to write CSS</li>
+              <li>Originally developed by Ruby developers</li>
+              <li>Deprecated packages: `ruby-sass`, `compass`</li>
+              <li>Now there's a C++ compiler/transpiler called `libsass`</li>
+              <li>`node-sass` is a node.js binding for `libsass`</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Node-sass and libsass docs</h2>
+            <ul>
+              <li><a href="https://github.com/sass/node-sass"><code>node-sass</code></a></li>
+              <li><a href="https://github.com/sass/libsass"><code>libsass</code></a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>CSS Preprocessors (Compilers)</h2>
+            <ul>
+              <li>There are various flavors</li>
+              <li>They all transpile a special syntax down to CSS</li>
+              <li>[Intro to Preprocessors](https://htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus)</li>
+              <li><a href="https://csspre.com/compare/">Preprocessor Comparison</a></li>
+              <li><a href="https://devhints.io/sass">Cheatsheet</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Sassmeister</h2>
+            <p><a href="https://www.sassmeister.com/">A Convenient Online Sass Tool</a></p>
+          </section>
+          <section>
+            <h2><code>.sass</code> vs <code>.scss</code></h2>
+            <ul>
+              <li>SCSS Stands for "Sassy CSS"</li>
+              <li>Altered the Sass syntax enough to make SCSS a superset of CSS</li>
+              <li>With SCSS, valid CSS is also valid SCSS</li>
+              <li><a href="http://www.thesassway.com/editorial/sass-vs-scss-which-syntax-is-better">Sass vs SCSS</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>SCSS variables</h2>
+            <p>Variable <code>map</code> and <code>map.get(key)</code></p>
+            <pre><code class="med-code">$primary-color: #333;
 $colors: ("primary": $primary-color, "secondary": #454545)
 body {
     color: $primary-color;
     width: 300px / 960px * 100%;
     background: map-get($colors, "secondary")
 }
-```
-
----
-
-### Nesting
-- nest css selectors
-- with/without `&` operator
-- nest css hyphenated rules:
-```scss
-header {
+            </code></pre>
+          </section>
+          <section>
+            <h2>Nesting</h2>
+            <ul>
+              <li>nest css selectors</li>
+              <li>with/without `&` operator</li>
+              <li>nest css hyphenated rules:</li>
+            </ul>
+            <pre><code class="med-code">header {
     .title {
         &.bold{
             font-weight: bold
@@ -497,90 +486,73 @@ font: {
     size: 1px;
     weight: bold;
     family: 'Signika', sans-serif
-}
-```
-
----
-
-### Mixins
-
-* @mixin and @include (like variables for larger chunks of css)
-* mixins can take args:
-```scss
-@mixin flagProps($val){
+}</code></pre>
+          </section>
+          <section>
+            <h2>Mixins</h2>
+            <ul>
+              <li>@mixin and @include (like variables for larger chunks of css)</li>
+              <li>mixins can take args:</li>
+            </ul>
+            <pre><code class="med-code">@mixin flagProps($val){
     opacity: ($val)
     letter-spacing: 2*$val
 }
 @include flagProps(1)
-@include flagProps(0)
-```
-
----
-
-### More Mixin Use cases
-* You can spread args too: 
-```scss
-@mixin flagProps($vals...){
+@include flagProps(0)</code></pre>
+          </section>
+          <section>
+            <h2>More Mixin Use cases</h2>
+            <p>You can spread args too</p>
+            <pre><code class="med-code">@mixin flagProps($vals...){
 border: $vals;
 }
 @include flagProps(1px, solid, crimson){
-border: $props;
-```
-
----
-
-### Extends 
-* Great for a success and error msg use case
-```scss
-.msg {
+border: $props;</code></pre>
+          </section>
+          <section>
+            <h2>Extends</h2>
+            <p>Great for a success or error message use case</p>
+            <pre><code class="med-code">.msg {
     font-size: 2rem;
     line-height: 2rem;
 }
 .error {
     @extend .msg
     color: crimson
-}
-```
-
----
-
-### Other Utilities
-```scss
-@if @else
+}</code></pre>
+          </section>
+          <section>
+            <h2></h2>
+          </section>
+          <section>
+            <h2>Other Utilities</h2>
+            <pre><code class="med-code">@if @else
 @for
 @each
 @while
-@function fn(){@return thing}
-```
----
-
-### If Else
-```scss
-@if $background == 'black' {
+@function fn(){@return thing}</code></pre>
+          </section>
+          <section>
+            <h2>If Else</h2>
+            <pre><code class="med-code">@if $background == 'black' {
     color: white;
 }
 @else {
     color: black;
-}
-```
-
----
-
-### For Loop
-```scss
-@for $i from 1 through 8 {
+}</code></pre>
+          </section>
+          <section>
+            <h2>For Loop</h2>
+            <pre><code class="med-code">@for $i from 1 through 8 {
     [data-id-#{$i}] {
         margin-left: 2px * $i;
     }
-}
-```
-
----
-
-### Example function
-
-```scss
-@use "sass:list"
+}</code></pre>
+          </section>
+          <section>
+            <h2>Example <code>@function</code></h2>
+            <pre><code class="med-code">@use "sass:list"
 @function remove-where($list, $condition) {
     $new-list: ();
     $separator: list.separator($list)
@@ -590,89 +562,79 @@ border: $props;
         }
     }
     @return $new-list
-}
-
-```
-
----
-
-### Color Operations
-built in sass utilities:
-* darken()
-* saturate()
-* adjust-hue()
-* [And more...](https://thoughtbot.com/blog/controlling-color-with-sass-color-functions)
-```scss
-lighten($color, 20%)
-```
-
----
-
-
-### SCSS Partials & Modules
-* Partials let us break up the css code into modules and import them as needed
-* Common use case is to put your vars and functions in partials
-```scss 
-@import _filename.scss
-```
-
----
-
-### Using node-sass
-
-```bash
-npm install node-sass -g //install node sass globally
+}</code></pre>
+          </section>
+          <section>
+            <h2>Color Operations</h2>
+            <ul>
+              <li>darken()</li>
+              <li>saturate()</li>
+              <li>adjust-hue()</li>
+              <li><a href="https://thoughtbot.com/blog/controlling-color-with-sass-color-functions">And more...</a></li>
+            </ul>
+            <pre><code class="med-code">lighten($color, 20%)</code></pre>
+          </section>
+          <section>
+            <h2>SCSS Partials & Modules</h2>
+            <ul>
+              <li>Partials let us break up the css code into modules and import them as needed</li>
+              <li>Common use case is to put your vars and functions in partials</li>
+            </ul>
+            <pre><code class="med-code">@import _filename.scss</code></pre>
+          </section>
+          <section>
+            <h2>Using node-sass</h2>
+            <p>open new terminal cmd+T/ctrl+T to leave the watcher in the background</p>
+            <pre><code class="med-code">npm install node-sass -g //install node sass globally
 node-sass //it runs!!
 node-sass scss/style.scss -o css //output dir: /css input file: /css/style.scss
 node-sass scss -o css //output dir: /css input: /scss (all .scss files there)
 node-sass scss -o css --output-style expanded ( or compressed)
-node-sass scss -o css -w //watch flag so we can continue to work
-```
-(open new terminal cmd+T to leave the watcher in the bg)
-
----
-
-### The package.json file
-* setting up npm scripts in the package.json file
-* Run `npm init` and answer the form questions
-* Then modify your "scripts" rule to be:
-```json
-"scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node-sass scss -o css --output-style compressed && node-sass",
-    "watch:sass": "node-sass scss -o css --output-style compressed -w"
-
-  }
-  ```
-
----
-
-### Trade-offs between using SCSS and native CSS
-#### Pros
-* Syntax Convenience
-* Code Organization
-#### Cons
-* Slight learning curve for new developers
-* Extra Build Step
-* SCSS logic is not available at runtime, unlike CSS var()/calc()
-
----
-
-### CSS Spec Continues to Grow
-* May need to rely on conveniences of SCSS less and less
-* [CSS Nesting Proposal](https://drafts.csswg.org/css-nesting/#nest-selector)
-
----
-
-CSS filters: 
-[filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter)
-[filter support](https://caniuse.com/#feat=css-filters)
-
----
-
-### VSCode extension
-* live sass compiler extension
-
+node-sass scss -o css -w //watch flag so we can continue to work</code></pre>
+          </section>
+          <section>
+            <h2>The package.json file</h2>
+            <ul>
+              <li>setting up npm scripts in the package.json file</li>
+              <li>Run `npm init` and answer the form questions</li>
+              <li>Then modify your "scripts" rule to be:</li>
+            </ul>
+            <pre><code class="med-code">"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "sass": "node-sass scss -o css --output-style compressed && node-sass",
+  "watch:sass": "node-sass scss -o css --output-style compressed -w"
+}</code></pre>
+          </section>
+          <section>
+            <h2>Trade-offs between using SCSS and native CSS</h2>
+            <div class="flex">
+              <ul>Pros
+                <li>Syntax Convenience</li>
+                <li>Code Organization</li>
+              </ul>
+              <ul>Cons
+                <li>Slight learning curve for new developers</li>
+                <li>Extra Build Step</li>
+                <li>SCSS logic is not available at runtime, unlike CSS var()/calc()</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h2>CSS Spec Continues to Grow</h2>
+            <ul>
+              <li>May not need to rely on conveniences of SCSS anymore</li>
+              <li>CSS spec gains more of these utilities each year</li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">CSS filters</a></li>
+              <li>CSS custom properties: <code>var()</code></li>
+              <li>CSS functions: <code>calc()</code>, <code>clamp()</code> etc.</li>
+              <li>New CSS selectors: <code>:is()</code>, <code>:where()</code>, <code>:has()</code></li>
+              <li><a href="https://drafts.csswg.org/css-nesting/#nest-selector">CSS Nesting Proposal</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>VSCode extension</h2>
+            <p>live sass compiler extension</p>
+          </section>
         </section>
 
         <section>
