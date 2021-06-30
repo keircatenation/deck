@@ -43,6 +43,9 @@
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       }
+      .bumpup {
+        margin-top: -8rem !important;
+      }
       pre {
         padding: 8px !important;
         border-radius: 8px !important;
@@ -143,14 +146,14 @@
             <h2>New ES6+ Features</h2>
             <ul>
               <li class='fragment'> Nullish Coalescing, Optional Chaining</li>
+              <li class='fragment'> String Template Literals & Tagged Templates</li>
               <li class='fragment'> Default Parameters </li>
               <li class='fragment'> Destructuring & Param Context matching </li>
               <li class='fragment'> Rest & Spread operators </li>
               <li class='fragment'> Object Propery/Method Shorthand </li>
               <li class='fragment'> Computed Properties </li>
-              <li class='fragment'> String Template Literals & Tagged Templates</li>
-              <li class='fragment'> Module Imports/Exports </li>
               <li class='fragment'> Map, WeakMap, Set, WeakSet </li>
+              <li class='fragment'> Module Imports/Exports </li>
               <li class='fragment'> Classes, Generators </li>
               <li class='fragment'> non-ES6 Extra: Currying/Closures </li>
             </ul>
@@ -158,6 +161,12 @@
           <section>
             <h2>Nullish Coalescer</h2>
             <p><code>??</code></p>
+            <p>Returns the second operand, only if the first is nullish: <code>null</code>, <code>undefined</code></p>
+            <pre><code class="med-code">null ?? 42 // 42
+undefined ?? 42 // 42
+'' ?? 42 // ''
+0 ?? 42 // 0
+false ?? 42 // false</code></pre>
 
           </section>
           <section>
@@ -170,6 +179,32 @@ obj?.key?.maybenot?.nested // Chain multiple for full safety
             </code></pre>
           </section>
           <section>
+            <h2>🧵 String Template Literals <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">MDN</a></sup></h2>
+            <p><strong>Multiline:</strong>Uses "back ticks" to create multiline strings</p>
+            <pre><code class="med-code">let myStr = `This is
+a fancy
+multiline string`
+            </code></pre>
+            <p><strong>String Interpolation:</strong> Also allows embeddable javascript expressions with the <code>${ }</code> syntax</p>
+            <pre><code class="med-code">let myVar = 'fancy'
+let myFn = () => typeof myVar
+let myStr = `This is
+a ${myVar}
+multiline ${myFn()}`
+            </code></pre>
+          </section>
+          <section>
+            <h2>🏷️ Tagged Template Functions <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates">MDN</a></sup> </h2>
+            <p>You can create a special function from a template string literal which takes the template string as its parameters:</p>
+            <pre><code class="med-code">function myTag(string, person, job) {
+  console.log(string, person, job)
+}
+let person = 'Jamie'
+let job = 'developer'
+myTag`That person's name is ${ person } and they are a ${ job }.`</code></pre>
+<p>It will provide as parameters the chunked string in an array, and the other parameters separately.</p>
+          </section>
+          <section>
             <h2>Default Parameters</h2>
             <p>If no value or undefined is passed, then initialize with a default value</p>
             <pre><code class="med-code">function chatMsg(greeter, msg) {
@@ -178,7 +213,7 @@ obj?.key?.maybenot?.nested // Chain multiple for full safety
 function chatMsg2(greeter = 'Auto-greeter', msg = 'Hello') {
     console.log(`${greeter}: ${msg}`)
 }
-chatMsg('Joe', 'What's up?') // 'Joe: What's up?'
+chatMsg("Joe", "What's up?") // "Joe: What's up?""
 chatMsg() // 'undefined: undefined'
 chatMsg2() // 'Auto-greeter: Hello'</code></pre>
           </section>
@@ -186,7 +221,12 @@ chatMsg2() // 'Auto-greeter: Hello'</code></pre>
             <h2>Hypothetical Use Case:</h2>
             <p>Use previous params or even functions in your default param expression</p>
             <pre><code class="med-code">const randNum = () => Math.random().toString().slice(3, 5)
-function createUser(name, username = name+randNum(), pass, isAdmin = false) {
+function createUser(
+    name,
+    username = name+randNum(),
+    pass, 
+    isAdmin = false
+  ) {
     sendLoginData(user, pass);
     setPermissions(isAdmin);
 }
@@ -195,42 +235,55 @@ createUser('Joe', undefined, 'h2jq9fn48', true);</code></pre>
           <section>
             <h2>Destructuring</h2>
             <p>Unpack values from arrays or properties from objects, into distinct variables.</p>
-            <code>{ 🍞, 🥬, 🍅, 🧅, 🧀, 🥓, 🥩, 🍞 } = 🍔</code>
+            <code>let { 🍞, 🥬, 🍅, 🧅, 🧀, 🥓, 🥩, 🍞 } = 🍔</code>
             <p>If you think about it, a bacon cheeseburger is a data structure because it is just a list of its own ingredients.</p>
-            <code>{ ✨, 🐴 } = 🦄</code>
             <ul>
               <li class='fragment'> Array Destructuring </li>
               <li class='fragment'> Object Destructuring </li>
               <li class='fragment'> Parameter Context matching </li> 
             </ul>
+            <p>It's kinda magical <code>let { ✨, 🐴 } = 🦄</code></p>
           </section>
           <section>
             <h2>Array Destructuring</h2>
             <pre><code class="med-code">var list = [ 1, 2, 3 ]
 var [ a, , b ] = list
+
+// We can avoid needing a temp var when swapping
 [ b, a ] = [ a, b ]
-// Now we avoid needing a temp variable 
-[d, e, f, g=7] = list // can also use defaults here</code></pre>
+
+// can also use default assignment here
+let [d, e, f, g=7] = list </code></pre>
           </section>
           <section>
             <h2>Object Destructuring</h2>
             <pre><code class="med-code">const obj = {p: 42, q: true};
-const {p, q} = obj; // moves the properties into global namespace
+// moves the properties into global namespace
+const {p, q} = obj; 
 console.log(p, q); // 42, true
-const {p: a, q: b} = obj // Creates new global var names
+
+// We can creates new global var names (i.e. 'a' & 'b'):
+const {p: a, q: b} = obj 
 console.log(a, b); // 42, true</code></pre>
           </section>
           <section>
             <h2>Common Use Case</h2>
             <p>Destructuring Config Objects as Function argument</p>
-            <pre><code class="med-code">const user = {user: 'jdoe', fullName: {first: 'John',last: 'Doe'}};
-function whois({user, fullName: {first: name}}) {
+            <pre><code class="med-code">const user = {
+  user: 'jdoe', 
+  fullName: {
+    first: 'John',last: 'Doe'
+  }
+};
+
+function whoIs({user, fullName: {first: name}}) {
   return `${user} is ${name}`;
 }
-console.log(whois(user));  // "jdoe is John"</code></pre>
+console.log(whoIs(user));  // "jdoe is John"</code></pre>
           </section>
           <section>
             <h2>Fail Safe Destructuring</h2>
+            <p>It won't throw an error for length mismatches</p>
             <pre><code class="med-code">var list = [ 7, 42 ]
 var [ a = 1, b = 2, c = 3, d ] = list
 console.log(a, b, c, d) // 7, 42, 3, undefined</code></pre>
@@ -247,6 +300,7 @@ function g ({ name: n, val: v }) {
           </section>
           <section>
             <h2>Using Destructuring With Default params</h2>
+            <p>✨ Combine these for super powers! ✨</p>
             <pre><code class="med-code">function f([x, y] = [1, 2], {z: z} = {z: 3}) { 
   return x + y + z
 }
@@ -256,7 +310,7 @@ f()  // 6</code></pre>
             <h2>Rest & Spread Operators</h2>
             <code>...</code>
             <p>Rest: to gather up remaining values into an Array or Object</p>
-            <p>Spread: to expand out encapsulated values into loos values.</p>
+            <p>Spread: to expand out encapsulated values into loose values.</p>
           </section>
           <section>
             <h2>Rest</h2>
@@ -277,7 +331,8 @@ const newNames = { ...names1, ...names2 };</code></pre>
             <h2>Array Spread</h2>
             <p>It's a bit like <code>.slice()</code></p>
             <pre><code class="med-code">var arr = [1, 2, 3]
-              var arr2 = [...arr] // copy of arr</code></pre>
+var arr2 = [...arr] // copy of arr
+var arr3 = arr.slice() // also a copy of arr</code></pre>
           </section>
           <section>
             <h2>Object Property Shorthand</h2>
@@ -290,21 +345,25 @@ let someObject = {
   dog,
   speak
 }
-someObject.speak(cat) // 'Meow'</code></pre>
+// It's quicker than typing {cat: cat, dog: dog, speak: speak}
+someObject.speak(someObject.cat) // 'Meow'</code></pre>
           </section>
           <section>
             <h2>Computed Properties</h2>
-            <pre><code class="med-code">let key = 'key';
+            <pre><code class="med-code">let makeKey = key => key;
+let key = 'key'
 let value = 'val';
 let obj = {};
 obj[key] = value;
 
 let computedObj = {
-    [key]: value
+    [key]: value,
+    [makeKey('string')]: value,
+    [makeKey('name')]: 'Jamie'
 }</code></pre>
           </section>
           <section>
-            <h2>Map & WeakMap <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">MDN</a></sup></h2>
+            <h2 class='bumpup'>Map & WeakMap <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">MDN</a></sup></h2>
             <p>Use Maps as a "clean" or "blank" object with a <code>size</code> property.</p>
             <p>They do not have prototype keys, which can help for looping or diffing.</p>
             <p>Keys can be any value, not just Strings or Symbols.</p>
@@ -367,7 +426,7 @@ export default expression;
 export default function (…) { … }</code></pre>
           </section>
           <section>
-            <h2>Modules</h2>
+            <h2>Modules 📦</h2>
             <p>Using <code>import</code> & <code>export</code> to modularize code & organize it.</p>
             <pre><code class="med-code">import myFunc from './utilities'
 
@@ -378,6 +437,7 @@ function complexFunc(a, b, c) {
 
 export default complexFunc</code></pre>
           </section>
+          <p>Before Modules this was accomplished with the <a href="https://www.codeproject.com/Articles/1164113/Module-and-Revealing-Module-Patterns-in-JavaScript">Revealing Module Pattern</a> using IIFEs</p>
         </section>
         
         <section>
