@@ -425,6 +425,13 @@ export class ClassName {...}
 export default expression;
 export default function (…) { … }</code></pre>
           </section>
+        </section>
+        
+        <section>
+          <section>
+            <h1>Code Organization Techniques</h1>
+            <p>Modules & Closures</p>
+          </section>
           <section>
             <h2>Modules 📦</h2>
             <p>Using <code>import</code> & <code>export</code> to modularize code & organize it.</p>
@@ -436,25 +443,61 @@ function complexFunc(a, b, c) {
 }
 
 export default complexFunc</code></pre>
-            <p>Before Modules this was accomplished with the <a href="https://www.codeproject.com/Articles/1164113/Module-and-Revealing-Module-Patterns-in-JavaScript">Revealing Module Pattern</a> using IIFEs</p>
           </section>
-        </section>
-        
-        <section>
           <section>
-            <h1>Currying And Closures</h1>
+            <h2>Closures <sup><a href="https://www.w3schools.com/js/js_function_closures.asp">W3</a>, </sup> <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">MDN</a></sup></h2>
+            <p>Before Modules code encapsulation was accomplished with the <a href="https://www.codeproject.com/Articles/1164113/Module-and-Revealing-Module-Patterns-in-JavaScript">Revealing Module Pattern</a> using IIFEs</p>
+          </section>
+          <section>
+            <h2>Closure Building Blocks</h2>
+            <ol>
+              <li>Scope (Global vs. Local)</li>
+              <li>Nested Functions</li>
+              <li>Returning a Reference to an Inner Function</li>
+            </ol>
+            <pre><code class="med-code">// Local vs Global
+function fn() {
+  let temp = 9 // what if this were var temp?
+}
+console.log(temp) // error
+// Nesting & Returning Functions 
+function gn() {
+  let temp = 9
+  return function() {
+    temp * 2
+  }
+}</code></pre>
           </section>
           <section>
             <h2>Closures Illustration</h2>
-            <pre><code class="med-code">for (var i = 1; i <= 5; i++) {
-    setTimeout(function() { console.log(i); }, 1000*i);     // 6 6 6 6 6
+            <p>Global variables live until the page is discarded, like when you navigate to another page or close the window. </p>
+            <p>Local variables have short lives. They are created when the function is invoked, and deleted when the function is finished.</p>
+            <pre style="width: 75vw;"><code class="med-code">for (var i = 1; i <= 4; i++) {
+    setTimeout(function() { 
+      console.log(i); 
+    }, 1000*i);     // 5 5 5 5
 }
-```
-```js
+
 for (var i = 1; i <= 5; i++) {
-    setTimeout(function(x) { return ()=>console.log(x) }(i), 1000*i);
+    setTimeout(function(x) { 
+      return ()=>console.log(x) 
+    }(i), 1000*i);
     // 1 2 3 4 5
 }</code></pre>
+          </section>
+          <section>
+            <h2>Block Scope Fix with <code>let</code>, <code>const</code>, <code>.forEach</code></h2>
+            <pre><code class="med-code">for (let i = 1; i <= 4; i++) {
+    setTimeout(function() { 
+      console.log(i); 
+    }, 1000*i);     // 1 2 3 4
+}</code></pre>
+
+            <pre><code class="med-code">[...Array(4).keys()].forEach(i => {
+    setTimeout(function() { 
+      console.log(i); 
+    }, 1000*i); // 0 1 2 3
+})</code></pre>
           </section>
           <section>
             <h2>Simple Curried Function</h2>
@@ -463,7 +506,7 @@ var n = fn(3)
 console.log(n(4))</code></pre>
           </section>
           <section>
-            <h2>Curry Code Along</h2>
+            <h2>Closures & Modules Code Along</h2>
           </section>
          
         </section>
