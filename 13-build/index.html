@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Javascript Bundling</title>
+    <meta name="description" content="2017 was the year of CSS grid, a powerful tool that was developed specially to do layout on the web. It allows us to do many things that we couldn't before, without extreme measures of hackish-ness. It is definitely not hyperbole to say that CSS grid will revolutionise web design moving forward. This talk will introduce CSS grid and how it can be used to create modern layouts for the web.">
+
+    <link rel="stylesheet" href="../04-css-2/css/reveal.css">
+    <link rel="stylesheet" href="../04-css-2/css/theme/jing.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <link rel="stylesheet" href="../04-css-2/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../laser.css">
+		<script src="../laser.js"></script>
+
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../04-css-2/css/print/pdf.css' : '../04-css-2/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style>
+      .flex-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      .flex > img {
+        width: 50%;
+      }
+      .grid {
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      pre {
+        padding: 8px !important;
+        border-radius: 8px !important;
+        background: #3f3f3f;
+        position: relative;
+      }
+      .reveal .slides pre code.large-code {
+        font-size: 2.5rem !important;
+        line-height: 3rem !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+      }
+      .reveal .slides pre code.med-code {
+        font-size: 1.9rem !important;
+        line-height: 2.25rem !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+      }
+      .reveal .slides .nosidescroll {
+        overflow-x: hidden;
+      }
+      .livecode {
+        max-height: 30vh !important;
+      }
+      .livecode.serious {
+        max-height: 20vh !important;
+      }
+      .slack-code {
+        padding: 1px 6px !important;
+        background: #ddd;
+        color: rgb(180, 47, 69);
+        border-radius: 4px;
+      }
+      fieldset {
+        border: 3px solid #444 !important;
+        width: fit-content;
+        padding: 1rem !important;
+      }
+      :not(pre) >  code {
+        padding: 4px !important;
+        background: lightgrey;
+        color: rgb(211, 12, 52);
+        border-radius: 8px;
+      }
+      pre.wrong::before {
+        content: '🚫';
+        position: absolute;
+        left: -4rem;
+        font-size: 4rem;
+        top: 2rem;
+
+      }
+      pre.correct::before {
+        content: '✅';
+        position: absolute;
+        left: -4rem;
+        font-size: 4rem;
+        top: 2rem;
+
+      }
+      #ifelse-vid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        bottom: 0;
+        z-index: -9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h1>Javascript Bundling Tools</h1>
+          </section>
+          <section>
+            <h2>What is Bundling</h2>
+            <ul>
+              <li>Concatenating Files to reduce number of network requests</li>
+              <li>Minifying code to shorten files</li>
+              <li>Transpiling Code to ECMAScript spec</li>
+              <li>Optimizing, Tree Shaking</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Why?</h2>
+            <p>This is all for produciton code deployment</p>
+            <p>We want every minor optimization done for us to improve load speeds.</p>
+            <p>But it's tedious, so we get a script to do it for us.</p>
+          </section>
+          <section>
+            <h2>Minimum React Build Tool With Parcel</h2>
+            <pre><code class="med-code">npm install -g parcel-bundler
+mkdir <my-react-app-name> && cd <my-react-app-name>
+# insert whatever app name you want for the directory
+touch index.html && touch index.jsx && touch styles.css
+# Folder will look like this:
+# my-react-app-name (directory)
+#  ├── index.html  (file)
+#  ├── index.jsx  (file)
+#  └── style.css(file)
+# Paste in content for these two files from next slide
+parcel index.html
+# Then visit the served page (http://localhost:1234)</code></pre>
+          </section>
+          <section>
+            <h2>Minimum content for <code>index.html</code></h2>
+            <pre><code class="med-code" id='copy-index' data-clipboard-text="`<html>
+<head>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./index.jsx"></script>
+</body>
+</html>`"><html>
+<head>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./index.jsx"></script>
+</body>
+</html></code></pre>
+          </section>
+          <section>
+            <h2>Minimum Content for <code>index.jsx</code></h2>
+            <pre><code class="med-code" id="copy-react" data-clipboard-text="`import React from 'react';
+import ReactDOM from 'react-dom';
+function App() {
+  return <h1>Your React app is running!</h1>;
+}
+ReactDOM.render(<App />, document.getElementById('app'));`">import React from 'react';
+import ReactDOM from 'react-dom';
+function App() {
+  return <h1>Your React app is running!</h1>;
+}
+ReactDOM.render(<App />, document.getElementById('app'));</code></pre>
+          </section>
+          <section>
+            <h2>Parcel Bundler</h2>
+            <ul>
+              <li>Parcel builds the react app into a production ready <code>/dist</code> folder including required <code>node_modules</code></li>
+              <li>It creates a <code>package.json</code> to keep track of package versions</li>
+              <li>It does the JSX transpiling like Babel does</li>
+              <li>It handles <code>import</code>/<code>export</code> statements</li>
+              <li>It enables hot-reloading for fast development</li>
+            </ul>
+          </section>
+          <section>
+            <h2>React Life Cycle Methods</h2>
+            <p>These are functions that execute at particular times in the component lifecyle</p>
+            <ul>
+              <li>Constructor</li>
+              <li>ComponentWillMount</li>
+              <li>ComponentDidMount</li>
+              <li>ShouldComponentUpdate</li>
+              <li>ComponentDidUpdate</li>
+              <li>ComponentWillUnmount</li>
+            </ul>
+            <p><a href="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">LifeCycle Methods Visualized</a></p>
+          </section>      
+        </section>
+
+        <section>
+          <section>
+            <h1>SASS</h1>
+            <p>Syntactically Awesome Style Sheets</p>
+          </section>
+          <section>
+            <h2>Sass</h2>
+            <ul>
+              <li>A more concise way to write CSS</li>
+              <li>Originally developed by Ruby developers</li>
+              <li>Deprecated packages: `ruby-sass`, `compass`</li>
+              <li>Now there's a C++ compiler/transpiler called `libsass`</li>
+              <li>`node-sass` is a node.js binding for `libsass`</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Node-sass and libsass docs</h2>
+            <ul>
+              <li><a href="https://github.com/sass/node-sass"><code>node-sass</code></a></li>
+              <li><a href="https://github.com/sass/libsass"><code>libsass</code></a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>CSS Preprocessors (Compilers)</h2>
+            <ul>
+              <li>There are various flavors</li>
+              <li>They all transpile a special syntax down to CSS</li>
+              <li>[Intro to Preprocessors](https://htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus)</li>
+              <li><a href="https://csspre.com/compare/">Preprocessor Comparison</a></li>
+              <li><a href="https://devhints.io/sass">Cheatsheet</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Sassmeister</h2>
+            <p><a href="https://www.sassmeister.com/">A Convenient Online Sass Tool</a></p>
+          </section>
+          <section>
+            <h2><code>.sass</code> vs <code>.scss</code></h2>
+            <ul>
+              <li>SCSS Stands for "Sassy CSS"</li>
+              <li>Altered the Sass syntax enough to make SCSS a superset of CSS</li>
+              <li>With SCSS, valid CSS is also valid SCSS</li>
+              <li><a href="http://www.thesassway.com/editorial/sass-vs-scss-which-syntax-is-better">Sass vs SCSS</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>SCSS variables</h2>
+            <p>Variable <code>map</code> and <code>map.get(key)</code></p>
+            <pre><code class="med-code">$primary-color: #333;
+$colors: ("primary": $primary-color, "secondary": #454545)
+body {
+    color: $primary-color;
+    width: 300px / 960px * 100%;
+    background: map-get($colors, "secondary")
+}
+            </code></pre>
+          </section>
+          <section>
+            <h2>Nesting</h2>
+            <ul>
+              <li>nest css selectors</li>
+              <li>with/without `&` operator</li>
+              <li>nest css hyphenated rules:</li>
+            </ul>
+            <pre><code class="med-code">header {
+    .title {
+        &.bold{
+            font-weight: bold
+        }
+    }
+}
+/* and nesting hyphenated rules */
+font: {
+    size: 1px;
+    weight: bold;
+    family: 'Signika', sans-serif
+}</code></pre>
+          </section>
+          <section>
+            <h2>Mixins</h2>
+            <ul>
+              <li>@mixin and @include (like variables for larger chunks of css)</li>
+              <li>mixins can take args:</li>
+            </ul>
+            <pre><code class="med-code">@mixin flagProps($val){
+    opacity: ($val)
+    letter-spacing: 2*$val
+}
+@include flagProps(1)
+@include flagProps(0)</code></pre>
+          </section>
+          <section>
+            <h2>More Mixin Use cases</h2>
+            <p>You can spread args too</p>
+            <pre><code class="med-code">@mixin flagProps($vals...){
+border: $vals;
+}
+@include flagProps(1px, solid, crimson){
+border: $props;</code></pre>
+          </section>
+          <section>
+            <h2>Extends</h2>
+            <p>Great for a success or error message use case</p>
+            <pre><code class="med-code">.msg {
+    font-size: 2rem;
+    line-height: 2rem;
+}
+.error {
+    @extend .msg
+    color: crimson
+}</code></pre>
+          </section>
+          <section>
+            <h2></h2>
+          </section>
+          <section>
+            <h2>Other Utilities</h2>
+            <pre><code class="med-code">@if @else
+@for
+@each
+@while
+@function fn(){@return thing}</code></pre>
+          </section>
+          <section>
+            <h2>If Else</h2>
+            <pre><code class="med-code">@if $background == 'black' {
+    color: white;
+}
+@else {
+    color: black;
+}</code></pre>
+          </section>
+          <section>
+            <h2>For Loop</h2>
+            <pre><code class="med-code">@for $i from 1 through 8 {
+    [data-id-#{$i}] {
+        margin-left: 2px * $i;
+    }
+}</code></pre>
+          </section>
+          <section>
+            <h2>Example <code>@function</code></h2>
+            <pre><code class="med-code">@use "sass:list"
+@function remove-where($list, $condition) {
+    $new-list: ();
+    $separator: list.separator($list)
+    @each $element in $list {
+        @if not meta.call($condition, $element) {
+            $new-list: list.append($new-list, $element, $separator: $separator);
+        }
+    }
+    @return $new-list
+}</code></pre>
+          </section>
+          <section>
+            <h2>Color Operations</h2>
+            <ul>
+              <li>darken()</li>
+              <li>saturate()</li>
+              <li>adjust-hue()</li>
+              <li><a href="https://thoughtbot.com/blog/controlling-color-with-sass-color-functions">And more...</a></li>
+            </ul>
+            <pre><code class="med-code">lighten($color, 20%)</code></pre>
+          </section>
+          <section>
+            <h2>SCSS Partials & Modules</h2>
+            <ul>
+              <li>Partials let us break up the css code into modules and import them as needed</li>
+              <li>Common use case is to put your vars and functions in partials</li>
+            </ul>
+            <pre><code class="med-code">@import _filename.scss</code></pre>
+          </section>
+          <section>
+            <h2>Using node-sass</h2>
+            <p>open new terminal cmd+T/ctrl+T to leave the watcher in the background</p>
+            <pre><code class="med-code">npm install node-sass -g //install node sass globally
+node-sass //it runs!!
+node-sass scss/style.scss -o css //output dir: /css input file: /css/style.scss
+node-sass scss -o css //output dir: /css input: /scss (all .scss files there)
+node-sass scss -o css --output-style expanded ( or compressed)
+node-sass scss -o css -w //watch flag so we can continue to work</code></pre>
+          </section>
+          <section>
+            <h2>The package.json file</h2>
+            <ul>
+              <li>setting up npm scripts in the package.json file</li>
+              <li>Run `npm init` and answer the form questions</li>
+              <li>Then modify your "scripts" rule to be:</li>
+            </ul>
+            <pre><code class="med-code">"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "sass": "node-sass scss -o css --output-style compressed && node-sass",
+  "watch:sass": "node-sass scss -o css --output-style compressed -w"
+}</code></pre>
+          </section>
+          <section>
+            <h2>Trade-offs between using SCSS and native CSS</h2>
+            <div class="flex">
+              <ul>Pros
+                <li>Syntax Convenience</li>
+                <li>Code Organization</li>
+              </ul>
+              <ul>Cons
+                <li>Slight learning curve for new developers</li>
+                <li>Extra Build Step</li>
+                <li>SCSS logic is not available at runtime, unlike CSS var()/calc()</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h2>CSS Spec Continues to Grow</h2>
+            <ul>
+              <li>May not need to rely on conveniences of SCSS anymore</li>
+              <li>CSS spec gains more of these utilities each year</li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">CSS filters</a></li>
+              <li>CSS custom properties: <code>var()</code></li>
+              <li>CSS functions: <code>calc()</code>, <code>clamp()</code> etc.</li>
+              <li>New CSS selectors: <code>:is()</code>, <code>:where()</code>, <code>:has()</code></li>
+              <li><a href="https://drafts.csswg.org/css-nesting/#nest-selector">CSS Nesting Proposal</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>VSCode extension</h2>
+            <p>live sass compiler extension</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Testing in Javascript</h1>
+          </section>
+          <section>
+            <h2>Test Driven Development with Jest</h2>
+            <p>(J)avascript T(est)ing = Jest</p>
+            <p><a href="https://jestjs.io/docs/en/getting-started">Jest Docs</a></p>
+            <p><a href="https://css-tricks.com/front-end-testing-is-for-everyone/">Frontend Testing for Everyone</a></p>
+          </section>
+          <section>
+            <h2>Installation</h2>
+            <pre><code class="med-code">npm init
+npm install --save-dev Jest</code></pre>
+          </section>
+          <section>
+            <h2>First Test</h2>
+
+            <pre><code class="med-code">// index.js
+function sum = (a, b) => a + b
+module.exports = sum</code></pre>
+            <pre><code class="med-code">// index.test.js`
+test('two plus two is four', () => {
+  expect(2 + 2).toBe(4);
+});</code></pre>
+          </section>
+          <section>
+            <h2>Mocking Functions or APIs</h2>
+            <p><a href="https://jestjs.io/docs/mock-functions">Docs</a></p>
+          </section>
+        </section>
+
+     </div>
+    </div>
+
+
+    <script src="../04-css-2/lib/js/head.min.js"></script>
+    <script src="../04-css-2/lib/js/caniuse-embed.min.js"></script>
+    <script src="../04-css-2/js/reveal.js"></script>
+
+    <script>
+      Reveal.initialize({
+        dependencies: [
+          { src: '../04-css-2/plugin/markdown/marked.js' },
+          { src: '../04-css-2/plugin/markdown/markdown.js' },
+          { src: '../04-css-2/plugin/notes/notes.js', async: true },
+          { src: '../04-css-2/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
+    <script defer>
+      let span = document.querySelectorAll('.snippet-btn')
+      let snippet = ``
+new ClipboardJS(span);
+var playing = false
+function togglePlay(el) {
+  playing ? el.play() : el.pause()
+  playing = !playing
+}
+    </script>
+  </body>
+</html>

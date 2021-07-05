@@ -140,7 +140,7 @@
           <section>
             <h2>Some resources to guide us</h2>
             <p><a href="http://jargon.js.org/">Glossary of Jargon</a></p>
-            <p><a href="https://glossarytech.com/">GLossary Tech Extension</a></p>
+            <p><a href="https://glossarytech.com/">Glossary Tech Extension</a></p>
             <h4 class="fragment">E-Textbooks</h4>
             <p class="fragment"><a href="https://exploringjs.com/deep-js/toc.html">Deep Javascript</a></p>
             <p class="fragment"><a href="https://exploringjs.com/es6/index.html">Exploring ES6</a></p>
@@ -1476,6 +1476,25 @@ Object.prototype[toString] = function() {
 }
 {a: 1, b: 2}[toString]() // "{\"a\":1,\"b\":2}"</code></pre>
           </section>
+          <section>
+            <h2>Safe Serialization on all <code>prototypes</code></h2>
+            <p>Using Symbol for safe global prototypal inheritance</p>
+            <pre><code class="med-code">const serialize = Symbol('serialize');
+Boolean.prototype[serialize] = Number.prototype[serialize] = String.prototype[serialize] =
+  function() { return JSON.stringify(this) }
+Function.prototype[serialize] = function() { return this.toString() }
+Array.prototype[serialize] = function() { 
+  const values = this.map(item => item[serialize]()).join(', ')
+  return '['+values+']'
+};
+Object.prototype[serialize] = function() { 
+  const properties = Object.entries( this ).map(
+    entry => entry[0][serialize]() +': '+ entry[1][serialize]()
+  )
+  return '{'+properties+'}'
+};
+RegExp.prototype[serialize] = function() { return '/'+this.source+'/'+this.flags }</code></pre>
+          </section>
         </section>
 
         <section>
@@ -1485,7 +1504,8 @@ Object.prototype[toString] = function() {
           <p><a href="http://youmightnotneedjs.com/">Not every problem is a nail...</a></p>
           <hr>
           <p><a href="https://jquery.com/">A word on jQuery (~234kb)</a></p>
-          <ul><span style="margin-left: -3.5rem; columns: 2;">YAGNI</span>
+          <h4 style="text-align: center;">YAGNI</h4>
+          <ul style="columns: 2">
             <li><a href="http://youmightnotneedjquery.com/">1</a></li>
             <li><a href="https://blog.garstasio.com/you-dont-need-jquery/">2</a></li>
             <li> <a href="https://github.com/nefe/You-Dont-Need-jQuery">3</a></li>

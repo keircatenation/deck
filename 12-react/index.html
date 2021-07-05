@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>React</title>
+    <meta name="description" content="2017 was the year of CSS grid, a powerful tool that was developed specially to do layout on the web. It allows us to do many things that we couldn't before, without extreme measures of hackish-ness. It is definitely not hyperbole to say that CSS grid will revolutionise web design moving forward. This talk will introduce CSS grid and how it can be used to create modern layouts for the web.">
+
+    <link rel="stylesheet" href="../04-css-2/css/reveal.css">
+    <link rel="stylesheet" href="../04-css-2/css/theme/jing.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <link rel="stylesheet" href="../04-css-2/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../laser.css">
+		<script src="../laser.js"></script>
+
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../04-css-2/css/print/pdf.css' : '../04-css-2/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style>
+      .flex-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      .flex > img {
+        width: 50%;
+      }
+      .grid {
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      pre {
+        padding: 8px !important;
+        border-radius: 8px !important;
+        background: #3f3f3f;
+        position: relative;
+      }
+      .reveal .slides pre code.large-code {
+        font-size: 2.5rem !important;
+        line-height: 3rem !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+      }
+      .reveal .slides pre code.med-code {
+        font-size: 1.9rem !important;
+        line-height: 2.25rem !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+      }
+      .reveal .slides .nosidescroll {
+        overflow-x: hidden;
+      }
+      .livecode {
+        max-height: 30vh !important;
+      }
+      .livecode.serious {
+        max-height: 20vh !important;
+      }
+      .slack-code {
+        padding: 1px 6px !important;
+        background: #ddd;
+        color: rgb(180, 47, 69);
+        border-radius: 4px;
+      }
+      fieldset {
+        border: 3px solid #444 !important;
+        width: fit-content;
+        padding: 1rem !important;
+      }
+      :not(pre) >  code {
+        padding: 4px !important;
+        background: lightgrey;
+        color: rgb(211, 12, 52);
+        border-radius: 8px;
+      }
+      pre.wrong::before {
+        content: '🚫';
+        position: absolute;
+        left: -4rem;
+        font-size: 4rem;
+        top: 2rem;
+
+      }
+      pre.correct::before {
+        content: '✅';
+        position: absolute;
+        left: -4rem;
+        font-size: 4rem;
+        top: 2rem;
+
+      }
+      #ifelse-vid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        bottom: 0;
+        z-index: -9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h1>React</h1>
+          </section>
+          <section>
+            <h2>Frameworks</h2>
+          </section>
+
+
+        </section>
+
+      </div>
+    </div>
+
+
+    <script src="../04-css-2/lib/js/head.min.js"></script>
+    <script src="../04-css-2/lib/js/caniuse-embed.min.js"></script>
+    <script src="../04-css-2/js/reveal.js"></script>
+
+    <script>
+      Reveal.initialize({
+        dependencies: [
+          { src: '../04-css-2/plugin/markdown/marked.js' },
+          { src: '../04-css-2/plugin/markdown/markdown.js' },
+          { src: '../04-css-2/plugin/notes/notes.js', async: true },
+          { src: '../04-css-2/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
+    <script defer>
+      let span = document.querySelectorAll('.snippet-btn')
+      let snippet = ``
+new ClipboardJS(span);
+var playing = false
+function togglePlay(el) {
+  playing ? el.play() : el.pause()
+  playing = !playing
+}
+    </script>
+  </body>
+</html>

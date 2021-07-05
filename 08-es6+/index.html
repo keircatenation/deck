@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Intro to Regex</title>
+    <title>ES6 & Beyond</title>
     <meta name="description" content="2017 was the year of CSS grid, a powerful tool that was developed specially to do layout on the web. It allows us to do many things that we couldn't before, without extreme measures of hackish-ness. It is definitely not hyperbole to say that CSS grid will revolutionise web design moving forward. This talk will introduce CSS grid and how it can be used to create modern layouts for the web.">
 
     <link rel="stylesheet" href="../04-css-2/css/reveal.css">
@@ -51,6 +51,7 @@
         border-radius: 8px !important;
         background: #3f3f3f;
         position: relative;
+        width: max-content !important;
       }
       .reveal .slides pre code.large-code {
         font-size: 2.5rem !important;
@@ -128,7 +129,9 @@
           </section>
           <section>
             <h2>ES6+ Features</h2>
-            <p>Concise Index of them at <a href="https://es6-features.org/">es6-features.org</a></p>
+            <p>Concise Index of them at <a href="http://es6-features.org/">es6-features.org</a></p>
+            <p><a href="http://help.wtf/es6">ES6 help</a></p>
+            <p><a href="https://github.com/lukehoban/es6features#readme">ES6 README</a></p>
           </section>
           <section>
             <h2>ES6+ We've already Seen</h2>
@@ -262,24 +265,26 @@ let [d, e, f, g=7] = list </code></pre>
 const {p, q} = obj; 
 console.log(p, q); // 42, true
 
-// We can creates new global var names (i.e. 'a' & 'b'):
+// We can create new global var names (i.e. 'a' & 'b'):
 const {p: a, q: b} = obj 
 console.log(a, b); // 42, true</code></pre>
           </section>
           <section>
             <h2>Common Use Case</h2>
-            <p>Destructuring Config Objects as Function argument</p>
+            <p>Destructuring Config Objects to extract just the properties you need.</p>
             <pre><code class="med-code">const user = {
   user: 'jdoe', 
+  email: 'jdoe@home.com'
   fullName: {
-    first: 'John',last: 'Doe'
+    first: 'John',
+    last: 'Doe'
   }
 };
 
-function whoIs({user, fullName: {first: name}}) {
-  return `${user} is ${name}`;
-}
-console.log(whoIs(user));  // "jdoe is John"</code></pre>
+let { email, fullName: { first: name } } = user
+let myStr = `${name}'s email is ${email}`;
+
+console.log(myStr);  // "John's email is jdoe@home.com"</code></pre>
           </section>
           <section>
             <h2>Fail Safe Destructuring</h2>
@@ -291,12 +296,18 @@ console.log(a, b, c, d) // 7, 42, 3, undefined</code></pre>
           <section>
             <h2>Parameter Context Matching</h2>
             <p>You can think of this as destructuring for parameters</p>
+            <p>Handy when you need just a couple of values in an object/array parameter.</p>
             <pre><code class="med-code">function f ([ name, val ]) {
     console.log(name, val)
 }
+let arr = ['John', '#42']
+f(arr) // logs: 'John', '#42'
+
 function g ({ name: n, val: v }) {
     console.log(n, v)
-}</code></pre>
+}
+let obj = {name: 'John', val: '#42'}
+g(arr) // logs: 'John', '#42'</code></pre>
           </section>
           <section>
             <h2>Using Destructuring With Default params</h2>
@@ -309,16 +320,17 @@ f()  // 6</code></pre>
           <section>
             <h2>Rest & Spread Operators</h2>
             <code>...</code>
-            <p>Rest: to gather up remaining values into an Array or Object</p>
-            <p>Spread: to expand out encapsulated values into loose values.</p>
+            <p><u>Rest</u>: to gather up <strong>the rest</strong> of the values into an Array or Object</p>
+            <p><u>Spread</u>: to <strong>spread out</strong> encapsulated values into loose values.</p>
+            <p><small><u>encapsulated</u> here means that they are in an object or an array.</small></p>
           </section>
           <section>
             <h2>Rest</h2>
             <p>Most often used for Function Parameters</p>
             <pre><code class="med-code">function addFirstTwo(a, b, ...manyMoreArgs) {
-  return [a + b, ...manyMoreArgs]
+  return a + b
 }
-addFirstTwo([1,1,5,6,7]) // [2, 5, 6, 7]</code></pre>
+addFirstTwo([1,1,5,6,7]) // 2 </code></pre>
           </section>
           <section>
             <h2>Object Spread</h2>
@@ -401,19 +413,11 @@ mySet1.delete(5)
             </code></pre>
           </section>
           <section>
-            <h2>Import & Export</h2>
+            <h2>Export & Import</h2>
             <p>Export is used when creating JavaScript modules to export functions, objects, or primitive values from the module so they can be used by other programs with the import statement.</p>
             <p>Import is used to import bindings (i.e. functions, vars, etc) which are exported by another module.</p>
             <p>This will come in handy with React/Frameworks</p>
             <p>But we can also take advantage of this for own code organization.</p>
-          </section>
-          <section>
-            <h2>Import Syntax</h2>
-            <pre><code class="med-code">import defaultExport from "module-name";
-import * as name from "module-name";
-import { export1 } from "module-name";
-import { export1 as alias1 } from "module-name";
-import { export1 , export2 } from "module-name";</code></pre>
           </section>
           <section>
             <h2>Export Syntax</h2>
@@ -425,6 +429,15 @@ export class ClassName {...}
 export default expression;
 export default function (…) { … }</code></pre>
           </section>
+          <section>
+            <h2>Import Syntax</h2>
+            <pre><code class="med-code">import defaultExport from "module-name";
+import * as name from "module-name";
+import { export1 } from "module-name";
+import { export1 as alias1 } from "module-name";
+import { export1 , export2 } from "module-name";</code></pre>
+          </section>
+          
         </section>
         
         <section>
@@ -453,7 +466,7 @@ export default complexFunc</code></pre>
             <ol>
               <li>Scope (Global vs. Local)</li>
               <li>Nested Functions</li>
-              <li>Returning a Reference to an Inner Function</li>
+              <li>Currying: Returning an Inner Function</li>
             </ol>
             <pre><code class="med-code">// Local vs Global
 function fn() {
@@ -470,14 +483,13 @@ function gn() {
           </section>
           <section>
             <h2>Closures Illustration</h2>
-            <p>Global variables live until the page is discarded, like when you navigate to another page or close the window. </p>
-            <p>Local variables have short lives. They are created when the function is invoked, and deleted when the function is finished.</p>
-            <pre style="width: 75vw;"><code class="med-code">for (var i = 1; i <= 4; i++) {
+            <p><strong>Global variables are long-lived</strong>: until page is discarded (navigate away, close)</p>
+            <p><strong>Local variables are short-lived</strong>: Function invocation creates them, <br> Function Return destroys them (garbage collected)</p>
+            <pre><code class="med-code">for (var i = 1; i <= 4; i++) {
     setTimeout(function() { 
       console.log(i); 
     }, 1000*i);     // 5 5 5 5
 }
-
 for (var i = 1; i <= 5; i++) {
     setTimeout(function(x) { 
       return ()=>console.log(x) 
@@ -503,280 +515,144 @@ for (var i = 1; i <= 5; i++) {
             <h2>Simple Curried Function</h2>
             <pre><code class="med-code">var fn = x => y => x + y;
 var n = fn(3)
-console.log(n(4))</code></pre>
+// Some indefinite amount of time may pass, then:
+n(4) // 7
+
+// Could also be invoked at once:
+fn(3)(4) // 7</code></pre>
+<p>Due to referential transparency, these are identical evaluations, despite difference in time.</p>
           </section>
           <section>
-            <h2>Parallel Closures with Curried Functions</h2>
-            <p>Parallel Closures allow us to reuse code.</p>
-            <p>Closures can create multiple instances of closed over variables that are independent of each other</p>
+            <h2>Parallel Closures</h2>
+            <p>Curried Functions allow us to reuse code by creating <strong>Parallel Closures</strong>.</p>
+            <p>Closures can create multiple instances of closed over variables that are independent of each other.</p>
             <img src="img/parallel_closures.png" alt="">
           </section>
           <section>
             <h2>Closures & Modules Code Along</h2>
           </section>
-         
         </section>
 
+        <section>
+          <section>
+            <h1>Classes</h1>
+            <h2><code>Class { }</code></h2>
+          </section>
+          <section>
+            <h2>Object Oriented Patterns</h2>
+            <p>ES6 classes are a simple sugar over the prototype-based OO pattern. It's not <strong>true</strong> Classical Inheritance</p>
+            <p>Having a single convenient declarative form makes class patterns easier to use, and encourages interoperability. 
+            <p>Classes support prototype-based inheritance, <code>super</code> calls, instance/static methods and constructors.</p>
+          </section>
+          <section>
+            <h2>Made Possible by Enhance Object Literals</h2>
+            <pre><code class="med-code">var obj = {
+    // set a custom __proto__
+    __proto__: theProtoObj, // the constructor
+    // Methods
+    toMyString() {
+      // Super calls
+      return "My " + super.toString();
+    }
+}
+obj.toMyString() // 'My [object Object]'
+obj.toString() // '[object Object]'</code></pre>
+          <p>Along with property shorthand & computed properties, these also bring object literals and class declarations closer together, and allow object-based design to benefit from some of the same conveniences</p>
+          </section>
+          <section>
+            <h2>Not your Java's Inheritance</h2>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model">Classical vs Prototypal Inheritance</a></p>
+            <p>Classes in JS are basically fancy, syntax sugar over Functions. </p>
+            <p>Although there are similarities, they are not exactly like other OOP Language Classes.</p>
+            <ol>Accessing a property in JS follows these steps:
+              <li>Check to see if the value exists locally. If it does, return that value.</li>
+              <li>If there is not a local value, check the prototype chain (using the __proto__ property).</li>
+              <li>For the first object somwhere up the prototype chain that has a value for the specified property, return that value.</li>
+              <li>If no such property is found up the whole prototype chain, return undefined.</li>
+            </ol>
+          </section>
+          <section>
+            <h2>Super</h2>
+            <p><code>super</code> maintains the connection between parent and child classes</p>
+            Super method is used to call parent's constructor. You can use it if you need it (using the logic of your parent class in your derived class), but it's not mandatory. You can create a class without constructor, but it will use a default one
+
+constructor() {}
+For the derived class, if you don't specify a constructor, it will use
+
+constructor(...args) {
+  super(...args);
+}
+          </section>
+          <section>
+            <h2>Class Example</h2>
+            <pre><code class="med-code">class Person {
+  constructor(name, email, address) {
+    this.name = name
+    this.email = email
+    this.address = address
+  }
+  getInfo() {
+    return {
+      Name: this.name, 
+      Email: this.email, 
+      Address: this.address
+    }
+  }
+}</code></pre>
+            </section>
+            <section>
+              <h2>Class Example (continued)</h2>
+              <pre><code class="med-code">class Employee extends Person {
+  constructor(job, address, ...args) {
+    // super is a link w/ Parent Class
+    super(...args) // calls parent w/ rest of args
+    this.job = job
+    this.address = address // Can overwrite parent properties
+    // such as with the work address here
+  }
+  getInfo() { // Can overwrite methods too
+    return {Name: this.name, Email: this.email, Address: this.address, 
+             Job: this.job }
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Results</h2>
+            <pre><code class="med-code">const joPerson = new Person(
+  "Jo", "jo@home.com", "123 Home Ave"
+)
+const joEmployee = new Employee(
+  "Developer", "321 Work Ave", "Jo", "jo@work.com"
+)
+console.table({
+  emp: joEmployee.getInfo(), 
+  per: joPerson.getInfo()
+})</code></pre>
+            <img src="img/employee.png" alt="">
+          </section>
+          <section>
+            <h2>Instances</h2>
+            <p>For determining or asserting the chain of inheritance</p>
+            <p>Binary Operator: <code>instanceof()</code></p>
+            <pre><code class="med-code">const joEmployee = new Employee(
+  "Developer", "321 Work Ave", "Jo", "jo@work.com"
+)
+joEmployee instanceof Person // true
+
+// OR check the __proto__ property (references the parent)
+joEmployee.__proto__ // Person {constructor: ƒ, getInfo: ƒ}</code></pre>
+          </section>
+
+          <section>
+            <h2>Compostion vs Inheritance</h2>
+            <p>THe functional programming paradigm eschews inheritance for composition</p>
+            <p>Simply <strong>Compose Functions</strong></p>
+          </section>
+        </section>
         
 
-        <section>
-          <section>
-            <h1>SASS</h1>
-            <p>Syntactically Awesome Style Sheets</p>
-          </section>
-          <section>
-            <h2>Sass</h2>
-            <ul>
-              <li>A more concise way to write CSS</li>
-              <li>Originally developed by Ruby developers</li>
-              <li>Deprecated packages: `ruby-sass`, `compass`</li>
-              <li>Now there's a C++ compiler/transpiler called `libsass`</li>
-              <li>`node-sass` is a node.js binding for `libsass`</li>
-            </ul>
-          </section>
-          <section>
-            <h2>Node-sass and libsass docs</h2>
-            <ul>
-              <li><a href="https://github.com/sass/node-sass"><code>node-sass</code></a></li>
-              <li><a href="https://github.com/sass/libsass"><code>libsass</code></a></li>
-            </ul>
-          </section>
-          <section>
-            <h2>CSS Preprocessors (Compilers)</h2>
-            <ul>
-              <li>There are various flavors</li>
-              <li>They all transpile a special syntax down to CSS</li>
-              <li>[Intro to Preprocessors](https://htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus)</li>
-              <li><a href="https://csspre.com/compare/">Preprocessor Comparison</a></li>
-              <li><a href="https://devhints.io/sass">Cheatsheet</a></li>
-            </ul>
-          </section>
-          <section>
-            <h2>Sassmeister</h2>
-            <p><a href="https://www.sassmeister.com/">A Convenient Online Sass Tool</a></p>
-          </section>
-          <section>
-            <h2><code>.sass</code> vs <code>.scss</code></h2>
-            <ul>
-              <li>SCSS Stands for "Sassy CSS"</li>
-              <li>Altered the Sass syntax enough to make SCSS a superset of CSS</li>
-              <li>With SCSS, valid CSS is also valid SCSS</li>
-              <li><a href="http://www.thesassway.com/editorial/sass-vs-scss-which-syntax-is-better">Sass vs SCSS</a></li>
-            </ul>
-          </section>
-          <section>
-            <h2>SCSS variables</h2>
-            <p>Variable <code>map</code> and <code>map.get(key)</code></p>
-            <pre><code class="med-code">$primary-color: #333;
-$colors: ("primary": $primary-color, "secondary": #454545)
-body {
-    color: $primary-color;
-    width: 300px / 960px * 100%;
-    background: map-get($colors, "secondary")
-}
-            </code></pre>
-          </section>
-          <section>
-            <h2>Nesting</h2>
-            <ul>
-              <li>nest css selectors</li>
-              <li>with/without `&` operator</li>
-              <li>nest css hyphenated rules:</li>
-            </ul>
-            <pre><code class="med-code">header {
-    .title {
-        &.bold{
-            font-weight: bold
-        }
-    }
-}
-/* and nesting hyphenated rules */
-font: {
-    size: 1px;
-    weight: bold;
-    family: 'Signika', sans-serif
-}</code></pre>
-          </section>
-          <section>
-            <h2>Mixins</h2>
-            <ul>
-              <li>@mixin and @include (like variables for larger chunks of css)</li>
-              <li>mixins can take args:</li>
-            </ul>
-            <pre><code class="med-code">@mixin flagProps($val){
-    opacity: ($val)
-    letter-spacing: 2*$val
-}
-@include flagProps(1)
-@include flagProps(0)</code></pre>
-          </section>
-          <section>
-            <h2>More Mixin Use cases</h2>
-            <p>You can spread args too</p>
-            <pre><code class="med-code">@mixin flagProps($vals...){
-border: $vals;
-}
-@include flagProps(1px, solid, crimson){
-border: $props;</code></pre>
-          </section>
-          <section>
-            <h2>Extends</h2>
-            <p>Great for a success or error message use case</p>
-            <pre><code class="med-code">.msg {
-    font-size: 2rem;
-    line-height: 2rem;
-}
-.error {
-    @extend .msg
-    color: crimson
-}</code></pre>
-          </section>
-          <section>
-            <h2></h2>
-          </section>
-          <section>
-            <h2>Other Utilities</h2>
-            <pre><code class="med-code">@if @else
-@for
-@each
-@while
-@function fn(){@return thing}</code></pre>
-          </section>
-          <section>
-            <h2>If Else</h2>
-            <pre><code class="med-code">@if $background == 'black' {
-    color: white;
-}
-@else {
-    color: black;
-}</code></pre>
-          </section>
-          <section>
-            <h2>For Loop</h2>
-            <pre><code class="med-code">@for $i from 1 through 8 {
-    [data-id-#{$i}] {
-        margin-left: 2px * $i;
-    }
-}</code></pre>
-          </section>
-          <section>
-            <h2>Example <code>@function</code></h2>
-            <pre><code class="med-code">@use "sass:list"
-@function remove-where($list, $condition) {
-    $new-list: ();
-    $separator: list.separator($list)
-    @each $element in $list {
-        @if not meta.call($condition, $element) {
-            $new-list: list.append($new-list, $element, $separator: $separator);
-        }
-    }
-    @return $new-list
-}</code></pre>
-          </section>
-          <section>
-            <h2>Color Operations</h2>
-            <ul>
-              <li>darken()</li>
-              <li>saturate()</li>
-              <li>adjust-hue()</li>
-              <li><a href="https://thoughtbot.com/blog/controlling-color-with-sass-color-functions">And more...</a></li>
-            </ul>
-            <pre><code class="med-code">lighten($color, 20%)</code></pre>
-          </section>
-          <section>
-            <h2>SCSS Partials & Modules</h2>
-            <ul>
-              <li>Partials let us break up the css code into modules and import them as needed</li>
-              <li>Common use case is to put your vars and functions in partials</li>
-            </ul>
-            <pre><code class="med-code">@import _filename.scss</code></pre>
-          </section>
-          <section>
-            <h2>Using node-sass</h2>
-            <p>open new terminal cmd+T/ctrl+T to leave the watcher in the background</p>
-            <pre><code class="med-code">npm install node-sass -g //install node sass globally
-node-sass //it runs!!
-node-sass scss/style.scss -o css //output dir: /css input file: /css/style.scss
-node-sass scss -o css //output dir: /css input: /scss (all .scss files there)
-node-sass scss -o css --output-style expanded ( or compressed)
-node-sass scss -o css -w //watch flag so we can continue to work</code></pre>
-          </section>
-          <section>
-            <h2>The package.json file</h2>
-            <ul>
-              <li>setting up npm scripts in the package.json file</li>
-              <li>Run `npm init` and answer the form questions</li>
-              <li>Then modify your "scripts" rule to be:</li>
-            </ul>
-            <pre><code class="med-code">"scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "sass": "node-sass scss -o css --output-style compressed && node-sass",
-  "watch:sass": "node-sass scss -o css --output-style compressed -w"
-}</code></pre>
-          </section>
-          <section>
-            <h2>Trade-offs between using SCSS and native CSS</h2>
-            <div class="flex">
-              <ul>Pros
-                <li>Syntax Convenience</li>
-                <li>Code Organization</li>
-              </ul>
-              <ul>Cons
-                <li>Slight learning curve for new developers</li>
-                <li>Extra Build Step</li>
-                <li>SCSS logic is not available at runtime, unlike CSS var()/calc()</li>
-              </ul>
-            </div>
-          </section>
-          <section>
-            <h2>CSS Spec Continues to Grow</h2>
-            <ul>
-              <li>May not need to rely on conveniences of SCSS anymore</li>
-              <li>CSS spec gains more of these utilities each year</li>
-              <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">CSS filters</a></li>
-              <li>CSS custom properties: <code>var()</code></li>
-              <li>CSS functions: <code>calc()</code>, <code>clamp()</code> etc.</li>
-              <li>New CSS selectors: <code>:is()</code>, <code>:where()</code>, <code>:has()</code></li>
-              <li><a href="https://drafts.csswg.org/css-nesting/#nest-selector">CSS Nesting Proposal</a></li>
-            </ul>
-          </section>
-          <section>
-            <h2>VSCode extension</h2>
-            <p>live sass compiler extension</p>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h1>Testing in Javascript</h1>
-          </section>
-          <section>
-            <h2>Test Driven Development with Jest</h2>
-            <p>(J)avascript T(est)ing = Jest</p>
-            <p><a href="https://jestjs.io/docs/en/getting-started">Jest Docs</a></p>
-            <p><a href="https://css-tricks.com/front-end-testing-is-for-everyone/">Frontend Testing for Everyone</a></p>
-          </section>
-          <section>
-            <h2>Installation</h2>
-            <pre><code class="med-code">npm init
-npm install --save-dev Jest</code></pre>
-          </section>
-          <section>
-            <h2>First Test</h2>
-
-            <pre><code class="med-code">// index.js
-function sum = (a, b) => a + b
-module.exports = sum</code></pre>
-            <pre><code class="med-code">// index.test.js`
-test('two plus two is four', () => {
-  expect(2 + 2).toBe(4);
-});</code></pre>
-          </section>
-          <section>
-            <h2>Mocking Functions or APIs</h2>
-            <p><a href="https://jestjs.io/docs/mock-functions">Docs</a></p>
-          </section>
-        </section>
+        
 
       </div>
     </div>

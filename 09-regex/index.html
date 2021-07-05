@@ -120,76 +120,69 @@
       <div class="slides">
         <section>
           <section>
-            <h1>Regex</h1>
-            <h3>Regular Expressions</h3>
+            <h1>Regular Expressions | RegExp | Regex </h1>
           </section>
-
-          ### Regular Expressions | Regex
-##### in javascript
-
----
-### [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
-#### Regular expression are used to perform pattern matching and search-and-replace functionality in text.
-##### Regex was built into javascript as a native data type just like it was in PERL. Not all languages have built-in regex.
-###### [Eloquent Javascript](https://eloquentjavascript.net/09_regexp.html)
----
-![Regex is essentially a language unto itself](https://imgs.xkcd.com/comics/regular_expressions.png)
-
----
-### Tokens and Operations - [Cheat sheet](http://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf)
-#### Tokens: characters and special characters
-* a, \w, \D,
-* Non printable chars like \r\n, \t
-
----
-
-#### Operations: quantifiers, enumerators, grouping
-* \[\] \(\) \{\} . * ? | ^ $ \ =
-* Greedy vs Lazy Quantifiers
-* Capturing vs Non Capturing Groups
-```js
-/a+?/.exec('aaaa') vs /a*?/.exec('aaaa')
+          <section>
+            <h2>Regex in Javascript</h2>
+            <p></p>
+            <p>Regex was built into javascript as a native data type just like it was in PERL. Not all languages have built-in regex.</p>
+            <p>Regular expression are used to perform pattern matching and search-and-replace functionality in text.</p>
+          </section>
+          <section>
+            <h2>Regex is essentially a language unto itself</h2>
+            <img src="https://imgs.xkcd.com/comics/regular_expressions.png" alt="XKCD Regex Comic">
+            ul
+          </section>
+          <section>
+            <h2>Tokens & Operations</h2>
+            <p>Tokens: characters & special characters</p>
+            <div style='columns: 2'>
+              <ul>
+                <li>Printable chars: <code>a, \w, \D</code></li>
+                <li>Non printable chars: <code>\r\n, \t</code></li>
+              </ul>
+              <p>Operations: quantifiers, enumerators, grouping</p>
+              <ul>
+                <li><code>\[\] \(\) \{\} . * ? | ^ $ \ =</code></li>
+                <li>Greedy vs Lazy Quantifiers</li>
+                <li>Capturing vs Non Capturing Groups</li>
+              </ul>
+            </div>
+            <p><a href="http://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf">Cheat Sheet</a></p>
+          </section>
+          <section>
+            <h2>Tokens & Operators Example</h2>
+            <pre><code class="med-code">/a+?/.exec('aaaa') vs /a*?/.exec('aaaa')
 /(b)/.exec('bob') vs /(?:b)/.exec('bob')
-/((foo) (b(a)r))/.exec("foo bar")  <- numbered capturing groups
-```
----
-### Enumerations & Quantifiers
-```js
-/(a|b|c)/.exec('bob') // Enum
+/((foo) (b(a)r))/.exec("foo bar")  // numbered capturing groups</code></pre>
+          </section>
+          <section>
+            <h2>Enumerations & Quantifiers</h2>
+            <pre><code class="med-code">/(a|b|c)/.exec('bob') // Enum
 /a?/ <=> /a{0,1}/ // Quantifiers
 /a*/ <=> /a{0,}/
-/a+/ <=> /a{1,}/
-```
----
-### Backslashes Escape Operators
-```js
-/a$/.test("a$") //false
-/a\\$/.test("a$") //true
-```
-
----
-### Back references
-```js
-/(b)o\1/.test("bob")
-/(r)(a)(c)e\3\2\1/.test("racecar")
-```
-
----
-
-### Creating a Regex in JS
-```js
-let regex = new RegExp("pattern", "flags") //constructor way
+/a+/ <=> /a{1,}/</code></pre>
+          </section>
+          <section>
+            <h2>Backslash Escape Operators</h2>
+            <pre><code class="med-code">/a$/.test("a$") //false
+/a\\$/.test("a$") //true</code></pre>
+          </section>
+          <section>
+            <h2>Back References</h2>
+            <pre><code class="med-code">/(b)o\1/.test("bob")
+/(r)(a)(c)e\3\2\1/.test("racecar")</code></pre>
+          </section>
+          <section>
+            <h2>Creating a Regex in JS</h2>
+            <pre><code class="med-code">let regex = new RegExp("pattern", "flags") //constructor way
 let regex2 = /pattern/flags // the Regex literal way
 let regex3 = new RegExp(/pattern/, "flags")
-// can also use a literal in the construtor
-```
-
----
-
-### [Built in String Methods for Regex](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Using_regular_expressions_in_JavaScript)
-
-```js
-exec()
+// can also use a literal in the construtor</code></pre>
+          </section>
+          <section>
+            <h2>Built-in String Methods for Regex <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Using_regular_expressions_in_JavaScript">MDN</a></sup></h2>
+            <pre><code class="med-code">exec()
 test()
 match()
 matchall()
@@ -198,47 +191,53 @@ replace()
 split()
 // Usage is inconsistent:
 /w/gi.test('Hello World') // true
-'hello'.search(/L/gi)
-```
-
----
-
-### Regular expression flags
-##### `/pattern/gim`
-|Flag| Description| Corresponding property|
-| ------------- |:-------------:| -----:|
-|g| Global search.| RegExp.prototype.global|
-|i| Case-insensitive search.| RegExp.prototype.ignoreCase|
-|m| Multi-line search. |RegExp.prototype.multiline|
-|s| Allows . to match newline characters.| RegExp.prototype.dotAll|
-|u |"unicode"; treat a pattern as a sequence of unicode code points. |RegExp.prototype.unicode|
-|y| Perform a "sticky" search that matches starting at the current position in the target string. | RegExp.prototype.sticky|
-
----
-
-```js
-/[a-z]/.test("ABCDEFG") //false
-/[a-z]/i.test("ABCDEFG") //true
-```
----
-
-### [Positive/Negative Look Behind/Ahead](https://www.stefanjudis.com/today-i-learned/the-complicated-syntax-of-lookaheads-in-javascript-regular-expressions/)
-```js
-/b(?=o)/.exec('bob') // Positive Look ahead
+'hello'.search(/L/gi)</code></pre>
+          </section>
+          <section>
+            <h2>Regex Flags</h2>
+            <p><code>/pattern/gim</code></p>
+            <div class="grid">
+              <p>Flag</p>    <p>Description</p>                                    <p>Corresponding Property</p>
+              <code>g</code> <p>Global search</p>                                  <p>RegExp.prototype.global</p>
+              <code>i</code> <p>Case-insensitive search</p>                        <p>RegExp.prototype.ignoreCase</p>
+              <code>m</code> <p>Multi-line search</p> <p>RegExp.prototype.multiline</p>
+              <code>s</code> <p>Allows <code>.</code> to match newline characters</p> <p>RegExp.prototype.dotAll</p>
+              <code>u</code> <p>"unicode"; treat a pattern as a sequence of unicode code points</p> <p>RegExp.prototype.unicode</p>
+              <code>y</code> <p>Perform a "sticky" search that matches starting at the current position in the target string</p> <p>RegExp.prototype.sticky</p>
+            </div>
+          </section>
+          <section>
+            <h2>Regex Flag Example</h2>
+            <pre><code class="med-code">/[a-z]/.test("ABCDEFG") //false
+/[a-z]/i.test("ABCDEFG") //true</code></pre>
+          </section>
+          <section>
+            <h2>Positive/Negative Look Behind/Ahead <sup><a href="https://www.stefanjudis.com/today-i-learned/the-complicated-syntax-of-lookaheads-in-javascript-regular-expressions/">article</a></sup></h2>
+            <pre><code class="med-code">/b(?=o)/.exec('bob') // Positive Look ahead
 /b(?!o)/.exec('bob') // Negative Look ahead
 /(?<=ob)/.exec("bob") // Positive Look behind
-/(?<!ob)/.exec("bob") // Negative Look behind
-```
----
-
-### Regex Tools
-* [Regex101](https://regex101.com/)
-* [Debuggex](https://www.debuggex.com/)
-* [Regexr](https://regexr.com/)
-* [Regexper](https://regexper.com/)
-* [Rubular](https://rubular.com/)
-* [RegexPal](https://www.regexpal.com/)
-* Fun list of regex based tools: [Dcode](https://www.dcode.fr/en)
+/(?<!ob)/.exec("bob") // Negative Look behind</code></pre>
+          </section>
+          <section>
+            <h2>Regex References</h2>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">MDN</a></li>
+              <li><a href="https://eloquentjavascript.net/09_regexp.html">Eloquent Javscript: Regex</a></li>
+              <li></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Regex Tools</h2>
+            <ul>
+              <li><a href="https://regex101.com/">Regex101</a></li>
+              <li><a href="https://www.debuggex.com/">Debuggex</a></li>
+              <li><a href="https://regexr.com/">Regexr</a></li>
+              <li><a href="https://regexper.com/">Regexper</a></li>
+              <li><a href="https://rubular.com/">Rubular</a></li>
+              <li><a href="https://www.regexpal.com/">RegexPal</a></li>
+              <li>Fun list of regex based tools: <a href="https://www.dcode.fr/en">Dcode</a></li>
+            </ul>
+          </section>
         </section>
 
       </div>

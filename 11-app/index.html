@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Javascript Applications</title>
+    <meta name="description" content="2017 was the year of CSS grid, a powerful tool that was developed specially to do layout on the web. It allows us to do many things that we couldn't before, without extreme measures of hackish-ness. It is definitely not hyperbole to say that CSS grid will revolutionise web design moving forward. This talk will introduce CSS grid and how it can be used to create modern layouts for the web.">
+
+    <link rel="stylesheet" href="../04-css-2/css/reveal.css">
+    <link rel="stylesheet" href="../04-css-2/css/theme/jing.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <link rel="stylesheet" href="../04-css-2/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../laser.css">
+		<script src="../laser.js"></script>
+
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../04-css-2/css/print/pdf.css' : '../04-css-2/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style>
+      .flex-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      .flex > img {
+        width: 50%;
+      }
+      .grid {
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      pre {
+        padding: 8px !important;
+        border-radius: 8px !important;
+        background: #3f3f3f;
+        position: relative;
+      }
+      .reveal .slides pre code.large-code {
+        font-size: 2.5rem !important;
+        line-height: 3rem !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+      }
+      .reveal .slides pre code.med-code {
+        font-size: 1.9rem !important;
+        line-height: 2.25rem !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+      }
+      .reveal .slides .nosidescroll {
+        overflow-x: hidden;
+      }
+      .livecode {
+        max-height: 30vh !important;
+      }
+      .livecode.serious {
+        max-height: 20vh !important;
+      }
+      .slack-code {
+        padding: 1px 6px !important;
+        background: #ddd;
+        color: rgb(180, 47, 69);
+        border-radius: 4px;
+      }
+      fieldset {
+        border: 3px solid #444 !important;
+        width: fit-content;
+        padding: 1rem !important;
+      }
+      :not(pre) >  code {
+        padding: 4px !important;
+        background: lightgrey;
+        color: rgb(211, 12, 52);
+        border-radius: 8px;
+      }
+      pre.wrong::before {
+        content: '🚫';
+        position: absolute;
+        left: -4rem;
+        font-size: 4rem;
+        top: 2rem;
+
+      }
+      pre.correct::before {
+        content: '✅';
+        position: absolute;
+        left: -4rem;
+        font-size: 4rem;
+        top: 2rem;
+
+      }
+      #ifelse-vid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        bottom: 0;
+        z-index: -9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h1>Javascript Applications</h1>
+          </section>
+          <section>
+            <h2>Dragon Clicker App</h2>
+          </section>
+
+
+        </section>
+        # Javascript Design Patterns
+### Before we dive into a framework like React, let's explore how to organize code and why... 
+#### aka Design Patterns
+
+---
+
+# I'm your Project Manager
+### I've spoken with our client and I'll be sharing the project reqs with you
+### This client's needs seem easy so framework
+### but there might be some scaling surprises in store...
+
+---
+
+### Project Requirements for Dragon Emoji Clicker
+
+* The application should display a 🐉 and a number of clicks.
+* The number of clicks should increment when the 🐉 is clicked.
+* The specifics of the layout are up to you, so style it as you like.
+* Remember events and event listeners?
+```js
+var elem = document.getElementById('🐉');
+elem.addEventListener('click', function(){
+  //the element has been clicked... 
+  // do stuff here, like increment the counter
+});
+```
+
+---
+
+### Client Called, Reqs have changed 😣
+
+#### It's typical for reqs to change several times during the lifecycle of a product
+##### Common Reasons for Req changes:
+* Client's needs change
+* Audience changes
+* New details learned during development
+* Security Concerns arise
+
+---
+
+### Client's new Reqs: Dragon Duo 2️⃣
+* Display two 🐉's
+* Display the name of each dragon above it
+* Show the number of clicks of each dragon
+* Click counts should increment independently of eachother
+
+---
+
+### Reflections
+* Are you happy with your method of 🐉 duplication?
+* Is it scalable?
+* Did you "hard-code" the names?
+* Did you duplicate code anywhere?
+* Can you share a technique of encapsulation or D.R.Y. coding you used?
+* (D.R.Y. - Don't Repeat Yourself)
+
+---
+### Client Called Again with new Reqs!!
+#### Dragon Arena 🏟️ Premium
+* A list of 5 🐉's listed by name
+* A separate area to display the 🐉
+* The display area should show: name, image, # of clicks
+* When 🐉 is clicked in the list, the display area should update to show the data for that 🐉
+* the # of clicks must be unique to each 🐉 and increment when clicked
+
+---
+
+```js
+// Reminder on Closures
+var nums = [1,2,3];
+
+for (var i = 0; i < nums.length; i++) {
+    // This is the number we're on...
+    var num = nums[i]
+    // We're creating a DOM element for the number
+    var elem = document.createElement('div');
+    elem.textContent = num;
+    // ... and when we click, alert the value of `num`
+    elem.addEventListener('click', (function(numCopy) {
+        return function() {
+            alert(numCopy);
+        };
+    })(num));
+    document.body.appendChild(elem);
+};
+```
+
+
+
+---
+
+### Reflections
+* How much harder was that?
+* How do you like your solution? 
+* Are there any problems with it that you foresee as it scales?
+* Do you think it could adapt easily to yet more changes?
+* Do you feel your code is brittle or flexible? Simple or Complicated?
+* Were you able to separate out any of your code into distinct chunks with singular jobs? 
+* (..like modules, functions, data structures)
+
+---
+
+### [Spaghetti Code](https://www.youtube.com/watch?v=YrOiuIjLp9k)
+* Apps can get messy as you start connecting things together
+* But, applications can't work without the parts communicating/connecting...
+* If you connect all parts of your app to every other part, then you can't move anything around anymore
+* You've lost all degrees of freedom and therefore you've lost extensibility, Stability and likely clean code and scalability too
+* So We need to organize these connections carefully to keep things manageable
+* An app's codebase with a lot of connections and no organization is called "Spaghetti Code"
+
+---
+
+### The Goal
+
+* Stable - Bug free and handles errors gracefully
+* Clean code - Code is easily understood by others & adheres to standards
+* Scalable - Code can accomodate large numbers of users and/or data
+* Extensible - Easy to add new features without disrupting old ones
+
+---
+
+
+### Model View *️⃣
+
+#### [MVC/VM/P/*️⃣](https://www.youtube.com/watch?v=AhyrzeU9LGI&list=PLAwxTw4SYaPkGKjpeiLWz8ydvFEkmRkBn&index=15)
+* Controllers
+* Presenters
+* View Models
+* *️⃣ (whatever you want to call it, all are very similar concepts)
+
+---
+
+### Hypothetical Calendar app
+Which would be part of the Model
+* The buttons to sort by month
+* The array of dates of events
+* The render function to display the calendar area
+
+---
+
+### Video app
+Check all that are part of the view?
+* The array of urls of videos
+* The search input element
+* the function that adds a URL to a playlist
+* the area where the video is displayed
+
+---
+
+### Practice in an Existing MVC App
+##### Try to complete these challenges in the [/note-taker](https://github.com/JamieVaughn/note-taker) repo
+* ☑️ Add a Delete feature
+* ☑️ Add a localStorage clear feature
+* ☑️ Add a timestamp for each note
+* Think about where each of these would go in the MVC architecture
+* Start to consider if our Dragon Clicker can be architected in a similar way
+
+---
+
+### Let's Refactor Dragon Arena 🏟️ Premium into the MVC Pattern!
+##### Planning our MVC Refactoring for Dragon Arena 🏟️ Premium
+* Sketch out our Reqs
+* Decide which elements belong in the M, the V or the C
+* No storing our model in the DOM anymore, use a data type, like an array
+* Be sure to generate your List view from your Model, too
+
+---
+
+### Remember Pure Functions and Side Effects?
+* Pure functions have no State; they take in parameters & return values
+* The **Controller** can use (ideally) all pure functions (It's the "brains" of the app)
+* Pure functions can help us push our "Side effects" to the "edges" of our app
+* A good rule of thumb is to think of the **Model** and the **View** as the "edges"
+* The **Model** can have all "Statefulness" (i.e. the data)
+* The **View** can contain functions with "Side effects"
+
+---
+
+### MVC designations for our App's elements:
+
+<Appear>
+<span> The Clickable list of dragons?</span>
+<span> ⤷ View <br/> The display area for Dragons?  </span>
+<span> ⤷ View <br/>The Array of the dragon objects?  </span>
+<span> ⤷ Model <br/> The Array of dragon names?  </span>
+<span> ⤷ Model <br/> increment() or getDragons() funcs?</span>
+<span> ⤷ Controller </span>
+</Appear>
+
+---
+### Our Dragon Model
+```js
+const Model ={
+
+    dragonList: [ 
+        name1, 
+        name2, 
+        ... 
+    ],
+
+    dragons = [
+        {id: 0, name: 'fire', clicks: 0},
+        {id: 1, name: 'sky', clicks: 0},
+        ...
+    ],
+
+    addDragon()
+}
+```
+---
+
+<Split>
+
+![Dragon View](DragonViews.png)
+
+### Our Dragon View(s?)
+### 1. List of Dragon Names
+### 2. Display area for Dragon Cards
+* They are different areas and they are rerendered at different times
+* Could it make sense to have two view objects to handle each independently?
+
+</Split>
+
+---
+
+### Views
+```js
+const View = {
+    node,
+    initializeView1(),
+    template(list),
+    render1()
+}
+
+const View2 = {
+    node, 
+    initializeView2(),
+    template(dragon),
+    render2()
+}
+```
+
+---
+
+### Our Dragon Controller
+```js
+const Controller = {
+    init(),
+    increment(),
+    getList(),
+    getDragons(),
+    dispatch(name)
+   // setDragons(),
+   // hide
+   // delete
+   // modify etc...
+}
+
+```
+
+---
+### Our MVC Blueprint - Let's Build it!!
+Could each of these be in a separate js file?
+```js
+const Model = { 
+    list: [],
+    dragons: [{...}, {...}, {...}, ...],
+    addDragon()
+}
+const MainView/ListView = {
+    node,
+    init(),
+    template(),
+    render()
+}
+const Controller = {
+    init(),
+    getList(),
+    getDragons(),
+    increment(),
+    dispatch(name)
+}
+```
+
+---
+
+### Reflections
+* Does View get called within your model?
+* Does Model get called within you View?
+* How many times does Controller get called in View and Model?
+* How many times does each View and Model get called within Controller?
+
+---
+
+### The Client loves Dragon Arena 🏟️ Premium
+##### But they need one final req change (I promise):
+##### Dragon Arena 🏟️ Pro Draft
+* For this implementation, each dragon in the list is unique & can't be duplicated
+* They need a new separate Admin view area that displays on doubleclicking a dragon
+* This Admin view shows a form with inputs to change the properties for the dbl-clicked dragon
+* They should be able to submit the form to update the current dragon & the model must update to reflect what was submitted
+* They should be able to cancel out of the admin view if they change their mind
+* Bonus: Add a new property: Level, for each dragon which increases everytime clicks doubles
+* Bonus: use Window.prompt() to ask for & validate a password before opening the Admin view.
+
+---
+
+
+
+
+      </div>
+    </div>
+
+
+    <script src="../04-css-2/lib/js/head.min.js"></script>
+    <script src="../04-css-2/lib/js/caniuse-embed.min.js"></script>
+    <script src="../04-css-2/js/reveal.js"></script>
+
+    <script>
+      Reveal.initialize({
+        dependencies: [
+          { src: '../04-css-2/plugin/markdown/marked.js' },
+          { src: '../04-css-2/plugin/markdown/markdown.js' },
+          { src: '../04-css-2/plugin/notes/notes.js', async: true },
+          { src: '../04-css-2/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
+    <script defer>
+      let span = document.querySelectorAll('.snippet-btn')
+      let snippet = ``
+new ClipboardJS(span);
+var playing = false
+function togglePlay(el) {
+  playing ? el.play() : el.pause()
+  playing = !playing
+}
+    </script>
+  </body>
+</html>
