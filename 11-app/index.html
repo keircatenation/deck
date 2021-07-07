@@ -120,85 +120,87 @@
       <div class="slides">
         <section>
           <section>
-            <h1>Javascript Applications</h1>
+            <h1>Javascript Design Patterns</h1>
           </section>
           <section>
-            <h2>Dragon Clicker App</h2>
+            <h2>To understand JS Frameworks...</h2>
+            <p>Before we dive into a framework like React, <br>let's explore how to organize code and why... </p>
+            <p>also known as Design Patterns</p>
+            <p><a href="https://www.gofpatterns.com/">"Gang Of Four"</a></p>
           </section>
-
-
-        </section>
-        # Javascript Design Patterns
-### Before we dive into a framework like React, let's explore how to organize code and why... 
-#### aka Design Patterns
-
----
-
-# I'm your Project Manager
-### I've spoken with our client and I'll be sharing the project reqs with you
-### This client's needs seem easy so framework
-### but there might be some scaling surprises in store...
-
----
-
-### Project Requirements for Dragon Emoji Clicker
-
-* The application should display a 🐉 and a number of clicks.
-* The number of clicks should increment when the 🐉 is clicked.
-* The specifics of the layout are up to you, so style it as you like.
-* Remember events and event listeners?
-```js
-var elem = document.getElementById('🐉');
+          <section>
+            <h2>The Saga of the Dragon Clicker App</h2>
+            <p>A story about being a programmer hired by a needy client</p>
+            <p>...and <strong>YOU</strong> are the protagonist!</p>
+          </section>
+          <section>
+            <h2>I'm your Project Manager</h2>
+            <ul>
+              <li>I've spoken with our client and I'll be sharing the project reqs with you</li>
+              <li>This client's needs seem easy so framework</li>
+              <li>but there might be some scaling surprises in store...</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Project Requirements for Dragon Emoji Clicker <sup><a href="https://emojipedia.org/">1</a></sup>, <sup><a href="https://emojigraph.org/"></a></sup></h2>
+            <ul>
+              <li>The application should display a 🐉 and a number of clicks.</li>
+              <li>The number of clicks should increment when the 🐉 is clicked.</li>
+              <li>The specifics of the layout are up to you, so style it as you like.</li>
+              <li>Remember events and event listeners?</li>
+            </ul>
+            <pre><code class="med-code">var elem = document.getElementById('🐉');
 elem.addEventListener('click', function(){
   //the element has been clicked... 
   // do stuff here, like increment the counter
-});
-```
-
----
-
-### Client Called, Reqs have changed 😣
-
-#### It's typical for reqs to change several times during the lifecycle of a product
-##### Common Reasons for Req changes:
-* Client's needs change
-* Audience changes
-* New details learned during development
-* Security Concerns arise
-
----
-
-### Client's new Reqs: Dragon Duo 2️⃣
-* Display two 🐉's
-* Display the name of each dragon above it
-* Show the number of clicks of each dragon
-* Click counts should increment independently of eachother
-
----
-
-### Reflections
-* Are you happy with your method of 🐉 duplication?
-* Is it scalable?
-* Did you "hard-code" the names?
-* Did you duplicate code anywhere?
-* Can you share a technique of encapsulation or D.R.Y. coding you used?
-* (D.R.Y. - Don't Repeat Yourself)
-
----
-### Client Called Again with new Reqs!!
-#### Dragon Arena 🏟️ Premium
-* A list of 5 🐉's listed by name
-* A separate area to display the 🐉
-* The display area should show: name, image, # of clicks
-* When 🐉 is clicked in the list, the display area should update to show the data for that 🐉
-* the # of clicks must be unique to each 🐉 and increment when clicked
-
----
-
-```js
-// Reminder on Closures
-var nums = [1,2,3];
-
+});</code></pre>
+          </section>
+          <section>
+            <h2>The Client Called, Reqs have changed 😣</h2>
+            <p>It's typical for reqs to change several times during the development lifecycle of a product</p>
+            <ul>Common Reasons for Req changes:
+              <li>Client's business needs change</li>
+              <li>Audience changes and/or new data about the intended audience</li>
+              <li>Technical constraints discovered during development</li>
+              <li>Security concerns arise</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Dragon Duo 2️⃣</h2>
+            <ul>Client's new Reqs:
+              <li>Display two 🐉's</li>
+              <li>Display the name of each dragon above it</li>
+              <li>Show the number of clicks of each dragon</li>
+              <li>Click counts should increment independently of eachother</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Reflections</h2>
+            <ul>
+              <li>Are you happy with your method of 🐉 duplication?</li>
+              <li>Is it scalable?</li>
+              <li>Did you "hard-code" the names?</li>
+              <li>Did you duplicate code anywhere?</li>
+              <li>Can you share a technique of encapsulation or D.R.Y. coding you used?</li>
+              <li>(D.R.Y. - Don't Repeat Yourself)</li>
+            </ul>
+          </section>
+          <section>
+            <p>The Client Called Again with new Reqs!! 😱</p>
+          </section>
+          <section>
+            <h2>Dragon Arena 🏟️</h2>
+            <ul>
+              <li>A list of 5 🐉's listed by name</li>
+              <li>A separate area to display the 🐉</li>
+              <li>The display area should show: name, image, # of clicks</li>
+              <li>When 🐉 is clicked in the list, the display area should update to show the data for that 🐉</li>
+              <li>the # of clicks must be unique to each 🐉 and increment when clicked</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Reminder on Closures</h2>
+            <pre><code class="med-code">var nums = [1,2,3];
 for (var i = 0; i < nums.length; i++) {
     // This is the number we're on...
     var num = nums[i]
@@ -212,115 +214,125 @@ for (var i = 0; i < nums.length; i++) {
         };
     })(num));
     document.body.appendChild(elem);
-};
-```
-
-
-
----
-
-### Reflections
-* How much harder was that?
-* How do you like your solution? 
-* Are there any problems with it that you foresee as it scales?
-* Do you think it could adapt easily to yet more changes?
-* Do you feel your code is brittle or flexible? Simple or Complicated?
-* Were you able to separate out any of your code into distinct chunks with singular jobs? 
-* (..like modules, functions, data structures)
-
----
-
-### [Spaghetti Code](https://www.youtube.com/watch?v=YrOiuIjLp9k)
-* Apps can get messy as you start connecting things together
-* But, applications can't work without the parts communicating/connecting...
-* If you connect all parts of your app to every other part, then you can't move anything around anymore
-* You've lost all degrees of freedom and therefore you've lost extensibility, Stability and likely clean code and scalability too
-* So We need to organize these connections carefully to keep things manageable
-* An app's codebase with a lot of connections and no organization is called "Spaghetti Code"
-
----
-
-### The Goal
-
-* Stable - Bug free and handles errors gracefully
-* Clean code - Code is easily understood by others & adheres to standards
-* Scalable - Code can accomodate large numbers of users and/or data
-* Extensible - Easy to add new features without disrupting old ones
-
----
-
-
-### Model View *️⃣
-
-#### [MVC/VM/P/*️⃣](https://www.youtube.com/watch?v=AhyrzeU9LGI&list=PLAwxTw4SYaPkGKjpeiLWz8ydvFEkmRkBn&index=15)
-* Controllers
-* Presenters
-* View Models
-* *️⃣ (whatever you want to call it, all are very similar concepts)
-
----
-
-### Hypothetical Calendar app
-Which would be part of the Model
-* The buttons to sort by month
-* The array of dates of events
-* The render function to display the calendar area
-
----
-
-### Video app
-Check all that are part of the view?
-* The array of urls of videos
-* The search input element
-* the function that adds a URL to a playlist
-* the area where the video is displayed
-
----
-
-### Practice in an Existing MVC App
-##### Try to complete these challenges in the [/note-taker](https://github.com/JamieVaughn/note-taker) repo
-* ☑️ Add a Delete feature
-* ☑️ Add a localStorage clear feature
-* ☑️ Add a timestamp for each note
-* Think about where each of these would go in the MVC architecture
-* Start to consider if our Dragon Clicker can be architected in a similar way
-
----
-
-### Let's Refactor Dragon Arena 🏟️ Premium into the MVC Pattern!
-##### Planning our MVC Refactoring for Dragon Arena 🏟️ Premium
-* Sketch out our Reqs
-* Decide which elements belong in the M, the V or the C
-* No storing our model in the DOM anymore, use a data type, like an array
-* Be sure to generate your List view from your Model, too
-
----
-
-### Remember Pure Functions and Side Effects?
-* Pure functions have no State; they take in parameters & return values
-* The **Controller** can use (ideally) all pure functions (It's the "brains" of the app)
-* Pure functions can help us push our "Side effects" to the "edges" of our app
-* A good rule of thumb is to think of the **Model** and the **View** as the "edges"
-* The **Model** can have all "Statefulness" (i.e. the data)
-* The **View** can contain functions with "Side effects"
-
----
-
-### MVC designations for our App's elements:
-
-<Appear>
-<span> The Clickable list of dragons?</span>
-<span> ⤷ View <br/> The display area for Dragons?  </span>
-<span> ⤷ View <br/>The Array of the dragon objects?  </span>
-<span> ⤷ Model <br/> The Array of dragon names?  </span>
-<span> ⤷ Model <br/> increment() or getDragons() funcs?</span>
-<span> ⤷ Controller </span>
-</Appear>
-
----
-### Our Dragon Model
-```js
-const Model ={
+};</code></pre>
+          </section>
+          <section>
+            <h2>Reflections</h2>
+            <ul>
+              <li>How much harder was that?</li>
+              <li>How do you like your solution? </li>
+              <li>Are there any problems with it that you foresee as it scales?</li>
+              <li>Do you think it could adapt easily to yet more changes?</li>
+              <li>Do you feel your code is brittle or flexible? Simple or Complicated?</li>
+              <li>Were you able to separate out any of your code into distinct chunks with singular jobs? </li>
+              <li>(..like modules, functions, data structures)</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Spaghetti Code</h2>
+            <p><a href="https://www.youtube.com/watch?v=YrOiuIjLp9k">Udacity Video</a></p>
+            <ul>
+              <li>Apps can get messy as you start connecting things together</li>
+              <li>But, applications can't work without the parts communicating/connecting...</li>
+              <li>If you connect all parts of your app to every other part, then you can't move anything around anymore</li>
+              <li>You've lost all degrees of freedom and therefore you've lost extensibility, Stability and likely clean code and scalability too</li>
+              <li>So We need to organize these connections carefully to keep things manageable</li>
+              <li>An app's codebase with a lot of connections and no organization is called "Spaghetti Code"</li>
+            </ul>
+          </section>
+          <section>
+            <h2>The Goal</h2>
+            <ul>
+              <li>Stable - Bug free and handles errors gracefully</li>
+              <li>Clean code - Code is easily understood by others & adheres to standards</li>
+              <li>Scalable - Code can accomodate large numbers of users and/or data</li>
+              <li>Extensible - Easy to add new features without disrupting old ones</li>
+            </ul>
+          </section>
+          <section>
+            <h2>*️⃣ Model View Controller</h2>
+            <p>How to organize the responsibilites (or concerns) of our code</p>
+            <p><a href="https://www.youtube.com/watch?v=AhyrzeU9LGI&list=PLAwxTw4SYaPkGKjpeiLWz8ydvFEkmRkBn&index=15">MVC/VM/P/*️⃣</a></p>
+            <ul>
+              <li>Controllers</li>
+              <li>Presenters</li>
+              <li>View Models</li>
+              <li>*️⃣ (whatever you want to call it, all are very similar concepts)</li>
+            </ul>
+          </section>
+          <section>
+            <h2>MVC Pattern</h2>
+            <ul>
+              <li><strong>Model</strong>: Responsible for the app's data and state</li>
+              <li><strong>View</strong>: Responsible for rendering the UI to the screen</li>
+              <li><strong>Controller</strong>: Responsible for connecting the Model and the View. Provides the update and feedback logic between them.</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Hypothetical Calendar app</h2>
+            <ol>Which would be part of the Model?
+              <li>The buttons to sort by month</li>
+              <li>The array of dates of events</li>
+              <li>The render function to display the calendar area</li>
+            </ol>
+          </section>
+          <section>
+            <h2>Video App</h2>
+            <ol>Which are part of the view?
+              <li>The array of urls of videos</li>
+              <li>The search input element</li>
+              <li>the function that adds a URL to a playlist</li>
+              <li>the area where the video is displayed</li>
+            </ol>
+          </section>
+          <section>
+            <h2>Practice in an Existing MVC App</h2>
+            <ol>Try to complete these challenges in the <a href="https://github.com/JamieVaughn/note-taker">note-taker</a> repo
+              <li>☑️ Add a Delete feature</li>
+              <li>☑️ Add a localStorage clear feature</li>
+              <li>☑️ Add a timestamp for each note</li>
+              <li>Think about where each of these would go in the MVC architecture</li>
+              <li>Start to consider if our Dragon Clicker can be architected in a similar way</li>
+            </ol>
+          </section>
+          <section>
+            <p>The Client called again and wants us to refactor their Dragon app</p>
+          </section>
+          <section>
+            <h2>Refactoring Dragon Arena 🏟️ into the MVC Pattern!</h2>
+            <p>Planning our MVC Refactoring for Dragon Arena 🏟️</p>
+            <ul>
+              <li>Sketch out our Requirements</li>
+              <li>Decide which elements belong in the M, the V or the C</li>
+              <li>No storing our model in the DOM anymore, use a data type, like an array</li>
+              <li>Be sure to generate your List view from your Model, too</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Remember Pure Functions and Side Effects?</h2>
+            <ul>
+              <li>Pure functions have no State; they take in parameters & return values</li>
+              <li>The **Controller** can use (ideally) all pure functions (It's the "brains" of the app)</li>
+              <li>Pure functions can help us push our "Side effects" to the "edges" of our app</li>
+              <li>A good rule of thumb is to think of the **Model** and the **View** as the "edges"</li>
+              <li>The **Model** can have all "Statefulness" (i.e. the data)</li>
+              <li>The **View** can contain functions with "Side effects"</li>
+            </ul>
+          </section>
+          <section>
+            <h2>MVC designations for our App's elements</h2>
+            <ul>
+              <li>The Clickable list of dragons? </li>
+              <li>⤷ View <br/> The display area for Dragons?  </li>
+              <li>⤷ View <br/>The Array of the dragon objects?  </li>
+              <li>⤷ Model <br/> The Array of dragon names?  </li>
+              <li>⤷ Model <br/> increment() or getDragons() funcs? </li>
+              <li>⤷ Controller </li>
+            </ul>
+          </section>
+          <section>
+            <h2>Our Dragon Model</h2>
+            <pre><code class="med-code">const Model = {
 
     dragonList: [ 
         name1, 
@@ -335,27 +347,25 @@ const Model ={
     ],
 
     addDragon()
-}
-```
----
-
-<Split>
-
-![Dragon View](DragonViews.png)
-
-### Our Dragon View(s?)
-### 1. List of Dragon Names
-### 2. Display area for Dragon Cards
-* They are different areas and they are rerendered at different times
-* Could it make sense to have two view objects to handle each independently?
-
-</Split>
-
----
-
-### Views
-```js
-const View = {
+}</code></pre>
+          </section>
+          <section>
+            <h2>Our Dragon View(s?)</h2>
+            <div class="flex">
+              <img src="https://github.com/JamieVaughn/dragon-clicker/blob/master/dragon-clicker.png?raw=true" alt="">
+              <div>
+                <ol>
+                  <li>List of Dragon Names</li>
+                  <li>Display area for Dragon Cards</li>
+                </ol>
+                <p>They are different areas and they are rerendered at different times</p>
+                <p>Could it make sense to have two view objects to handle each independently?</p>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2>Views</h2>
+            <pre><code class="med-code">const View = {
     node,
     initializeView1(),
     template(list),
@@ -367,32 +377,25 @@ const View2 = {
     initializeView2(),
     template(dragon),
     render2()
-}
-```
-
----
-
-### Our Dragon Controller
-```js
-const Controller = {
+}</code></pre>
+          </section>
+          <section>
+            <h2>Our Dragon Controller</h2>
+            <pre><code class="med-code">const Controller = {
     init(),
     increment(),
     getList(),
     getDragons(),
     dispatch(name)
-   // setDragons(),
-   // hide
-   // delete
-   // modify etc...
-}
-
-```
-
----
-### Our MVC Blueprint - Let's Build it!!
-Could each of these be in a separate js file?
-```js
-const Model = { 
+    // setDragons(),
+    // hide
+    // delete
+    // modify etc...
+}</code></pre>
+          </section>
+          <section>
+            <h2>Our MVC Blueprint - Let's Build it!!</h2>
+            <pre><code class="med-code">const Model = { 
     list: [],
     dragons: [{...}, {...}, {...}, ...],
     addDragon()
@@ -409,35 +412,38 @@ const Controller = {
     getDragons(),
     increment(),
     dispatch(name)
-}
-```
+}</code></pre>
+            <p>Could each of these be in a separate js file? Maybe Modules?</p>
+          </section>
+          <section>
+            <h2>Reflections</h2>
+            <ul>
+              <li>Does View get called within your model?</li>
+              <li>Does Model get called within you View?</li>
+              <li>How many times does Controller get called in View and Model?</li>
+              <li>How many times does each View and Model get called within Controller?</li>
+            </ul>
+          </section>
+          <section>
+            <p>The Client loves Dragon Arena 🏟️</p>
+            <p><em>But they need one final req change</em> ...I promise</p>
+          </section>
+          <section>
+            <h2>Dragon Arena 🏟️ Premium</h2>
+            <ul>
+              <li>For this implementation, each dragon in the list is unique & can't be duplicated</li>
+              <li>They need a new separate Admin view area that displays on doubleclicking a dragon</li>
+              <li>This Admin view shows a form with inputs to change the properties for the dbl-clicked dragon</li>
+              <li>They should be able to submit the form to update the current dragon & the model must update to reflect what was submitted</li>
+              <li>They should be able to cancel out of the admin view if they change their mind</li>
+              <li>Bonus: Add a new property: Level, for each dragon which increases everytime clicks doubles</li>
+              <li>Bonus: use Window.prompt() to ask for & validate a password before opening the Admin view.</li>
+            </ul>
+          </section>
 
----
+        </section>
 
-### Reflections
-* Does View get called within your model?
-* Does Model get called within you View?
-* How many times does Controller get called in View and Model?
-* How many times does each View and Model get called within Controller?
-
----
-
-### The Client loves Dragon Arena 🏟️ Premium
-##### But they need one final req change (I promise):
-##### Dragon Arena 🏟️ Pro Draft
-* For this implementation, each dragon in the list is unique & can't be duplicated
-* They need a new separate Admin view area that displays on doubleclicking a dragon
-* This Admin view shows a form with inputs to change the properties for the dbl-clicked dragon
-* They should be able to submit the form to update the current dragon & the model must update to reflect what was submitted
-* They should be able to cancel out of the admin view if they change their mind
-* Bonus: Add a new property: Level, for each dragon which increases everytime clicks doubles
-* Bonus: use Window.prompt() to ask for & validate a password before opening the Admin view.
-
----
-
-
-
-
+  <!-- Dragon Arena Pro Draft (with Modules) -->
       </div>
     </div>
 
