@@ -362,6 +362,8 @@ typeof false // 'boolean'
 							<li>Let's see it in action: <pre><code>0.1 + 0.2 = ?</code></pre></li>
 							<li>Symbolic values:	<div class="ga-col2-33"> <pre><code>Infinity</code></pre> <pre><code>NaN</code></pre></div></li>
 						</ul>
+            <p><code>BigInt</code> provides arbitray precision & fixes decimal bug in Numbers. Post-fix with "n": <code>30903920193n</code></p>
+            <p><code>const biggestNumber = 9007199254740991n</code> (but not the biggest BigInt)</p>
 					</section>
           <section>
             <h2>NaN - Not a Number</h2>
@@ -1461,6 +1463,17 @@ Array.prototype
 Object.prototype
 Function.prototype // no methods/properties of its own</code></pre>
           </section>
+          <section>
+						<h2>Revisiting Symbol</h2>
+            <p><code>Symbol()</code></p>
+						<pre><code>let Sym = Symbol("Sym");
+console.log(_Sym.description);</code></pre>
+						<ul>
+              <li>creates a unique identifier</li>
+							<li>Used a unique, collision-free key on objects</li>
+              <li>Especially if you're going to add a property to the Prototype, which is known as "monkey patching" but...</li>
+						</ul>
+					</section>
           <section>
             <h2>"Monkey Patching" Prototypes considered harmful<sup><a href="https://maxheiber.medium.com/safe-monkey-patching-with-es2015-symbol-e36fb01ab794">Medium</a></sup></h2>
             <pre><code class="med-code">// Add useful toString Method to js objects:

@@ -183,12 +183,12 @@ obj?.key?.maybenot?.nested // Chain multiple for full safety
           </section>
           <section>
             <h2>🧵 String Template Literals <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">MDN</a></sup></h2>
-            <p><strong>Multiline:</strong>Uses "back ticks" to create multiline strings</p>
+            <p><strong>Multiline Strings: </strong>uses backticks <code>` `</code> (single or multi line)</p>
             <pre><code class="med-code">let myStr = `This is
 a fancy
 multiline string`
             </code></pre>
-            <p><strong>String Interpolation:</strong> Also allows embeddable javascript expressions with the <code>${ }</code> syntax</p>
+            <p><strong>String Interpolation:</strong> allows embeddable javascript expressions with the <code>${ }</code> syntax</p>
             <pre><code class="med-code">let myVar = 'fancy'
 let myFn = () => typeof myVar
 let myStr = `This is
@@ -643,10 +643,52 @@ joEmployee instanceof Person // true
 // OR check the __proto__ property (references the parent)
 joEmployee.__proto__ // Person {constructor: ƒ, getInfo: ƒ}</code></pre>
           </section>
-
+          <section>
+            <h2>Brief Intro to Classes in JS</h2> 
+            <ul>
+              <li>Constructor</li>
+              <li>Getters</li>
+              <li>Setters</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Typical Class Declaration</h2>
+            <pre><code class="med-code">class Vegetable {
+    constructor(name){
+        this.name = name
+    }
+}
+const carrot = new Vegetable('carrot');
+console.log(carrot.name); // 'carrot'</code></pre>
+          </section>
+          <section>
+            <h2>Equivalent Function</h2>
+            <pre><code class="med-code">function vegetable(name) {
+    return {
+        name
+    }
+}
+const carrot = vegetable('carrot')
+console.log(carrot.name) // 'carrot'</code></pre>
+          </section>
+          <section>
+            <h2>Get and Set</h2>
+            <pre><code class="med-code">class TempConverter {
+  constructor(F) {
+    this.F = F;
+  }
+  get temperature() {
+    return (5 / 9) * (this.F - 32);
+  }
+  set temperature(C) {
+    this.F = (C * 9.0) / 5 + 32;
+  }
+}
+// can't use arrow function syntax for getters/setters</code></pre>
+          </section>
           <section>
             <h2>Compostion vs Inheritance</h2>
-            <p>THe functional programming paradigm eschews inheritance for composition</p>
+            <p>The functional programming paradigm eschews inheritance for composition</p>
             <p>Simply <strong>Compose Functions</strong></p>
           </section>
         </section>

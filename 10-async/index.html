@@ -48,6 +48,7 @@
         border-radius: 8px !important;
         background: #3f3f3f;
         position: relative;
+        width: max-content !important;
       }
       .reveal .slides pre code.large-code {
         font-size: 2.5rem !important;
@@ -126,52 +127,62 @@
           </section>
           <section>
             <h2>Promises</h2>
+            <ul>
+              <li>The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.</li>
+              <li>Promises allow us to write callbacks in a linear or serial manner and avoid "Callback Hell"</li>
+              <li>It returns a temporary proxy value for something not known when the promise is created.</li>
+              <li>It allows you to associate handlers with an asynchronous action's eventual success value or failure reason.</li>
+            </ul>
           </section>
-
----
-
-### Promises
-* The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
-* Promises allow us to write callbacks in a linear or serial manner and avoid "Callback Hell"
-* It returns a temporary proxy value for something not known when the promise is created.
-* It allows you to associate handlers with an asynchronous action's eventual success value or failure reason.
----
-### There are four states in which the promises can be:
-
-* ⏳ Pending: initial state. Async operation is still in process.
-* ✅ Fulfilled: the operation was successful. It invokes .then callback. E.g., .then(onSuccess).
-* ⛔️ Rejected: the operation failed. It invokes the .catch or .then ‘s second argument (if any). E.g., .catch(onError) or .then(..., onError)
-* 😵 Settled: it’s the promise final state. The promise is dead. Nothing else can be resolved or rejected anymore. The .finally method is invoked.
----
-![Promise Diagram](https://adrianmejia.com/images/promises-states.png)
-
----
-### Promises Are a future Value
-```js
-function id(x) {
-return Promise.resolve(x);
+          <section>
+            <h2>There are four states in which the promises can be:</h2>
+            <ul>
+              <li>⏳ Pending: initial state. Async operation is still in process.</li>
+              <li>✅ Fulfilled: the operation was successful. It invokes .then callback. E.g., .then(onSuccess).</li>
+              <li>⛔️ Rejected: the operation failed. It invokes the .catch or .then ‘s second argument (if any). E.g., .catch(onError) or .then(..., onError)</li>
+              <li>😵 Settled: it’s the promise final state. The promise is dead. Nothing else can be resolved or rejected anymore. The .finally method is invoked.</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Diagram</h2>
+            <img src="img/promises-states.png" style="border: none; box-shadow: none;" alt="">
+          </section>
+          <section>
+            <h2>Promises Provide a Placeholder for a Future Value</h2>
+            <pre><code class="med-code">function futureValue(x) {
+  return wait(x, 5000);
 }
-function wait(time){ return setTimeout(() => console.log('done after ' + time/1000 + ' seconds'), time)}
-```
+function wait(value, time) { 
+  return new Promise(function(resolve, reject) {
+    setTimeout(() => {
+      console.log(`done after ${time/1000} seconds`)
+      return resolve(value)
+    }, time)
+  })
+}
+let test = futureValue('test')</code></pre>
+          </section>
+          <section>
+            <h2>Callback Hell is a terrible place</h2>
+            <img src="img/callback_hell.jpeg" alt="">
+          </section>
+					<section>
+            <h2>What's a Callback Again?</h2>
+            <ul>
+              <li>Any function that is executed at some indeterminate time after initial page render (Window Mounting).</li>
+              <li><strong>Usually</strong> callbacks are passed as a parameter in another function that is invoked by some user triggered Event</li>
+            </ul>
+            <pre><code class="med-code">// Not always user generated, though
+// just displaced in time from initial Mount
+let callback = val => console.log(val)
 
----
-### Callback Hell is a terrible place
-![Callback Hell](https://miro.medium.com/max/2100/1*1m0Mxwn0N50JXxzx8ElaaQ.jpeg)
+setTimeout(callback('finally'), Math.random()*10_000) 
 
----
-### What's a Callback Again?
-* Any function that is executed at some indeterminate time after initial page render (Window Mounting).
-* **Usually** callbacks are passed as a parameter in another function that is invoked by some Use generated Event
-```js
-setTimeout(() => console.log('finally'), Math.random()*10) // Not always user generated, though, just displaced in time from initial Mount
-
-document.addEventListener('click', (e) => console.log(e))
-);
-```
----
-### Callback Hell to Promises
-```js
-a(() => {
+document.addEventListener('click', callback)</code></pre>
+          </section>
+          <section>
+            <h2>Callback Hell to Promises</h2>
+            <pre><code class="med-code">a(() => {
   b(() => {
     c(() => {
       d(() => {
@@ -179,80 +190,79 @@ a(() => {
       });
     });
   });
-});
-```
-```js
-Promise.resolve()
+});</code></pre>
+<pre><code class="med-code">Promise.resolve()
   .then(a)
   .then(b)
   .then(c)
   .then(d)
-  .catch(console.error);
-```
----
-### Synchronous vs Asynchronous
-```js
-console.log('First');
+  .catch(console.error);</code></pre>
+          </section>
+          <section>
+            <h2>Synchronous vs Asynchronous</h2>
+            <pre><code class="med-code">console.log('First');
 console.log('Second');
-console.log('Third');
-```
-```js
-console.log('First');
-jQuery.get('index.html', () => console.log("Second"));
-console.log('Third');
-```
----
-### Why Structure it this way?
-* Event-based Nature of user input
-* Procedural vs. Declarative
-```js
-tweets = loadDataSync(data);
+console.log('Third');</code></pre>
+<pre><code class="med-code">console.log('First');
+fetch('https://example.com').then(() => console.log("Second"));
+console.log('Third');</code></pre>
+          </section>
+          <section>
+            <h2>Why Structure it this way?</h2>
+            <ul>
+              <li>Event-based Nature of user input</li>
+              <li>Procedural vs. Declarative</li>
+            </ul>
+            <pre><code class="med-code">tweets = loadDataSync(data);
 // ... Wait
 // ... Do something with the data
 data.filter(() => ...) // setTimeout(data.filter(...))
-doSomeOtherThings();
-```
-```js
-loadDataAsync(function (data) {
-    // ... All ready to use the data whenever it arrives
-    data.filter(() => ...)
+doSomeOtherThings();</code></pre>
+<pre><code class="med-code">loadDataAsync(function (data) {
+  // ... All ready to use the data whenever it arrives
+  data.filter(() => ...)
 });
-doSomeOtherThings();
-```
+doSomeOtherThings();</code></pre>
+          </section>
+          <section>
+            <h2>Async/Sync</h2>
+            <a href="https://medium.com/better-programming/is-javascript-synchronous-or-asynchronous-what-the-hell-is-a-promise-7aa9dd8f3bfb">medium</a>
+          </section>
+          <section>
+            <h2>Event Loop Video</h2>
+            <p><a href="https://youtu.be/8aGhZQkoFbQ?t=60">What is the Event Loop?</a></p>
+          </section>
+          <section>
+            <h2>Event Loop</h2>
+            <p>Tasks, task queue & the main thread</p>
+            <video src="img/event_loop.mp4" loop autoplay></video>
+          </section>
+          <section>
+            <h2>Promises Animation Code Along</h2>
+            <p>Animating a multi-step Spinner</p>
+          </section>
 
----
-
-![Event Loop](https://gfycat.com/tastyuntidyinexpectatumpleco-science-technology-web-development)
-
----
-
-[Async/Sync](https://medium.com/better-programming/is-javascript-synchronous-or-asynchronous-what-the-hell-is-a-promise-7aa9dd8f3bfb)
-
----
-## Event Loop Video
-[What is the Event Loop?](https://youtu.be/8aGhZQkoFbQ?t=60)
-
----
-
-### Promises Animation Code Along
-##### Animating a multi-step spinner
----
-
-### Our First Peak at Fetch
-* `fetch` is a Promise that accepts a URL, then makes an HTTP request to that resource and asynchronously returns with a data payload
-```js
-let f = fetch('https://jsonplaceholder.typicode.com/todos')
+				</section>
+        <section>
+          <section>
+            <h1>Fetch</h1>
+          </section>
+          <section>
+            <h2>Our First Peak at Fetch</h2>
+            <p>`fetch` is a Promise that accepts a URL, then makes an HTTP request to that resource and asynchronously returns with a data payload</p>
+            <pre><code class="med-code">let f = fetch('https://jsonplaceholder.typicode.com/todos')
 // We call .then on it:
 f.then(response => response.json())
 // the .json() method is built into the fetch API, for formatting response data into JSON format
-.then(data => console.log(data))
-```
----
-### Primer on JSON
-* Javascript Object Notation (Counterpart to XML format)
-* Universal data payload format for the Web
-```json
-{"menu": {
+.then(data => console.log(data))</code></pre>
+          </section>
+          <section>
+            <h2>Primer on JSON</h2>
+            <ul>
+              <li>Javascript Object Notation (Counterpart to XML format)</li>
+              <li>Universal data payload format for the Web</li>
+            </ul>
+            <pre><code class="med-code">{"menu": {
   "id": "file",
   "value": "File",
   "popup": {
@@ -262,112 +272,69 @@ f.then(response => response.json())
       {"value": "Close", "onclick": "CloseDoc()"}
     ]
   }
-}}
-```
----
-### Let's have a look in the console at what this does
-```js
-let f = fetch('https://jsonplaceholder.typicode.com/todos')
+}}</code></pre>
+          </section>
+          <section>
+						<h2>The <code>JSON</code> object</h2>
+					<pre><code class='large-code'>JSON.stringify()
+JSON.parse()</code></pre>
+					</section>
+          <section>
+            <h2>Not Fetching JSON?</h2>
+            <p>Instead of <code>response.json()</code>, use <code>response.text()</code></p>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Response#methods">The Response Methods</a></p>
+            <p><a href="https://stackoverflow.com/questions/37693982/how-to-fetch-xml-with-fetch-api">fetching text</a></p>
+            <h4>XML libraries</h4>
+            <ul>
+              <li><a href="https://github.com/Leonidas-from-XIV/node-xml2js">xml2js</a></li>
+              <li><a href="https://github.com/nfarina/xmldoc">xmldoc</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Let's have a look in the console at what this does</h2>
+            <pre><code class="med-code">let f = fetch('https://jsonplaceholder.typicode.com/todos')
 // We call .then on it:
 f.then(response => response.json())
 // the .json() method is built into the fetch API, for formatting response data into JSON format
-.then(data => console.log(data))
-```
-
----
-### Legacy XHR Syntax
-https://gomakethings.com/why-i-still-use-xhr-instead-of-the-fetch-api/
-
----
-
-## For Internet Explorer
-### Fetch polyfill
-https://unpkg.com/unfetch@4.1.0/polyfill/index.js
-### Promises Polyfill
-https://github.com/getify/native-promise-only
-
----
-### Eventually:
-#### Async/Await Syntax:
-##### Another way to write Promises
-
-
-### Promise.all()
-
-[Solution/Explanation](https://stackoverflow.com/questions/37693982/how-to-fetch-xml-with-fetch-api)
-
----
-
-### .text() and xml
-* Instead of response.json(), use response.text()
-* XML for Compatibility with Windows and Windows Servers
-* [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)
-* [xmldoc](https://github.com/nfarina/xmldoc)
-
----
-
-# Public APIs
-### [Github Resource](https://github.com/public-apis/public-apis)
-* Add more cross functionality to your app 
-* Or start a whole new one!
-* Set you github settings in your usr-mgr repo to expose it on your portfolio
----
-### Writing A Curried Fetch Utility
-```js
-var f = protocol => domain => path => fetch(protocol+domain+path).then(r =>r.json()).then(d=> console.log(d))
+.then(data => console.log(data))</code></pre>
+          </section>
+          <section>
+            <h2><code>Promise.all()</code></h2>
+          </section>
+          <section>
+            <h2>Legacy XHR Syntax</h2>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a></p>
+            <p><a href="https://gomakethings.com/why-i-still-use-xhr-instead-of-the-fetch-api/">Go Make Things Site</a></p>
+            <h3>Polyfills for Internet Explorer</h3>
+            <p><a href="https://unpkg.com/unfetch@4.1.0/polyfill/index.js">Fetch Polyfill</a></p>
+            <p><a href="https://github.com/getify/native-promise-only">Promises Polyfill</a></p>
+          </section>
+          <section>
+            <h2><code>async</code> / <code>await</code></h2>
+            <p>Another way to write promises</p>
+          </section>
+          <section>
+            <h2>Writing A Curried Fetch Utility</h2>
+            <pre><code class="med-code">var f = protocol => domain => path => fetch(protocol+domain+path).then(r =>r.json()).then(d=> console.log(d))
 var prot = f('https://')
 var dom = p('jsonplaceholder.typicode.com/')
 var todos = dom('todos')
 var firstTodo = dom('todos/1')
-var users = dom('users')
-var
-```
----
-
-### Brief Intro to Classes in JS
-* Constructor
-* Getters
-* Setters
----
-### Typical Class Declaration
-```js
-class Vegetable {
-    constructor(name){
-        this.name = name
-    }
-}
-const carrot = new Vegetable('carrot');
-console.log(carrot.name); // 'carrot'
-```
----
-```js
-//Equivalent Function
-function vegetable(name) {
-    return {
-        name: name
-    }
-}
-const carrot = vegetable('carrot')
-console.log(carrot.name) // 'carrot'
-```
----
-
-### Get and Set
-```js
-class TempConverter {
-  constructor(F) {
-    this.F = F;
-  }
-  get temperature() {
-    return (5 / 9) * (this.F - 32);
-  }
-  set temperature(C) {
-    this.F = (C * 9.0) / 5 + 32;
-  }
-}
-// can't use arrow function syntax for getters/setters
-```
-
+var users = dom('users')</code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Code Along with Public APIs</h2>
+            <p><a href="https://github.com/public-apis/public-apis">Public APIs Github Resource</a></p>
+            <h3>Let's make a User Fetching App</h3>
+            <ul><p><a href="https://github.com/JamieVaughn/user-mgr">User Manager App starter</a></p>
+              <li>Add more cross functionality to your app </li>
+              <li>Or start a whole new one!</li>
+              <li>Set your github settings in your usr-mgr repo to expose it on your portfolio</li>
+            </ul>
+          </section>
+        </section>
 
         </section>
 

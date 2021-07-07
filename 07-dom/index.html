@@ -43,11 +43,21 @@
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       }
+      .two-col {columns: 2;}
+      .three-col {columns: 3;}
+      .big-line { line-height: 3.35rem !important;}
+      .dom-methods > li:nth-of-type(n + 8) {
+        margin-left: -20%;
+      }
+      .dom-traversal li:nth-of-type(n + 7) {
+        margin-left: -20%;
+      }
       pre {
         padding: 8px !important;
         border-radius: 8px !important;
         background: #3f3f3f;
         position: relative;
+        width: max-content !important;
       }
       .reveal .slides pre code.large-code {
         font-size: 2.5rem !important;
@@ -125,8 +135,9 @@
           <h5><u>A</u>pplication <u>P</u>rogramming <u>I</u>nterface</h5>
           <br>
           <p><em>Looks like JS, but it's separate. Yet it inter<em style='font-style: normal;'>f</em>aces with JS.</em></p>
-          <br>
-          <p>This link between JS and the DOM is the key to building dynamic websites because it allows you to use JavaScript to make changes to your HTML reactively to user input.</p>
+          <p class="fragment">DOM represents the built-in objects, methods & properties that interface w/ nodes in the Render Tree</p>
+					<p class="fragment">JS is the language that can store, iterate-over and manipulate those nodes</p>
+          <p class='fragment'>The link between JS & the DOM is key to building dynamic apps as it allows JavaScript to change your HTML reactively based on user input triggers.</p>
         </section>
         
         <section>
@@ -150,7 +161,19 @@
           <p>The browser runtime's global object or global "scope"</p>
           <p>This is where JS code executes and where the DOM lives, so they can interface with one another.</p>
           <p><code>console.log(window)</code></p>
-          <p>There are no official standarads for the  <a href="https://www.w3schools.com/js/js_window.asp">BOM</a>, so I lump it into the DOM</p>
+          <p>There are no official standards for the  <a href="https://www.w3schools.com/js/js_window.asp">BOM</a>, so I lump it into the DOM</p>
+        </section>
+        <section>
+          <h2>The Window Object</h2>
+          <ul style='list-style: none;'>
+            <li class="fragment">window.location</li>
+						<li class="fragment">window.console</li>
+						<li class="fragment">window.navigator.useragent</li>
+						<li class="fragment">window.navigator.geolocation</li>
+						<li class="fragment">window.onload = function() {...}</li>
+						<li class="fragment">window.scrollTo()</li>
+          </ul>
+          <p class='fragment'><a href="https://www.w3schools.com/jsref/obj_window.asp">More comprehesive list at w3 schools</a></p>
         </section>
 
         <section>
@@ -168,36 +191,44 @@
 
         <section>
           <h2>DOM API Lookup Challenge</h2>
-          <ol style="columns: 2;">
-            <li><code>.querySelector()</code></li>
-            <li><code>.querySelectorAll()</code></li>
+          <ol class='three-col big-line' style="font-size: 2rem; margin: 0 3rem;" class='dom-methods'>
             <li><code>.createElement()</code></li>
             <li><code>.createTextNode()</code></li>
-            <li><code>.appendChild()</code></li>
-            <li><code>.append() / .prepend()</code></li>
-            <li><code>.insertAdjacentElement()</code></li>
-            <li><code>.removeChild()</code></li>
             <li><code>.cloneNode()</code></li>
-            <li><code>.setAttribute()</code></li>
+            <li><code>.removeChild()</code></li>
+            <li><code>.appendChild()</code></li>
+            <li><code>.append()</code> / <code>.prepend()</code></li>
+            <li><code>.insertAdjacentElement()</code></li>
+            <li><code>.classList</code>
+              <ul style='list-style: inside;'>
+                <li><code>.add('fresh')</code></li>
+                <li><code>.remove('stale')</code></li>
+              </ul>
+            </li>
+            <li><code>.nodeName</code> returns #text 
+              <ul style='list-style: inside;'>
+                <li> nodes unlike  <br>10. <code>.tagName</code></li>
+              </ul> 
+            </li>
+            <li style='list-style: inside; opacity: 0'> </li>
+            <li start="10"><code>.innerHTML</code></li>
             <li><code>.innerText</code></li>
-            <li><code>.innerHTML</code></li>
-            <li><code>.addEventListener()</code></li>
+            <li><code>.nodeType</code></li>
+            <li><code>.id</code></li>
+            <li><code>.attributes</code></li>
+            <li><code>.getAttribute()</code> / <code>.setAttribute()</code></li>
           </ol>
           <hr>
-
-          <div>
-          <ul style="columns: 2; list-style: none">
-
+          <ol class='two-col'>
+            <li>Is it a method or a property?</li>
             <li>Basic summary of the use case</li>
             <li>What Object is it chained off of</li>
-            <li>What parameters do these accept</li>
-            <li>What value is returned</li>
-          </ul>
-        </div>
+            <li>What are the args & return values?</li>
+          </ol>
         </section>
 
         <section>
-          <h2>New DOM Access & Traversal</h2>
+          <h2>New DOM Access</h2>
           <p>Prefer these new querySelector methods because:</p>
           <ul>
             <li>There are fewer to remember</li>
@@ -210,7 +241,7 @@
 docuemnt.querySelectorAll('header > nav .logo')</code></pre>
             </section>
             <section>
-              <h2>Old ways of DOM Access & Traversal</h2>  
+              <h2>Old ways of DOM Access</h2>  
             <p>The legacy methods that return <a href="https://www.w3schools.com/js/js_htmldom_collections.asp">HTML Collections</a></p>
           <pre><code class='med-code'>document.getElementById('myId') // This one still comes in handy
 document.getElementsByClassName('myClass')            
@@ -221,6 +252,23 @@ document.getElementsByName('myElementName')</code></pre>
             <li>HTML Collections are dynamic</li>
             <li>Can be used to limit "Selector Scope" <code>getElementById('main').querySelector('article');</code></li>
           </ul>
+        </section>
+        <section>
+          <h2>DOM Traversal</h2>
+          <p>Once you've selected an element you can chain off of it to select nearby elements</p>
+          <ol class='two-col big-line dom-traversal'>
+            <li><code>.parentNode</code></li>
+            <li><code>.childNodes</code></li>
+            <li><code>.firstElementChild</code></li>
+            <li><code>.lastElementChild</code></li>
+            <li><code>.nextElementSibling</code></li>
+            <li><code>.previousElementSibling</code></li>
+            <li><code>.firstChild</code> (returns text nodes)</li>
+            <li><code>.lastChild</code> (returns text nodes)</li>
+            <li><code>.nextSibling</code> (returns text nodes)</li>
+            <li><code>.previousSibling</code> (returns text nodes)</li>
+            <li><code>.childElementCount</code></li>
+          </ol>
         </section>
 
         <section>
@@ -244,6 +292,7 @@ document.body.append(fragment);</code></pre>
         <section>
           <h2>The DOM Style Object</h2>
           <p><a href="https://www.w3schools.com/jsref/dom_obj_style.asp">w3.org docs</a></p>
+          <p>i.e. <code>element.style.display</code></p>
         </section>
 
         <section>
@@ -285,35 +334,48 @@ document.body.append(fragment);</code></pre>
       <section>
         <section style="position: relative;">
           <h2>DOM Challenge</h2>
-          <p>Code a simple Contact Form using these new DOM API Methods!</p>
-          <a style="position: absolute; left: 0; bottom: 25vh;" href='"https://github.com/JamieVaughn/code-along/blob/master/DOMAPI/index.html" target='_blank'>.</a>
-        </section>
-        <section>
-          <h2>Use the DOM API to create a simple contact form</h2>
-          <ol style="line-height: 3.5rem;"><strong>Requirements</strong>
+          <p>Create a Contact Form using the DOM API</p>
+          <ol style="line-height: 3.5rem;"><strong>Use the DOM API to create a simple contact form:</strong> <a href="https://github.com/JamieVaughn/code-along/blob/master/DOMAPI/requirements.md" target="_blank">Requirements</a>
             <li>It should have a <code>&lt;header&gt;</code> with a title of "Contact Me"</li>
-            <li>It should have an <code>&lt;input&gt;</code> inside a label (Bonus: add a <code>for</code> attribute and an <code>id</code> attribute)</li>
+            <li>It should have an <code>&lt;input&gt;</code> inside a label <br>(Bonus: add a <code>for</code> attribute and an <code>id</code> attribute)</li>
             <li>It should have a <code>&lt;button&gt;</code> with Text of "Submit"</li>
-            <li>Connect an  <code>.addEventListener</code> to the button</li>
+            <li>Connect an  <code>.addEventListener</code> to the button that listens for a click</li>
             <li>Add an empty <code>&lt;output&gt;</code> element below the form</li>
-            <li>When the <code>&lt;button&gt;</code> is clicked take the value in the <code>&lt;input&gt;</code> and put it in the <code>&lt;output&gt;</code></li>
+            <li>When the <code>&lt;button&gt;</code> is clicked take the value in the <code>&lt;input&gt;</code> and put it in the <code>&lt;output&gt;</code> as text</li>
           </ol>
         </section>
+      </section>
       </section>
 
       <section>
         <section>
           <h1>Debugging</h1>
-          <p>“Every strike brings me closer to the next home run.”</p>
-          <p> ― Babe Ruth</p>
+          <p>...trial & error is the teacher who is always with you</p>
+          <blockquote class='fragment' style="position: relative">
+            <img src="img/Babe_Ruth_512.jpg" alt="Babe Ruth Portrait Photo" style="position: absolute; left: -200px; height: 100%; aspect-ratio: 3 / 4;">
+            <p>“Every strike brings me closer to the next home run.”</p>
+            <p> ― Babe Ruth</p>
+          </blockquote>
+          <strong class='fragment'>So go forth & make mistakes!!</strong>
           
         </section>
-
         <section>
+          <div style="overflow: hidden;">
+            <img src="img/take_this.gif" alt="" style="width: 100%; aspect-ratio: 3 / 4; clip-path: polygon(1% 1%, 99% 1%, 99% 40%, 1% 40%);">
+          </div>
+          <strong class="fragment j-stamp" 
+          style="background: black; padding: 0; margin-top: 21.1rem; margin-left: 1.65rem; clip-path: polygon(0 30%, 5% 35%, 20% 25%, 25% 0%, 30% 0%, 30% 25%, 70% 25%, 92% 33%, 100% 50%, 92% 67%, 70% 75%, 30% 75%, 30% 100%, 25% 100%, 20% 75%, 5% 65%, 0 70%);"
+          ><span style="padding: 1rem; filter: drop-shadow(0px 0px 9px white) drop-shadow(0px 0px 7px white) drop-shadow(0px 0px 5px white) drop-shadow(0px 0px 3px white);">Dev Tools</span></strong>
+
+        </section>
+
+        <section style="text-align: left;">
           <h2>The Dev Tools</h2>
-          <p>They're just javascript!</p>
-          <p>The Console, our #1 Debugging Friend!: <code>console.log(console)</code></p>
+          <img src="img/slow_motion.jpg" alt="" style="position: absolute; top: 0; right: 0; margin-top: -3rem; min-height: 125vh;">
+          <p>It's like a slow motion camera for your code, <br>so you can see the code execute frame by frame!</p>
+          <p>Our #1 Debugging Friend! <br>The Console:  <code>console.log(console)</code></p>
           <p><a href="https://developer.chrome.com/docs/devtools/">The Dev Tools Overview</a></p>
+          <p>They're just javascript!</p>
         </section>
 
         <section>
