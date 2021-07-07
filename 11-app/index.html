@@ -43,6 +43,9 @@
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       }
+      .two-col {columns: 2;}
+      .three-col {columns: 3;}
+      .big-line { line-height: 3.35rem !important;}
       pre {
         padding: 8px !important;
         border-radius: 8px !important;
@@ -321,13 +324,13 @@ for (var i = 0; i < nums.length; i++) {
           </section>
           <section>
             <h2>MVC designations for our App's elements</h2>
-            <ul>
-              <li>The Clickable list of dragons? </li>
-              <li>⤷ View <br/> The display area for Dragons?  </li>
-              <li>⤷ View <br/>The Array of the dragon objects?  </li>
-              <li>⤷ Model <br/> The Array of dragon names?  </li>
-              <li>⤷ Model <br/> increment() or getDragons() funcs? </li>
-              <li>⤷ Controller </li>
+            <ul style='list-style: none;'>
+              <li class='fragment'>1. <strong>The Clickable list of dragons?</strong> </li>
+              <li class='fragment'>⤷ View <br/> 3. <strong>The Array of the dragon objects?</strong>  </li>
+              <li class='fragment'>⤷ Model <br/> 2. <strong>The display area for Dragons?</strong>  </li>
+              <li class='fragment'>⤷ View <br/> 4. <strong>The <code>increment()</code> or <code>getDragons()</code> functions?</strong> </li>
+              <li class='fragment'>⤷ Controller <br/> 5. <strong>The Array of dragon names?</strong>  </li>
+              <li class='fragment'>⤷ Model </li>
             </ul>
           </section>
           <section>
@@ -395,49 +398,56 @@ const View2 = {
           </section>
           <section>
             <h2>Our MVC Blueprint - Let's Build it!!</h2>
-            <pre><code class="med-code">const Model = { 
+            <div class="flex" style="gap: 8px; align-items: stretch;">
+              <pre><code class="med-code">const Model = { 
     list: [],
-    dragons: [{...}, {...}, {...}, ...],
+    dragons: [
+    {...}, 
+    {...},
+    ...],
     addDragon()
-}
-const MainView/ListView = {
+}</code></pre>
+              <pre style="flex: 2 0 34%;"><code class="med-code">const View = {
     node,
     init(),
     template(),
     render()
 }
-const Controller = {
-    init(),
-    getList(),
-    getDragons(),
-    increment(),
-    dispatch(name)
+// Could have a
+// MainView & ListView</code></pre>
+            <pre><code class="med-code">const Controller = {
+  init(),
+  getList(),
+  getDragons(),
+  increment(),
+  dispatch(name)
 }</code></pre>
+          </div>
             <p>Could each of these be in a separate js file? Maybe Modules?</p>
           </section>
           <section>
             <h2>Reflections</h2>
-            <ul>
-              <li>Does View get called within your model?</li>
-              <li>Does Model get called within you View?</li>
-              <li>How many times does Controller get called in View and Model?</li>
-              <li>How many times does each View and Model get called within Controller?</li>
+            <ul class='big-line'>
+              <li>Does <code>View</code> get called within your <code>Model</code>?</li>
+              <li>Does <code>Model</code> get called within your <code>View</code>?</li>
+              <li>How many times does <code>Controller</code> get called in <code>View</code> and <code>Model</code>?</li>
+              <li>How many times does each <code>View</code> and <code>Model</code> get called within <code>Controller</code>?</li>
             </ul>
           </section>
           <section>
             <p>The Client loves Dragon Arena 🏟️</p>
-            <p><em>But they need one final req change</em> ...I promise</p>
+            <p><em>But they need one <em style="font-style: normal">f</em>inal req change</em> ...I promise</p>
           </section>
           <section>
             <h2>Dragon Arena 🏟️ Premium</h2>
-            <ul>
-              <li>For this implementation, each dragon in the list is unique & can't be duplicated</li>
-              <li>They need a new separate Admin view area that displays on doubleclicking a dragon</li>
-              <li>This Admin view shows a form with inputs to change the properties for the dbl-clicked dragon</li>
-              <li>They should be able to submit the form to update the current dragon & the model must update to reflect what was submitted</li>
-              <li>They should be able to cancel out of the admin view if they change their mind</li>
-              <li>Bonus: Add a new property: Level, for each dragon which increases everytime clicks doubles</li>
-              <li>Bonus: use Window.prompt() to ask for & validate a password before opening the Admin view.</li>
+            <ul><strong>For this implementation:</strong>
+              <li>Each dragon in the list is unique & can't be duplicated</li>
+              <li>Add a separate Admin view <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#result">modal</a> that displays on doubleclicking a dragon</li>
+              <li>The Admin view opens a <code>form</code> to update properties for selected dragon</li>
+              <li><code>form</code> submission should update the model of the currently selected dragon & the view should reflect the changes</li>
+              <li>They should be able to close the Admin view modal w/ or w/o submitting</li>
+              <li><strong>Bonus</strong>: Add a new property for each dragon: <code>level</code>, which increases everytime <code>clicks</code> double in size</li>
+              <li><strong>Bonus</strong>: use Window.prompt() to ask for and validate a password before opening the Admin view</li>
             </ul>
           </section>
 
