@@ -48,6 +48,9 @@
             .fieldsets fieldset span {
                 min-width: 45%;
             }
+            .alpha > li {
+                list-style-type: counter();
+            }
         </style>
 </head>
 
@@ -65,22 +68,24 @@
                     <h1>Cascading Style Sheets (CSS)</h1>
                 </section>
                 <section>
-                    <h2>Cascading Style Sheets (CSS)</h2>
+                    <h1>Cascading Style Sheets (CSS)</h1>
                     <p><a href="https://web.dev/learn/css/">Learn CSS</a></p>
-                    <ul>
+                    <ol type="A">
                         <li>Tells the browser how to <strong>display</strong> a certain element</li>
                         <li>Offers lots of power & versatility: <a href="http://www.csszengarden.com/">CSS Zen Garden</a></li>
                         <li>Follows the general ruleset:</li>
-                        <ol>
-                            <li>Select the HTML element to be styled</li>
-                            <li>Specify the properties of the element to be styled</li>
-                            <li>Give the values we want each property to have</li>
-                        </ol>
+                        <li style='list-style: none'>
+                            <ol  type="a">
+                                <li>Select the HTML element to be styled</li>
+                                <li>Specify the properties of the element to be styled</li>
+                                <li>Give the values we want each property to have</li>
+                            </ol>
+                        </li>
+                    </ol>
                         <pre><code>h1 {
     font-size: 24px;
-}
-                        </code></pre>
-                    </ul>
+}</code></pre>
+                    
                     <aside class="notes">
                         Not a programming language like Javascript, nor a mark-up language like HTML<br>
                         Nothing quite like it<br>
@@ -179,21 +184,21 @@
                 <section>
                     <h2>CSS Selectors Docs</h2>
                     <ul>
-                    <li>Psuedo-selectors & Psuedo-classes</li>
-                    <li>Psuedo-elements (::after & ::before)</li>
-                    <li><a href="https://www.w3schools.com/cssref/css_selectors.asp">W3 Schools CSS Selectors List</a></li>
-                    <li><a href="https://guide.freecodecamp.org/css/tutorials/css-selectors-cheat-sheet/">FCC Selector Cheat Sheet</a></li>
-                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">MDN CSS Selectors List</a></li>
-                    <li style="list-style: none;"> Side note: CSS comments use <code>//</code> or <code>/* */</code> 
-                        <pre><code>// This is a single line comment
+                        <li>Psuedo-selectors & Psuedo-classes</li>
+                        <li>Psuedo-elements (::after & ::before)</li>
+                        <li><a href="https://www.w3schools.com/cssref/css_selectors.asp">W3 Schools CSS Selectors List</a></li>
+                        <li><a href="https://guide.freecodecamp.org/css/tutorials/css-selectors-cheat-sheet/">FCC Selector Cheat Sheet</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">MDN CSS Selectors List</a></li>
+                        <li style="list-style: none;"> Side note: CSS comments use <code>//</code> or <code>/* */</code> </li>
+                    </ul>
+                    <pre><code>// This is a single line comment
 
 /* This is a multi-line 
-CSS comment */</code><pre></li>
-                    </ul>
+CSS comment */</code></pre>
                 </section>
                 <section>
                     <h2>CSS Validator</h2>
-                    <p><a href="css validator: https://jigsaw.w3.org/css-validator/">Validate your css</a> ... just like we did with html!</p>
+                    <p><a href="https://jigsaw.w3.org/css-validator/">Validate your css</a> ... just like we did with html!</p>
                 </section>
                 <section>
                     <h2>CSS Selector Challenge</h2>
@@ -296,7 +301,7 @@ CSS comment */</code><pre></li>
         <pre><code>&lt;head&gt;
   &lt;link href='css/styles.css'&gt;
 &lt;/head&gt;</code></pre>
-<p><body>Separation of Concerns:</body> <br> &lt;body&gt; is for content & &lt;head&gt; is for metadata</p>
+<p><strong>Separation of Concerns:</strong> <br> &lt;body&gt; is for content & &lt;head&gt; is for metadata</p>
                 </section>
 
 
@@ -425,8 +430,8 @@ CSS comment */</code><pre></li>
                             <p>HSL( <br> <span style="font-size: 1.5rem;">360, 100%, 100%</span> <br>)</p>
                             <img style="max-height: 175px;" src="img/HSL_color_solid_cylinder_saturation_gray.png" alt="hsl color cylinder">
                         </div>
+                        <h4>Color Tools & Diagrams</h4>
                         <ul >
-                            <h4>Color Tools & Diagrams</h4>
                             <li><a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB</a></li>
                             <li><a href="https://en.wikipedia.org/wiki/ProPhoto_RGB_color_space#/media/File:CIE1931xy_gamut_comparison.svg">CIE Color Space</a></li>
                             <li><a href="https://coolors.co/">Coolors</a></li>
@@ -444,7 +449,8 @@ CSS comment */</code><pre></li>
                     <p>Typographcial hierarchy can guide the user through your page in a controlled way.</p>
                     <p>It can set your page a part and make it distinct</p>
                     <p>It is usually a central component to a company or product Brand</p>
-                    <ul><h4>Think about Component Spacing, as well </h4>
+                    <h4>Think about Component Spacing, as well </h4>
+                    <ul>
                         <li><a href="https://www.designsystems.com/iconography-guide/">Read more about Icons</a></li>
                         <li>Use existing icon libraries <a href="https://teenyicons.com/">(like this one)</a> to save time</li>
                         <li><a href="https://www.designsystems.com/space-grids-and-layouts/">Read more about spacing.</a></li>
@@ -453,6 +459,11 @@ CSS comment */</code><pre></li>
                 <section>
                         <h2><a href="https://fonts.google.com/">Google Fonts</a> is easiest to start with</h2>
                         <p>Simply find a font and put it into the href of a <br> <code style="padding: 2px;background: #ddd; border-radius: 8px;">&lt;link href="" rel="stylesheet" /&gt;</code> tag similar to a css file</p>
+                        <strong>Font Tip:</strong> A quick, easy way to distinguish your site is using two fonts: 
+                        <ul>
+                            <li>one for headings & titles</li>
+                            <li>one for body & copy text</li>
+                        </ul>
                         <p><a href="https://www.colorsandfonts.com/">Colors & Fonts Tool</a></p>
                 </section>
                 <section>
@@ -479,22 +490,52 @@ CSS comment */</code><pre></li>
                 <section>
                     <h2>CSS Custom Properties</h2>
                     <h4>a.k.a. "CSS Variables"</h4>
-                    <p>Assign a property: <pre><code>:root {
+                    <p>Assign a property:</p> 
+                    <pre><code>:root {
   --name: "value";
   --my-color: #1060bb;
   --my-font: Montserrat, sans-serif;
-}
-                    </code></pre></p>
-                    <p>Invoke a property with <code>var()</code>: <pre><code>button {
+}</code></pre>
+                    <p>Invoke a property with <code>var()</code>:</p>
+                     <pre><code>button {
   color: var(--my-color);
-}
-</code></pre></p>
+}</code></pre>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">MDN: Custom Properties</a></p>
+                </section>
+                <section>
+                    <h2>CSS Variable Scoping</h2>
+                    <ul>
+                        <li>The variables on the <code>:root</code> selector will be available to all elements on the page</li>
+                        <li>But you can declare variables lower down in the HTML render tree by using more specific selectors</li>
+                        <li>This will "scope" those variables to only particular parts of your site</li>
+                    </ul>
+                    <p>
+                    <p>
+                    <p>
+                    <div class="flex" style="gap: 4px;align-items: stretch;">
+                        <pre style="width: 45%; flex-shrink: 1;"><code class="med-code">:root {
+    --my-color: royalblue;    
+}
+footer {
+    --my-color: darkorchid;
+}
+body, footer {
+    color: var(--my-color)
+}</code></pre>
+                    <div>
+                        <pre style="width: 100%; flex-grow: 2;"><code class="med-code">&lt;body&gt;
+    &lt;p&gt;This is body text&lt;/p&gt;
+    &lt;footer&gt;This is my footer&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                            <img src="img/scoped_css_vars.png" alt="">
+                        </div>
+                    </div>
+                    
                 </section>
                 <section>
                     <h2>CSS Math Functions</h2>
                     <code>calc() min() max() clamp()</code>
-                    <p>CSS supports dynamic calculations: 
+                    <p>CSS supports dynamic calculations:</p>
                         <pre><code>div {
   width: calc(100% - 20px);
   height: max(100%, 400px);
@@ -506,16 +547,14 @@ CSS comment */</code><pre></li>
 
   /* you can use /, *, -, or + operators with calc(), just
   don't forget the spaces and match up all the parens! */
-}
-                      </code></pre>
-                </p>
+}</code></pre>
                 </section>
                 <section>
                     <h2>CSS Filters</h2>
-                    <p>Modify appearances: <pre><code>div {
+                    <p>Modify appearances:</p>
+                    <pre><code>div {
   filter: hue-rotate(45deg) contrast(50%);
-}
-</code></pre></p>
+}</code></pre>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">MDN: Filter Function</a></p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions">MDN: All CSS Functions</a></p>
 
@@ -598,7 +637,7 @@ they are available to the other files */
 
             <section>
                 <section>
-                    <h1>How The Browser Renders Stuff<span class="j-emoji">⚡</span></h1>
+                    <h2>How The Browser Renders Stuff<span class="j-emoji">⚡</span></h2>
                     <p><small>CSS Triggers and the CSSOM</small></p>
                 </section>
                 
@@ -634,7 +673,7 @@ they are available to the other files */
                 </section>
                 <section>
                     <h2>Think of it as a pyramid</h2>
-                    <img class="plain" srcset="img/rendering-pyramid.jpg" data-src="img/rendering-pyramid.jpg"
+                    <img class="plain" srcset="img/rendering-pyramid.jpg" data-src="img/rendering-pyramid.jpg" src="#"
                         alt="Rendering pyramid" />
                     <p>If you change something at the bottom, the whole pyramid has to be rebuilt.</p>
                     <p>If you change just the top layer, the foundation beneath remains intact.</p>
@@ -656,8 +695,8 @@ they are available to the other files */
                             <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display">display</a> property</li>
                             <li>Outside: Inline vs Block Elements</li>
                             <li>Inside: Flow-root, table, flex, grid</li>
-                            <img src="../04-css-2/img/inside-display.svg" alt="">
                         </ul>
+                        <img src="../04-css-2/img/inside-display.svg" alt="">
                     </section>
                 
                     <section>
@@ -744,10 +783,12 @@ they are available to the other files */
                             <li>GPU accelerated compositing - browser developers started moving things over to the GPU.</li>
 
                             <li>There are two tasks that could potentially move over to the GPU:</li>
-                            <ul>
-                                <li>Painting the layers - harder to do</li>
-                                <li>Compositing them together - easier to do</li>
-                            </ul>
+                            <li>
+                                <ul>
+                                    <li>Painting the layers - harder to do</li>
+                                    <li>Compositing them together - easier to do</li>
+                                </ul>
+                            </li>
                         </ul>
                         <p>Using the GPU for the paint step is supported on some browsers under some conditions, but not widespread yet. But they're working on it!</p>
                     </section>
@@ -756,7 +797,7 @@ they are available to the other files */
                         <p><small>Not important early in your CSS journey, but as JS is added these offer lots of power</small></p>
                         <ul>
                             <li><a href='https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model'>CSS Object Model API</a></li>
-                            <li><a href='https://developer.mozilla.org/en-US/docs/Web/Houdini'>CSS Houdini API</a> -  <a href='https://github.com/nucliweb/awesome-css-houdini/'></a>When is it ready?</a></li> 
+                            <li><a href='https://developer.mozilla.org/en-US/docs/Web/Houdini'>CSS Houdini API</a> -  <a href='https://github.com/nucliweb/awesome-css-houdini/'>When is it ready?</a></li> 
                         </ul>
                     </section>
                 

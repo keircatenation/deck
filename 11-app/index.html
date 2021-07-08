@@ -247,9 +247,10 @@ for (var i = 0; i < nums.length; i++) {
             <h2>The Goal</h2>
             <ul>
               <li>Stable - Bug free and handles errors gracefully</li>
-              <li>Clean code - Code is easily understood by others & adheres to standards</li>
+              <li>Clean code - Code is easily understood by other devs & adheres to standards</li>
               <li>Scalable - Code can accomodate large numbers of users and/or data</li>
               <li>Extensible - Easy to add new features without disrupting old ones</li>
+              <li>Loosely Coupled - Easy to remove legacy features without disrupting new ones</li>
             </ul>
           </section>
           <section>
@@ -314,12 +315,12 @@ for (var i = 0; i < nums.length; i++) {
           <section>
             <h2>Remember Pure Functions and Side Effects?</h2>
             <ul>
-              <li>Pure functions have no State; they take in parameters & return values</li>
-              <li>The **Controller** can use (ideally) all pure functions (It's the "brains" of the app)</li>
-              <li>Pure functions can help us push our "Side effects" to the "edges" of our app</li>
-              <li>A good rule of thumb is to think of the **Model** and the **View** as the "edges"</li>
-              <li>The **Model** can have all "Statefulness" (i.e. the data)</li>
-              <li>The **View** can contain functions with "Side effects"</li>
+              <li><strong>Pure functions</strong> have no <strong>State</strong>; they just take in parameters & return values</li>
+              <li>The <em>Controller</em> can use (ideally) all <strong>pure functions</strong> (It's the "brains" of the app)</li>
+              <li><strong>Pure functions</strong> can help us push our <strong>Side Effects</strong> to the "edges" of our app</li>
+              <li>A good rule of thumb is to think of the <em>Model</em> and the <em>View</em> as the "edges"</li>
+              <li>The <em>Model</em> can have all <strong>Statefulness</strong> (i.e. the data)</li>
+              <li>The <em>View</em> can contain functions with <strong>Side effects</strong></li>
             </ul>
           </section>
           <section>
