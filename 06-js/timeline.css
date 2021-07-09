@@ -26,6 +26,7 @@ ol.timeline::before {
 @media (min-width: 600px) {
   ol.timeline::before {
     left: 50%;
+    height: 1400px;
   }
 }
 
@@ -39,8 +40,12 @@ ol.timeline > li {
   hyphenate-limit-lines: 1;
   hyphenate-limit-last: always;
   text-align: justify;
-  font-size: 14px;
+  font-size: 15px;
   background-color: #edece7;
+}
+ol.timeline > li::marker {
+  font-size: 200%;
+  color: crimson;
 }
 ol.timeline > li time {
   display: block;
@@ -50,8 +55,8 @@ ol.timeline > li time {
   padding: 2px 5px;
   border: 1px solid #c8c7c3;
   border-radius: 3px;
-  color: #80807c;
-  font-size: 13px;
+  color: crimson;
+  font-size: 15px;
   font-weight: 500;
 }
 ol.timeline > li button {

@@ -144,7 +144,7 @@
             </ul>
           </section>
           <section>
-            <h2>Diagram</h2>
+            <h2>Process Diagram</h2>
             <img src="img/promises-states.png" style="border: none; box-shadow: none;" alt="">
           </section>
           <section>
@@ -236,6 +236,58 @@ doSomeOtherThings();</code></pre>
             <h2>Event Loop</h2>
             <p>Tasks, task queue & the main thread</p>
             <video src="img/event_loop.mp4" loop autoplay></video>
+          </section>
+          <section>
+            <h2>Blocking or non Blocking?</h2>
+            <pre><code class="med-code" data-line-numbers="3-5|8-10|13-15">function futureValue(x = 'test', iter = 100_000) {
+  let promise = wait(x, iter)
+  console.log('log2', promise)
+  return promise;
+}
+function wait(value, iterations) {
+  console.time(value) 
+  return new Promise(function(resolve, reject) {
+    console.log('log1', this)
+    if(iterations < 0) {
+        return reject('error: failed @ ' + value)
+    }
+    let num
+    for(let i = 0; i <= iterations; i++) {
+        for(let j = 0; j <= iterations; j++) {
+            num = i * j
+        }
+      if(i === iterations) {
+          console.timeEnd(value)
+          return resolve(value) 
+      }
+    }
+    
+  })
+}
+let test = futureValue()</code></pre>
+          </section>
+          <section>
+            <h2>Blocking or non Blocking?</h2>
+            <pre  style="height: 500px;"><code class="med-code" style="height: 500px; overflow-y: scroll"><script type="text/template">console.log('begin the program');
+console.time('i');
+noBlocking(500, function (i, end) {
+  if(end) {
+    console.log(`0->${i}`)
+    console.timeEnd('i')
+  }
+})
+function noBlocking(n, callback){
+  var i=0
+  function loop () {
+    if (i<n) {
+      i++;
+      callback(i, false)
+      window.requestAnimationFrame(loop)
+    }
+    else callback(i, true)
+  } 
+  loop()
+}</script></code></pre>
           </section>
           <section>
             <h2>Promises Animation Code Along</h2>

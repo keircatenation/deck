@@ -47,7 +47,7 @@
       pre {
         padding: 8px !important;
         border-radius: 8px !important;
-        background: #3f3f3f;
+        background: #3f3f3f !important;
         position: relative;
       }
       .reveal .slides pre code.large-code {
@@ -113,6 +113,9 @@
         bottom: 0;
         z-index: -9;
       }
+      .progress {
+        margin-bottom: 0 !important;
+      }
     </style>
   </head>
 
@@ -141,13 +144,24 @@
             <h2>Some resources to guide us</h2>
             <p><a href="http://jargon.js.org/">Glossary of Jargon</a></p>
             <p><a href="https://glossarytech.com/">Glossary Tech Extension</a></p>
-            <h4 class="fragment">E-Textbooks</h4>
-            <p class="fragment"><a href="https://exploringjs.com/deep-js/toc.html">Deep Javascript</a></p>
-            <p class="fragment"><a href="https://exploringjs.com/es6/index.html">Exploring ES6</a></p>
             <hr class="fragment" style="width: 33%; margin: 0 auto;">
-            <p class="fragment"><a href="https://eloquentjavascript.net/">Eloquent Javascript</a></p>
-            <p class="fragment"><a href="https://github.com/getify/You-Dont-Know-JS">You Don't Know JS</a></p>
+            <h4 class="fragment">E-Textbooks</h4>
+            <p style='height: 50vh'>
+              <a href="https://exploringjs.com/deep-js/toc.html">
+                <img class="fragment" src="img/deepjs_cover.jpg" alt="Deep Javascript book cover">
+              </a>
+              <a href="https://exploringjs.com/es6/index.html">
+                <img class="fragment" src="img/exploringes6_cover.jpeg" alt="Exploring ES6 book cover">
+              </a>
+              <a href="https://eloquentjavascript.net/">
+                <img class="fragment" src="img/eloquent_cover.jpg" alt="Eloquent Javascript book cover">
+              </a>
+              <a href="https://github.com/getify/You-Dont-Know-JS">
+                <img class="fragment" src="img/ydkjsy_cover.png" alt="You Don't Know JS Yet Book cover">
+              </a>
+            </p>
           </section>
+
           <section>
             <h2>The Engines</h2>
             <h4 class="fragment">Javascript Engines</h4>
@@ -167,7 +181,7 @@
           <section>
             <h2>A Bit of JS History</h2>
             <p>Why all the baggage?</p>
-            <img style="width: 70%" src="./img/bad_parts_good_parts.jpg" alt="">
+            <img style="width: 70%; height: 80vh;" src="./img/bad_parts_good_parts.jpg" alt="">
           </section>
           <section>
             <h2>The Browser Wars</h2>
@@ -179,18 +193,18 @@
               <li>Eich releases "Livescript" <time>May 1995</time></li>
               <li>Netscape enters licensing deal to rename it to Javascript as a scripting companion to Sun Microsystem's Java <time>Dec 1995</time></li>
               <li>W3C recommends CSS Stylesheets Spec <time>1996</time></li>
-              <li>Apple briefly ships Netscape bundled, then switches to IE <time>1997</time></li>
               <li>Microsoft releases IE 3 & modified "JScript" to avoid trademark issues <time>1996</time></li>
+              <li style='margin-top: 50px;'>Apple briefly ships Netscape bundled, then switches to IE <time>1997</time></li>
               <li>Netscape partners with ECMA to create Javascript specification (European Computer Manufacturers Association) <time>1997</time></li>
-              <li>Javascript becomes one implementation of ECMAScript (others: Jscript [MS], Actionscript [Macromedia]) <time>1997</time></li>
-              <li>ECMAScript 3 released & ECMAScript 4 work begins <time>Dec 1999</time></li>
+              <li style='margin-top: 50px;'>Javascript becomes one implementation of ECMAScript (others: Jscript [MS], Actionscript [Macromedia]) <time>1997</time></li>
               <li>Former Netcapers release Mozilla Browser <time>1998</time></li>
-              <li>Mozilla releases Firefox <time>2004</time></li>
+              <li style='margin-top: 50px;'>ECMAScript 3 released & ECMAScript 4 work begins <time>Dec 1999</time></li>
               <li>Apple releases Safari with Webkit fork of <time>2003</time></li>
+              <li style='margin-top: 50px;'>Mozilla releases Firefox <time>2004</time></li>
               <li>Google releases Chrome with Blink a Webkit fork <time>2008</time></li>
               <li>ES4 Abandoned, ES3.1 patch proposal released as ES5 <time>2008</time></li>
-              <li>All new ES versions take their release year as their numeral: ES2016 <time>starting 2016</time></li>
               <li>ES6 released and yearly release schedule adopted <time>2015</time></li>
+              <li style='margin-top: 50px;'>All new ES versions take their release year as their numeral: ES2016 <time>starting 2016</time></li>
               <li><a href="https://blog.learncodeonline.in/whats-new-in-javascript-21-es12">ES2021 Released!</a> And the saga continues!<time>2021</time></li>
             </ol>
           </section>
