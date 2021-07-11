@@ -769,7 +769,7 @@ they are available to the other files */
                         <h2>Composite</h2>
                         <p><small>These are safe to dynamically change and animate.</small></p>
                         <ul>
-                            <li>Only Opacity and Transforms trigger composite</li>
+                            <li>Opacity and Transforms trigger composite</li>
                             <li>Blink and Webkit creates new layer for elements with CSS transforms or opacity</li>
                             <li><code>translateZ(0)</code> is used to force layer creation which ensures both the layer is painted as soon as the
                                 animation starts</li>
@@ -781,7 +781,7 @@ they are available to the other files */
                         <h2>Why is compositing so much faster?</h2>
                         <ul>
                             <li>GPU accelerated compositing - browser developers started moving things over to the GPU.</li>
-
+                            <li><code>opacity</code>, <code>transform</code>, <code>filter</code>, <code>clip-path</code> can be GPU-accelerated</li>
                             <li>There are two tasks that could potentially move over to the GPU:</li>
                             <li>
                                 <ul>
@@ -790,7 +790,20 @@ they are available to the other files */
                                 </ul>
                             </li>
                         </ul>
-                        <p>Using the GPU for the paint step is supported on some browsers under some conditions, but not widespread yet. But they're working on it!</p>
+                        <p>Using the GPU for the paint step is supported on some browsers under some conditions, but not widespread yet. <a href="https://chromestatus.com/metrics/css/animated">But they're working on it!</a></p>
+                    </section>
+                    <section>
+                        <h2>Bottom Line</h2>
+                        <p>Reach for these first when animating:</p>
+                        <ul>
+                            <li><code>transform</code> <br> <small>...ignores inline elements (i.e. <code>&lt;span&gt;</code>); change to inline-block/block</small></li>
+                            <li><code>opacity</code></li>
+                            <li><code>filter</code></li>
+                            <li><code>clip path</code> & <code>background-color</code> are soon to be added <a href="https://developer.chrome.com/blog/hardware-accelerated-animations/">(in chrome)</a></li>
+                            <li>If you are animating a property (especially one above), <code>will-change</code> <sup><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/will-change">MDN</a></sup> creates a composite layer for it</li>
+                            <li>i.e. Animating color? <code>will-change: color;</code></li>
+                        </ul>
+                        
                     </section>
                     <section>
                         <h2>Two Advanced Things to File Away</h2>

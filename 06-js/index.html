@@ -102,7 +102,6 @@
         left: -4rem;
         font-size: 4rem;
         top: 2rem;
-
       }
       #ifelse-vid {
         position: absolute;
@@ -1507,7 +1506,7 @@ Object.prototype[toString] = function() {
           <section>
             <h2>Safe Serialization on all <code>prototypes</code></h2>
             <p>Using Symbol for safe global prototypal inheritance</p>
-            <pre><code class="med-code">const serialize = Symbol('serialize');
+            <pre style="width: fit-content"><code class="med-code">const serialize = Symbol('serialize');
 Boolean.prototype[serialize] = Number.prototype[serialize] = String.prototype[serialize] =
   function() { return JSON.stringify(this) }
 Function.prototype[serialize] = function() { return this.toString() }
@@ -1533,7 +1532,7 @@ RegExp.prototype[serialize] = function() { return '/'+this.source+'/'+this.flags
           <hr>
           <p><a href="https://jquery.com/">A word on jQuery (~234kb)</a></p>
           <h4 style="text-align: center;">YAGNI</h4>
-          <ul style="columns: 2">
+          <ul style="display: flex;">
             <li><a href="http://youmightnotneedjquery.com/">1</a></li>
             <li><a href="https://blog.garstasio.com/you-dont-need-jquery/">2</a></li>
             <li> <a href="https://github.com/nefe/You-Dont-Need-jQuery">3</a></li>
