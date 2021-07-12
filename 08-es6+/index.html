@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="../04-css-2/lib/css/zenburn.css">
     <link rel="stylesheet" href="../laser.css">
 		<script src="../laser.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="img/Virgil.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
     <script>
       var link = document.createElement( 'link' );
@@ -535,8 +537,13 @@ fn(3)(4) // 7</code></pre>
 
         <section>
           <section>
-            <h1>Classes</h1>
+            <h1>Intro to JS Classes</h1>
             <h2><code>Class { }</code></h2>
+            <ul>
+              <li>Constructor/Super</li>
+              <li>Getters/Setters</li>
+              <li>Prototypal Inheritance</li>
+            </ul>
           </section>
           <section>
             <h2>Object Oriented Patterns</h2>
@@ -562,94 +569,9 @@ obj.toString() // '[object Object]'</code></pre>
           <section>
             <h2>Not your Java's Inheritance</h2>
             <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model">Classical vs Prototypal Inheritance</a></p>
-            <p>Classes in JS are basically fancy, syntax sugar over Functions. </p>
-            <p>Although there are similarities, they are not exactly like other OOP Language Classes.</p>
-            <ol>Accessing a property in JS follows these steps:
-              <li>Check to see if the value exists locally. If it does, return that value.</li>
-              <li>If there is not a local value, check the prototype chain (using the __proto__ property).</li>
-              <li>For the first object somwhere up the prototype chain that has a value for the specified property, return that value.</li>
-              <li>If no such property is found up the whole prototype chain, return undefined.</li>
-            </ol>
-          </section>
-          <section>
-            <h2>Super</h2>
-            <p><code>super</code> maintains the connection between parent and child classes</p>
-            Super method is used to call parent's constructor. You can use it if you need it (using the logic of your parent class in your derived class), but it's not mandatory. You can create a class without constructor, but it will use a default one
-
-constructor() {}
-For the derived class, if you don't specify a constructor, it will use
-
-constructor(...args) {
-  super(...args);
-}
-          </section>
-          <section>
-            <h2>Class Example</h2>
-            <pre><code class="med-code">class Person {
-  constructor(name, email, address) {
-    this.name = name
-    this.email = email
-    this.address = address
-  }
-  getInfo() {
-    return {
-      Name: this.name, 
-      Email: this.email, 
-      Address: this.address
-    }
-  }
-}</code></pre>
-            </section>
-            <section>
-              <h2>Class Example (continued)</h2>
-              <pre><code class="med-code">class Employee extends Person {
-  constructor(job, address, ...args) {
-    // super is a link w/ Parent Class
-    super(...args) // calls parent w/ rest of args
-    this.job = job
-    this.address = address // Can overwrite parent properties
-    // such as with the work address here
-  }
-  getInfo() { // Can overwrite methods too
-    return {Name: this.name, Email: this.email, Address: this.address, 
-             Job: this.job }
-  }
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Results</h2>
-            <pre><code class="med-code">const joPerson = new Person(
-  "Jo", "jo@home.com", "123 Home Ave"
-)
-const joEmployee = new Employee(
-  "Developer", "321 Work Ave", "Jo", "jo@work.com"
-)
-console.table({
-  emp: joEmployee.getInfo(), 
-  per: joPerson.getInfo()
-})</code></pre>
-            <img src="img/employee.png" alt="">
-          </section>
-          <section>
-            <h2>Instances</h2>
-            <p>For determining or asserting the chain of inheritance</p>
-            <p>Binary Operator: <code>instanceof()</code></p>
-            <pre><code class="med-code">const joEmployee = new Employee(
-  "Developer", "321 Work Ave", "Jo", "jo@work.com"
-)
-joEmployee instanceof Person // true
-
-// OR check the __proto__ property (references the parent)
-joEmployee.__proto__ // Person {constructor: ƒ, getInfo: ƒ}</code></pre>
-          </section>
-          <section>
-            <h2>Brief Intro to Classes in JS</h2> 
-            <ul>
-              <li>Constructor</li>
-              <li>Getters</li>
-              <li>Setters</li>
-            </ul>
+            <p>Classes in JS are essentiallly fancy, syntax sugar over Functions. </p>
+            <p>They lack the classical inheritance model like other OOP language classes</p>
+            <p>They use Prototypal Inheritance just like Objects.</p>
           </section>
           <section>
             <h2>Typical Class Declaration</h2>
@@ -677,20 +599,129 @@ console.log(carrot.name) // 'carrot'</code></pre>
   constructor(F) {
     this.F = F;
   }
-  get temperature() {
-    return (5 / 9) * (this.F - 32);
+  get boilsWater() {
+    return this.F >= 212;
   }
-  set temperature(C) {
-    this.F = (C * 9.0) / 5 + 32;
+  get C () {
+    return (5 / 9) * (this.F - 32)
+  }
+  set C(degrees) {
+    this.F = (degrees * 9.0) / 5 + 32;
+  }
+} // can't use arrow function syntax for getters/setters because of lexical scoping</code></pre>
+          </section>
+          <section>
+            <h2>Class Example</h2>
+            <pre><code class="med-code">class Person {
+  constructor(name, email, address) {
+    this.name = name
+    this.email = email
+    this.address = address
+  }
+  getInfo() {
+    return {
+      Name: this.name, 
+      Email: this.email, 
+      Address: this.address
+    }
+  }
+}</code></pre>
+            </section>
+            <section>
+              <h2>Extending Classes</h2>
+              <pre><code class="med-code">class Employee extends Person {
+  constructor(job, address, ...args) {
+    // super is a link w/ Parent Class
+    super(...args) // calls parent w/ rest of args
+    this.job = job
+    this.address = address // Can overwrite parent properties
+    // such as with the work address here
+  }
+  getInfo() { // Can overwrite methods too
+    return {Name: this.name, Email: this.email, Address: this.address, 
+             Job: this.job }
   }
 }
-// can't use arrow function syntax for getters/setters</code></pre>
+</code></pre>
+          </section>
+          <section>
+            <h2>What is <code>super</code></h2>
+            <ul>
+              <li><code>super</code> maintains the connection between parent and child classes</li>
+              <li>super method is used to call parent's constructor.</li>
+              <li>It is optional to use it - only if you need to use properties/methods of your parent class in your derived class</li>
+              <li>You can create a class without a constructor, but it will use a default one</li>
+            </ul>
+              <pre><code class="med-code">// default will inherit from Object
+constructor() {}
+
+// For the derived class, if you don't specify a constructor, it will use
+constructor(...args) {
+  super(...args);
+}</code></pre></section>
+          <section>
+            <h2>Results</h2>
+            <pre><code class="med-code">const joPerson = new Person(
+  "Jo", "jo@home.com", "123 Home Ave"
+)
+const joEmployee = new Employee(
+  "Developer", "321 Work Ave", "Jo", "jo@work.com"
+)
+console.table({
+  emp: joEmployee.getInfo(), 
+  per: joPerson.getInfo()
+})</code></pre>
+            <img src="img/employee.png" alt="">
+          </section>
+          <section>
+            <h2>Instances</h2>
+            <p>For determining or asserting the chain of inheritance</p>
+            <p>Binary Operator: <code>instanceof()</code></p>
+            <pre><code class="med-code">const joEmployee = new Employee(
+  "Developer", "321 Work Ave", "Jo", "jo@work.com"
+)
+joEmployee instanceof Person // true
+
+// OR check the __proto__ property (references the parent)
+joEmployee.__proto__ // Person {constructor: ƒ, getInfo: ƒ}</code></pre>
+          </section>
+          <section>
+            <h2>Private methods/properties are in Stage 3</h2>
+            <p><a href="https://github.com/tc39/proposal-private-methods">TC39 Proposal</a></p>
+            <p>So Classes can't yet fully substitute for Closures</p>
+          </section>
+          <section>
+            <h2>Prototypal Inheritance</h2>
+            <img src="img/prototype_chain.png" alt="">
+          </section>
+          <section>
+            <h2>Accessing an inherited property in JS follows these steps:</h2>
+            <ol>
+              <li>Check to see if the value exists locally. If it does, return that value.</li>
+              <li>If there is not a local value, check the prototype chain (using the __proto__ property).</li>
+              <li>For the first object somwhere up the prototype chain that has a value for the specified property, return that value.</li>
+              <li>If no such property is found up the whole prototype chain, return undefined.</li>
+            </ol>
           </section>
           <section>
             <h2>Compostion vs Inheritance</h2>
-            <p>The functional programming paradigm eschews inheritance for composition</p>
-            <p>Simply <strong>Compose Functions</strong></p>
+            <div class="flex">
+              <ul style="flex-grow: 2;">
+                <li>The functional programming paradigm prefers composition over inheritance</li>
+                <li>Composition means simply <strong>Composing Functions</strong></li>
+                <li>Composition is a more modular & flexible approach</li>
+                <li>With inheritance you often inherit more than needed</li>
+                <li>In general, with deeply nested inheritance chains, you're gonna have a bad time & end up overwriting a lot</li>
+              </ul>
+              <a href="http://www.johndcook.com/blog/2011/07/19/you-wanted-banana/">
+                If you ask for
+                <br>a banana...
+                <img src="http://www.johndcook.com/gorilla_holding_banana.jpg" alt="">
+              </a>
+            </div>
           </section>
+          
+          
         </section>
         
 

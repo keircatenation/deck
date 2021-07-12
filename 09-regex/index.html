@@ -137,6 +137,7 @@
             <h2>Tokens & Operations</h2>
             <p>Tokens: characters & special characters</p>
             <div style='columns: 2'>
+              <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Character_Classes">Character Classes:</a></p>
               <ul>
                 <li>Printable chars: <code>a, \w, \D</code></li>
                 <li>Non printable chars: <code>\r\n, \t</code></li>
@@ -144,11 +145,12 @@
               <p>Operations: quantifiers, enumerators, grouping</p>
               <ul>
                 <li><code>\[\] \(\) \{\} . * ? | ^ $ \ =</code></li>
-                <li>Greedy vs Lazy Quantifiers</li>
-                <li>Capturing vs Non Capturing Groups</li>
+                <li>Greedy vs Lazy Quantifiers <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers">MDN</a></sup></li>
+                <li>Capturing vs Non Capturing Groups <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Groups_and_Ranges">MDN</a></sup></li>
               </ul>
             </div>
-            <p><a href="http://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf">Cheat Sheet</a></p>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet">MDN Cheet Sheet</a></p>
+            <p><a href="http://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf">MIT Cheat Sheet</a></p>
           </section>
           <section>
             <h2>Tokens & Operators Example</h2>
@@ -177,21 +179,23 @@
             <h2>Creating a Regex in JS</h2>
             <pre><code class="med-code">let regex = new RegExp("pattern", "flags") //constructor way
 let regex2 = /pattern/flags // the Regex literal way
-let regex3 = new RegExp(/pattern/, "flags")
-// can also use a literal in the construtor</code></pre>
+
+// can also use a literal in the construtor
+let regex3 = new RegExp(/pattern/, "flags")</code></pre>
           </section>
           <section>
             <h2>Built-in String Methods for Regex <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Using_regular_expressions_in_JavaScript">MDN</a></sup></h2>
-            <pre><code class="med-code">exec()
-test()
+            <p>Usage is inconsistent: <code>/w/gi.test('Hello World')</code> vs. <code>'hello'.search(/L/gi)</code></p>
+            <pre><code class="med-code">// string.method(regex)
+search()
 match()
 matchall()
-search()
 replace()
-split()
-// Usage is inconsistent:
-/w/gi.test('Hello World') // true
-'hello'.search(/L/gi)</code></pre>
+replaceAll()
+split()</code></pre>
+<pre><code class="med-code">// regex.method(string)
+test()
+exec()</code></pre>
           </section>
           <section>
             <h2>Regex Flags</h2>
@@ -210,9 +214,13 @@ split()
             <h2>Regex Flag Example</h2>
             <pre><code class="med-code">/[a-z]/.test("ABCDEFG") //false
 /[a-z]/i.test("ABCDEFG") //true</code></pre>
+<pre><code class="med-code">let str = 'example@example.com'
+str.match(/example/) // ['example', index: 0, input 'example@example.com', groups: undefined]
+str.match(/example/) // ['example', 'example']</code></pre>
           </section>
           <section>
             <h2>Positive/Negative Look Behind/Ahead <sup><a href="https://www.stefanjudis.com/today-i-learned/the-complicated-syntax-of-lookaheads-in-javascript-regular-expressions/">article</a></sup></h2>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions">Assertions</a></p>
             <pre><code class="med-code">/b(?=o)/.exec('bob') // Positive Look ahead
 /b(?!o)/.exec('bob') // Negative Look ahead
 /(?<=ob)/.exec("bob") // Positive Look behind
