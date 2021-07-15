@@ -43,11 +43,16 @@
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       }
+      .flag-table p {
+        margin: 0;
+        border-bottom: 1px solid black;
+      }
       pre {
         padding: 8px !important;
         border-radius: 8px !important;
         background: #3f3f3f;
         position: relative;
+        width: fit-content;
       }
       .reveal .slides pre code.large-code {
         font-size: 2.5rem !important;
@@ -120,7 +125,9 @@
       <div class="slides">
         <section>
           <section>
-            <h1>Regular Expressions | RegExp | Regex </h1>
+            <h1>Regular Expressions</h1>
+              <h1>RegExp </h1>
+              <h1>Regex </h1>
           </section>
           <section>
             <h2>Regex in Javascript</h2>
@@ -186,7 +193,7 @@ let regex3 = new RegExp(/pattern/, "flags")</code></pre>
           <section>
             <h2>Built-in String Methods for Regex <sup><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Using_regular_expressions_in_JavaScript">MDN</a></sup></h2>
             <p>Usage is inconsistent: <code>/w/gi.test('Hello World')</code> vs. <code>'hello'.search(/L/gi)</code></p>
-            <pre><code class="med-code">// string.method(regex)
+            <pre><code class="med-code"><script type='template'>// string.method(regex)
 search()
 match()
 matchall()
@@ -195,12 +202,12 @@ replaceAll()
 split()</code></pre>
 <pre><code class="med-code">// regex.method(string)
 test()
-exec()</code></pre>
+exec()</script></code></pre>
           </section>
           <section>
             <h2>Regex Flags</h2>
             <p><code>/pattern/gim</code></p>
-            <div class="grid">
+            <div class="grid flag-table" style='max-height: 500px; grid-template-columns: 100px 1fr 1fr; grid-template-rows: repeat(7, 1fr);'>
               <p>Flag</p>    <p>Description</p>                                    <p>Corresponding Property</p>
               <code>g</code> <p>Global search</p>                                  <p>RegExp.prototype.global</p>
               <code>i</code> <p>Case-insensitive search</p>                        <p>RegExp.prototype.ignoreCase</p>
@@ -212,19 +219,19 @@ exec()</code></pre>
           </section>
           <section>
             <h2>Regex Flag Example</h2>
-            <pre><code class="med-code">/[a-z]/.test("ABCDEFG") //false
-/[a-z]/i.test("ABCDEFG") //true</code></pre>
-<pre><code class="med-code">let str = 'example@example.com'
+            <pre><code class="med-code"><script type='template'>/[a-z]/.test("ABCDEFG") //false
+/[a-z]/i.test("ABCDEFG") //true</script></code></pre>
+<pre><code class="med-code"><script type='template'>let str = 'example@example.com'
 str.match(/example/) // ['example', index: 0, input 'example@example.com', groups: undefined]
-str.match(/example/) // ['example', 'example']</code></pre>
+str.match(/example/) // ['example', 'example']</script></code></pre>
           </section>
           <section>
             <h2>Positive/Negative Look Behind/Ahead <sup><a href="https://www.stefanjudis.com/today-i-learned/the-complicated-syntax-of-lookaheads-in-javascript-regular-expressions/">article</a></sup></h2>
             <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions">Assertions</a></p>
-            <pre><code class="med-code">/b(?=o)/.exec('bob') // Positive Look ahead
+            <pre><code class="med-code"><script type="template">/b(?=o)/.exec('bob') // Positive Look ahead
 /b(?!o)/.exec('bob') // Negative Look ahead
 /(?<=ob)/.exec("bob") // Positive Look behind
-/(?<!ob)/.exec("bob") // Negative Look behind</code></pre>
+/(?<!ob)/.exec("bob") // Negative Look behind</script></code></pre>
           </section>
           <section>
             <h2>Regex References</h2>

@@ -140,12 +140,12 @@
             <h2>I'm your Project Manager</h2>
             <ul>
               <li>I've spoken with our client and I'll be sharing the project reqs with you</li>
-              <li>This client's needs seem easy so framework</li>
-              <li>but there might be some scaling surprises in store...</li>
+              <li>This client's needs seem easy we're sticking with vanilla JS (no framework)</li>
+              <li>...but there might be some scaling surprises in store...</li>
             </ul>
           </section>
           <section>
-            <h2>Project Requirements for Dragon Emoji Clicker <sup><a href="https://emojipedia.org/">1</a></sup>, <sup><a href="https://emojigraph.org/">2</a></sup></h2>
+            <h2>Project Requirements for Dragon Clicker <sup><a href="https://emojipedia.org/">1</a></sup>, <sup><a href="https://emojigraph.org/">2</a></sup></h2>
             <ul>
               <li>The application should display a 🐉 and a number of clicks.</li>
               <li>The number of clicks should increment when the 🐉 is clicked.</li>
@@ -153,9 +153,21 @@
               <li>Remember events and event listeners?</li>
             </ul>
             <pre><code class="med-code">var elem = document.getElementById('🐉');
-elem.addEventListener('click', function(){
+elem.addEventListener('click', function(e){
   //the element has been clicked... 
-  // do stuff here, like increment the counter
+  // do stuff here, like increment the counter variable
+});</code></pre>
+          </section>
+          <section>
+            <h2>How did you solve this?</h2>
+            <p>Mutating a global variable in the listener callback works.</p>
+            <pre><code class="med-code">var clicks;
+let dragon = document.getElementById('dragon')
+dragon.addEventListener('click', function(e){
+  // update our app data:
+  clicks += 1; 
+  // rerender what our app displays:
+  dragon.innerText = '🐉 ' + clicks 
 });</code></pre>
           </section>
           <section>
