@@ -159,6 +159,8 @@
                   <li style='list-style: none;'><br></li>
                   <li style='list-style: none; text-align: center;'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet">MDN Cheet Sheet</a></li>
                   <li style='list-style: none; text-align: center;'><a href="http://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf">MIT Cheat Sheet</a></li>
+                  <li style='list-style: none; text-align: center;'><a href="https://www.debuggex.com/cheatsheet/regex/javascript">JS Sheet</a></li>
+                  
                 </ul>
               </div>
               <div>
@@ -294,8 +296,8 @@ str.match(/example/g)
             <pre><code class="med-code">
 /b(?=o)/.exec('bob') // Positive Look ahead
 /b(?!o)/.exec('bob') // Negative Look ahead
-/(?&lt;=ob)/.exec("bob") // Positive Look behind
-/(?&lt;!ob)/.exec("bob") // Negative Look behind</code></pre>
+/(?&lt;=ob)b/.exec("bob") // Positive Look behind
+/(?&lt;!ob)b/.exec("bob") // Negative Look behind</code></pre>
           </section>
           <section>
             <h2>Regex References</h2>
@@ -306,6 +308,7 @@ str.match(/example/g)
           </section>
           <section>
             <h2>Regex Tools</h2>
+            <p><a href="https://github.com/aloisdg/awesome-regex">Awesome list of regex resources</a></p>
             <ul>
               <li><a href="https://regex101.com/">Regex101</a></li>
               <li><a href="https://www.debuggex.com/">Debuggex</a></li>
@@ -315,6 +318,13 @@ str.match(/example/g)
               <li><a href="https://www.regexpal.com/">RegexPal</a></li>
               <li>Fun list of regex based tools: <a href="https://www.dcode.fr/en">Dcode</a></li>
             </ul>
+          </section>
+          <section>
+            <h2>Regex Practice</h2>
+            <p>See if you can complete all the challenges in this interactive tutorial</p>
+            <p><a href="https://regexone.com/">Regexone.com</a></p>
+
+            <p><a href="https://padolsey.github.io/redoku/">REDOKU Game</a></p>
           </section>
           <section>
             <h2>HTML <code>pattern</code> Attribute <sup><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern">MDN</a></sup></h2>
