@@ -149,7 +149,8 @@
             <ul>
               <li>The application should display a 🐉 and a number of clicks.</li>
               <li>The number of clicks should increment when the 🐉 is clicked.</li>
-              <li>The specifics of the layout are up to you, so style it as you like.</li>
+              <li>Specifics of layout/style are up to you (but keep affordances & UX in mind)</li>
+              <li>Open a new Github repo and post your solution there</li>
               <li>Remember events and event listeners?</li>
             </ul>
             <pre><code class="med-code">var elem = document.getElementById('🐉');
@@ -160,8 +161,8 @@ elem.addEventListener('click', function(e){
           </section>
           <section>
             <h2>How did you solve this?</h2>
-            <p>Mutating a global variable in the listener callback works.</p>
-            <pre><code class="med-code">var clicks;
+            <p class='fragment'>Mutating a global variable in the listener callback works.</p>
+            <pre class='fragment'><code class="med-code">var clicks;
 let dragon = document.getElementById('dragon')
 dragon.addEventListener('click', function(e){
   // update our app data:
@@ -171,8 +172,28 @@ dragon.addEventListener('click', function(e){
 });</code></pre>
           </section>
           <section>
+            <h2>What do you think of this solution?</h2>
+            <p>Is it scaleable?</p>
+            <p>Is it easy to manage or add to?</p>
+            <p>Could another developer join the project and easily understand the app?</p>
+          </section>
+          <section>
+            <h2>Leveling up our Git Skills</h2>
+            <p>Create a short blog post (1 or 2 paragraphs) that explain how you solved this challenge and why</p>
+            <h3>Git Project:</h3>
+            <ul>
+              <li><code>Fork</code> this <a href="https://github.com/JamieVaughn/reflections">/reflections</a> repo</li>
+              <li>Create a Markdown file in the 2021 folder with your name as the title (i.e. <code>Joe.md</code>)</li>
+              <li>Write your reflections paragraphs in that markdown file</li>
+              <li>Remember our markdown syntax?</li>
+              <li>Commit your changes to your forked repo</li>
+              <li>Open a <code>Pull Request</code> against the original /reflections repo</li>
+            </ul>
+          </section>
+          <section>
             <h2>The Client Called, Reqs have changed 😣</h2>
-            <p>It's typical for reqs to change several times during the development lifecycle of a product</p>
+            <p>It's typical for reqs to change several times over the development lifecycle</p>
+            <p>Learn to roll with it & all software development is an iterative process (i.e. many steps)</p>
             <ul><strong>Common Reasons for Req changes:</strong>
               <li>Client's business needs change</li>
               <li>Audience changes and/or new data about the intended audience</li>
@@ -181,13 +202,21 @@ dragon.addEventListener('click', function(e){
             </ul>
           </section>
           <section>
-            <h2>Dragon Duo 2️⃣</h2>
+            <h2>2️⃣ Dragon Duo</h2>
             <ul><strong>Client's new Reqs:</strong>
-              <li>Display two 🐉's</li>
-              <li>Display the name of each dragon above it</li>
-              <li>Show the number of clicks of each dragon</li>
-              <li>Click counts should increment independently of eachother</li>
+              <li>Display two 🐉s on the screen</li>
+              <li>Display the type of each dragon above it</li>
+              <ul>
+                <li>For example: Fire, Water, Forest dragons... (they like elemental dragons)</li>
+              </ul>
+              <li>Use CSS to style the different dragon types distinctly</li>
+              <li>Show the number of clicks next to each associated dragon</li>
+              <li>Click counts should increment independently of each other</li>
             </ul>
+          </section>
+          <section>
+            <h2>How did you solve it?</h2>
+            <p>We could just add a second variable and eventListener...</p>
           </section>
           <section>
             <h2>Reflections</h2>
