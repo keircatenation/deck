@@ -162,11 +162,11 @@ elem.addEventListener('click', function(e){
           <section>
             <h2>How did you solve this?</h2>
             <p class='fragment'>Mutating a global variable in the listener callback works.</p>
-            <pre class='fragment'><code class="med-code">var clicks;
+            <pre class='fragment'><code class="med-code">var clicks = 0
 let dragon = document.getElementById('dragon')
 dragon.addEventListener('click', function(e){
   // update our app data:
-  clicks += 1; 
+  clicks += 1
   // rerender what our app displays:
   dragon.innerText = '🐉 ' + clicks 
 });</code></pre>
@@ -217,6 +217,11 @@ dragon.addEventListener('click', function(e){
           <section>
             <h2>How did you solve it?</h2>
             <p>We could just add a second variable and eventListener...</p>
+            <p class='fragment'>Although, that's a lot of loose global variables... </p>
+            <p class='fragment'>What if we contained the variables in an object?</p>
+            <p class='fragment'>Is it too soon to consider some kind of templating function?</p>
+            <p class='fragment'>To style the dragon types how about a CSS class like <code>.fire</code>?</p>
+            <p class='fragment'>How about using CSS <code>filter: hue-rotate();</code> perhaps?</p>
           </section>
           <section>
             <h2>Reflections</h2>
@@ -226,7 +231,11 @@ dragon.addEventListener('click', function(e){
               <li>Did you "hard-code" the names?</li>
               <li>Did you duplicate code anywhere?</li>
               <li>Can you share a technique of encapsulation or D.R.Y. coding you used?</li>
-              <li>(D.R.Y. - Don't Repeat Yourself)</li>
+              <li>D.R.Y. - Don't Repeat Yourself</li>
+              <li class='fragment'>Repeating code twice isn't so bad, but by three times? </li>
+              <ul>
+                <li class='fragment'>Try using a Factory Pattern or some other duplication pattern</li>
+              </ul>
             </ul>
           </section>
           <section>
@@ -235,11 +244,12 @@ dragon.addEventListener('click', function(e){
           <section>
             <h2>Dragon Arena 🏟️</h2>
             <ul>
-              <li>A list of 5 🐉's listed by name</li>
-              <li>A separate area to display the 🐉</li>
-              <li>The display area should show: name, image, # of clicks</li>
-              <li>When 🐉 is clicked in the list, the display area should update to show the data for that 🐉</li>
-              <li>the # of clicks must be unique to each 🐉 and increment when clicked</li>
+              <li>A topbar <code>nav</code> with a list of 5 dragon types</li>
+              <li>A separate area to display the 🐉's themselves (one shown at a time)</li>
+              <li>The display area should show the 🐉's type, icon, and click count</li>
+              <li>When the dragon type in the <code>nav</code> is clicked, the display area should update to show the data for that 🐉</li>
+              <li>The 🐉's click count should persist even if not currently being displayed</li>
+              <li>Click count must be unique to each 🐉 & increment when clicked</li>
             </ul>
           </section>
           <section>
