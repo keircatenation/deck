@@ -526,11 +526,56 @@ var todos = dom('todos')
 var firstTodo = dom('todos/1')
 var users = dom('users')</code></pre>
           </section>
-        </section>
-        <section>
-          <h2>new URLSearchParams() & new URL()<sup><a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">MDN</a></sup></h2>
-          <p>Easily parse a url to extract <strong>query string components</strong></p>
-          <pre><code class="med-code">let url = new URL('https://jsonplaceholder.typicode.com/todos?name=al&id=1')
+          <section>
+            <h2>HTTP POST</h2>
+            <p>So far we've seen HTTP GET. Which retrieves data from a server.</p>
+            <p>Now let's see how to <strong>send data to a server/database</strong> to be recorded.</p>
+            <hr>
+            <strong>Supplying Request Options</strong> <span>aka: <code>config</code></span>
+            <pre><code class='med-code'>fetch(url, config)
+.then(response => response.json())
+.then(confirmation => console.log(confirmation))</code></pre>
+          </section>
+          <section>
+            <h2>Example <code>POST</code></h2>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">Using Fetch Article</a></p>
+            <pre><code class="med-code">fetch(url, {
+  method: 'POST',
+  mode: 'cors',
+  cache: 'no-cache', 
+  credentials: 'same-origin', 
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  redirect: 'follow',
+  referrerPolicy: 'no-referrer',
+  body: JSON.stringify(data)
+})
+.then(res => console.log(res))</code></pre>
+          </section>
+          <section>
+            <h2>The Options Object <sup><a href="https://developer.mozilla.org/en-US/docs/Web/API/Request/Request">Request()</a></sup>, <sup><a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers">Headers()</a></sup></h2>
+            <ul style='font-size: 2rem; line-height: 3rem;'>
+              <li><code>method</code>: GET, POST, PUT, DELETE, etc.</li>
+              <li><code>mode</code>: no-cors, cors, same-origin</li>
+              <li><code>cache</code>: default, no-cache, reload, force-cache, only-if-cached</li>
+              <li><code>credentials</code>: include, *same-origin, omit</li>
+              <li><code>headers</code>: { 'Content-Type': 'application/json' || 'application/x-www-form-urlencoded' }</li>
+              <li><code>redirect</code>: manual, follow, error</li>
+              <li><code>referrerPolicy</code>: no-referrer, no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url</li>
+              <li><code>body</code>: anything that matches format specified in <code>header['Content-Type']</code></li>
+            </ul>
+          </section>
+          <section>
+            <h2>CORS</h2>
+            <p>Cross Origin Resource Sharing <sup><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">MDN</a></sup></p>
+            <p>Blocks requests from other domains unless permission is explicitly allowed on the server. For data protection/privacy purposes.</p>
+            <p>Server Configuration: <code>Access-Control-Allow-Origin: *;</code> - <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin">MDN</a></p>
+          </section>
+          <section>
+            <h2>new URLSearchParams() & new URL()<sup><a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">MDN</a></sup></h2>
+            <p>Easily parse a url to extract <strong>query string components</strong></p>
+            <pre><code>let url = new URL('https://jsonplaceholder.typicode.com/todos?name=al&id=1')
 let searchParams = new URLSearchParams(url.search);
 let items = [...searchParams.entries()]
 // [["name", "al"], ["id", "1"]]
@@ -538,6 +583,7 @@ let items = [...searchParams.entries()]
 let otherParams = new URLSearchParams('name=jo&id=2')
 let otherItems = [...otherParams.entries()]
 // [["name", "jo"], ["id", "2"]]</code></pre>
+          </section>
         </section>
         <section>
           <h2>More Code Along</h2>
@@ -545,16 +591,14 @@ let otherItems = [...otherParams.entries()]
           <p><a href="https://github.com/HackerNews/API">News API</a></p>
         </section>
         <section>
-          <section>
-            <h2>Code Along with Public APIs</h2>
-            <p><a href="https://github.com/public-apis/public-apis">Public APIs Github Resource</a></p>
-            <h3>Let's make a User Fetching App</h3>
-            <ul><p><a href="https://github.com/JamieVaughn/user-mgr">User Manager App starter</a></p>
-              <li>Add more cross functionality to your app </li>
-              <li>Or start a whole new one!</li>
-              <li>Set your github settings in your usr-mgr repo to expose it on your portfolio</li>
-            </ul>
-          </section>
+          <h2>Code Along with Public APIs</h2>
+          <p><a href="https://github.com/public-apis/public-apis">Public APIs Github Resource</a></p>
+          <h3>Let's make a User Fetching App</h3>
+          <ul><p><a href="https://github.com/JamieVaughn/user-mgr">User Manager App starter</a></p>
+            <li>Add more cross functionality to your app </li>
+            <li>Or start a whole new one!</li>
+            <li>Set your github settings in your usr-mgr repo to expose it on your portfolio</li>
+          </ul>
         </section>
 
         </section>
