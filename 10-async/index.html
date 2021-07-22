@@ -515,13 +515,29 @@ f.then(response => {
           </section>
           <section>
             <h2>Writing A Curried Fetch Utility</h2>
-            <pre><code class="med-code">var f = protocol => domain => path => fetch(protocol+domain+path).then(r =>r.json()).then(d=> console.log(d))
+            <pre><code class="med-code">var f = protocol => domain => path => {
+  return fetch(protocol + domain + path)
+    .then(r =>r.json())
+    .then(d=> console.log(d))
+}
 var prot = f('https://')
 var dom = p('jsonplaceholder.typicode.com/')
 var todos = dom('todos')
 var firstTodo = dom('todos/1')
 var users = dom('users')</code></pre>
           </section>
+        </section>
+        <section>
+          <h2>new URLSearchParams() & new URL()<sup><a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">MDN</a></sup></h2>
+          <p>Easily parse a url to extract <strong>query string components</strong></p>
+          <pre><code class="med-code">let url = new URL('https://jsonplaceholder.typicode.com/todos?name=al&id=1')
+let searchParams = new URLSearchParams(url.search);
+let items = [...searchParams.entries()]
+// [["name", "al"], ["id", "1"]]
+
+let otherParams = new URLSearchParams('name=jo&id=2')
+let otherItems = [...otherParams.entries()]
+// [["name", "jo"], ["id", "2"]]</code></pre>
         </section>
         <section>
           <h2>More Code Along</h2>
