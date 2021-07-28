@@ -115,6 +115,27 @@
         bottom: 0;
         z-index: -9;
       }
+
+      /* d3 force graph */
+
+      circle {
+        fill: crimson;
+      }
+      line {
+        stroke: wheat;
+        stroke-width: 2px;
+        filter: drop-shadow(0 0 1px firebrick);
+      }
+      text {
+        text-anchor: middle;
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+        fill: #666;
+        font-size: 16px;
+      }
+      polyline {
+        stroke: black;
+        stroke-width: 3px;
+      }
     </style>
   </head>
 
@@ -128,8 +149,15 @@
           <section>
             <h2>To understand JS Frameworks...</h2>
             <p>Before we dive into a framework like React, <br>let's explore how to organize code and why... </p>
-            <p>also known as Design Patterns</p>
-            <p><a href="https://www.gofpatterns.com/">"Gang Of Four"</a></p>
+            <p>also known as Design Patterns: <a href="https://www.gofpatterns.com/">"Gang Of Four"</a> book</p>
+            <ul style='columns: 2'>
+              <li>Factory Method Pattern</li>
+              <li>Command Pattern</li>
+              <li>State Pattern</li>
+              <li>Strategy Pattern</li>
+              <li>Observer Pattern</li>
+              <li>Singleton Pattern</li>
+            </ul>
           </section>
           <section>
             <h2>The Saga of the Dragon Clicker App</h2>
@@ -228,7 +256,7 @@ dragon.addEventListener('click', function(e){
             <ul>
               <li>Are you happy with your method of 🐉 duplication?</li>
               <li>Is it scalable?</li>
-              <li>Did you "hard-code" the names?</li>
+              <li>Did you "hard-code" the types?</li>
               <li>Did you duplicate code anywhere?</li>
               <li>Can you share a technique of encapsulation or D.R.Y. coding you used?</li>
               <li>D.R.Y. - Don't Repeat Yourself</li>
@@ -283,26 +311,91 @@ for (var i = 0; i < nums.length; i++) {
             </ul>
           </section>
           <section>
-            <h2>Spaghetti Code</h2>
-            <p><a href="https://www.youtube.com/watch?v=YrOiuIjLp9k">Udacity Video</a></p>
-            <ul>
-              <li>Apps can get messy as you start connecting things together</li>
-              <li>But, applications can't work without the parts communicating/connecting...</li>
-              <li>If you connect all parts of your app to every other part, then you can't move anything around anymore</li>
-              <li>You've lost all degrees of freedom and therefore you've lost extensibility, Stability and likely clean code and scalability too</li>
-              <li>So We need to organize these connections carefully to keep things manageable</li>
-              <li>An app's codebase with a lot of connections and no organization is called "Spaghetti Code"</li>
-            </ul>
+            <h2>The Tools vs. The Blueprints</h2>
+            <img class="fragment" style="width: 800px;" src="img/tools.jpeg" alt="">
+            <figure class="fragment" style="position: absolute; z-index: 1; transform: translate(0%, -116%);">
+              <img  src="img/gear_pump.png" alt="">
+              <p style="position: absolute; bottom: -18%; background: white;">Subassemblies of Code that slot into an entire application</p>
+            </figure>
+            <img class="fragment" style="position: absolute; z-index: 0; transform: translate(-60%, 0);" src="img/wind_turbine.jpeg" alt="">
           </section>
           <section>
-            <h2>The Goal</h2>
+            <h2>Spaghetti Code</h2>
+            <p class='fragment'>... is when a codebase has <strong>many connections</strong> and <strong>no organization</strong></p>
+            <div class="flex fragment">
+              <svg onclick="addPhone(event)" class='nohub' width="600" height="450" viewBox="200 150 200 160">
+                <g class="nohub-links"></g>
+                <g class="nohub-nodes"></g>
+              </svg>
+              <div>
+                <p>Number of Phones: <span class="node-annotation">2</span></p>
+                <p>Number of Connections: <span class="cxn-annotation">1</span></p>
+              </div>
+            </div>
+            <img class='fragment j-stamp' src="img/sad_spaghet.webp" style="border: none; transform: rotate(-15deg) translate(-70%, 0); clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%, 50% 0)" alt="">
+          </section>
+          <section>
+            <h2>More Connections is More Complexity</h2>
+            <p>By the point you have 45 phones you'll have a thousand connections!!!</p>
+            <div>
+              <svg style="border-left: 1px solid grey; border-bottom: 1px solid grey;" height="200" width="400" viewBox="5 0 200 102">
+              <polyline fill="none" points="0,100 10,100 20,99 30,97 40,94 50,90 60,85 70,79 80,72 90,64 100,55 110,45 120,34 130,22 140,9 150,-5" />
+                <circle cx="30" cy="97" r="4" />
+                <circle cx="60" cy="85" r="4" />
+                <circle cx="90" cy="64" r="4" />
+                <circle cx="120" cy="34" r="4" />
+              </svg>
+            </div>
+            <p class="fragment">Exponential relationships are scary and hard to manage!</p>
+          </section>
+          <section>
+            <h2>Managing Connections</h2>
+            <ul>
+              <li>We need to think carefully about how to organize these connections</li>
+              <li>Applications can't work without the parts communicating/connecting...</li>
+              <li>But if you connect all parts of your app to every other part:
+                <ol>
+                  <li>It becomes hard to manage </li>
+                  <li>You've lost all degrees of freedom</li>
+                  <li>That's called "tightly coupled" code</li>
+                  <li>It means you can't rearrange the code without breaking something</li>
+                </ol> 
+            </ul>
+            <p>You won't have <strong>scalable, extensible, stable or clean</strong> code anymore</p>
+          </section>
+          <section>
+            <h2>Adding Organization</h2>
+            <p>What if we add something that can manage and route those connections</p>
+            <p class='fragment'>...like a <strong>Hub</strong>!</p>
+            <div class="flex">
+              <svg class='hub fragment' width="600" height="450" viewBox="200 150 200 160">
+                <g class="hub-links"></g>
+                <g class="hub-nodes"></g>
+              </svg>
+              <div class="fragment">
+                <p>Number of Phones: <span class="node-annotation">15</span></p>
+                <p>Number of Connections: <span class="cxn-annotation">15</span></p>
+                <p>Number of phones and connectsion scale linearly!</p>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2>The Benefit</h2>
+            <p style='text-align: left;'>The code is...</p>
             <ul>
               <li>Stable - Bug free and handles errors gracefully</li>
-              <li>Clean code - Code is easily understood by other devs & adheres to standards</li>
+              <li>Clean - Code is easily understood by other devs & adheres to standards</li>
               <li>Scalable - Code can accomodate large numbers of users and/or data</li>
               <li>Extensible - Easy to add new features without disrupting old ones</li>
               <li>Loosely Coupled - Easy to remove legacy features without disrupting new ones</li>
             </ul>
+          </section>
+          <section>
+            <h2>A Hub is called a Controller</h2>
+            <p>In programming, there is a well established pattern that uses this <br><strong>Hub</strong> approach</p>
+            <br>
+            <p>It's called the <strong>MVC</strong> pattern</p>
+            <p><strong>M</strong>odel - <strong>V</strong>iew - <strong>C</strong>ontroller</p>
           </section>
           <section>
             <h2>*️⃣ Model View Controller</h2>
@@ -341,8 +434,15 @@ for (var i = 0; i < nums.length; i++) {
             </ol>
           </section>
           <section>
-            <h2>Practice in an Existing MVC App</h2>
-            <ol>Try to complete these challenges in the <a href="https://github.com/JamieVaughn/note-taker">note-taker</a> repo
+            <h2>Code-along</h2>
+            <p>Let's see how we can use an MVC pattern in a small app!</p>
+            <p>We're going to code up a note-taking app</p>
+            <p>Check out the repo: <a href="https://github.com/JamieVaughn/note-taker">note-taker</a></p>
+          </section>
+          <section>
+            <h2>Complete these Challenges:</h2>
+            <p>Can you extend our MVC app with these new features? <sup><a href="https://github.com/JamieVaughn/note-taker">note-taker</a></sup></p>
+            <ol>
               <li>☑️ Add a Delete feature</li>
               <li>☑️ Add a localStorage clear feature</li>
               <li>☑️ Add a timestamp for each note</li>
@@ -351,16 +451,19 @@ for (var i = 0; i < nums.length; i++) {
             </ol>
           </section>
           <section>
-            <p>The Client called again and wants us to refactor their Dragon app</p>
+            <h2>Our Favorite Client called again 😑</h2>
+            <p>They wants us to refactor Dragon Arena 🏟️ using <strong>MVC</strong></p>
           </section>
           <section>
-            <h2>Refactoring Dragon Arena 🏟️ into the MVC Pattern!</h2>
-            <p>Planning our MVC Refactoring for Dragon Arena 🏟️</p>
+            <h2>Dragon Arena 🏟️ Premium</h2>
+            <p>Planning our MVC Refactoring</p>
             <ul>
-              <li>Sketch out our Requirements</li>
-              <li>Decide which elements belong in the M, the V or the C</li>
+              <li>App Requirements are same as before, but our implementation will change</li>
+              <li>Decide which elements belong in the <strong>M</strong>, the <strong>V</strong> or the <strong>C</strong></li>
               <li>No storing our model in the DOM anymore, use a data type, like an array</li>
-              <li>Be sure to generate your List view from your Model, too</li>
+              <li>Be sure to generate your List View from your Model, too</li>
+              <li>No mutating the model from the View, anymore, route mutations through the controller</li>
+              <li>Use a <code>render</code> function that repaints the View after any updates to the model</li>
             </ul>
           </section>
           <section>
@@ -370,8 +473,9 @@ for (var i = 0; i < nums.length; i++) {
               <li>The <em>Controller</em> can use (ideally) all <strong>pure functions</strong> (It's the "brains" of the app)</li>
               <li><strong>Pure functions</strong> can help us push our <strong>Side Effects</strong> to the "edges" of our app</li>
               <li>A good rule of thumb is to think of the <em>Model</em> and the <em>View</em> as the "edges"</li>
-              <li>The <em>Model</em> can have all <strong>Statefulness</strong> (i.e. the data)</li>
-              <li>The <em>View</em> can contain functions with <strong>Side effects</strong></li>
+              <li>The <em>Model</em> can have all <strong>Statefulness</strong> (i.e. data that describes the app state)</li>
+              <li>The <em>Controller</em> can have functions with <strong>Side effects</strong> (i.e. mutates Model)</li>
+              <li>The <em>View</em> can have functions that dispatch <strong>Commands</strong> (i.e. calls Controller)</li>
             </ul>
           </section>
           <section>
@@ -381,7 +485,7 @@ for (var i = 0; i < nums.length; i++) {
               <li class='fragment'>⤷ View <br/> 3. <strong>The Array of the dragon objects?</strong>  </li>
               <li class='fragment'>⤷ Model <br/> 2. <strong>The display area for Dragons?</strong>  </li>
               <li class='fragment'>⤷ View <br/> 4. <strong>The <code>increment()</code> or <code>getDragons()</code> functions?</strong> </li>
-              <li class='fragment'>⤷ Controller <br/> 5. <strong>The Array of dragon names?</strong>  </li>
+              <li class='fragment'>⤷ Controller <br/> 5. <strong>The Array of dragon types?</strong>  </li>
               <li class='fragment'>⤷ Model </li>
             </ul>
           </section>
@@ -401,20 +505,24 @@ for (var i = 0; i < nums.length; i++) {
         ...
     ],
 
-    addDragon()
+    dragonFactory() // could go in Model or Controller
 }</code></pre>
           </section>
           <section>
             <h2>Our Dragon View(s?)</h2>
             <div class="flex">
-              <img src="https://github.com/JamieVaughn/dragon-clicker/blob/master/dragon-clicker.png?raw=true" alt="">
               <div>
                 <ol>
-                  <li>List of Dragon Names</li>
+                  <li>List of Dragon Types</li>
                   <li>Display area for Dragon Cards</li>
                 </ol>
-                <p>They are different areas and they are rerendered at different times</p>
-                <p>Could it make sense to have two view objects to handle each independently?</p>
+                <img src="https://github.com/JamieVaughn/dragon-clicker/blob/master/dragon-clicker.png?raw=true" alt="">
+              </div>
+              <div>
+                <ul>
+                  <li>They are different areas and they are rerendered by different triggers</li>
+                  <li>Could it make sense to have two view objects to handle each independently?</li>
+                </ul>
               </div>
             </div>
           </section>
@@ -442,8 +550,9 @@ const View2 = {
     getList(),
     getDragons(),
     dispatch(name)
-    // setDragons(),
+    // dragonFactory(), // could be here or Model
     // hide
+    // filter
     // delete
     // modify etc...
 }</code></pre>
@@ -457,7 +566,7 @@ const View2 = {
     {...}, 
     {...},
     ...],
-    addDragon()
+    dragonFactory()
 }</code></pre>
               <pre style="flex: 2 0 34%;"><code class="med-code">const View = {
     node,
@@ -487,11 +596,15 @@ const View2 = {
             </ul>
           </section>
           <section>
-            <p>The Client loves Dragon Arena 🏟️</p>
-            <p><em>But they need one <em style="font-style: normal">f</em>inal req change</em> ...I promise</p>
+            <p>The Client loves <strong>Dragon Arena 🏟️ Premium</strong></p>
+            <p class="fragment"><em>But they're insisting one <em style="font-style: normal">f</em>inal req change</em></p>
+            <div class="fragment">
+              <strong  style="font-size: 4rem;">🤦🏽‍♀️</strong>
+              <p>(last time, I promise)</p>
+            </div>
           </section>
           <section>
-            <h2>Dragon Arena 🏟️ Premium</h2>
+            <h2>Dragon Dojo 🏯</h2>
             <ul><strong>For this implementation:</strong>
               <li>Each dragon in the list is unique & can't be duplicated</li>
               <li>Add a separate Admin view <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#result">modal</a> that displays on doubleclicking a dragon</li>
@@ -535,6 +648,133 @@ function togglePlay(el) {
   playing ? el.play() : el.pause()
   playing = !playing
 }
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.0.0/dist/d3.min.js"></script>
+  <script defer>
+    var width = 600, height = 450
+
+var hubNodes = [
+  {name: '📡'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+	{name: '📞'},
+]
+var noHubNodes = [
+  {id: 0, name: '📞'},
+	{id: 1, name: '📞'},
+	// {name: '📞'},
+	// {name: '📞'},
+	// {name: '📞'},
+	// {name: '📞'},
+	// {name: '📞'},
+	// {name: '📞'},
+	// {name: '📞'},
+]
+
+let phones = 2
+let nodeAnnotation = document.querySelector('.node-annotation')
+let cxnAnnotation = document.querySelector('.cxn-annotation')
+
+function addPhone(e) {
+  console.log('phone')
+  phones++
+  noHubNodes = Array.from({length: phones}).map((i, id) => ({id, name: '📞'}))
+  noHubLinks = []
+  noHubNodes.forEach(node => {
+    noHubNodes.forEach(n => {
+      if(node !== n) noHubLinks.push({source: node, target: n})
+    })
+  })
+  nodeAnnotation.innerText = noHubNodes.length
+  cxnAnnotation.innerText = (noHubNodes.length * (noHubNodes.length - 1)) / 2
+  simulation(noHubNodes, noHubLinks)
+
+}
+
+var noHubLinks = []
+var hubLinks = []
+
+noHubNodes.forEach(node => {
+  noHubNodes.forEach(n => noHubLinks.push({source: node, target: n}))
+})
+
+hubNodes.forEach(node => {
+  hubLinks.push({source: node, target: hubNodes[0]})
+})
+
+
+var simulation = (nodes, links, flag) => {
+  d3.forceSimulation(nodes)
+	.force('charge', d3.forceManyBody().strength(-100))
+	.force('center', d3.forceCenter(width / 2, height / 2))
+	.force('link', d3.forceLink().links(links))
+	.on('tick', flag == 'hub' ? tickHub : tickNoHub);
+}
+
+function updateLinks(className, links) {
+	d3.select(className)
+		.selectAll('line')
+		.data(links)
+		.join('line')
+		.attr('x1', function(d) {
+			return d.source.x
+		})
+		.attr('y1', function(d) {
+			return d.source.y
+		})
+		.attr('x2', function(d) {
+			return d.target.x
+		})
+		.attr('y2', function(d) {
+			return d.target.y
+		});
+}
+
+function updateNodes(className, nodes) {
+	d3.select(className)
+		.selectAll('text')
+		.data(nodes)
+		.join('text')
+		.text(function(d) {
+			return d.name
+		})
+		.attr('x', function(d) {
+			return d.x
+		})
+		.attr('y', function(d) {
+			return d.y
+		})
+		.attr('dy', function(d) {
+			return 5
+		});
+}
+
+function tickHub() {
+  updateLinks('.hub-links', hubLinks)
+	updateNodes('.hub-nodes', hubNodes)
+}
+function tickNoHub() {
+	updateLinks('.nohub-links', noHubLinks)
+	updateNodes('.nohub-nodes', noHubNodes)
+}
+
+  simulation(noHubNodes, noHubLinks)
+  simulation(hubNodes, hubLinks, 'hub')
+
+
+
     </script>
   </body>
 </html>

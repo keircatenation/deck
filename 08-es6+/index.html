@@ -692,16 +692,19 @@ joEmployee.__proto__ // Person {constructor: ƒ, getInfo: ƒ}</code></pre>
           </section>
           <section>
             <h2>Prototypal Inheritance</h2>
-            <img src="img/prototype_chain.png" alt="">
-          </section>
-          <section>
-            <h2>Accessing an inherited property in JS follows these steps:</h2>
-            <ol>
-              <li>Check to see if the value exists locally. If it does, return that value.</li>
-              <li>If there is not a local value, check the prototype chain (using the __proto__ property).</li>
-              <li>For the first object somwhere up the prototype chain that has a value for the specified property, return that value.</li>
-              <li>If no such property is found up the whole prototype chain, return undefined.</li>
-            </ol>
+            <div class="flex" style="gap: 1rem;">
+              <img src="img/prototype_chain.png" alt="">
+              <div>
+                <strong>Steps to access inherited properties in JS:</strong>
+                <ol style="font-size: 2rem; line-height: 3.5rem;">
+                  <li>Check if the key exists locally. If it does, return local value.</li>
+                  <li>If there is no local key, check up the prototype chain <br>(via the <code>__proto__</code> property).</li>
+                  <li>Iterate up the prototype chain looking for the next object w/ the specified key</li>
+                  <li>For the first object encountered in the prototype chain w/ the key, return that key's value.</li>
+                  <li>If the key is not found in entire prototype chain, return undefined.</li>
+                </ol>
+              </div>
+            </div>
           </section>
           <section>
             <h2>Compostion vs Inheritance</h2>
