@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>Javascript Applications</title>
-    <meta name="description" content="2017 was the year of CSS grid, a powerful tool that was developed specially to do layout on the web. It allows us to do many things that we couldn't before, without extreme measures of hackish-ness. It is definitely not hyperbole to say that CSS grid will revolutionise web design moving forward. This talk will introduce CSS grid and how it can be used to create modern layouts for the web.">
+    <meta name="description" content="Learning to organize our app code using Design Patterns and MVC.">
 
     <link rel="stylesheet" href="../04-css-2/css/reveal.css">
     <link rel="stylesheet" href="../04-css-2/css/theme/jing.css">
@@ -135,6 +135,17 @@
       polyline {
         stroke: black;
         stroke-width: 3px;
+      }
+      .ATL-container {
+        position: relative
+      }
+      .ATL {
+        color: white;
+        position: absolute;
+        font-size: 6rem !important;
+        font-weight: bold !important;
+        right: 10%;
+        top: 10%;
       }
     </style>
   </head>
@@ -376,8 +387,12 @@ for (var i = 0; i < nums.length; i++) {
               <div class="fragment">
                 <p>Number of Phones: <span class="node-annotation">15</span></p>
                 <p>Number of Connections: <span class="cxn-annotation">15</span></p>
-                <p>Number of phones and connectsion scale linearly!</p>
+                <p>Number of phones and connections scale linearly!</p>
               </div>
+            </div>
+            <div style='transform: translate(-36%, 40%) rotate(-15deg);' class="ATL-container fragment j-stamp">
+              <img src="img/Atlanta_airport.jpg" alt="" >
+              <span class='ATL'>ATL</span>
             </div>
           </section>
           <section>
@@ -495,14 +510,14 @@ for (var i = 0; i < nums.length; i++) {
             <pre><code class="med-code">const Model = {
 
     dragonList: [ 
-        name1, 
-        name2, 
+        type1, 
+        type2, 
         ... 
     ],
 
     dragons = [
-        {id: 0, name: 'fire', clicks: 0},
-        {id: 1, name: 'sky', clicks: 0},
+        {id: 0, type: 'fire', clicks: 0},
+        {id: 1, type: 'sky', clicks: 0},
         ...
     ],
 
@@ -550,7 +565,7 @@ const View2 = {
     increment(),
     getList(),
     getDragons(),
-    dispatch(name)
+    dispatch(type)
     // dragonFactory(), // could be here or Model
     // hide
     // filter
@@ -582,7 +597,7 @@ const View2 = {
   getList(),
   getDragons(),
   increment(),
-  dispatch(name)
+  dispatch(type)
 }</code></pre>
           </div>
             <p>Could each of these be in a separate js file? Maybe Modules?</p>
