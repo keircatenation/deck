@@ -483,23 +483,49 @@ for (var i = 0; i < nums.length; i++) {
             </ul>
           </section>
           <section>
+            <h2>"View is a Function of State"</h2>
+            <img src="img/ui_state.png" alt=""><br>
+            <img src="img/function_of_state.png" class="fragment" alt="">
+            <img src="img/state_view.png" class="fragment j-stamp" alt="">
+          </section>
+          <section>
             <h2>Remember Pure Functions and Side Effects?</h2>
+            <p>These concepts can organize our MVC pattern</p>
             <ul>
-              <li><strong>Pure functions</strong> have no <strong>State</strong>; they just take in parameters & return values</li>
-              <li>The <em>Controller</em> can use (ideally) all <strong>pure functions</strong> (It's the "brains" of the app)</li>
+              <li><strong>Pure functions</strong> have no <strong>internal State</strong></li>
+              <li>They only recieve parameters & return a value</li>
+              <li>The <em>Controller</em> can use (ideally) all <strong>pure functions</strong></li>
+              <li>Think of the <em>Controller</em> as the "brains" of the app</li>
               <li><strong>Pure functions</strong> can help us push our <strong>Side Effects</strong> to the "edges" of our app</li>
               <li>A good rule of thumb is to think of the <em>Model</em> and the <em>View</em> as the "edges"</li>
-              <li>The <em>Model</em> can have all <strong>Statefulness</strong> (i.e. data that describes the app state)</li>
-              <li>The <em>Controller</em> can have functions with <strong>Side effects</strong> (i.e. mutates Model)</li>
-              <li>The <em>View</em> can have functions that dispatch <strong>Commands</strong> (i.e. calls Controller)</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Sorting Our Code into each Part</h2>
+            <ul>
+              <li>The <em>Model</em> can have all of the:</li>
+              <ul>
+                <li><strong>Statefulness</strong> (i.e. data that describes the app state)</li>
+                <li>Functions w/ side-effects that <strong>create or mutate</strong> the <em>Model</em></li>
+              </ul>
+              <li>The <em>Controller</em> can have:</li>
+              <ul>
+                <li>Pure functions that transmit messages between Model & View</li>
+                <li>Pure functions that handle calculations & business logic</li>
+              </ul>
+              <li>The <em>View</em> can have functions that: </li>
+              <ul>
+                <li>Dispatch user input as <strong>Commands</strong> (i.e. invokes <em>Controller</em> methods)</li>
+                <li>Update/mutate/reference the <strong>implicit state of the DOM</strong> (i.e. render UI)</li>
+              </ul>
             </ul>
           </section>
           <section>
             <h2>MVC designations for our App's elements</h2>
             <ul style='list-style: none;'>
               <li class='fragment'>1. <strong>The Clickable list of dragons?</strong> </li>
-              <li class='fragment'>⤷ View <br/> 3. <strong>The Array of the dragon objects?</strong>  </li>
-              <li class='fragment'>⤷ Model <br/> 2. <strong>The display area for Dragons?</strong>  </li>
+              <li class='fragment'>⤷ View <br/> 2. <strong>The Array of the dragon objects?</strong>  </li>
+              <li class='fragment'>⤷ Model <br/> 3. <strong>The display area for Dragons?</strong>  </li>
               <li class='fragment'>⤷ View <br/> 4. <strong>The <code>increment()</code> or <code>getDragons()</code> functions?</strong> </li>
               <li class='fragment'>⤷ Controller <br/> 5. <strong>The Array of dragon types?</strong>  </li>
               <li class='fragment'>⤷ Model </li>
@@ -521,8 +547,9 @@ for (var i = 0; i < nums.length; i++) {
         ...
     ],
 
-    dragonFactory() // could go in Model or Controller
+    dragonFactory(obj) // could go in Model or Controller
 }</code></pre>
+<span style="transform: translate(-20%, 100%)" class='fragment j-stamp'>a unique <code>id</code> distinguishes between duplicate types!</span>
           </section>
           <section>
             <h2>Our Dragon View(s?)</h2>
@@ -547,14 +574,14 @@ for (var i = 0; i < nums.length; i++) {
             <pre><code class="med-code">const View = {
     node,
     initializeView1(),
-    template(list),
+    templateFactory(list),
     render1()
 }
 
 const View2 = {
     node, 
     initializeView2(),
-    template(dragon),
+    templateFactory(dragon),
     render2()
 }</code></pre>
           </section>
@@ -566,7 +593,7 @@ const View2 = {
     getList(),
     getDragons(),
     dispatch(type)
-    // dragonFactory(), // could be here or Model
+    // dragonFactory(obj), // could be here or Model
     // hide
     // filter
     // delete
@@ -587,7 +614,7 @@ const View2 = {
               <pre style="flex: 2 0 34%;"><code class="med-code">const View = {
     node,
     init(),
-    template(),
+    templateFactory(),
     render()
 }
 // Could have a
