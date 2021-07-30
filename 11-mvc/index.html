@@ -492,8 +492,8 @@ for (var i = 0; i < nums.length; i++) {
             <h2>Remember Pure Functions and Side Effects?</h2>
             <p>These concepts can organize our MVC pattern</p>
             <ul>
-              <li><strong>Pure functions</strong> have no <strong>internal State</strong></li>
-              <li>They only recieve parameters & return a value</li>
+              <li><strong>Pure functions</strong> don't mutate <strong>global State</strong></li>
+              <li>They recieve parameters, perform some transformation & then return a value</li>
               <li>The <em>Controller</em> can use (ideally) all <strong>pure functions</strong></li>
               <li>Think of the <em>Controller</em> as the "brains" of the app</li>
               <li><strong>Pure functions</strong> can help us push our <strong>Side Effects</strong> to the "edges" of our app</li>
